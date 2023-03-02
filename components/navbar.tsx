@@ -4,9 +4,6 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import Image from 'next/image'
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export default function Navbar() {
   return (
@@ -50,14 +47,14 @@ export default function Navbar() {
                 href="#"
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
-                Contact
+                Projects
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 href="#"
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
-                Projects
+                Contact
               </Disclosure.Button>
             </div>
           </Disclosure.Panel>
