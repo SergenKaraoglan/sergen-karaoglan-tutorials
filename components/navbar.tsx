@@ -21,7 +21,7 @@ export default function Navbar() {
               <div className="hidden sm:block">
                       <div className="flex space-x-4">
                           {/* <a href="https://www.linkedin.com/in/sergen-karaoglan/" className="rounded-md px-3 py-2 text-sm font-medium text-gray-50 hover:bg-gray-700">About</a> */}
-                          <a href="/projects" className="rounded-md px-3 py-2 text-sm font-medium text-gray-50 hover:bg-gray-700">Projects</a>
+                          <Link href="/projects" className="rounded-md px-3 py-2 text-sm font-medium text-gray-50 hover:bg-gray-700">Projects</Link>
                           <a href="#footer-heading" className="rounded-md px-3 py-2 text-sm font-medium text-gray-50 hover:bg-gray-700">Contact</a>
                       </div>
               </div>
