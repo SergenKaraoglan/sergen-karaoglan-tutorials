@@ -27,7 +27,7 @@ export default function Home() {
       </Head>
       <main>
         <div className="relative overflow-hidden min-h-screen w-full pb-16 sm:pb-24 lg:pb-32">
-          <video className="h-full w-full object-cover absolute inset-0 -z-20 " autoplay="autoplay" loop="loop" muted="muted" playsinline>
+          <video className="h-full w-full object-cover absolute inset-0 -z-20 " autoPlay loop muted playsInline>
             <source src="/FractalTree.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
