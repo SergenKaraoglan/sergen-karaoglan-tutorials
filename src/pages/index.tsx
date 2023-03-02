@@ -64,7 +64,7 @@ export default function Home() {
                   <p className="mt-1 text-sm text-gray-900">A deep learning project that allows the user to tweak and train a neural network 
                     using a GUI that can then be used to play T-rex runner with a touchless interface.</p>
                 </div>
-                <Image className="h-auto w-1/4 flex-shrink-0 rounded" src="/t_rex_runner_touchless_interface.png" alt="t_rex_runner" height={50} width={50} />
+                <Image className="h-auto w-1/4 flex-shrink-0 rounded" src="/t_rex_runner_touchless_interface.png" alt="t_rex_runner" height={100} width={100} />
               </div>
               <div>
                 <div className="-mt-px flex divide-x divide-gray-200">
