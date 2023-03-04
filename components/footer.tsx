@@ -1,11 +1,11 @@
-import {ClipboardDocumentIcon } from '@heroicons/react/24/outline'
+import { ClipboardDocumentIcon } from "@heroicons/react/24/outline";
 
 const navigation = {
   social: [
     {
-      name: 'GitHub',
-      href: 'https://github.com/SergenKaraoglan',
-      icon: (props: { className: string;}) => (
+      name: "GitHub",
+      href: "https://github.com/SergenKaraoglan",
+      icon: (props: { className: string }) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -16,9 +16,9 @@ const navigation = {
       ),
     },
     {
-      name: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/sergen-karaoglan',
-      icon: (props: { className: string;}) => (
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/sergen-karaoglan",
+      icon: (props: { className: string }) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -29,13 +29,13 @@ const navigation = {
       ),
     },
   ],
-}
+};
 
 export default function Footer() {
   function copyEmail(): void {
-    let copyText = document.getElementById("contact-email")
+    let copyText = document.getElementById("contact-email");
     if (copyText !== null) {
-      let email= copyText.textContent;
+      let email = copyText.textContent;
       if (email !== null) {
         navigator.clipboard.writeText(email);
       }
@@ -50,30 +50,43 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="border-t border-gray-900/10 pt-8 lg:flex lg:items-center lg:justify-between">
           <div>
-              <h3 className="text-sm font-semibold leading-6 text-gray-900">Hire me.</h3>
-              <p className="mt-2 text-sm leading-6 text-gray-600">Contact for web development, full-time, on-site (UK) or remote.</p>
+            <h3 className="text-sm font-semibold leading-6 text-gray-900">
+              Contact.
+            </h3>
+            <p className="mt-2 text-sm leading-6 text-gray-600">
+              Contact for web development, full-time, on-site (UK) or remote.
+            </p>
           </div>
-          
-          <button id="contact-email" onClick={copyEmail}
-            className="items-center group relative mt-4 flex max-w-fit lg:mt-0 rounded-md bg-blue-700 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">
-              <p id="email">sergenkaraoglan@outlook.com</p>
-              <div className="ml-2 sm:ml-4 sm:flex-shrink-0">
-                <ClipboardDocumentIcon className="w-6 h-6"/>                
-              </div>
+
+          <button
+            id="contact-email"
+            onClick={copyEmail}
+            className="items-center group relative mt-4 flex max-w-fit lg:mt-0 rounded-md bg-blue-700 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+          >
+            <p id="email">sergenkaraoglan@outlook.com</p>
+            <div className="ml-2 sm:ml-4 sm:flex-shrink-0">
+              <ClipboardDocumentIcon className="w-6 h-6" />
+            </div>
           </button>
         </div>
         <div className="mt-8 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between">
           <div className="flex space-x-6 md:order-2">
             {navigation.social.map((item) => (
-              <a key={item.name} href={item.href} className="text-gray-500 hover:text-gray-400">
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-gray-500 hover:text-gray-400"
+              >
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="h-6 w-6" aria-hidden="true" />
               </a>
             ))}
           </div>
-          <p className="mt-8 text-xs leading-5 text-gray-500 md:order-1 md:mt-0">&copy; 2023 Sergen Karaoglan.</p>
+          <p className="mt-8 text-xs leading-5 text-gray-500 md:order-1 md:mt-0">
+            &copy; 2023 Sergen Karaoglan.
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }

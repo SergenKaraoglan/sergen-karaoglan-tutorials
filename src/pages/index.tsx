@@ -1,16 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "next/font/google";
-import { Dialog } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-
-const inter = Inter({ subsets: ["latin"] });
-
-let mobileMenuOpen = false;
-function setMobileMenuOpen(isOpen: boolean): void {
-  mobileMenuOpen = isOpen;
-}
 
 export default function Home() {
   return (
@@ -31,7 +21,7 @@ export default function Home() {
             muted
             playsInline
           >
-            <source src="/FractalTree.mp4" type="video/mp4" />
+            <source src="/manim_montage.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <div className="px-6 lg:px-8">
