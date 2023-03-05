@@ -1,4 +1,5 @@
 import { ClipboardDocumentIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 
 const navigation = {
   social: [
@@ -32,16 +33,6 @@ const navigation = {
 };
 
 export default function Footer() {
-  function copyEmail(): void {
-    let copyText = document.getElementById("contact-email");
-    if (copyText !== null) {
-      let email = copyText.textContent;
-      if (email !== null) {
-        navigator.clipboard.writeText(email);
-      }
-    }
-  }
-
   return (
     <footer className="bg-white" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
@@ -58,16 +49,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <button
-            id="contact-email"
-            onClick={copyEmail}
-            className="items-center group relative mt-4 flex max-w-fit lg:mt-0 rounded-md bg-blue-700 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
-          >
-            <p id="email">sergenkaraoglan@outlook.com</p>
-            <div className="ml-2 sm:ml-4 sm:flex-shrink-0">
-              <ClipboardDocumentIcon className="w-6 h-6" />
-            </div>
-          </button>
+          <EmailButton />
         </div>
         <div className="mt-8 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between">
           <div className="flex space-x-6 md:order-2">
@@ -88,5 +70,38 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function EmailButton() {
+  function copyEmail() {
+    navigator.clipboard.writeText(email);
+    setTooltip(true);
+    setTimeout(() => {
+      setTooltip(false);
+    }, 1000);
+  }
+
+  const email = "sergenkaraoglan@outlook.com";
+  const [tooltip, setTooltip] = useState(false);
+  return (
+    <button
+      id="contact-email"
+      onClick={copyEmail}
+      className="group relative items-center mt-4 flex max-w-fit lg:mt-0 rounded-md bg-blue-700 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+    >
+      <p>{email}</p>
+      <div className="ml-2 sm:ml-4 sm:flex-shrink-0">
+        <ClipboardDocumentIcon className="w-6 h-6" />
+      </div>
+      <span
+        className={
+          "absolute top-10 ease-out duration-300 rounded bg-gray-800 p-2 text-xs text-white " +
+          (tooltip ? "scale-100" : "scale-0")
+        }
+      >
+        Copied!
+      </span>
+    </button>
   );
 }

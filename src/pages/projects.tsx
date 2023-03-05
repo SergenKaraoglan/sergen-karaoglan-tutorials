@@ -8,7 +8,7 @@ const project_list = [
     technologies: ["Javascript", "HTML", "CSS", "Tensorflow.js", "Chart.js"],
     description:
       "Play T-rex runner with a touchless interface by training and using a neural network.",
-    demo: "https://sergenkaraoglan.github.io/t-rex-runner-touchless-interface/",
+    demo: "https://sergenkaraoglan.github.io/t_rex_runner_touchless_interface/",
     code: "https://github.com/SergenKaraoglan/t_rex_runner_touchless_interface",
   },
   {

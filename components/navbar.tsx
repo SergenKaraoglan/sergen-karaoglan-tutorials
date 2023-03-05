@@ -38,12 +38,12 @@ export default function Navbar() {
                   >
                     Projects
                   </Link>
-                  <a
+                  <Link
                     href="#footer-heading"
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-50 hover:bg-gray-700"
                   >
                     Contact
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="-mr-2 flex sm:hidden">
