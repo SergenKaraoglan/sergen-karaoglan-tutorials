@@ -7,8 +7,17 @@ const project_list = [
     title: "Touchless T-Rex Runner",
     technologies: ["Javascript", "HTML", "CSS", "Tensorflow.js", "Chart.js"],
     description:
-      "A deep learning project that allows the user to tweak and train a neural network using a GUI that can then be used to play T-rex runner with a touchless interface.",
-    demo: true,
+      "Play T-rex runner with a touchless interface by training and using a neural network.",
+    demo: "https://sergenkaraoglan.github.io/t-rex-runner-touchless-interface/",
+    code: "https://github.com/SergenKaraoglan/t_rex_runner_touchless_interface",
+  },
+  {
+    name: "reaction-timer",
+    title: "Reaction Time Tester",
+    technologies: ["React", "Tailwind CSS", "Next.js"],
+    description: "Test your reaction time.",
+    demo: "/projects/reaction-timer",
+    code: "https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/src/pages/projects/reaction-timer.jsx#enroll-beta",
   },
 ];
 
@@ -28,7 +37,7 @@ export default function projects() {
             >
               <div className="flex flex-1 flex-col p-8">
                 <Image
-                  className="mx-auto h-32 w-32 flex-shrink-0 rounded-full"
+                  className="mx-auto h-32 w-32 flex-shrink-0 rounded"
                   src={"/" + project.name + ".png"}
                   alt=""
                   height={50}
@@ -38,9 +47,13 @@ export default function projects() {
                   {project.title}
                 </h3>
                 <dl className="mt-1 flex flex-grow flex-col justify-between">
-                  <dt className="sr-only">Title</dt>
+                  <dt className="sr-only">Technologies</dt>
                   <dd className="text-sm text-gray-500">
                     {project.technologies.join(", ")}
+                  </dd>
+                  <dt className="sr-only">Description</dt>
+                  <dd className="text-sm text-gray-800 p-1">
+                    {project.description}
                   </dd>
                   <dt className="sr-only">Type</dt>
                   <dd className="mt-3">
@@ -54,7 +67,7 @@ export default function projects() {
                 <div className="-mt-px flex divide-x divide-gray-200">
                   <div className="flex w-0 flex-1">
                     <a
-                      href={"/" + project.name}
+                      href={project.demo}
                       className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                     >
                       <svg
@@ -79,9 +92,7 @@ export default function projects() {
                   </div>
                   <div className="-ml-px flex w-0 flex-1">
                     <a
-                      href={
-                        "https://github.com/SergenKaraoglan/" + project.name
-                      }
+                      href={project.code}
                       className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                     >
                       <svg
