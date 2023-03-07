@@ -88,7 +88,7 @@ function EmailButton() {
     <button
       id="contact-email"
       onClick={copyEmail}
-      className="group relative items-center mt-4 flex max-w-fit lg:mt-0 rounded-md bg-blue-700 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+      className="relative flex items-center mt-4 max-w-fit lg:mt-0 rounded-md bg-blue-700 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
     >
       <p>{email}</p>
       <div className="ml-2 sm:ml-4 sm:flex-shrink-0">
@@ -96,11 +96,19 @@ function EmailButton() {
       </div>
       <span
         className={
-          "absolute top-10 ease-out duration-300 rounded bg-gray-800 p-2 text-xs text-white " +
+          "absolute bottom-full m-auto right-0 left-0 max-w-fit rounded bg-gray-800 p-2 text-xs text-white ease-out duration-300 " +
           (tooltip ? "scale-100" : "scale-0")
         }
       >
         Copied!
+        <svg
+          className="absolute text-black h-2 w-full left-0 top-full"
+          x="0px"
+          y="0px"
+          viewBox="0 0 255 255"
+        >
+          <polygon className="fill-current" points="0,0 127.5,127.5 255,0" />
+        </svg>
       </span>
     </button>
   );

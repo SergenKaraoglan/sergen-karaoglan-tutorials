@@ -37,7 +37,7 @@ export default function projects() {
             >
               <div className="flex flex-1 flex-col p-8">
                 <Image
-                  className="mx-auto h-32 w-32 flex-shrink-0 rounded"
+                  className="mx-auto h-32 w-32 flex-shrink-0 rounded-full object-contain"
                   src={"/" + project.name + ".png"}
                   alt=""
                   height={50}
