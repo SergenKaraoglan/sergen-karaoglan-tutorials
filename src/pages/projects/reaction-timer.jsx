@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function ReactionTimer() {
   return (
@@ -17,8 +17,8 @@ export default function ReactionTimer() {
 }
 
 function ReactionInterface() {
-  const [time, setTime] = useState(0);
-  const [timer, setTimer] = useState(null);
+  const time = useRef(0);
+  const timer = useRef(null);
   const [isStarted, setIsStarted] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [reactionTime, setReactionTime] = useState(0);
@@ -34,22 +34,22 @@ function ReactionInterface() {
       start();
     } else if (isFinished && reactionTime == 0) {
       const end = new Date().getTime();
-      setReactionTime(end - time);
+      setReactionTime(end - time.current);
     } else {
       setIsFinished(false);
-      clearTimeout(timer);
+      clearTimeout(timer.current);
       setReactionTime(0);
       setIsStarted(false);
     }
   }
 
   function start() {
-    setTimer(setTimeout(finish, Math.random() * 4000 + 500));
+    timer.current = setTimeout(finish, Math.random() * 4000 + 500);
     setIsStarted(true);
   }
 
   function finish() {
-    setTime(new Date().getTime());
+    time.current = new Date().getTime();
     setIsFinished(true);
   }
 
@@ -67,7 +67,7 @@ function ReactionInterface() {
             <>
               <h1 className="text-4xl sm:text-5xl">Reaction Test</h1>
               <p className="text-lg sm:text-xl">
-                When screen turns red, click to test reaction. Click now to
+                When screen turns green, click to test reaction. Click now to
                 begin.
               </p>
             </>
@@ -102,5 +102,20 @@ function Score({ score }) {
         Best Score: {bestScore > 0 ? bestScore : "___"}ms
       </h2>
     </div>
+  );
+}
+
+function Resources() {
+  return (
+    <>
+      <h3 className="text-xl sm:text-2xl">Resources</h3>
+      <ul className="list-disc list-inside">
+        <li>
+          <a href="https://www.youtube.com/watch?v=9Y5Bx6ZThdM">
+            Build a Reaction Timer with React
+          </a>
+        </li>
+      </ul>
+    </>
   );
 }
