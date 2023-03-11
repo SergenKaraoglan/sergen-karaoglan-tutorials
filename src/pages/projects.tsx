@@ -13,7 +13,7 @@ const project_list = [
   },
   {
     name: "reaction-timer",
-    title: "Reaction Time Tester",
+    title: "Reaction Time Test",
     technologies: ["React", "Tailwind CSS", "Next.js"],
     description: "Test your reaction time.",
     demo: "/projects/reaction-timer",
