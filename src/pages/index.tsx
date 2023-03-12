@@ -27,8 +27,7 @@ export default function Home() {
           <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
             <div className="text-center">
               <h1 className="text-4xl font-medium tracking-tight text-white sm:text-6xl">
-                Developing responsive web apps that focus on the{" "}
-                <u className="text-white">user experience</u>
+                Developing responsive web apps on STEM, games and procedural art
               </h1>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <a

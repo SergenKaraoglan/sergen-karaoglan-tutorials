@@ -7,10 +7,11 @@ export default function FractalTrees() {
     <div className="w-auto h-screen-4/5 m-auto">
       <Canvas>
         <color attach="background" args={["grey"]} />
-        <PerspectiveCamera makeDefault position={[0, 0, 10]} />
+        <PerspectiveCamera makeDefault position={[0, 10, 10]} />
         <OrbitControls />
+        <axesHelper args={[5]} />
         <ambientLight />
-        <Grid infiniteGrid={true} />
+        {/* <Grid infiniteGrid={true} /> */}
         <FractalTree />
       </Canvas>
     </div>
@@ -18,37 +19,57 @@ export default function FractalTrees() {
 }
 
 // branch of a fractal tree
-function Branch({ radius = 0.2, height = 1, x = 0, y = 0, z = 0, angle = 0 }) {
+function Branch({ radiusS, radiusE, height, x, y, z, angle }) {
   const myMesh = React.useRef();
   return (
-    <mesh ref={myMesh}>
-      <cylinderGeometry
-        args={[radius, radius, height, 32]}
-        position={[x, y, z]}
-        rotation={[angle, 0, 0]}
-      />
-      <meshBasicMaterial color="royalblue" />
-    </mesh>
+    <group position={[x, y, z]} rotation={[0, 0, angle]}>
+      <mesh position={[0, height / 2, 0]}>
+        <cylinderGeometry args={[radiusS, radiusE, height, 32]} />
+        <meshBasicMaterial color="royalblue" />
+      </mesh>
+    </group>
   );
 }
 
 function FractalTree() {
-  let branches = [];
-  const depth = 1;
+  const branches = [];
+  const depth = 10;
   let angle = 0;
-  let angleIncrement = 0.1;
+  let angleIncrement = (2 * Math.PI) / 11;
   let radius = 0.2;
+  let ratio = 0.75;
   let height = 1;
   let x = 0,
     y = 0,
     z = 0;
+  let id = 0;
 
-  function generate() {
-    for (let i = 0; i < depth; i++) {
-      branches.push(<Branch />);
+  function generate(id, depth, angle, radius, height, x, y, z) {
+    if (depth === 0) {
+      return;
     }
-  }
-  generate();
+    branches.push(
+      <Branch
+        radiusS={radius * ratio}
+        radiusE={radius}
+        height={height}
+        angle={angle}
+        x={x}
+        y={y}
+        z={z}
+      />
+    );
+    y += height * Math.cos(angle);
+    x -= height * Math.sin(angle);
+    radius *= ratio;
+    height *= ratio;
+    depth -= 1;
 
-  return <>{branches.map((branch) => branch)}</>;
+    generate(id, depth, angle + angleIncrement, radius, height, x, y, z);
+    generate(id, depth, angle - angleIncrement, radius, height, x, y, z);
+  }
+
+  generate(id, depth, angle, radius, height, x, y, z);
+  console.log(branches);
+  return branches;
 }

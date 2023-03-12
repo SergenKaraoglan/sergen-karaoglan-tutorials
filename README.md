@@ -1,1 +1,1 @@
-# My personal portfolio and projects made with NextJS
+# Personal portfolio and projects made with NextJS

@@ -10,6 +10,7 @@ const project_list = [
       "Play T-rex runner with a touchless interface by training and using a neural network.",
     demo: "https://sergenkaraoglan.github.io/t_rex_runner_touchless_interface/",
     code: "https://github.com/SergenKaraoglan/t_rex_runner_touchless_interface",
+    type: "Game",
   },
   {
     name: "reaction-timer",
@@ -18,6 +19,7 @@ const project_list = [
     description: "Test your reaction time.",
     demo: "/projects/reaction-timer",
     code: "https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/src/pages/projects/reaction-timer.jsx#enroll-beta",
+    type: "Game",
   },
 ];
 
@@ -57,8 +59,8 @@ export default function projects() {
                   </dd>
                   <dt className="sr-only">Type</dt>
                   <dd className="mt-3">
-                    <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800">
-                      Website
+                    <span className="rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
+                      {project.type}
                     </span>
                   </dd>
                 </dl>
