@@ -1,19 +1,55 @@
 import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { PerspectiveCamera, OrbitControls, Grid } from "@react-three/drei";
+import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
 
 export default function FractalTrees() {
   return (
-    <div className="w-auto h-screen-4/5 m-auto">
+    <div className="w-auto h-screen-4/5 m-auto ">
       <Canvas>
-        <color attach="background" args={["grey"]} />
-        <PerspectiveCamera makeDefault position={[0, 10, 10]} />
+        <PerspectiveCamera makeDefault position={[0, 3, 9]} />
         <OrbitControls />
         <axesHelper args={[5]} />
-        <ambientLight />
-        {/* <Grid infiniteGrid={true} /> */}
-        <FractalTree />
+        <hemisphereLight
+          intensity={1}
+          skyColor={0xffffbb}
+          groundColor={0x080820}
+        />
+        <FractalTree2D />
       </Canvas>
+      <GUI />
+    </div>
+  );
+}
+
+// GUI
+function GUI() {
+  const [depth, setDepth] = useState(10);
+  const [angleIncrement, setAngleIncrement] = useState(0.2);
+  return (
+    <div className="mx-auto w-96 flex justify-between">
+      <div className="flex flex-col">
+        <label>Depth: {depth}</label>
+        <input
+          type="range"
+          min="1"
+          max="10"
+          value={depth}
+          onChange={(e) => setDepth(e.target.value)}
+        />
+      </div>
+      <div className="flex flex-col ">
+        <label>
+          Angle Increment: {Number.parseFloat(angleIncrement).toFixed(1)}
+        </label>
+        <input
+          type="range"
+          min="0.1"
+          max="1"
+          step="0.1"
+          value={angleIncrement}
+          onChange={(e) => setAngleIncrement(e.target.value)}
+        />
+      </div>
     </div>
   );
 }
@@ -25,13 +61,13 @@ function Branch({ radiusS, radiusE, height, x, y, z, angle }) {
     <group position={[x, y, z]} rotation={[0, 0, angle]}>
       <mesh position={[0, height / 2, 0]}>
         <cylinderGeometry args={[radiusS, radiusE, height, 32]} />
-        <meshBasicMaterial color="royalblue" />
+        <meshStandardMaterial color="royalblue" />
       </mesh>
     </group>
   );
 }
 
-function FractalTree() {
+function FractalTree2D() {
   const branches = [];
   const depth = 10;
   let angle = 0;
@@ -70,6 +106,5 @@ function FractalTree() {
   }
 
   generate(id, depth, angle, radius, height, x, y, z);
-  console.log(branches);
   return branches;
 }
