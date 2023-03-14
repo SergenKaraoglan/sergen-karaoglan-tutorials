@@ -19,51 +19,50 @@ export default function ReactionTimer() {
 function ReactionInterface() {
   const time = useRef(0);
   const timer = useRef(null);
-  const [isStarted, setIsStarted] = useState(false);
-  const [isFinished, setIsFinished] = useState(false);
+  const [status, seStatus] = useState("start");
   const [reactionTime, setReactionTime] = useState(0);
 
-  let timecolor = !isStarted
-    ? "bg-blue-600"
-    : !isFinished
-    ? "bg-red-600"
-    : "bg-green-600";
+  let timecolor =
+    status == "start"
+      ? "bg-blue-600"
+      : status == "waiting"
+      ? "bg-red-600"
+      : "bg-green-600";
 
-  function main() {
-    if (!isStarted) {
+  function handleClick() {
+    if (status == "start") {
       start();
-    } else if (isFinished && reactionTime == 0) {
+    } else if (status == "finished" && reactionTime == 0) {
       const end = new Date().getTime();
       setReactionTime(end - time.current);
     } else {
-      setIsFinished(false);
       clearTimeout(timer.current);
       setReactionTime(0);
-      setIsStarted(false);
+      seStatus("start");
     }
   }
 
   function start() {
     timer.current = setTimeout(finish, Math.random() * 4000 + 500);
-    setIsStarted(true);
+    seStatus("waiting");
   }
 
   function finish() {
     time.current = new Date().getTime();
-    setIsFinished(true);
+    seStatus("finished");
   }
 
   return (
     <>
       <div
-        onClick={main}
+        onClick={handleClick}
         className={
           "m-auto text-center pt-10 text-white h-screen-4/5 flex justify-center items-center " +
           timecolor
         }
       >
         <span className="m-0 inline-block">
-          {!isStarted ? (
+          {status == "start" ? (
             <>
               <h1 className="text-4xl sm:text-5xl">Reaction Test</h1>
               <p className="text-lg sm:text-xl">
@@ -71,7 +70,7 @@ function ReactionInterface() {
                 begin.
               </p>
             </>
-          ) : !isFinished ? (
+          ) : status == "waiting" ? (
             <h1 className="text-4xl sm:text-5xl">Wait...</h1>
           ) : reactionTime == 0 ? (
             <h1 className="text-4xl sm:text-5xl">GO!</h1>
