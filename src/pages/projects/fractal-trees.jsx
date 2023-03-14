@@ -3,6 +3,21 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
 
 export default function FractalTrees() {
+  return <FractalTreeCanvas />;
+}
+
+function FractalTreeCanvas() {
+  const [depth, setDepth] = useState(1);
+  const [angleIncrement, setAngleIncrement] = useState((2 * Math.PI) / 11);
+
+  function handleDepth(e) {
+    setDepth(e.target.value);
+  }
+
+  function handleAngleIncrement(e) {
+    setAngleIncrement(e.target.value);
+  }
+
   return (
     <div className="w-auto h-screen-4/5 m-auto ">
       <Canvas>
@@ -14,66 +29,23 @@ export default function FractalTrees() {
           skyColor={0xffffbb}
           groundColor={0x080820}
         />
-        <FractalTree2D />
+        <FractalTree2D depth={depth} angleIncrement={angleIncrement} />
       </Canvas>
-      <GUI />
+      <GUI
+        depth={depth}
+        handleDepth={handleDepth}
+        angleIncrement={angleIncrement}
+        handleAngleIncrement={handleAngleIncrement}
+      />
     </div>
   );
 }
 
-// GUI
-function GUI() {
-  const [depth, setDepth] = useState(10);
-  const [angleIncrement, setAngleIncrement] = useState(0.2);
-  return (
-    <div className="mx-auto w-96 flex justify-between">
-      <div className="flex flex-col">
-        <label>Depth: {depth}</label>
-        <input
-          type="range"
-          min="1"
-          max="10"
-          value={depth}
-          onChange={(e) => setDepth(e.target.value)}
-        />
-      </div>
-      <div className="flex flex-col ">
-        <label>
-          Angle Increment: {Number.parseFloat(angleIncrement).toFixed(1)}
-        </label>
-        <input
-          type="range"
-          min="0.1"
-          max="1"
-          step="0.1"
-          value={angleIncrement}
-          onChange={(e) => setAngleIncrement(e.target.value)}
-        />
-      </div>
-    </div>
-  );
-}
-
-// branch of a fractal tree
-function Branch({ radiusS, radiusE, height, x, y, z, angle }) {
-  const myMesh = React.useRef();
-  return (
-    <group position={[x, y, z]} rotation={[0, 0, angle]}>
-      <mesh position={[0, height / 2, 0]}>
-        <cylinderGeometry args={[radiusS, radiusE, height, 32]} />
-        <meshStandardMaterial color="royalblue" />
-      </mesh>
-    </group>
-  );
-}
-
-function FractalTree2D() {
+function FractalTree2D({ depth, angleIncrement }) {
   const branches = [];
-  const depth = 10;
+  const ratio = 0.75;
   let angle = 0;
-  let angleIncrement = (2 * Math.PI) / 11;
   let radius = 0.2;
-  let ratio = 0.75;
   let height = 1;
   let x = 0,
     y = 0,
@@ -107,4 +79,45 @@ function FractalTree2D() {
 
   generate(id, depth, angle, radius, height, x, y, z);
   return branches;
+}
+
+// branch of a fractal tree
+function Branch({ radiusS, radiusE, height, x, y, z, angle }) {
+  return (
+    <group position={[x, y, z]} rotation={[0, 0, angle]}>
+      <mesh position={[0, height / 2, 0]}>
+        <cylinderGeometry args={[radiusS, radiusE, height, 32]} />
+        <meshStandardMaterial color="royalblue" />
+      </mesh>
+    </group>
+  );
+}
+
+// GUI
+function GUI({ depth, handleDepth, angleIncrement, handleAngleIncrement }) {
+  return (
+    <div className="mx-auto w-96 flex justify-between">
+      <div className="flex flex-col">
+        <label>Depth</label>
+        <input
+          type="range"
+          min="1"
+          max="10"
+          value={depth}
+          onChange={(e) => handleDepth(e)}
+        />
+      </div>
+      <div className="flex flex-col ">
+        <label>Angle Increment</label>
+        <input
+          type="range"
+          min="0.1"
+          max="0.6"
+          step="0.01"
+          value={angleIncrement}
+          onChange={(e) => handleAngleIncrement(e)}
+        />
+      </div>
+    </div>
+  );
 }
