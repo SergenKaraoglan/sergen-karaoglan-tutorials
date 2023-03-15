@@ -7,7 +7,7 @@ export default function FractalTrees() {
 }
 
 function FractalTreeCanvas() {
-  const [depth, setDepth] = useState(1);
+  const [depth, setDepth] = useState(2);
   const [angleIncrement, setAngleIncrement] = useState((2 * Math.PI) / 11);
 
   function handleDepth(e) {
@@ -44,7 +44,8 @@ function FractalTreeCanvas() {
 function FractalTree2D({ depth, angleIncrement }) {
   const branches = [];
   const ratio = 0.75;
-  let angle = 0;
+  let angleZ = 0;
+  let angleX = 0;
   let radius = 0.2;
   let height = 1;
   let x = 0,
@@ -52,7 +53,7 @@ function FractalTree2D({ depth, angleIncrement }) {
     z = 0;
   let id = 0;
 
-  function generate(id, depth, angle, radius, height, x, y, z) {
+  function generate(depth, angleZ, angleX, radius, height, x, y, z) {
     if (depth === 0) {
       return;
     }
@@ -61,30 +62,36 @@ function FractalTree2D({ depth, angleIncrement }) {
         radiusS={radius * ratio}
         radiusE={radius}
         height={height}
-        angle={angle}
+        angleZ={angleZ}
+        angleX={angleX}
         x={x}
         y={y}
         z={z}
+        key={id}
       />
     );
-    y += height * Math.cos(angle);
-    x -= height * Math.sin(angle);
+    y += height * Math.cos(angleZ);
+    x -= height * Math.sin(angleZ);
+    //z += height * Math.sin(angle);
     radius *= ratio;
     height *= ratio;
     depth -= 1;
+    id += 1;
+    //console.log(angle);
 
-    generate(id, depth, angle + angleIncrement, radius, height, x, y, z);
-    generate(id, depth, angle - angleIncrement, radius, height, x, y, z);
+    //generate(depth, angleZ + angleIncrement, 0, radius, height, x, y, z);
+    //generate(depth, angleZ - angleIncrement, 0, radius, height, x, y, z);
+    generate(depth, angleZ, Math.PI / 2, radius, height, x, y, z);
   }
 
-  generate(id, depth, angle, radius, height, x, y, z);
+  generate(depth, angleZ, angleX, radius, height, x, y, z);
   return branches;
 }
 
 // branch of a fractal tree
-function Branch({ radiusS, radiusE, height, x, y, z, angle }) {
+function Branch({ radiusS, radiusE, height, x, y, z, angleZ, angleX }) {
   return (
-    <group position={[x, y, z]} rotation={[0, 0, angle]}>
+    <group position={[x, y, z]} rotation={[angleX, 0, angleZ]}>
       <mesh position={[0, height / 2, 0]}>
         <cylinderGeometry args={[radiusS, radiusE, height, 32]} />
         <meshStandardMaterial color="royalblue" />
@@ -108,12 +115,12 @@ function GUI({ depth, handleDepth, angleIncrement, handleAngleIncrement }) {
         />
       </div>
       <div className="flex flex-col ">
-        <label>Angle Increment</label>
+        <label>Angle</label>
         <input
           type="range"
           min="0.1"
           max="0.6"
-          step="0.01"
+          step="0.1"
           value={angleIncrement}
           onChange={(e) => handleAngleIncrement(e)}
         />
