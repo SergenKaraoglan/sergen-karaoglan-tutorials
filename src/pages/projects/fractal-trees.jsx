@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
 
 export default function FractalTrees() {
   return <FractalTreeCanvas />;
@@ -42,6 +43,7 @@ function FractalTreeCanvas() {
 }
 
 function FractalTree2D({ depth, angleIncrement }) {
+  const vector = new THREE.Vector3(0, 1, 0);
   const branches = [];
   const ratio = 0.75;
   let angleZ = 0;
@@ -79,9 +81,9 @@ function FractalTree2D({ depth, angleIncrement }) {
     id += 1;
     //console.log(angle);
 
-    //generate(depth, angleZ + angleIncrement, 0, radius, height, x, y, z);
-    //generate(depth, angleZ - angleIncrement, 0, radius, height, x, y, z);
-    generate(depth, angleZ, Math.PI / 2, radius, height, x, y, z);
+    generate(depth, angleZ + angleIncrement, 0, radius, height, x, y, z);
+    generate(depth, angleZ - angleIncrement, 0, radius, height, x, y, z);
+    //generate(depth, angleZ, Math.PI / 2, radius, height, x, y, z);
   }
 
   generate(depth, angleZ, angleX, radius, height, x, y, z);
@@ -103,10 +105,11 @@ function Branch({ radiusS, radiusE, height, x, y, z, angleZ, angleX }) {
 // GUI
 function GUI({ depth, handleDepth, angleIncrement, handleAngleIncrement }) {
   return (
-    <div className="mx-auto w-96 flex justify-between">
+    <div className="mx-auto w-72 sm:w-96 flex justify-between">
       <div className="flex flex-col">
         <label>Depth</label>
         <input
+          className="appearance-none bg-blue-500 rounded-lg h-1 my-3 thumb-lg-blue-600"
           type="range"
           min="1"
           max="10"
@@ -117,6 +120,7 @@ function GUI({ depth, handleDepth, angleIncrement, handleAngleIncrement }) {
       <div className="flex flex-col ">
         <label>Angle</label>
         <input
+          className="appearance-none bg-blue-500 rounded-lg h-1 my-3 thumb-lg-blue-600"
           type="range"
           min="0.1"
           max="0.6"
