@@ -72,9 +72,10 @@ function FractalTree2D({ depth, angleIncrement }) {
         key={id}
       />
     );
-    y += height * Math.cos(angleZ);
-    x -= height * Math.sin(angleZ);
-    //z += height * Math.sin(angle);
+    // cartesian coordinates
+    x -= Math.sin(angleZ) * Math.cos(angleX) * height;
+    y += Math.cos(angleZ) * Math.cos(angleX) * height;
+    z += Math.sin(angleX) * height;
     radius *= ratio;
     height *= ratio;
     depth -= 1;
@@ -83,7 +84,8 @@ function FractalTree2D({ depth, angleIncrement }) {
 
     generate(depth, angleZ + angleIncrement, 0, radius, height, x, y, z);
     generate(depth, angleZ - angleIncrement, 0, radius, height, x, y, z);
-    //generate(depth, angleZ, Math.PI / 2, radius, height, x, y, z);
+    generate(depth, 0, angleX + angleIncrement, radius, height, x, y, z);
+    generate(depth, 0, angleX - angleIncrement, radius, height, x, y, z);
   }
 
   generate(depth, angleZ, angleX, radius, height, x, y, z);
