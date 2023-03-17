@@ -1,14 +1,18 @@
-import React, { useRef, useState } from "react";
+import React, { Suspense, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
-import * as THREE from "three";
+import {
+  PerspectiveCamera,
+  OrbitControls,
+  Html,
+  Stats,
+} from "@react-three/drei";
 
 export default function FractalTrees() {
   return <FractalTreeCanvas />;
 }
 
 function FractalTreeCanvas() {
-  const [depth, setDepth] = useState(2);
+  const [depth, setDepth] = useState(10);
   const [angleIncrement, setAngleIncrement] = useState((2 * Math.PI) / 11);
 
   function handleDepth(e) {
@@ -21,16 +25,25 @@ function FractalTreeCanvas() {
 
   return (
     <div className="w-auto h-screen-4/5 m-auto ">
-      <Canvas>
+      <Canvas frameloop="demand">
         <PerspectiveCamera makeDefault position={[0, 3, 9]} />
-        <OrbitControls />
-        <axesHelper args={[5]} />
+        <OrbitControls enableZoom={false} />
         <hemisphereLight
           intensity={1}
           skyColor={0xffffbb}
-          groundColor={0x080820}
+          groundColor={"#080820"}
+          position={[0, 5, 0]}
         />
-        <FractalTree2D depth={depth} angleIncrement={angleIncrement} />
+        <Stats showPanel={0} className="stats" />
+        <Suspense fallback={Loading}>
+          <FractalTree
+            depth={depth}
+            angleIncrement={angleIncrement}
+            is3D={false}
+          />
+          <Backdrop />
+          <GroundPlane />
+        </Suspense>
       </Canvas>
       <GUI
         depth={depth}
@@ -42,8 +55,7 @@ function FractalTreeCanvas() {
   );
 }
 
-function FractalTree2D({ depth, angleIncrement }) {
-  const vector = new THREE.Vector3(0, 1, 0);
+function FractalTree({ depth, angleIncrement, is3D }) {
   const branches = [];
   const ratio = 0.75;
   let angleZ = 0;
@@ -84,8 +96,10 @@ function FractalTree2D({ depth, angleIncrement }) {
 
     generate(depth, angleZ + angleIncrement, 0, radius, height, x, y, z);
     generate(depth, angleZ - angleIncrement, 0, radius, height, x, y, z);
-    generate(depth, 0, angleX + angleIncrement, radius, height, x, y, z);
-    generate(depth, 0, angleX - angleIncrement, radius, height, x, y, z);
+    if (is3D) {
+      generate(depth, 0, angleX + angleIncrement, radius, height, x, y, z);
+      generate(depth, 0, angleX - angleIncrement, radius, height, x, y, z);
+    }
   }
 
   generate(depth, angleZ, angleX, radius, height, x, y, z);
@@ -97,8 +111,11 @@ function Branch({ radiusS, radiusE, height, x, y, z, angleZ, angleX }) {
   return (
     <group position={[x, y, z]} rotation={[angleX, 0, angleZ]}>
       <mesh position={[0, height / 2, 0]}>
-        <cylinderGeometry args={[radiusS, radiusE, height, 32]} />
-        <meshStandardMaterial color="royalblue" />
+        <cylinderGeometry
+          attach="geometry"
+          args={[radiusS, radiusE, height, 32]}
+        />
+        <meshStandardMaterial attach="material" color="#008000" />
       </mesh>
     </group>
   );
@@ -132,5 +149,31 @@ function GUI({ depth, handleDepth, angleIncrement, handleAngleIncrement }) {
         />
       </div>
     </div>
+  );
+}
+
+function Loading() {
+  return (
+    <Html center>
+      <h1 className="text-4xl">Loading...</h1>
+    </Html>
+  );
+}
+
+function Backdrop() {
+  return (
+    <mesh position={[0, 0, -5]}>
+      <planeGeometry args={[100, 100]} />
+      <meshStandardMaterial color="#000000" />
+    </mesh>
+  );
+}
+
+function GroundPlane() {
+  return (
+    <mesh position={[0, 0, 0]} rotation={[-(Math.PI / 2), 0, 0]}>
+      <planeGeometry args={[100, 100]} />
+      <meshStandardMaterial color="#000000" />
+    </mesh>
   );
 }
