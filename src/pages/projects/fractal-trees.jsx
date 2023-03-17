@@ -1,10 +1,11 @@
-import React, { Suspense, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import React, { Suspense, useRef, useState } from "react";
+import { Canvas } from "@react-three/fiber";
 import {
   PerspectiveCamera,
   OrbitControls,
   Html,
   Stats,
+  Sky,
 } from "@react-three/drei";
 
 export default function FractalTrees() {
@@ -26,7 +27,7 @@ function FractalTreeCanvas() {
   return (
     <div className="w-auto h-screen-4/5 m-auto ">
       <Canvas frameloop="demand">
-        <PerspectiveCamera makeDefault position={[0, 3, 9]} />
+        <PerspectiveCamera makeDefault position={[0, 4, 9]} fov={50} />
         <OrbitControls enableZoom={false} />
         <hemisphereLight
           intensity={1}
@@ -41,8 +42,12 @@ function FractalTreeCanvas() {
             angleIncrement={angleIncrement}
             is3D={false}
           />
-          <Backdrop />
-          <GroundPlane />
+          <Sky
+            distance={450000}
+            sunPosition={[0, 1, 0]}
+            inclination={0}
+            azimuth={0.25}
+          />
         </Suspense>
       </Canvas>
       <GUI
@@ -115,7 +120,7 @@ function Branch({ radiusS, radiusE, height, x, y, z, angleZ, angleX }) {
           attach="geometry"
           args={[radiusS, radiusE, height, 32]}
         />
-        <meshStandardMaterial attach="material" color="#008000" />
+        <meshLambertMaterial attach="material" color="#008000" />
       </mesh>
     </group>
   );
@@ -126,9 +131,9 @@ function GUI({ depth, handleDepth, angleIncrement, handleAngleIncrement }) {
   return (
     <div className="mx-auto w-72 sm:w-96 flex justify-between">
       <div className="flex flex-col">
-        <label>Depth</label>
+        <label className="my-2">Depth</label>
         <input
-          className="appearance-none bg-blue-500 rounded-lg h-1 my-3 thumb-lg-blue-600"
+          className="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600"
           type="range"
           min="1"
           max="10"
@@ -137,9 +142,9 @@ function GUI({ depth, handleDepth, angleIncrement, handleAngleIncrement }) {
         />
       </div>
       <div className="flex flex-col ">
-        <label>Angle</label>
+        <label className="my-2">Angle</label>
         <input
-          className="appearance-none bg-blue-500 rounded-lg h-1 my-3 thumb-lg-blue-600"
+          className="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600"
           type="range"
           min="0.1"
           max="0.6"
@@ -160,20 +165,11 @@ function Loading() {
   );
 }
 
-function Backdrop() {
-  return (
-    <mesh position={[0, 0, -5]}>
-      <planeGeometry args={[100, 100]} />
-      <meshStandardMaterial color="#000000" />
-    </mesh>
-  );
-}
-
 function GroundPlane() {
   return (
     <mesh position={[0, 0, 0]} rotation={[-(Math.PI / 2), 0, 0]}>
       <planeGeometry args={[100, 100]} />
-      <meshStandardMaterial color="#000000" />
+      <meshStandardMaterial color="blue" />
     </mesh>
   );
 }
