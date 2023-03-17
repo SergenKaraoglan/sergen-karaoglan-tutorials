@@ -1,1 +1,42 @@
 # Fractal Trees
+
+## What is a Fractal Tree
+
+The tree you see above is built procedurally only using cylinders and simple rules. This is known as a Fractal Tree and by the end of this tutorial you will learn how to build one with React Three Fiber (R3F). As you might have guessed Fractal Trees purely serve as an artistic property but simillar patterns can be found in nature besides trees from lungs to our blood veins showing that even our everyday lives are governed by these simple patterns.
+
+As the name suggests, a Fractal Tree is part of a branch of mathematics known as fractals. Fractals share an interesting property of
+
+## Building a 2D Fractal Tree
+
+Knowing the pattern repeats we can build a Fractal Tree recursively. We start with a root and add two cylinders that split.
+
+You can also experiment with other shapes such as a cube to get interesting results...
+
+Our tree takes the parameters depth and angle increment which determin how many times we call the function recusively to grow our tree and the angle of the branches respectively.
+Our cylinder only takes a handful of parameters.
+
+### Rotating our branches
+
+Now to get into a few specifics with R3F. When you rotate a mesh, you rotate the mesh from its center. In this project we would like to rotate from the start point of our mesh or to put it more formally, the local point of Y that is equal to 0. To achieve this it is common practice to nest a mesh within the group property and use that as our anchor point for rotation. When you place a mesh within a set of coordinates, the center of the mesh is placed within those coordinates.
+
+We use the Z axis to rotate the branches in this example.
+
+### Using trignometry to convert polar coordinates to cartesian
+
+Using trigonometry we can find the endpoint of the previously placed branch which serves as the start point of the next set of branches we want to place.
+
+Using the sliders you can play around with the depth and angle and see how these properties affect the tree. Technically you can grow the tree as much as your RAM can hold but I have limited it to 10 in this example.
+
+## Building a 3D Fractal Tree
+
+Our cylinders are 3D but we aren't taking much advantage of the Z axis in the previous example. We are only using branches that split across the X axis. We can extend the tree by also creating branches across the Z axis so our tree looks more "full"
+
+## Finishing up
+
+You now know what a Fractal Tree is and how to build one in R3F. Procedural generation and fractals are both intriguing areas that can be explored much further as this is even
+barely scrathing the surface. I thought I would start with a very simple algorithm before branching off to more complex algorithms that share profound properties and may even be mathamatically motivated. That being said I hope you enjoyed a demonstration of a simple yet elegant pattern that can be found across nature.
+
+Source code
+
+https://en.wikipedia.org/wiki/Fractal_canopy
+https://en.wikipedia.org/wiki/Fractal
