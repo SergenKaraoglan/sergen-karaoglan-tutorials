@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { Suspense, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
@@ -7,13 +8,29 @@ import {
   Stats,
   Sky,
 } from "@react-three/drei";
+import * as THREE from "three/src/materials/MeshLambertMaterial";
+
+const royalblue = new THREE.MeshLambertMaterial({ color: "royalblue" });
 
 export default function FractalTrees() {
-  return <FractalTreeCanvas />;
+  return (
+    <>
+      <Head>
+        <title>Fractal Trees | Sergen Karaoglan</title>
+        <meta
+          name="description"
+          content="Build fractal trees with this interactive 3D fractal tree generator."
+        />
+      </Head>
+      <div className="w-auto h-screen-4/5 m-auto ">
+        <FractalTreeCanvas is3D={false} initDepth={10} />
+      </div>
+    </>
+  );
 }
 
-function FractalTreeCanvas({ is3D = false }) {
-  const [depth, setDepth] = useState(10);
+function FractalTreeCanvas({ is3D, initDepth }) {
+  const [depth, setDepth] = useState(initDepth);
   const [angleIncrement, setAngleIncrement] = useState((2 * Math.PI) / 11);
   const [shape, setShape] = useState("cylinder");
 
@@ -30,7 +47,7 @@ function FractalTreeCanvas({ is3D = false }) {
   }
 
   return (
-    <div className="w-auto h-screen-4/5 m-auto ">
+    <>
       <Canvas frameloop="demand">
         <PerspectiveCamera makeDefault position={[0, 4, 9]} fov={50} />
         <OrbitControls enableZoom={false} />
@@ -62,8 +79,7 @@ function FractalTreeCanvas({ is3D = false }) {
         angleIncrement={angleIncrement}
         handleAngleIncrement={handleAngleIncrement}
       />
-      <ShapeUI handleShape={handleShape} />
-    </div>
+    </>
   );
 }
 
@@ -123,20 +139,19 @@ function FractalTree({ depth, angleIncrement, shape, is3D }) {
 function Branch({ radiusS, radiusE, height, x, y, z, angleZ, angleX, shape }) {
   return (
     <group position={[x, y, z]} rotation={[angleX, 0, angleZ]}>
-      <mesh position={[0, height / 2, 0]}>
-        {shape === "cylinder" && (
+      <mesh position={[0, height / 2, 0]} material={royalblue}>
+        {shape === "cylinder" ? (
           <cylinderGeometry
             attach="geometry"
             args={[radiusS, radiusE, height, 32]}
           />
-        )}
-        {shape === "cube" && (
+        ) : shape === "cube" ? (
           <boxGeometry attach="geometry" args={[height, height, height]} />
-        )}
-        {shape === "sphere" && (
+        ) : shape === "sphere" ? (
           <sphereGeometry attach="geometry" args={[height / 2]} />
+        ) : (
+          <dodecahedronGeometry attach="geometry" args={[height / 2]} />
         )}
-        <meshLambertMaterial attach="material" color="#008000" />
       </mesh>
     </group>
   );
@@ -152,8 +167,11 @@ function DepthAngleUI({
   return (
     <div className="mx-auto w-72 sm:w-96 flex justify-between">
       <div className="flex flex-col">
-        <label className="my-2">Depth</label>
+        <label htmlFor="depth-slider" className="my-2">
+          Depth
+        </label>
         <input
+          id="depth-slider"
           className="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600"
           type="range"
           min="1"
@@ -163,8 +181,11 @@ function DepthAngleUI({
         />
       </div>
       <div className="flex flex-col ">
-        <label className="my-2">Angle</label>
+        <label htmlFor="angle-slider" className="my-2">
+          Angle
+        </label>
         <input
+          id="angle-slider"
           className="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600"
           type="range"
           min="0.1"
@@ -181,11 +202,30 @@ function DepthAngleUI({
 function ShapeUI({ handleShape }) {
   return (
     <div className="mx-auto w-72 sm:w-96 flex justify-between my-3">
-      <button className="bg-blue-600" onClick={() => handleShape("cylinder")}>
+      <button
+        className="rounded-md bg-blue-500 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400"
+        onClick={() => handleShape("cylinder")}
+      >
         Cylinder
       </button>
-      <button onClick={() => handleShape("cube")}>Cube</button>
-      <button onClick={() => handleShape("sphere")}>Sphere</button>
+      <button
+        className="rounded-md bg-blue-500 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400"
+        onClick={() => handleShape("cube")}
+      >
+        Cube
+      </button>
+      <button
+        className="rounded-md bg-blue-500 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400"
+        onClick={() => handleShape("sphere")}
+      >
+        Sphere
+      </button>
+      <button
+        className="rounded-md bg-blue-500 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400"
+        onClick={() => handleShape("Dodecahedron")}
+      >
+        Dodecahedron
+      </button>
     </div>
   );
 }

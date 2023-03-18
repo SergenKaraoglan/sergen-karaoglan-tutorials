@@ -5,7 +5,7 @@ export default function ReactionTimer() {
   return (
     <>
       <Head>
-        <title>Reaction Timer | Projects | Sergen Karaoglan</title>
+        <title>Reaction Timer | Sergen Karaoglan</title>
         <meta
           name="description"
           content="Benchmark your reaction time with this simple reaction timer."
