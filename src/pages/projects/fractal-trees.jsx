@@ -12,9 +12,10 @@ export default function FractalTrees() {
   return <FractalTreeCanvas />;
 }
 
-function FractalTreeCanvas() {
+function FractalTreeCanvas({ is3D = false }) {
   const [depth, setDepth] = useState(10);
   const [angleIncrement, setAngleIncrement] = useState((2 * Math.PI) / 11);
+  const [shape, setShape] = useState("cylinder");
 
   function handleDepth(e) {
     setDepth(e.target.value);
@@ -22,6 +23,10 @@ function FractalTreeCanvas() {
 
   function handleAngleIncrement(e) {
     setAngleIncrement(e.target.value);
+  }
+
+  function handleShape(inputShape) {
+    setShape(inputShape);
   }
 
   return (
@@ -40,7 +45,8 @@ function FractalTreeCanvas() {
           <FractalTree
             depth={depth}
             angleIncrement={angleIncrement}
-            is3D={false}
+            shape={shape}
+            is3D={is3D}
           />
           <Sky
             distance={450000}
@@ -50,17 +56,18 @@ function FractalTreeCanvas() {
           />
         </Suspense>
       </Canvas>
-      <GUI
+      <DepthAngleUI
         depth={depth}
         handleDepth={handleDepth}
         angleIncrement={angleIncrement}
         handleAngleIncrement={handleAngleIncrement}
       />
+      <ShapeUI handleShape={handleShape} />
     </div>
   );
 }
 
-function FractalTree({ depth, angleIncrement, is3D }) {
+function FractalTree({ depth, angleIncrement, shape, is3D }) {
   const branches = [];
   const ratio = 0.75;
   let angleZ = 0;
@@ -86,6 +93,7 @@ function FractalTree({ depth, angleIncrement, is3D }) {
         x={x}
         y={y}
         z={z}
+        shape={shape}
         key={id}
       />
     );
@@ -112,14 +120,22 @@ function FractalTree({ depth, angleIncrement, is3D }) {
 }
 
 // branch of a fractal tree
-function Branch({ radiusS, radiusE, height, x, y, z, angleZ, angleX }) {
+function Branch({ radiusS, radiusE, height, x, y, z, angleZ, angleX, shape }) {
   return (
     <group position={[x, y, z]} rotation={[angleX, 0, angleZ]}>
       <mesh position={[0, height / 2, 0]}>
-        <cylinderGeometry
-          attach="geometry"
-          args={[radiusS, radiusE, height, 32]}
-        />
+        {shape === "cylinder" && (
+          <cylinderGeometry
+            attach="geometry"
+            args={[radiusS, radiusE, height, 32]}
+          />
+        )}
+        {shape === "cube" && (
+          <boxGeometry attach="geometry" args={[height, height, height]} />
+        )}
+        {shape === "sphere" && (
+          <sphereGeometry attach="geometry" args={[height / 2]} />
+        )}
         <meshLambertMaterial attach="material" color="#008000" />
       </mesh>
     </group>
@@ -127,7 +143,12 @@ function Branch({ radiusS, radiusE, height, x, y, z, angleZ, angleX }) {
 }
 
 // GUI
-function GUI({ depth, handleDepth, angleIncrement, handleAngleIncrement }) {
+function DepthAngleUI({
+  depth,
+  handleDepth,
+  angleIncrement,
+  handleAngleIncrement,
+}) {
   return (
     <div className="mx-auto w-72 sm:w-96 flex justify-between">
       <div className="flex flex-col">
@@ -157,19 +178,22 @@ function GUI({ depth, handleDepth, angleIncrement, handleAngleIncrement }) {
   );
 }
 
+function ShapeUI({ handleShape }) {
+  return (
+    <div className="mx-auto w-72 sm:w-96 flex justify-between my-3">
+      <button className="bg-blue-600" onClick={() => handleShape("cylinder")}>
+        Cylinder
+      </button>
+      <button onClick={() => handleShape("cube")}>Cube</button>
+      <button onClick={() => handleShape("sphere")}>Sphere</button>
+    </div>
+  );
+}
+
 function Loading() {
   return (
     <Html center>
       <h1 className="text-4xl">Loading...</h1>
     </Html>
-  );
-}
-
-function GroundPlane() {
-  return (
-    <mesh position={[0, 0, 0]} rotation={[-(Math.PI / 2), 0, 0]}>
-      <planeGeometry args={[100, 100]} />
-      <meshStandardMaterial color="blue" />
-    </mesh>
   );
 }
