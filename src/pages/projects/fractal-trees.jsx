@@ -31,7 +31,7 @@ export default function FractalTrees() {
 
 function FractalTreeCanvas({ is3D, initDepth }) {
   const [depth, setDepth] = useState(initDepth);
-  const [angleIncrement, setAngleIncrement] = useState((2 * Math.PI) / 11);
+  const [angleIncrement, setAngleIncrement] = useState(0.5);
   const [shape, setShape] = useState("cylinder");
 
   function handleDepth(e) {
@@ -52,10 +52,10 @@ function FractalTreeCanvas({ is3D, initDepth }) {
         <PerspectiveCamera makeDefault position={[0, 4, 9]} fov={50} />
         <OrbitControls enableZoom={false} />
         <hemisphereLight
-          intensity={1}
+          intensity={0.5}
           skyColor={0xffffbb}
           groundColor={"#080820"}
-          position={[0, 5, 0]}
+          position={[0, 1, 0]}
         />
         <Stats showPanel={0} className="stats" />
         <Suspense fallback={Loading}>
@@ -120,14 +120,15 @@ function FractalTree({ depth, angleIncrement, shape, is3D }) {
     radius *= ratio;
     height *= ratio;
     depth -= 1;
+    let angleZL = (angleZ * 10 + angleIncrement * 10) / 10;
+    let angleZR = (angleZ * 10 - angleIncrement * 10) / 10;
     id += 1;
-    //console.log(angle);
 
-    generate(depth, angleZ + angleIncrement, 0, radius, height, x, y, z);
-    generate(depth, angleZ - angleIncrement, 0, radius, height, x, y, z);
+    generate(depth, angleZL, 0, radius, height, x, y, z);
+    generate(depth, angleZR, 0, radius, height, x, y, z);
     if (is3D) {
-      generate(depth, 0, angleX + angleIncrement, radius, height, x, y, z);
-      generate(depth, 0, angleX - angleIncrement, radius, height, x, y, z);
+      generate(depth, 0, angleZL, radius, height, x, y, z);
+      generate(depth, 0, angleZR, radius, height, x, y, z);
     }
   }
 
@@ -189,7 +190,7 @@ function DepthAngleUI({
           className="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600"
           type="range"
           min="0.1"
-          max="0.6"
+          max="1.5"
           step="0.1"
           value={angleIncrement}
           onChange={(e) => handleAngleIncrement(e)}
