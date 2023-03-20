@@ -15,6 +15,7 @@ module.exports = {
       spacing: {
         "screen-1/2": "50vh",
         "screen-4/5": "80vh",
+        "screen-3/5": "60vh",
       },
     },
   },

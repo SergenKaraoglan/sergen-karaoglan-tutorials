@@ -1,35 +1,12 @@
 import Head from "next/head";
 import React, { Suspense, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import {
-  PerspectiveCamera,
-  OrbitControls,
-  Html,
-  Stats,
-  Sky,
-} from "@react-three/drei";
+import { PerspectiveCamera, OrbitControls, Html, Sky } from "@react-three/drei";
 import * as THREE from "three/src/materials/MeshLambertMaterial";
 
 const royalblue = new THREE.MeshLambertMaterial({ color: "royalblue" });
 
-export default function FractalTrees() {
-  return (
-    <>
-      <Head>
-        <title>Fractal Trees | Sergen Karaoglan</title>
-        <meta
-          name="description"
-          content="Build fractal trees with this interactive 3D fractal tree generator."
-        />
-      </Head>
-      <div className="w-auto h-screen-4/5 m-auto ">
-        <FractalTreeCanvas is3D={false} initDepth={10} />
-      </div>
-    </>
-  );
-}
-
-function FractalTreeCanvas({ is3D, initDepth }) {
+export default function FractalTreeCanvas({ is3D, initDepth }) {
   const [depth, setDepth] = useState(initDepth);
   const [angleIncrement, setAngleIncrement] = useState(0.5);
   const [shape, setShape] = useState("cylinder");
@@ -57,7 +34,6 @@ function FractalTreeCanvas({ is3D, initDepth }) {
           groundColor={"#080820"}
           position={[0, 1, 0]}
         />
-        <Stats showPanel={0} className="stats" />
         <Suspense fallback={Loading}>
           <FractalTree
             depth={depth}
