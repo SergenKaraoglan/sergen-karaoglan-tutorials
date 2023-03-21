@@ -57,20 +57,21 @@ export default function Home() {
               <div className="flex-1">
                 <div className="flex items-center space-x-3">
                   <h3 className="text-base font-medium text-gray-900">
-                    Touchless T-Rex Runner
+                    Fractal Trees
                   </h3>
                 </div>
-                <p className="mt-1 text-sm text-gray-500">Javascript</p>
+                <p className="mt-1 text-sm text-gray-500">
+                  React, Next.js, Tailwind, React Three Fiber
+                </p>
                 <p className="mt-1 text-sm text-gray-900">
-                  A deep learning project that allows the user to tweak and
-                  train a neural network using a GUI that can then be used to
-                  play T-rex runner with a touchless interface.
+                  Play with and learn to create fractal trees with React Three
+                  Fiber.
                 </p>
               </div>
               <Image
                 className="h-auto w-1/4 flex-shrink-0 rounded"
-                src="/t_rex_runner_touchless_interface.png"
-                alt="t_rex_runner"
+                src="/fractal-tree.png"
+                alt="fractal-tree"
                 height={100}
                 width={100}
               />
@@ -79,7 +80,7 @@ export default function Home() {
               <div className="-mt-px flex divide-x divide-gray-200">
                 <div className="flex w-0 flex-1">
                   <a
-                    href="https://sergenkaraoglan.github.io/t_rex_runner_touchless_interface/"
+                    href="/projects/fractal-trees"
                     className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                   >
                     <svg
@@ -104,7 +105,7 @@ export default function Home() {
                 </div>
                 <div className="-ml-px flex w-0 flex-1">
                   <a
-                    href="https://github.com/SergenKaraoglan/t_rex_runner_touchless_interface"
+                    href="https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/components/fractal-trees.jsx"
                     className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                   >
                     <svg

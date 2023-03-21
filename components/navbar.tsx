@@ -32,16 +32,16 @@ export default function Navbar() {
               <div className="hidden sm:block">
                 <div className="flex space-x-4">
                   <Link
-                    href="/about-me"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-50 hover:bg-gray-700"
-                  >
-                    About
-                  </Link>
-                  <Link
                     href="/projects"
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-50 hover:bg-gray-700"
                   >
                     Projects
+                  </Link>
+                  <Link
+                    href="/about-me"
+                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-50 hover:bg-gray-700"
+                  >
+                    About
                   </Link>
                   <Link
                     href="#footer-heading"
@@ -81,17 +81,17 @@ export default function Navbar() {
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
-                href="#footer-heading"
-                className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-              >
-                Contact
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
                 href="/about-me"
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
                 About
+              </Disclosure.Button>
+              <Disclosure.Button
+                as="a"
+                href="#footer-heading"
+                className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              >
+                Contact
               </Disclosure.Button>
             </div>
           </Disclosure.Panel>

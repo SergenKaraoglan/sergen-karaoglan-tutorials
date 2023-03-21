@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React, { Suspense, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { PerspectiveCamera, OrbitControls, Html, Sky } from "@react-three/drei";
+import { PerspectiveCamera, OrbitControls, Html } from "@react-three/drei";
 import * as THREE from "three/src/materials/MeshLambertMaterial";
 
 const royalblue = new THREE.MeshLambertMaterial({ color: "royalblue" });
@@ -40,12 +40,6 @@ export default function FractalTreeCanvas({ is3D, initDepth }) {
             angleIncrement={angleIncrement}
             shape={shape}
             is3D={is3D}
-          />
-          <Sky
-            distance={450000}
-            sunPosition={[0, 1, 0]}
-            inclination={0}
-            azimuth={0.25}
           />
         </Suspense>
       </Canvas>

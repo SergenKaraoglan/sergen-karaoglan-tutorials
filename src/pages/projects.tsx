@@ -18,7 +18,7 @@ const project_list = [
     technologies: ["React", "Tailwind CSS", "Next.js"],
     description: "Test your reaction time.",
     demo: "/projects/reaction-timer",
-    code: "https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/src/pages/projects/reaction-timer.jsx#enroll-beta",
+    code: "https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/src/pages/projects/reaction-timer.jsx",
     type: "Game",
   },
 ];

@@ -68,7 +68,7 @@ export default function Footer() {
             </h3>
             <p className="mt-2 text-sm leading-6 text-gray-600">
               Interested in front-end and full-stack web development, full-time,
-              on-site (UK) or remote. Feel free to leave feedback.
+              on-site (UK) or remote.
             </p>
           </div>
 
