@@ -13,72 +13,107 @@ import FractalTreeCanvas from "../../../components/fractal-tree";
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
   integrity="sha512-rO+olRTkcf304DQBxSWxln8JXCzTHlKnIdnMUwYvQa9/Jd4cQaNkItIUj6Z4nvW1dqK0SKXLbn9h4KwZTNtAyw=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
+  crossOrigin="anonymous"
+  referrerPolicy="no-referrer"
 />
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
-  integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"
-  crossOrigin="anonymous"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+  crossorigin="anonymous"
 />
 
 <article className="prose lg:prose-xl m-auto pt-16">
-March 22nd 2023
+March 23rd 2023
 
 # Fractal Trees
 
 ## What is a Fractal Tree
 
-A treelike structure can be built recursively using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one with React Three Fiber (R3F) by walking through the process I took to build one. As you might have guessed fractal trees purely serve as art but simillar patterns can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are governed by these simple patterns.
+A treelike structure can be built [recursively](<https://en.wikipedia.org/wiki/Recursion_(computer_science)>) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one with React Three Fiber (R3F) by walking through the process I took to build one. As you might have guessed fractal trees purely serve as art but similar patterns can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are governed by these simple patterns.
 
 As the name suggests, a fractal tree is also part of a group of geometry within mathematics known as [fractals](https://en.wikipedia.org/wiki/Fractal) that share interesting properties such as infinite complexity.
 
-Below is a fractal tree that is intentionally left with only the first mesh drawn. Increase the range of the slider to see how the tree is recursively built.
+Below is a fractal tree that is intentionally left with only the first [mesh](https://en.wikipedia.org/wiki/Polygon_mesh) drawn. Increase the range of the slider to see how the tree is recursively built.
 
 <div className="m-auto w-96 h-96 py-10">
   <FractalTreeCanvas initDepth={1} showDepth={true} />
 </div>
 
-A convienient property of procedurally generated art is that you can tweak the parameters to customise the appearance with ease. The number of recursive steps here is intentionally limited at 10 but you can edit the code to go as far as your hardware can handle. Another property is the angle. Each branch (cylinders) splits at a fixed angle from the previous branch.
+A convenient property of procedurally generated art is that you can tweak the parameters to customise the appearance with ease. The recursive depth here is limited at 10 but you can edit the code to go as far as your hardware can handle. Another property is the angle. Each branch (cylinders) splits at a fixed angle from the previous branch.
 Try the slider below to see how the angle changes the appearance of our fractal tree.
 
 <div className="m-auto w-96 h-96 py-10">
   <FractalTreeCanvas initDepth={10} showAngle={true} />
 </div>
 
-By now you probably have a good idea of what a fractal tree is in which case we will now begin to build using R3F.
+By now you probably have a good idea of what a fractal tree is, in which case we will now begin to build one using R3F.
 
 ## Building a 2D Fractal Tree
 
-We can start by first building our "Branch" component that returns a mesh with cylinder geometry. The geometry will take a number of parameters being the radius top, radius bottom, height and radial segments.
+We can start by first building our "Branch" component that returns a mesh with cylinder geometry. The geometry will take the parameters: radius top, radius bottom, height and radial segments, in that order, that will be modified as the tree 'grows'.
 
 ```js
 <cylinderGeometry attach="geometry" args={[radiusT, radiusB, height, 32]} />
 ```
 
-We don't necesseraily need to use a cylinder and you can experiment with other shapes such as a cube to possibly get interesting results but we will be sticking with a cylinder to most closely resemble a tree.
+We don't necessarily need to use a cylinder and you can experiment with other shapes such as a cube to possibly get interesting results but we will be sticking with a cylinder to most closely resemble a tree.
 
 <div className="m-auto w-96 h-96 py-10">
   <FractalTreeCanvas initDepth={10} showShape={true} />
 </div>
 
-Knowing the pattern repeats we can build a Fractal Tree recursion. We start with a root and add two cylinders that split.
+### Rotating branches
 
-Our tree takes the parameters depth and angle increment which determin how many times we call the function recusively to grow our tree and the angle of the branches respectively.
-Our cylinder only takes a handful of parameters.
+Next we would like to be able to rotate our mesh but first we need to get into a few specifics with R3F. The rotation point of a mesh in R3F is its centre. In this project we would like to rotate from the bottom where Y is equal to 0. To achieve this it is common practice to nest a mesh within a group and use the group as our rotation point. When you place a mesh within a group, the centre of the mesh is placed within the group coordinates so we place the place above the centre of the group by half the height of the mesh. In the end we achieve our desired rotation point.
 
-### Rotating our branches
+The final Branch component we return is the following and contains the only mesh we need.
 
-Now to get into a few specifics with R3F. When you rotate a mesh, you rotate the mesh from its center. In this project we would like to rotate from the start point of our mesh or to put it more formally, the local point of Y that is equal to 0. To achieve this it is common practice to nest a mesh within the group property and use that as our anchor point for rotation. When you place a mesh within a set of coordinates, the center of the mesh is placed within those coordinates.
+```js
+<group position={[x, y, z]} rotation={[angleX, 0, angleZ]}>
+  <mesh position={[0, height / 2, 0]} material={royalblue}>
+    <cylinderGeometry attach="geometry" args={[radiusT, radiusB, height, 32]} />
+  </mesh>
+</group>
+```
 
-We use the Z axis to rotate the branches in this example.
+### Recursively generating our tree
+
+Knowing the pattern repeats we can build a Fractal Tree using recursion. For every branch, we add two more branches that split at a fixed angle.
+Our recursive function takes the parameters depth and angle increment which determine how many times we call the function recursively to grow our tree and the angle of the branches respectively.
+
+```js
+function generate(depth, angleZ, angleX, radius, height, x, y, z) {
+  if (depth === 0) {
+    return;
+  }
+  branches.push(
+    <Branch ...props />
+  );
+
+  radius *= ratio;
+  height *= ratio;
+  depth -= 1;
+  let angleZL = (angleZ * 10 + angleIncrement * 10) / 10;
+  let angleZR = (angleZ * 10 - angleIncrement * 10) / 10;
+
+  generate(depth, angleZL, 0, radius, height, x, y, z);
+  generate(depth, angleZR, 0, radius, height, x, y, z);
+}
+
+return branches;
+```
+
+<figcaption>
+  Note: I am omitting some code but showing enough for the gaps to be filled.
+  Full source code is available at the end of the page.
+</figcaption>
+
+You may have noticed we are multiplying and dividing the angle by 10. This is to first convert the variables to integer to avoid floating point error.
+We finally return all branches for it to be drawn on the canvas. To reduce the height and radius as we progress we are multiplying by a fixed ratio less than 1.
 
 ### Using trignometry to convert polar coordinates to cartesian
 
-Using trigonometry we can find the endpoint of the previously placed branch which serves as the start point of the next set of branches we want to place.
-
-Using the sliders you can play around with the depth and angle and see how these properties affect the tree.
+Using [trigonometry](https://en.wikipedia.org/wiki/Trigonometry) we can find the endpoint of the previously placed branch which serves as the start point of the next set of branches we want to place.
 
 ```js
 // cartesian coordinates
@@ -87,23 +122,31 @@ y += Math.cos(angleZ) * Math.cos(angleX) * height;
 z += Math.sin(angleX) * height;
 ```
 
+If you don't understand trigonometry that's ok. All you need to understand here is that to get the x,y,z coordinates of our mesh we need to
+
 ## Building a 3D Fractal Tree
 
-Our cylinders are 3D but we aren't taking much advantage of the Z axis in the previous example. We are only using branches that split across the X axis. We can extend the tree by also creating branches across the Z axis so our tree looks more "full"
+The mesh may be 3D but we aren't taking much advantage of the Z axis in the previous example. We are only creating branches that split across the X axis. We can extend the tree by also creating branches across the Z axis to give a more 3D look. You can rotate the tree with a cursor or touchscreen.
 
 <div className="m-auto w-96 h-96 py-10">
-  <FractalTreeCanvas is3D={true} initDepth={1} />
+  <FractalTreeCanvas is3D={true} initDepth={6} />
 </div>
+
+```js
+let angleXL = (angleX * 10 + angleIncrement * 10) / 10;
+let angleXR = (angleX * 10 - angleIncrement * 10) / 10;
+generate(depth, 0, angleXL, radius, height, x, y, z);
+generate(depth, 0, angleXR, radius, height, x, y, z);
+```
+
+The key difference here from the previous example is we are now also rotating the X axis and are now creating a total of 4 branches per call to generate.
 
 ## Finishing up
 
-You now know what a Fractal Tree is and how to build one in R3F. Procedural generation and fractals are both intriguing areas that can be explored much further as this is even
-barely scrathing the surface. I thought I would start with a very simple algorithm before branching off to more complex algorithms that share profound properties and may even be mathamatically motivated. That being said I hope you enjoyed a demonstration of a simple yet elegant pattern that can be found across nature.
+You now know what a Fractal Tree is and saw how to build one in R3F. Procedural generation and fractals are both intriguing areas that can be explored much further as this is one of many fractals and arguably the simplest fractal. I thought I would start with a very simple algorithm before branching off to more complex algorithms as I learn R3F. That being said, I hope you enjoyed a brief demonstration of a simple yet elegant pattern that can be found across nature.
 
 [Source code](https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/components/fractal-tree.jsx)
 
-### References
-
-https://en.wikipedia.org/wiki/Fractal
-
 </article>
+````
+`````
