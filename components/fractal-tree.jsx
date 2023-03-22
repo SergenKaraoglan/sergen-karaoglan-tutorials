@@ -6,7 +6,13 @@ import * as THREE from "three/src/materials/MeshLambertMaterial";
 
 const royalblue = new THREE.MeshLambertMaterial({ color: "royalblue" });
 
-export default function FractalTreeCanvas({ is3D, initDepth }) {
+export default function FractalTreeCanvas({
+  is3D = false,
+  initDepth,
+  showDepth = false,
+  showAngle = false,
+  showShape = false,
+}) {
   const [depth, setDepth] = useState(initDepth);
   const [angleIncrement, setAngleIncrement] = useState(0.5);
   const [shape, setShape] = useState("cylinder");
@@ -15,7 +21,7 @@ export default function FractalTreeCanvas({ is3D, initDepth }) {
     setDepth(e.target.value);
   }
 
-  function handleAngleIncrement(e) {
+  function handleAngle(e) {
     setAngleIncrement(e.target.value);
   }
 
@@ -25,9 +31,9 @@ export default function FractalTreeCanvas({ is3D, initDepth }) {
 
   return (
     <>
-      <Canvas frameloop="demand">
-        <PerspectiveCamera makeDefault position={[0, 4, 9]} fov={50} />
-        <OrbitControls enableZoom={false} />
+      <Canvas frameloop="demand" antialias="false">
+        <PerspectiveCamera makeDefault position={[0, 3, 5]} fov={50} />
+        <OrbitControls enableZoom={false} target={[0, 2, 0]} />
         <hemisphereLight
           intensity={0.5}
           skyColor={0xffffbb}
@@ -43,12 +49,15 @@ export default function FractalTreeCanvas({ is3D, initDepth }) {
           />
         </Suspense>
       </Canvas>
-      <DepthAngleUI
-        depth={depth}
-        handleDepth={handleDepth}
-        angleIncrement={angleIncrement}
-        handleAngleIncrement={handleAngleIncrement}
-      />
+
+      {/* UI */}
+      <div className="mx-auto w-72 sm:w-96 flex justify-center my-3">
+        {showDepth && <DepthUI depth={depth} handleDepth={handleDepth} />}
+        {showAngle && (
+          <AngleUI angleIncrement={angleIncrement} handleAngle={handleAngle} />
+        )}
+        {showShape && <ShapeUI shape={shape} handleShape={handleShape} />}
+      </div>
     </>
   );
 }
@@ -71,8 +80,8 @@ function FractalTree({ depth, angleIncrement, shape, is3D }) {
     }
     branches.push(
       <Branch
-        radiusS={radius * ratio}
-        radiusE={radius}
+        radiusT={radius * ratio}
+        radiusB={radius}
         height={height}
         angleZ={angleZ}
         angleX={angleX}
@@ -97,8 +106,10 @@ function FractalTree({ depth, angleIncrement, shape, is3D }) {
     generate(depth, angleZL, 0, radius, height, x, y, z);
     generate(depth, angleZR, 0, radius, height, x, y, z);
     if (is3D) {
-      generate(depth, 0, angleZL, radius, height, x, y, z);
-      generate(depth, 0, angleZR, radius, height, x, y, z);
+      let angleXL = (angleX * 10 + angleIncrement * 10) / 10;
+      let angleXR = (angleX * 10 - angleIncrement * 10) / 10;
+      generate(depth, 0, angleXL, radius, height, x, y, z);
+      generate(depth, 0, angleXR, radius, height, x, y, z);
     }
   }
 
@@ -107,21 +118,21 @@ function FractalTree({ depth, angleIncrement, shape, is3D }) {
 }
 
 // branch of a fractal tree
-function Branch({ radiusS, radiusE, height, x, y, z, angleZ, angleX, shape }) {
+function Branch({ radiusT, radiusB, height, x, y, z, angleZ, angleX, shape }) {
   return (
     <group position={[x, y, z]} rotation={[angleX, 0, angleZ]}>
       <mesh position={[0, height / 2, 0]} material={royalblue}>
         {shape === "cylinder" ? (
           <cylinderGeometry
             attach="geometry"
-            args={[radiusS, radiusE, height, 32]}
+            args={[radiusT, radiusB, height, 32]}
           />
         ) : shape === "cube" ? (
           <boxGeometry attach="geometry" args={[height, height, height]} />
         ) : shape === "sphere" ? (
           <sphereGeometry attach="geometry" args={[height / 2]} />
         ) : (
-          <dodecahedronGeometry attach="geometry" args={[height / 2]} />
+          <octahedronGeometry attach="geometry" args={[height / 2]} />
         )}
       </mesh>
     </group>
@@ -129,50 +140,42 @@ function Branch({ radiusS, radiusE, height, x, y, z, angleZ, angleX, shape }) {
 }
 
 // GUI
-function DepthAngleUI({
-  depth,
-  handleDepth,
-  angleIncrement,
-  handleAngleIncrement,
-}) {
+function DepthUI({ depth, handleDepth }) {
   return (
-    <div className="mx-auto w-72 sm:w-96 flex justify-between">
-      <div className="flex flex-col">
-        <label htmlFor="depth-slider" className="my-2">
-          Depth
-        </label>
-        <input
-          id="depth-slider"
-          className="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600"
-          type="range"
-          min="1"
-          max="10"
-          value={depth}
-          onChange={(e) => handleDepth(e)}
-        />
-      </div>
-      <div className="flex flex-col ">
-        <label htmlFor="angle-slider" className="my-2">
-          Angle
-        </label>
-        <input
-          id="angle-slider"
-          className="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600"
-          type="range"
-          min="0.1"
-          max="1.5"
-          step="0.1"
-          value={angleIncrement}
-          onChange={(e) => handleAngleIncrement(e)}
-        />
-      </div>
+    <div className="">
+      <input
+        id="depth-slider"
+        className="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600"
+        type="range"
+        min="1"
+        max="10"
+        value={depth}
+        onChange={(e) => handleDepth(e)}
+      />
+    </div>
+  );
+}
+
+function AngleUI({ angleIncrement, handleAngle }) {
+  return (
+    <div className="">
+      <input
+        id="angle-slider"
+        className="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600"
+        type="range"
+        min="0.1"
+        max="1.5"
+        step="0.1"
+        value={angleIncrement}
+        onChange={(e) => handleAngle(e)}
+      />
     </div>
   );
 }
 
 function ShapeUI({ handleShape }) {
   return (
-    <div className="mx-auto w-72 sm:w-96 flex justify-between my-3">
+    <div className="mx-auto w-72 sm:w-96 flex justify-between">
       <button
         className="rounded-md bg-blue-500 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400"
         onClick={() => handleShape("cylinder")}
@@ -193,9 +196,9 @@ function ShapeUI({ handleShape }) {
       </button>
       <button
         className="rounded-md bg-blue-500 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400"
-        onClick={() => handleShape("Dodecahedron")}
+        onClick={() => handleShape("Octahedron")}
       >
-        Dodecahedron
+        Octahedron
       </button>
     </div>
   );

@@ -11,10 +11,10 @@ import FractalTreeCanvas from "../../../components/fractal-tree";
 
 <link
   rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css"
-  integrity="sha512-0aPQyyeZrWj9sCA46UlmWgKOP0mUipLQ6OZXu8l4IcAmD2u31EPEy9VcIMvl7SoAaKe8bLXZhYoMaE/in+gcgA=="
-  crossOrigin="anonymous"
-  referrerPolicy="no-referrer"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+  integrity="sha512-rO+olRTkcf304DQBxSWxln8JXCzTHlKnIdnMUwYvQa9/Jd4cQaNkItIUj6Z4nvW1dqK0SKXLbn9h4KwZTNtAyw=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
 />
 <link
   rel="stylesheet"
@@ -23,26 +23,47 @@ import FractalTreeCanvas from "../../../components/fractal-tree";
   crossOrigin="anonymous"
 />
 
-<div className="m-auto w-96 h-96">
-  <FractalTreeCanvas is3D={false} initDepth={5} />
-</div>
-
-<article className="prose lg:prose-xl m-auto w-7/12 pt-16">
-March 19th 2023
+<article className="prose lg:prose-xl m-auto pt-16">
+March 22nd 2023
 
 # Fractal Trees
 
 ## What is a Fractal Tree
 
-The tree you see above is built procedurally only using cylinders and simple rules. This is known as a Fractal Tree and by the end of this tutorial you will learn how to build one with React Three Fiber (R3F). As you might have guessed Fractal Trees purely serve as an artistic property but simillar patterns can be found in nature besides trees from lungs to our blood veins showing that even our everyday lives are governed by these simple patterns.
+A treelike structure can be built recursively using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one with React Three Fiber (R3F) by walking through the process I took to build one. As you might have guessed fractal trees purely serve as art but simillar patterns can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are governed by these simple patterns.
 
-As the name suggests, a Fractal Tree is part of a branch of mathematics known as fractals. Fractals share an interesting property of
+As the name suggests, a fractal tree is also part of a group of geometry within mathematics known as [fractals](https://en.wikipedia.org/wiki/Fractal) that share interesting properties such as infinite complexity.
+
+Below is a fractal tree that is intentionally left with only the first mesh drawn. Increase the range of the slider to see how the tree is recursively built.
+
+<div className="m-auto w-96 h-96 py-10">
+  <FractalTreeCanvas initDepth={1} showDepth={true} />
+</div>
+
+A convienient property of procedurally generated art is that you can tweak the parameters to customise the appearance with ease. The number of recursive steps here is intentionally limited at 10 but you can edit the code to go as far as your hardware can handle. Another property is the angle. Each branch (cylinders) splits at a fixed angle from the previous branch.
+Try the slider below to see how the angle changes the appearance of our fractal tree.
+
+<div className="m-auto w-96 h-96 py-10">
+  <FractalTreeCanvas initDepth={10} showAngle={true} />
+</div>
+
+By now you probably have a good idea of what a fractal tree is in which case we will now begin to build using R3F.
 
 ## Building a 2D Fractal Tree
 
-Knowing the pattern repeats we can build a Fractal Tree recursively. We start with a root and add two cylinders that split.
+We can start by first building our "Branch" component that returns a mesh with cylinder geometry. The geometry will take a number of parameters being the radius top, radius bottom, height and radial segments.
 
-You can also experiment with other shapes such as a cube to get interesting results...
+```js
+<cylinderGeometry attach="geometry" args={[radiusT, radiusB, height, 32]} />
+```
+
+We don't necesseraily need to use a cylinder and you can experiment with other shapes such as a cube to possibly get interesting results but we will be sticking with a cylinder to most closely resemble a tree.
+
+<div className="m-auto w-96 h-96 py-10">
+  <FractalTreeCanvas initDepth={10} showShape={true} />
+</div>
+
+Knowing the pattern repeats we can build a Fractal Tree recursion. We start with a root and add two cylinders that split.
 
 Our tree takes the parameters depth and angle increment which determin how many times we call the function recusively to grow our tree and the angle of the branches respectively.
 Our cylinder only takes a handful of parameters.
@@ -57,20 +78,32 @@ We use the Z axis to rotate the branches in this example.
 
 Using trigonometry we can find the endpoint of the previously placed branch which serves as the start point of the next set of branches we want to place.
 
-Using the sliders you can play around with the depth and angle and see how these properties affect the tree. Technically you can grow the tree as much as your RAM can hold but I have limited it to 10 in this example.
+Using the sliders you can play around with the depth and angle and see how these properties affect the tree.
+
+```js
+// cartesian coordinates
+x -= Math.sin(angleZ) * Math.cos(angleX) * height;
+y += Math.cos(angleZ) * Math.cos(angleX) * height;
+z += Math.sin(angleX) * height;
+```
 
 ## Building a 3D Fractal Tree
 
 Our cylinders are 3D but we aren't taking much advantage of the Z axis in the previous example. We are only using branches that split across the X axis. We can extend the tree by also creating branches across the Z axis so our tree looks more "full"
+
+<div className="m-auto w-96 h-96 py-10">
+  <FractalTreeCanvas is3D={true} initDepth={1} />
+</div>
 
 ## Finishing up
 
 You now know what a Fractal Tree is and how to build one in R3F. Procedural generation and fractals are both intriguing areas that can be explored much further as this is even
 barely scrathing the surface. I thought I would start with a very simple algorithm before branching off to more complex algorithms that share profound properties and may even be mathamatically motivated. That being said I hope you enjoyed a demonstration of a simple yet elegant pattern that can be found across nature.
 
-Source code
+[Source code](https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/components/fractal-tree.jsx)
 
-https://en.wikipedia.org/wiki/Fractal_canopy
+### References
+
 https://en.wikipedia.org/wiki/Fractal
 
 </article>
