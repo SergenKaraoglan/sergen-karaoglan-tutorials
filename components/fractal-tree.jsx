@@ -1,5 +1,4 @@
-import Head from "next/head";
-import React, { Suspense, useRef, useState } from "react";
+import React, { Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera, OrbitControls, Html } from "@react-three/drei";
 import * as THREE from "three/src/materials/MeshLambertMaterial";
