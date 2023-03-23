@@ -17,11 +17,6 @@ import RotationCanvas from "../../../components/rotation-points";
   crossOrigin="anonymous"
   referrerPolicy="no-referrer"
 />
-<!-- <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
-  crossOrigin="anonymous"
-/> -->
 
 <article className="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
 March 23rd 2023
@@ -127,7 +122,7 @@ You may have noticed we are converting the angle first to an integer and then di
 
 #### Using trigonometry to convert polar coordinates to cartesian
 
-We want to connect the branches, to do this we need to know the start point of the previous branch. By knowing the angle we can achieve this using [trigonometry](https://en.wikipedia.org/wiki/Trigonometry.) and update the x,y,z coordinates as we progress along the tree.
+We want to connect the branches, to do this we need to know the start point of the previous branch. By knowing the angle we can achieve this using [trigonometry](https://en.wikipedia.org/wiki/Trigonometry.) and update the x,y,z coordinates as we progress along the tree. Remember how we changed the centre of rotation? We did this to rotate by the point each branch is connected by.
 
 ```js
 // cartesian coordinates
