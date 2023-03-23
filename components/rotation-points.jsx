@@ -22,7 +22,7 @@ export default function RotationCanvas() {
   return (
     <>
       <Canvas frameloop="demand" antialias="false">
-        <PerspectiveCamera makeDefault position={[0, 3, 8]} fov={50} />
+        <PerspectiveCamera makeDefault position={[0, 1, 9]} fov={90} />
         <OrbitControls enableZoom={false} target={[0, 2, 0]} />
         <hemisphereLight
           intensity={0.5}
@@ -30,7 +30,7 @@ export default function RotationCanvas() {
           groundColor={"#080820"}
           position={[0, 1, 0]}
         />
-        <group position={[-3, 0, 0]} rotation={[0, 0, angleA]}>
+        <group position={[-5, 0, 0]} rotation={[0, 0, -angleA]}>
           <mesh position={[0, height / 2, 0]} material={royalblue}>
             <cylinderGeometry
               attach="geometry"
@@ -39,8 +39,8 @@ export default function RotationCanvas() {
           </mesh>
         </group>
         <mesh
-          position={[3, height / 2, 0]}
-          rotation={[0, 0, angleB]}
+          position={[5, height / 2, 0]}
+          rotation={[0, 0, -angleB]}
           material={royalblue}
         >
           <cylinderGeometry
@@ -49,8 +49,10 @@ export default function RotationCanvas() {
           />
         </mesh>
       </Canvas>
-      <AngleSlider handleAngle={handleAngleA} angle={angleA} />
-      <AngleSlider handleAngle={handleAngleB} angle={angleB} />
+      <div className="w-fit mx-auto">
+        <AngleSlider handleAngle={handleAngleA} angle={angleA} />
+        <AngleSlider handleAngle={handleAngleB} angle={angleB} />
+      </div>
     </>
   );
 }
@@ -62,8 +64,8 @@ function AngleSlider({ handleAngle, angle }) {
         id="angle-slider"
         className="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600"
         type="range"
-        min="-1.5"
-        max="1.5"
+        min="0"
+        max="6.30"
         step="0.1"
         value={angle}
         onChange={(e) => handleAngle(e)}

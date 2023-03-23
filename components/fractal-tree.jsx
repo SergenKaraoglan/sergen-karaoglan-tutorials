@@ -50,7 +50,7 @@ export default function FractalTreeCanvas({
       </Canvas>
 
       {/* UI */}
-      <div className="mx-auto w-72 sm:w-96 flex justify-center my-3">
+      <div className="mx-auto w-fit flex justify-center my-3">
         {showDepth && <DepthUI depth={depth} handleDepth={handleDepth} />}
         {showAngle && (
           <AngleUI angleIncrement={angleIncrement} handleAngle={handleAngle} />
@@ -174,7 +174,7 @@ function AngleUI({ angleIncrement, handleAngle }) {
 
 function ShapeUI({ handleShape }) {
   return (
-    <div className="mx-auto w-72 sm:w-96 flex justify-between">
+    <div className="mx-auto w-72 sm:w-72 flex justify-between">
       <button
         className="rounded-md bg-blue-500 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400"
         onClick={() => handleShape("cylinder")}
@@ -193,12 +193,12 @@ function ShapeUI({ handleShape }) {
       >
         Sphere
       </button>
-      <button
+      {/* <button
         className="rounded-md bg-blue-500 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400"
         onClick={() => handleShape("Octahedron")}
       >
         Octahedron
-      </button>
+      </button> */}
     </div>
   );
 }
