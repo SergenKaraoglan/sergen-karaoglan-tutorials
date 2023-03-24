@@ -4,6 +4,7 @@
 
 .thumb-lg-blue-600::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
+  -moz-appearance: none;
   appearance: none;
   background-color: #1d4ed8;
   height: 1.5rem;

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Head from "next/head";
 
-const project_list = [
+const archive_project_list = [
   {
     name: "t_rex_runner_touchless_interface",
     title: "Touchless T-Rex Runner",
@@ -23,6 +23,20 @@ const project_list = [
   },
 ];
 
+const project_list = [
+  {
+    name: "Fractal Trees",
+    title: "Fractal Trees",
+    image: "/fractal-tree.png",
+    technologies: ["React", "Next.js", "Tailwind", "React Three Fiber"],
+    description:
+      "Interact with and learn to create fractal trees with ReactThree Fiber.",
+    demo: "/projects/fractal-trees/",
+    code: "https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/components/fractal-tree.jsx",
+    type: "Procedural art",
+  },
+];
+
 export default function projects() {
   return (
     <>
@@ -40,7 +54,7 @@ export default function projects() {
               <div className="flex flex-1 flex-col p-8">
                 <Image
                   className="mx-auto h-32 w-32 flex-shrink-0 rounded-full object-contain"
-                  src={"/" + project.name + ".png"}
+                  src={project.image}
                   alt=""
                   height={50}
                   width={50}
