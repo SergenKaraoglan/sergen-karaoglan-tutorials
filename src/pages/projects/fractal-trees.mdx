@@ -18,7 +18,7 @@ import RotationCanvas from "../../../components/rotation-points";
   referrerPolicy="no-referrer"
 />
 
-<article className="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
+<article className="max-sm:mx-4 prose lg:prose-xl m-auto pt-16 ">
 March 23rd 2023
 
 # Fractal Trees
@@ -113,10 +113,7 @@ function generate(depth, angleZ, angleX, radius, height, x, y, z) {
 return branches;
 ```
 
-<figcaption>
-  Note: I am omitting some code but showing enough for the gaps to be filled.
-  Full source code is available at the end of the page.
-</figcaption>
+<figcaption>Full source code is available at the end of the page.</figcaption>
 
 You may have noticed we are converting the angle first to an integer and then dividing, this to avoid [floating point inaccuracies](https://www.w3schools.com/js/tryit.asp?filename=tryjs_numbers_inaccurate3).
 
@@ -138,7 +135,7 @@ Finally once we have reached the end of recursion we return the array of branche
 The mesh may be 3D but we are only rotating by the Z axis. We can extend the tree by adding two more branches that rotate by the X axis. You can orbit the tree with a cursor or touchscreen.
 
 <div className="m-auto sm:w-96 sm:h-96 py-10">
-  <FractalTreeCanvas is3D={true} initDepth={6} />
+  <FractalTreeCanvas is3D={true} initDepth={5} />
 </div>
 
 ```js
