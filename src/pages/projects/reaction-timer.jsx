@@ -31,8 +31,7 @@ function ReactionInterface() {
 
   function handleClick() {
     if (status == "start") {
-      startTime();
-      seStatus("waiting");
+      start();
     } else if (status == "waiting") {
       clearTimeout(timer.current);
       seStatus("fail");
@@ -40,14 +39,14 @@ function ReactionInterface() {
       const end = new Date().getTime();
       setReactionTime(end - time.current);
     } else {
-      setReactionTime(0);
-      startTime();
-      seStatus("waiting");
+      start();
     }
   }
 
-  function startTime() {
+  function start() {
+    setReactionTime(0);
     timer.current = setTimeout(finish, Math.random() * 4000 + 500);
+    seStatus("waiting");
   }
   function finish() {
     time.current = new Date().getTime();
