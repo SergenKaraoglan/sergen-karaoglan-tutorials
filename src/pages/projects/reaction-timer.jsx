@@ -25,28 +25,30 @@ function ReactionInterface() {
   let timecolor =
     status == "start"
       ? "bg-blue-600"
-      : status == "waiting"
+      : status == "waiting" || status == "fail"
       ? "bg-red-600"
       : "bg-green-600";
 
   function handleClick() {
     if (status == "start") {
-      start();
+      startTime();
+      seStatus("waiting");
+    } else if (status == "waiting") {
+      clearTimeout(timer.current);
+      seStatus("fail");
     } else if (status == "finished" && reactionTime == 0) {
       const end = new Date().getTime();
       setReactionTime(end - time.current);
     } else {
-      clearTimeout(timer.current);
       setReactionTime(0);
-      seStatus("start");
+      startTime();
+      seStatus("waiting");
     }
   }
 
-  function start() {
+  function startTime() {
     timer.current = setTimeout(finish, Math.random() * 4000 + 500);
-    seStatus("waiting");
   }
-
   function finish() {
     time.current = new Date().getTime();
     seStatus("finished");
@@ -72,6 +74,11 @@ function ReactionInterface() {
             </>
           ) : status == "waiting" ? (
             <h1 className="text-4xl sm:text-5xl">Wait...</h1>
+          ) : status == "fail" ? (
+            <>
+              <h1 className="text-4xl sm:text-5xl">Too early.</h1>
+              <p className="text-lg sm:text-xl">Click to retry</p>
+            </>
           ) : reactionTime == 0 ? (
             <h1 className="text-4xl sm:text-5xl">GO!</h1>
           ) : (
