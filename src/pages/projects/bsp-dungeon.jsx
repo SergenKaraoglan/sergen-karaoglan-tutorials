@@ -6,9 +6,9 @@ export default function BSPCanvas() {
     <div className="h-screen">
       <Canvas>
         <ambientLight />
-        <OrbitControls enableZoom={false} />
+        <OrbitControls enableZoom={true} />
         <BSPDungeon />
-        {/* <Room width={10} height={10} /> */}
+        {/* <Floor width={10} height={10} x={0} y={-5} /> */}
       </Canvas>
     </div>
   );
@@ -27,11 +27,7 @@ function BSPDungeon() {
     }
   }
 
-  const x1 = 0;
-  const y1 = 0;
-  const x2 = 10;
-  const y2 = 10;
-  function generateBSP() {
+  function generateBSP(x1, y1, x2, y2) {
     const root = new BSPNode();
     root.x1 = x1;
     root.y1 = y1;
@@ -44,17 +40,17 @@ function BSPDungeon() {
       const node = nodes.pop();
       const width = node.x2 - node.x1;
       const height = node.y2 - node.y1;
-      const max = Math.max(width, height);
-      const min = Math.min(width, height);
+      // random split
+      const split = Math.floor(Math.random() * 10) / 10;
       if (width > 5 && height > 5) {
         if (width > height) {
           node.left = new BSPNode();
           node.left.x1 = node.x1;
           node.left.y1 = node.y1;
-          node.left.x2 = node.x2 - width / 2;
+          node.left.x2 = node.x2 - Math.floor(width * split);
           node.left.y2 = node.y2;
           node.right = new BSPNode();
-          node.right.x1 = node.x1 + width / 2;
+          node.right.x1 = node.x1 + Math.floor(width * (1 - split));
           node.right.y1 = node.y1;
           node.right.x2 = node.x2;
           node.right.y2 = node.y2;
@@ -63,10 +59,10 @@ function BSPDungeon() {
           node.left.x1 = node.x1;
           node.left.y1 = node.y1;
           node.left.x2 = node.x2;
-          node.left.y2 = node.y2 - height / 2;
+          node.left.y2 = node.y2 - Math.floor(height * split);
           node.right = new BSPNode();
           node.right.x1 = node.x1;
-          node.right.y1 = node.y1 + height / 2;
+          node.right.y1 = node.y1 + Math.floor(height * (1 - split));
           node.right.x2 = node.x2;
           node.right.y2 = node.y2;
         }
@@ -79,7 +75,7 @@ function BSPDungeon() {
     return leafs;
   }
 
-  const leafs = generateBSP();
+  const leafs = generateBSP(-5, -5, 10, 10);
 
   // render BSP tree
   function renderBSP() {
@@ -89,8 +85,8 @@ function BSPDungeon() {
           key={`${leaf.x1}-${leaf.y1}-${leaf.x2}-${leaf.y2}`}
           width={leaf.x2 - leaf.x1}
           height={leaf.y2 - leaf.y1}
-          x={leaf.x2}
-          y={leaf.y2}
+          x={leaf.x2 - (leaf.x2 - leaf.x1) / 2}
+          y={leaf.y2 - (leaf.y2 - leaf.y1) / 2}
         />
       );
     });
@@ -102,11 +98,13 @@ function BSPDungeon() {
   return rooms;
 }
 
-function Floor({ width, height, x = 0, y = 0 }) {
+function Floor({ width, height, x, y }) {
+  // Random color
+  const color = "#" + Math.floor(Math.random() * 16777215).toString(16);
   return (
-    <mesh>
-      <planeGeometry args={[width, height]} position={[x, y, 0]} />
-      <meshStandardMaterial color="orange" />
+    <mesh position={[x, y, 0]}>
+      <planeGeometry args={[width, height]} />
+      <meshStandardMaterial color={color} />
     </mesh>
   );
 }
