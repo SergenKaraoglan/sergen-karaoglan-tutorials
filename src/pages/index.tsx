@@ -61,7 +61,7 @@ export default function Home() {
                   </h3>
                 </div>
                 <p className="mt-1 text-sm text-gray-500">
-                  React, Next.js, Tailwind, React Three Fiber
+                  Next.js, Tailwind, React Three Fiber
                 </p>
                 <p className="mt-1 text-sm text-gray-900">
                   Interact with and learn to create fractal trees with React
