@@ -88,6 +88,13 @@ function BSPDungeon() {
   // render BSP tree
   function renderBSP() {
     return leafs.map((leaf) => {
+      // trim leafs
+      const trim = 0.1;
+      leaf.x1 += trim;
+      leaf.y1 += trim;
+      leaf.x2 -= trim;
+      leaf.y2 -= trim;
+
       return (
         <Floor
           key={leaf.id}
@@ -102,6 +109,77 @@ function BSPDungeon() {
 
   const rooms = renderBSP();
   console.log(rooms);
+
+  // connect rooms
+  function connectRooms() {
+    const connections = [];
+    for (let i = 0; i < leafs.length; i++) {
+      const leaf = leafs[i];
+      const x1 = leaf.x1;
+      const y1 = leaf.y1;
+      const x2 = leaf.x2;
+      const y2 = leaf.y2;
+      const width = x2 - x1;
+      const height = y2 - y1;
+      const center = {
+        x: x2 - width / 2,
+        y: y2 - height / 2,
+      };
+      const connectionsTo = [];
+      for (let j = 0; j < leafs.length; j++) {
+        if (i === j) continue;
+        const leaf2 = leafs[j];
+        const x3 = leaf2.x1;
+        const y3 = leaf2.y1;
+        const x4 = leaf2.x2;
+        const y4 = leaf2.y2;
+        const width2 = x4 - x3;
+        const height2 = y4 - y3;
+        const center2 = {
+          x: x4 - width2 / 2,
+          y: y4 - height2 / 2,
+        };
+        if (
+          center.x > x3 &&
+          center.x < x4 &&
+          center.y > y3 &&
+          center.y < y4 &&
+          center2.x > x1 &&
+          center2.x < x2 &&
+          center2.y > y1 &&
+          center2.y < y2
+        ) {
+          connectionsTo.push(leaf2);
+        }
+      }
+      connections.push({
+        from: leaf,
+        to: connectionsTo,
+      });
+    }
+    return connections.map((connection) => {
+      const from = connection.from;
+      const to = connection.to;
+      const fromCenter = {
+        x: from.x2 - (from.x2 - from.x1) / 2,
+        y: from.y2 - (from.y2 - from.y1) / 2,
+      };
+      const toCenter = {
+        x: to.x2 - (to.x2 - to.x1) / 2,
+        y: to.y2 - (to.y2 - to.y1) / 2,
+      };
+
+      return (
+        <line
+          points={[
+            [fromCenter.x, fromCenter.y, 0],
+            [toCenter.x, toCenter.y, 0],
+          ]}
+        />
+      );
+    });
+  }
+  connectRooms();
 
   return rooms;
 }
