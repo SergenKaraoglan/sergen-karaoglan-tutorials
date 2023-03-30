@@ -16,12 +16,22 @@ export default function BSPCanvas() {
 }
 
 function BSPDungeon() {
-  const rooms = DungeonRooms();
+  const floorTexture = useLoader(TextureLoader, "/doom-floor.png");
+  floorTexture.repeat.set(8, 8);
+  floorTexture.wrapS = THREE.RepeatWrapping;
+  floorTexture.wrapT = THREE.RepeatWrapping;
+
+  const wallTexture = useLoader(TextureLoader, "/doom-wall.png");
+  wallTexture.repeat.set(8, 8);
+  wallTexture.wrapS = THREE.RepeatWrapping;
+  wallTexture.wrapT = THREE.RepeatWrapping;
+
+  const rooms = <DungeonRooms floorTexture={floorTexture} />;
 
   return rooms;
 }
 
-function DungeonRooms() {
+function DungeonRooms({ floorTexture }) {
   class BSPNode {
     constructor() {
       this.left = null;
@@ -49,35 +59,24 @@ function DungeonRooms() {
       const node = nodes.pop();
       const width = node.x2 - node.x1;
       const height = node.y2 - node.y1;
-      // random split
-      let split = Math.floor(Math.random() * 10) / 10;
-      split = Math.max(split, 0.4);
-      split = Math.min(split, 0.7);
+
       if (width > 4 && height > 4) {
+        // random split
+        let split = Math.floor(Math.random() * 10) / 10;
+        split = Math.max(split, 0.4);
+        split = Math.min(split, 0.7);
+
+        node.left = structuredClone(node);
+        node.right = structuredClone(node);
+
         if (width > height || (width === height && Math.random() > 0.5)) {
           split = Math.floor(width * split);
-          node.left = new BSPNode();
-          node.left.x1 = node.x1;
-          node.left.y1 = node.y1;
           node.left.x2 = node.x2 - split;
-          node.left.y2 = node.y2;
-          node.right = new BSPNode();
           node.right.x1 = node.x1 + (width - split);
-          node.right.y1 = node.y1;
-          node.right.x2 = node.x2;
-          node.right.y2 = node.y2;
         } else {
           split = Math.floor(height * split);
-          node.left = new BSPNode();
-          node.left.x1 = node.x1;
-          node.left.y1 = node.y1;
-          node.left.x2 = node.x2;
           node.left.y2 = node.y2 - split;
-          node.right = new BSPNode();
-          node.right.x1 = node.x1;
           node.right.y1 = node.y1 + (height - split);
-          node.right.x2 = node.x2;
-          node.right.y2 = node.y2;
         }
         node.left.id = ++id;
         node.right.id = ++id;
@@ -95,7 +94,7 @@ function DungeonRooms() {
   // render BSP tree
   function renderBSP() {
     return leafs.map((leaf) => {
-      // trim leafs
+      // trim rooms
       const trim = 0.1;
       leaf.x1 += trim;
       leaf.y1 += trim;
@@ -107,8 +106,9 @@ function DungeonRooms() {
           key={leaf.id}
           width={leaf.x2 - leaf.x1}
           height={leaf.y2 - leaf.y1}
-          x={leaf.x2 - (leaf.x2 - leaf.x1) / 2}
-          y={leaf.y2 - (leaf.y2 - leaf.y1) / 2}
+          x={(leaf.x2 + leaf.x1) / 2}
+          y={(leaf.y2 + leaf.y1) / 2}
+          texture={floorTexture}
         />
       );
     });
@@ -211,15 +211,11 @@ function DungeonWalls() {
   buildWalls();
 }
 
-function Floor({ width, height, x, y, z = 0 }) {
-  const colorMap = useLoader(TextureLoader, "/doom-floor.png");
-  colorMap.repeat.set(4, 4);
-  colorMap.wrapS = THREE.RepeatWrapping;
-  colorMap.wrapT = THREE.RepeatWrapping;
+function Floor({ width, height, x, y, z = 0, texture }) {
   return (
     <mesh position={[x, y, z]}>
       <planeGeometry args={[width, height]} />
-      <meshStandardMaterial map={colorMap} />
+      <meshStandardMaterial map={texture} />
     </mesh>
   );
 }
