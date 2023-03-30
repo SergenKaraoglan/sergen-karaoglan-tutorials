@@ -6,17 +6,13 @@ import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
 const royalblue = new THREE.MeshLambertMaterial({ color: "royalblue" });
 
 export default function RotationCanvas() {
-  const [angleA, setAngleA] = useState(0);
-  const [angleB, setAngleB] = useState(0);
+  const [angle, setAngle] = useState(0);
   const radiusT = 1;
   const radiusB = 1;
   const height = 5;
 
-  function handleAngleA(e) {
-    setAngleA(e.target.value);
-  }
-  function handleAngleB(e) {
-    setAngleB(e.target.value);
+  function handleAngle(e) {
+    setAngle(e.target.value);
   }
 
   return (
@@ -30,7 +26,7 @@ export default function RotationCanvas() {
           groundColor={"#080820"}
           position={[0, 1, 0]}
         />
-        <group position={[-5, 0, 0]} rotation={[0, 0, -angleA]}>
+        <group position={[-5, 0, 0]} rotation={[0, 0, -angle]}>
           <mesh position={[0, height / 2, 0]} material={royalblue}>
             <cylinderGeometry
               attach="geometry"
@@ -40,7 +36,7 @@ export default function RotationCanvas() {
         </group>
         <mesh
           position={[5, height / 2, 0]}
-          rotation={[0, 0, -angleB]}
+          rotation={[0, 0, -angle]}
           material={royalblue}
         >
           <cylinderGeometry
@@ -50,8 +46,7 @@ export default function RotationCanvas() {
         </mesh>
       </Canvas>
       <div className="w-fit mx-auto">
-        <AngleSlider handleAngle={handleAngleA} angle={angleA} />
-        <AngleSlider handleAngle={handleAngleB} angle={angleB} />
+        <AngleSlider handleAngle={handleAngle} angle={angle} />
       </div>
     </>
   );

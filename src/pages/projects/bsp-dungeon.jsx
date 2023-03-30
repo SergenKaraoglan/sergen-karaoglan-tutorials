@@ -1,6 +1,7 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useLoader } from "@react-three/fiber";
 import { PerspectiveCamera, OrbitControls, Html } from "@react-three/drei";
-import { BoxGeometry } from "three";
+import { TextureLoader } from "three/src/loaders/TextureLoader";
+import * as THREE from "three";
 
 export default function BSPCanvas() {
   return (
@@ -9,14 +10,18 @@ export default function BSPCanvas() {
         <ambientLight />
         <OrbitControls enableZoom={true} />
         <BSPDungeon />
-        {/* <Floor width={10} height={10} x={0} y={-5} /> */}
       </Canvas>
     </div>
   );
 }
 
 function BSPDungeon() {
-  // generate BSP tree
+  const rooms = DungeonRooms();
+
+  return rooms;
+}
+
+function DungeonRooms() {
   class BSPNode {
     constructor() {
       this.left = null;
@@ -110,8 +115,10 @@ function BSPDungeon() {
   }
 
   const rooms = renderBSP();
-  console.log(rooms);
+  return rooms;
+}
 
+function DungeonCorridors() {
   // connect sibling rooms
   function connectRooms() {
     for (let i = 0; i < leafs.length - 1; i++) {
@@ -126,7 +133,7 @@ function BSPDungeon() {
       rooms.push(
         <Floor
           width={Math.abs(x - x2)}
-          height={1}
+          height={0.5}
           x={(x + x2) / 2}
           y={y}
           z={0.1}
@@ -134,7 +141,7 @@ function BSPDungeon() {
       );
       rooms.push(
         <Floor
-          width={1}
+          width={0.5}
           height={Math.abs(y - y2)}
           x={x2}
           y={(y + y2) / 2}
@@ -145,9 +152,9 @@ function BSPDungeon() {
   }
 
   connectRooms();
+}
 
-  console.log(rooms);
-
+function DungeonWalls() {
   // build walls
   function buildWalls() {
     //const walls = [];
@@ -202,17 +209,17 @@ function BSPDungeon() {
   }
 
   buildWalls();
-
-  return rooms;
 }
 
 function Floor({ width, height, x, y, z = 0 }) {
-  // Random color
-  const color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  const colorMap = useLoader(TextureLoader, "/doom-floor.png");
+  colorMap.repeat.set(4, 4);
+  colorMap.wrapS = THREE.RepeatWrapping;
+  colorMap.wrapT = THREE.RepeatWrapping;
   return (
     <mesh position={[x, y, z]}>
       <planeGeometry args={[width, height]} />
-      <meshStandardMaterial color={color} />
+      <meshStandardMaterial map={colorMap} />
     </mesh>
   );
 }
