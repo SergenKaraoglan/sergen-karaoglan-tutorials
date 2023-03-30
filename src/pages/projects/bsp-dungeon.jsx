@@ -1,5 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera, OrbitControls, Html } from "@react-three/drei";
+import { BoxGeometry } from "three";
 
 export default function BSPCanvas() {
   return (
@@ -45,9 +46,10 @@ function BSPDungeon() {
       const height = node.y2 - node.y1;
       // random split
       let split = Math.floor(Math.random() * 10) / 10;
-      split = Math.max(split, 0.3);
-      if (width > 5 && height > 5) {
-        if (width > height) {
+      split = Math.max(split, 0.4);
+      split = Math.min(split, 0.7);
+      if (width > 4 && height > 4) {
+        if (width > height || (width === height && Math.random() > 0.5)) {
           split = Math.floor(width * split);
           node.left = new BSPNode();
           node.left.x1 = node.x1;
@@ -110,76 +112,96 @@ function BSPDungeon() {
   const rooms = renderBSP();
   console.log(rooms);
 
-  // connect rooms
+  // connect sibling rooms
   function connectRooms() {
-    const connections = [];
-    for (let i = 0; i < leafs.length; i++) {
-      const leaf = leafs[i];
-      const x1 = leaf.x1;
-      const y1 = leaf.y1;
-      const x2 = leaf.x2;
-      const y2 = leaf.y2;
-      const width = x2 - x1;
-      const height = y2 - y1;
-      const center = {
-        x: x2 - width / 2,
-        y: y2 - height / 2,
-      };
-      const connectionsTo = [];
-      for (let j = 0; j < leafs.length; j++) {
-        if (i === j) continue;
-        const leaf2 = leafs[j];
-        const x3 = leaf2.x1;
-        const y3 = leaf2.y1;
-        const x4 = leaf2.x2;
-        const y4 = leaf2.y2;
-        const width2 = x4 - x3;
-        const height2 = y4 - y3;
-        const center2 = {
-          x: x4 - width2 / 2,
-          y: y4 - height2 / 2,
-        };
-        if (
-          center.x > x3 &&
-          center.x < x4 &&
-          center.y > y3 &&
-          center.y < y4 &&
-          center2.x > x1 &&
-          center2.x < x2 &&
-          center2.y > y1 &&
-          center2.y < y2
-        ) {
-          connectionsTo.push(leaf2);
-        }
-      }
-      connections.push({
-        from: leaf,
-        to: connectionsTo,
-      });
-    }
-    return connections.map((connection) => {
-      const from = connection.from;
-      const to = connection.to;
-      const fromCenter = {
-        x: from.x2 - (from.x2 - from.x1) / 2,
-        y: from.y2 - (from.y2 - from.y1) / 2,
-      };
-      const toCenter = {
-        x: to.x2 - (to.x2 - to.x1) / 2,
-        y: to.y2 - (to.y2 - to.y1) / 2,
-      };
+    for (let i = 0; i < leafs.length - 1; i++) {
+      // get center of room
+      const x = (leafs[i].x1 + leafs[i].x2) / 2;
+      const y = leafs[i].y1 + (leafs[i].y2 - leafs[i].y1) / 2;
 
-      return (
-        <line
-          points={[
-            [fromCenter.x, fromCenter.y, 0],
-            [toCenter.x, toCenter.y, 0],
-          ]}
+      const x2 = leafs[i + 1].x1 + (leafs[i + 1].x2 - leafs[i + 1].x1) / 2;
+      const y2 = leafs[i + 1].y1 + (leafs[i + 1].y2 - leafs[i + 1].y1) / 2;
+
+      // draw corridor between rooms
+      rooms.push(
+        <Floor
+          width={Math.abs(x - x2)}
+          height={1}
+          x={(x + x2) / 2}
+          y={y}
+          z={0.1}
         />
       );
-    });
+      rooms.push(
+        <Floor
+          width={1}
+          height={Math.abs(y - y2)}
+          x={x2}
+          y={(y + y2) / 2}
+          z={0.1}
+        />
+      );
+    }
   }
+
   connectRooms();
+
+  console.log(rooms);
+
+  // build walls
+  function buildWalls() {
+    //const walls = [];
+    for (let i = 0; i < leafs.length; i++) {
+      // get premiter of room
+      const x1 = leafs[i].x1;
+      const y1 = leafs[i].y1;
+      const x2 = leafs[i].x2;
+      const y2 = leafs[i].y2;
+      // build walls
+      rooms.push(
+        <Wall
+          width={x2 - x1}
+          height={0.1}
+          depth={1}
+          x={x2 - (x2 - x1) / 2}
+          y={y1}
+          z={0.5}
+        />
+      );
+      rooms.push(
+        <Wall
+          width={x2 - x1}
+          height={0.1}
+          depth={1}
+          x={x2 - (x2 - x1) / 2}
+          y={y2}
+          z={0.5}
+        />
+      );
+      rooms.push(
+        <Wall
+          width={0.1}
+          height={y2 - y1}
+          depth={1}
+          x={x1}
+          y={y2 - (y2 - y1) / 2}
+          z={0.5}
+        />
+      );
+      rooms.push(
+        <Wall
+          width={0.1}
+          height={y2 - y1}
+          depth={1}
+          x={x2}
+          y={y2 - (y2 - y1) / 2}
+          z={0.5}
+        />
+      );
+    }
+  }
+
+  buildWalls();
 
   return rooms;
 }
@@ -190,6 +212,16 @@ function Floor({ width, height, x, y, z = 0 }) {
   return (
     <mesh position={[x, y, z]}>
       <planeGeometry args={[width, height]} />
+      <meshStandardMaterial color={color} />
+    </mesh>
+  );
+}
+
+function Wall({ width, height, depth, x, y, z }) {
+  const color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  return (
+    <mesh position={[x, y, z]}>
+      <boxGeometry args={[width, height, depth]} />
       <meshStandardMaterial color={color} />
     </mesh>
   );
