@@ -16,22 +16,25 @@ export default function BSPCanvas() {
 }
 
 function BSPDungeon() {
+  let leafs = []
   const floorTexture = useLoader(TextureLoader, "/doom-floor.png");
   floorTexture.repeat.set(8, 8);
   floorTexture.wrapS = THREE.RepeatWrapping;
   floorTexture.wrapT = THREE.RepeatWrapping;
 
   const wallTexture = useLoader(TextureLoader, "/doom-wall.png");
-  wallTexture.repeat.set(8, 8);
+  wallTexture.repeat.set(4, 4);
   wallTexture.wrapS = THREE.RepeatWrapping;
   wallTexture.wrapT = THREE.RepeatWrapping;
 
-  const rooms = <DungeonRooms floorTexture={floorTexture} />;
+  const rooms = <DungeonRooms floorTexture={floorTexture} leafs={leafs} />;
+  const walls = <DungeonWalls wallTexture={wallTexture} leafs={leafs} />;
+  const corridors = <DungeonCorridors leafs={leafs} />;
 
-  return rooms;
+  return [rooms, walls, corridors];
 }
 
-function DungeonRooms({ floorTexture }) {
+function DungeonRooms({ floorTexture, leafs }) {
   class BSPNode {
     constructor() {
       this.left = null;
@@ -54,7 +57,6 @@ function DungeonRooms({ floorTexture }) {
     root.id = id;
 
     const nodes = [root];
-    const leafs = [];
     while (nodes.length) {
       const node = nodes.pop();
       const width = node.x2 - node.x1;
@@ -86,13 +88,12 @@ function DungeonRooms({ floorTexture }) {
         leafs.push(node);
       }
     }
-    return leafs;
   }
 
-  const leafs = generateBSP(-5, -5, 5, 5);
+  generateBSP(-5, -5, 5, 5);
 
   // render BSP tree
-  function renderBSP() {
+  function renderRooms() {
     return leafs.map((leaf) => {
       // trim rooms
       const trim = 0.1;
@@ -114,23 +115,71 @@ function DungeonRooms({ floorTexture }) {
     });
   }
 
-  const rooms = renderBSP();
+  const rooms = renderRooms();
   return rooms;
 }
 
-function DungeonCorridors() {
+function DungeonWalls({leafs, wallTexture}) {
+  // build walls
+  const walls = [];
+  function buildWalls() {
+    //const walls = [];
+    for (let i = 0; i < leafs.length; i++) {
+      // get premiter of room
+      const x1 = leafs[i].x1;
+      const y1 = leafs[i].y1;
+      const x2 = leafs[i].x2;
+      const y2 = leafs[i].y2;
+      // build walls
+      for (let j = 0; j < 2; j++) {
+      walls.push(
+        <Wall
+          width={x2 - x1}
+          height={0.1}
+          depth={1}
+          x={(x2 + x1) / 2}
+          y={j == 0 ? y1 : y2}
+          z={0.5}
+          texture={wallTexture}
+        />
+      );
+      }
+
+      for (let j = 0; j < 2; j++) {
+        walls.push(
+          <Wall
+            width={0.1}
+            height={y2 - y1}
+            depth={1}
+            x={j==0 ? x1 : x2}
+            y={(y2 + y1) / 2}
+            z={0.5}
+            texture={wallTexture}
+          />
+        );
+      }
+      
+    }
+  }
+
+  buildWalls();
+  return walls;
+}
+
+function DungeonCorridors({leafs}) {
+  const corridors = [];
   // connect sibling rooms
   function connectRooms() {
     for (let i = 0; i < leafs.length - 1; i++) {
       // get center of room
       const x = (leafs[i].x1 + leafs[i].x2) / 2;
-      const y = leafs[i].y1 + (leafs[i].y2 - leafs[i].y1) / 2;
+      const y = (leafs[i].y1 + leafs[i].y2 ) / 2;
 
-      const x2 = leafs[i + 1].x1 + (leafs[i + 1].x2 - leafs[i + 1].x1) / 2;
-      const y2 = leafs[i + 1].y1 + (leafs[i + 1].y2 - leafs[i + 1].y1) / 2;
+      const x2 = (leafs[i+1].x1 + leafs[i+1].x2) / 2;
+      const y2 = (leafs[i+1].y1 + leafs[i+1].y2 ) / 2;
 
       // draw corridor between rooms
-      rooms.push(
+      corridors.push(
         <Floor
           width={Math.abs(x - x2)}
           height={0.5}
@@ -139,7 +188,7 @@ function DungeonCorridors() {
           z={0.1}
         />
       );
-      rooms.push(
+      corridors.push(
         <Floor
           width={0.5}
           height={Math.abs(y - y2)}
@@ -152,63 +201,7 @@ function DungeonCorridors() {
   }
 
   connectRooms();
-}
-
-function DungeonWalls() {
-  // build walls
-  function buildWalls() {
-    //const walls = [];
-    for (let i = 0; i < leafs.length; i++) {
-      // get premiter of room
-      const x1 = leafs[i].x1;
-      const y1 = leafs[i].y1;
-      const x2 = leafs[i].x2;
-      const y2 = leafs[i].y2;
-      // build walls
-      rooms.push(
-        <Wall
-          width={x2 - x1}
-          height={0.1}
-          depth={1}
-          x={x2 - (x2 - x1) / 2}
-          y={y1}
-          z={0.5}
-        />
-      );
-      rooms.push(
-        <Wall
-          width={x2 - x1}
-          height={0.1}
-          depth={1}
-          x={x2 - (x2 - x1) / 2}
-          y={y2}
-          z={0.5}
-        />
-      );
-      rooms.push(
-        <Wall
-          width={0.1}
-          height={y2 - y1}
-          depth={1}
-          x={x1}
-          y={y2 - (y2 - y1) / 2}
-          z={0.5}
-        />
-      );
-      rooms.push(
-        <Wall
-          width={0.1}
-          height={y2 - y1}
-          depth={1}
-          x={x2}
-          y={y2 - (y2 - y1) / 2}
-          z={0.5}
-        />
-      );
-    }
-  }
-
-  buildWalls();
+  return corridors;
 }
 
 function Floor({ width, height, x, y, z = 0, texture }) {
@@ -220,12 +213,11 @@ function Floor({ width, height, x, y, z = 0, texture }) {
   );
 }
 
-function Wall({ width, height, depth, x, y, z }) {
-  const color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+function Wall({ width, height, depth, x, y, z, texture }) {
   return (
     <mesh position={[x, y, z]}>
       <boxGeometry args={[width, height, depth]} />
-      <meshStandardMaterial color={color} />
+      <meshStandardMaterial map={texture} />
     </mesh>
   );
 }
