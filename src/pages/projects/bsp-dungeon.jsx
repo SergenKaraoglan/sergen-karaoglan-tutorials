@@ -16,7 +16,7 @@ export default function BSPCanvas() {
 }
 
 function BSPDungeon() {
-  let leafs = []
+  let leafs = [];
   const floorTexture = useLoader(TextureLoader, "/doom-floor.png");
   floorTexture.repeat.set(8, 8);
   floorTexture.wrapS = THREE.RepeatWrapping;
@@ -30,6 +30,9 @@ function BSPDungeon() {
   const rooms = <DungeonRooms floorTexture={floorTexture} leafs={leafs} />;
   const walls = <DungeonWalls wallTexture={wallTexture} leafs={leafs} />;
   const corridors = <DungeonCorridors leafs={leafs} />;
+  const ceilings = (
+    <DungeonCeilings leafs={leafs} ceilingTexture={floorTexture} />
+  );
 
   return [rooms, walls, corridors];
 }
@@ -96,7 +99,7 @@ function DungeonRooms({ floorTexture, leafs }) {
   function renderRooms() {
     return leafs.map((leaf) => {
       // trim rooms
-      const trim = 0.1;
+      const trim = 0.5;
       leaf.x1 += trim;
       leaf.y1 += trim;
       leaf.x2 -= trim;
@@ -119,7 +122,45 @@ function DungeonRooms({ floorTexture, leafs }) {
   return rooms;
 }
 
-function DungeonWalls({leafs, wallTexture}) {
+function DungeonCorridors({ leafs }) {
+  const corridors = [];
+  // connect sibling rooms
+  function connectRooms() {
+    for (let i = 0; i < leafs.length - 1; i++) {
+      // get center of room
+      const roomX = (leafs[i].x1 + leafs[i].x2) / 2;
+      const roomY = (leafs[i].y1 + leafs[i].y2) / 2;
+
+      const room2X = (leafs[i + 1].x1 + leafs[i + 1].x2) / 2;
+      const room2Y = (leafs[i + 1].y1 + leafs[i + 1].y2) / 2;
+
+      // draw corridor between rooms
+      corridors.push(
+        <Floor
+          width={Math.abs(roomX - room2X)}
+          height={0.5}
+          x={(roomX + room2X) / 2}
+          y={roomY}
+          z={0.1}
+        />
+      );
+      corridors.push(
+        <Floor
+          width={0.5}
+          height={Math.abs(roomY - room2Y)}
+          x={room2X}
+          y={(roomY + room2Y) / 2}
+          z={0.1}
+        />
+      );
+    }
+  }
+
+  connectRooms();
+  return corridors;
+}
+
+function DungeonWalls({ leafs, wallTexture }) {
   // build walls
   const walls = [];
   function buildWalls() {
@@ -132,17 +173,17 @@ function DungeonWalls({leafs, wallTexture}) {
       const y2 = leafs[i].y2;
       // build walls
       for (let j = 0; j < 2; j++) {
-      walls.push(
-        <Wall
-          width={x2 - x1}
-          height={0.1}
-          depth={1}
-          x={(x2 + x1) / 2}
-          y={j == 0 ? y1 : y2}
-          z={0.5}
-          texture={wallTexture}
-        />
-      );
+        walls.push(
+          <Wall
+            width={x2 - x1}
+            height={0.1}
+            depth={1}
+            x={(x2 + x1) / 2}
+            y={j == 0 ? y1 : y2}
+            z={0.5}
+            texture={wallTexture}
+          />
+        );
       }
 
       for (let j = 0; j < 2; j++) {
@@ -151,14 +192,13 @@ function DungeonWalls({leafs, wallTexture}) {
             width={0.1}
             height={y2 - y1}
             depth={1}
-            x={j==0 ? x1 : x2}
+            x={j == 0 ? x1 : x2}
             y={(y2 + y1) / 2}
             z={0.5}
             texture={wallTexture}
           />
         );
       }
-      
     }
   }
 
@@ -166,42 +206,31 @@ function DungeonWalls({leafs, wallTexture}) {
   return walls;
 }
 
-function DungeonCorridors({leafs}) {
-  const corridors = [];
-  // connect sibling rooms
-  function connectRooms() {
-    for (let i = 0; i < leafs.length - 1; i++) {
-      // get center of room
-      const x = (leafs[i].x1 + leafs[i].x2) / 2;
-      const y = (leafs[i].y1 + leafs[i].y2 ) / 2;
-
-      const x2 = (leafs[i+1].x1 + leafs[i+1].x2) / 2;
-      const y2 = (leafs[i+1].y1 + leafs[i+1].y2 ) / 2;
-
-      // draw corridor between rooms
-      corridors.push(
+function DungeonCeilings({ leafs, ceilingTexture }) {
+  const ceilings = [];
+  function buildCeilings() {
+    for (let i = 0; i < leafs.length; i++) {
+      // get premiter of room
+      const x1 = leafs[i].x1;
+      const y1 = leafs[i].y1;
+      const x2 = leafs[i].x2;
+      const y2 = leafs[i].y2;
+      // build walls
+      ceilings.push(
         <Floor
-          width={Math.abs(x - x2)}
-          height={0.5}
-          x={(x + x2) / 2}
-          y={y}
-          z={0.1}
-        />
-      );
-      corridors.push(
-        <Floor
-          width={0.5}
-          height={Math.abs(y - y2)}
-          x={x2}
-          y={(y + y2) / 2}
-          z={0.1}
+          width={x2 - x1}
+          height={y2 - y1}
+          x={(x2 + x1) / 2}
+          y={(y2 + y1) / 2}
+          z={1}
+          texture={ceilingTexture}
         />
       );
     }
   }
 
-  connectRooms();
-  return corridors;
+  buildCeilings();
+  return ceilings;
 }
 
 function Floor({ width, height, x, y, z = 0, texture }) {
