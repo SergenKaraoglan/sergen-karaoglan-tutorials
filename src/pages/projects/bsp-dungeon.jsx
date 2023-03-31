@@ -16,7 +16,7 @@ export default function BSPCanvas() {
 }
 
 function BSPDungeon() {
-  let leafs = [];
+  let rooms = [];
   const floorTexture = useLoader(TextureLoader, "/doom-floor.png");
   floorTexture.repeat.set(8, 8);
   floorTexture.wrapS = THREE.RepeatWrapping;
@@ -27,14 +27,14 @@ function BSPDungeon() {
   wallTexture.wrapS = THREE.RepeatWrapping;
   wallTexture.wrapT = THREE.RepeatWrapping;
 
-  const rooms = <DungeonRooms floorTexture={floorTexture} leafs={leafs} />;
-  const walls = <DungeonWalls wallTexture={wallTexture} leafs={leafs} />;
-  const corridors = <DungeonCorridors leafs={leafs} />;
+  const roomTiles = <DungeonRooms floorTexture={floorTexture} leafs={rooms} />;
+  const walls = <DungeonWalls wallTexture={wallTexture} rooms={rooms} />;
+  const corridors = <DungeonCorridors rooms={rooms} />;
   const ceilings = (
-    <DungeonCeilings leafs={leafs} ceilingTexture={wallTexture} />
+    <DungeonCeilings leafs={rooms} ceilingTexture={wallTexture} />
   );
 
-  return [rooms, walls, corridors];
+  return [roomTiles, walls, corridors];
 }
 
 function DungeonRooms({ floorTexture, leafs }) {
@@ -122,17 +122,17 @@ function DungeonRooms({ floorTexture, leafs }) {
   return rooms;
 }
 
-function DungeonCorridors({ leafs }) {
+function DungeonCorridors({ rooms }) {
   const corridors = [];
   // connect sibling rooms
   function connectRooms() {
-    for (let i = 0; i < leafs.length - 1; i++) {
+    for (let i = 0; i < rooms.length - 1; i++) {
       // get center of room
-      const roomX = (leafs[i].x1 + leafs[i].x2) / 2;
-      const roomY = (leafs[i].y1 + leafs[i].y2) / 2;
+      const roomX = (rooms[i].x1 + rooms[i].x2) / 2;
+      const roomY = (rooms[i].y1 + rooms[i].y2) / 2;
 
-      const room2X = (leafs[i + 1].x1 + leafs[i + 1].x2) / 2;
-      const room2Y = (leafs[i + 1].y1 + leafs[i + 1].y2) / 2;
+      const room2X = (rooms[i + 1].x1 + rooms[i + 1].x2) / 2;
+      const room2Y = (rooms[i + 1].y1 + rooms[i + 1].y2) / 2;
 
       // draw corridor between rooms
       corridors.push(
@@ -160,17 +160,17 @@ function DungeonCorridors({ leafs }) {
   return corridors;
 }
 
-function DungeonWalls({ leafs, wallTexture }) {
+function DungeonWalls({ rooms, wallTexture }) {
   // build walls
   const walls = [];
   function buildWalls() {
     //const walls = [];
-    for (let i = 0; i < leafs.length; i++) {
+    for (let i = 0; i < rooms.length; i++) {
       // get premiter of room
-      const x1 = leafs[i].x1;
-      const y1 = leafs[i].y1;
-      const x2 = leafs[i].x2;
-      const y2 = leafs[i].y2;
+      const x1 = rooms[i].x1;
+      const y1 = rooms[i].y1;
+      const x2 = rooms[i].x2;
+      const y2 = rooms[i].y2;
       // build walls
       for (let j = 0; j < 2; j++) {
         walls.push(
