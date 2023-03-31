@@ -31,7 +31,7 @@ function BSPDungeon() {
   const walls = <DungeonWalls wallTexture={wallTexture} leafs={leafs} />;
   const corridors = <DungeonCorridors leafs={leafs} />;
   const ceilings = (
-    <DungeonCeilings leafs={leafs} ceilingTexture={floorTexture} />
+    <DungeonCeilings leafs={leafs} ceilingTexture={wallTexture} />
   );
 
   return [rooms, walls, corridors];
@@ -177,7 +177,7 @@ function DungeonWalls({ leafs, wallTexture }) {
           <Wall
             width={x2 - x1}
             height={0.1}
-            depth={1}
+            depth={2}
             x={(x2 + x1) / 2}
             y={j == 0 ? y1 : y2}
             z={0.5}
@@ -191,7 +191,7 @@ function DungeonWalls({ leafs, wallTexture }) {
           <Wall
             width={0.1}
             height={y2 - y1}
-            depth={1}
+            depth={2}
             x={j == 0 ? x1 : x2}
             y={(y2 + y1) / 2}
             z={0.5}
@@ -222,7 +222,7 @@ function DungeonCeilings({ leafs, ceilingTexture }) {
           height={y2 - y1}
           x={(x2 + x1) / 2}
           y={(y2 + y1) / 2}
-          z={1}
+          z={1.5}
           texture={ceilingTexture}
         />
       );
