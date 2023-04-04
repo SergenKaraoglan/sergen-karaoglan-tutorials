@@ -30,24 +30,26 @@ export default function FractalTreeCanvas({
 
   return (
     <>
-      <Canvas frameloop="demand" antialias="false">
-        <PerspectiveCamera makeDefault position={[0, 3, 5]} fov={50} />
-        <OrbitControls enableZoom={false} target={[0, 2, 0]} />
-        <hemisphereLight
-          intensity={0.5}
-          skyColor={0xffffbb}
-          groundColor={"#080820"}
-          position={[0, 1, 0]}
-        />
-        <Suspense fallback={Loading}>
-          <FractalTree
-            depth={depth}
-            angleIncrement={angleIncrement}
-            shape={shape}
-            is3D={is3D}
+      <Suspense fallback={null}>
+        <Canvas frameloop="demand" antialias="false">
+          <PerspectiveCamera makeDefault position={[0, 3, 5]} fov={50} />
+          <OrbitControls enableZoom={false} target={[0, 2, 0]} />
+          <hemisphereLight
+            intensity={0.5}
+            skyColor={0xffffbb}
+            groundColor={"#080820"}
+            position={[0, 1, 0]}
           />
-        </Suspense>
-      </Canvas>
+          <Suspense fallback={Loading}>
+            <FractalTree
+              depth={depth}
+              angleIncrement={angleIncrement}
+              shape={shape}
+              is3D={is3D}
+            />
+          </Suspense>
+        </Canvas>
+      </Suspense>
 
       {/* UI */}
       <div className="mx-auto w-fit flex justify-center my-3">
