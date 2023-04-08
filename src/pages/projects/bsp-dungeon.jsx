@@ -16,7 +16,8 @@ export default function BSPCanvas() {
 }
 
 function BSPDungeon() {
-  let rooms = [];
+  const rooms = [];
+  const corridors = [];
   const floorTexture = useLoader(TextureLoader, "/doom-floor.png");
   floorTexture.repeat.set(8, 8);
   floorTexture.wrapS = THREE.RepeatWrapping;
@@ -28,13 +29,21 @@ function BSPDungeon() {
   wallTexture.wrapT = THREE.RepeatWrapping;
 
   const roomTiles = <DungeonRooms floorTexture={floorTexture} leafs={rooms} />;
-  const walls = <DungeonWalls wallTexture={wallTexture} rooms={rooms} />;
-  const corridors = <DungeonCorridors rooms={rooms} />;
+  const corridorTiles = (
+    <DungeonCorridors rooms={rooms} corridors={corridors} />
+  );
+  console.log(corridors);
+  const walls = (
+    <DungeonWalls
+      wallTexture={wallTexture}
+      rooms={rooms}
+      corridors={corridors}
+    />
+  );
   const ceilings = (
     <DungeonCeilings leafs={rooms} ceilingTexture={wallTexture} />
   );
-
-  return [roomTiles, walls, corridors];
+  return [roomTiles, walls, corridorTiles];
 }
 
 function DungeonRooms({ floorTexture, leafs }) {
@@ -122,55 +131,135 @@ function DungeonRooms({ floorTexture, leafs }) {
   return rooms;
 }
 
-function DungeonCorridors({ rooms }) {
-  const corridors = [];
+function DungeonCorridors({ rooms, corridors }) {
   // connect sibling rooms
+  const corridorTiles = [];
   function connectRooms() {
     for (let i = 0; i < rooms.length - 1; i++) {
+      const x1 = rooms[i].x1;
+      const y1 = rooms[i].y1;
+      const x2 = rooms[i].x2;
+      const y2 = rooms[i].y2;
+
+      const x3 = rooms[i + 1].x1;
+      const y3 = rooms[i + 1].y1;
+      const x4 = rooms[i + 1].x2;
+      const y4 = rooms[i + 1].y2;
+
       // get center of room
-      const roomX = (rooms[i].x1 + rooms[i].x2) / 2;
-      const roomY = (rooms[i].y1 + rooms[i].y2) / 2;
+      const roomX = (x2 + x1) / 2;
+      const roomY = (y2 + y1) / 2;
 
-      const room2X = (rooms[i + 1].x1 + rooms[i + 1].x2) / 2;
-      const room2Y = (rooms[i + 1].y1 + rooms[i + 1].y2) / 2;
+      const room2X = (x4 + x3) / 2;
+      const room2Y = (y4 + y3) / 2;
 
-      // draw corridor between rooms
-      corridors.push(
-        <Floor
-          width={Math.abs(roomX - room2X)}
-          height={0.5}
-          x={(roomX + room2X) / 2}
-          y={roomY}
-          z={0.1}
-        />
-      );
-      corridors.push(
-        <Floor
-          width={0.5}
-          height={Math.abs(roomY - room2Y)}
-          x={room2X}
-          y={(roomY + room2Y) / 2}
-          z={0.1}
-        />
-      );
+      // draw corridor between edge of rooms
+      if (x2 < x3) {
+        corridorTiles.push(
+          <Floor
+            width={x3 - x2}
+            height={0.5}
+            x={(x2 + x3) / 2}
+            y={roomY}
+            z={0.1}
+          />
+        );
+        corridors.push({ x1: x2, y1: roomY, x2: x3, y2: roomY });
+      }
+      if (x4 < x1) {
+        corridorTiles.push(
+          <Floor
+            width={x1 - x4}
+            height={0.5}
+            x={(x1 + x4) / 2}
+            y={room2Y}
+            z={0.1}
+          />
+        );
+        corridors.push({ x1: x1, y1: room2Y, x2: x4, y2: room2Y });
+      }
+      if (y2 < y3) {
+        corridorTiles.push(
+          <Floor
+            width={0.5}
+            height={y3 - y2}
+            x={room2X}
+            y={(y2 + y3) / 2}
+            z={0.1}
+          />
+        );
+        corridors.push({ x1: room2X, y1: y2, x2: room2X, y2: y3 });
+      }
+      if (y4 < y1) {
+        corridorTiles.push(
+          <Floor
+            width={0.5}
+            height={y1 - y4}
+            x={roomX}
+            y={(y1 + y4) / 2}
+            z={0.1}
+          />
+        );
+        corridors.push({ x1: roomX, y1: y1, x2: roomX, y2: y4 });
+      }
     }
   }
 
   connectRooms();
-  return corridors;
+  return corridorTiles;
 }
 
-function DungeonWalls({ rooms, wallTexture }) {
+function DungeonWalls({ rooms, corridors, wallTexture }) {
   // build walls
   const walls = [];
   function buildWalls() {
-    //const walls = [];
     for (let i = 0; i < rooms.length; i++) {
       // get premiter of room
       const x1 = rooms[i].x1;
       const y1 = rooms[i].y1;
       const x2 = rooms[i].x2;
       const y2 = rooms[i].y2;
+      // build walls
+      for (let j = 0; j < 2; j++) {
+        walls.push(
+          <Wall
+            width={x2 - x1}
+            height={0.1}
+            depth={2}
+            x={(x2 + x1) / 2}
+            y={j == 0 ? y1 : y2}
+            z={0.5}
+            texture={wallTexture}
+          />
+        );
+      }
+
+      for (let j = 0; j < 2; j++) {
+        walls.push(
+          <Wall
+            width={0.1}
+            height={y2 - y1}
+            depth={2}
+            x={j == 0 ? x1 : x2}
+            y={(y2 + y1) / 2}
+            z={0.5}
+            texture={wallTexture}
+          />
+        );
+      }
+    }
+    // build corridor walls
+    console.log(rooms);
+    console.log(rooms.length);
+    console.log(corridors);
+    console.log(corridors[0]);
+    for (let i = 0; i < corridors.length; i++) {
+      // get premiter of corridor
+      console.log(corridors[i]);
+      const x1 = corridors[i].x1;
+      const y1 = corridors[i].y1;
+      const x2 = corridors[i].x2;
+      const y2 = corridors[i].y2;
       // build walls
       for (let j = 0; j < 2; j++) {
         walls.push(
