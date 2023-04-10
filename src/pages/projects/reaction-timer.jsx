@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function ReactionTimer() {
   return (
@@ -103,6 +103,7 @@ function ReactionInterface() {
         </span>
       </div>
       <Score score={reactionTime} />
+      <Leaderboard score={reactionTime}/>
     </>
   );
 }
@@ -120,6 +121,35 @@ function Score({ score }) {
       <h2 className="text-2xl sm:text-3xl">
         Best Score: {bestScore > 0 ? bestScore : "___"}ms
       </h2>
+    </div>
+  );
+}
+
+function Leaderboard({score}) {
+  const [data, setData] = useState(null)
+  const [isLoading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    fetch("/api/reaction-leaderboard")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data)
+        setLoading(false)
+      })
+  }, [score])
+
+  
+
+  return (
+    <div className="m-auto w-fit">
+      <h3 className="text-xl sm:text-2xl">Leaderboard</h3>
+      {isLoading && <p>Loading...</p>}
+      <ol className="list-disc list-inside">
+        {data && data.map((item, index) => (
+          <li key={index}>{item.name} - {item.score}ms</li>
+        ))}
+      </ol>
     </div>
   );
 }
