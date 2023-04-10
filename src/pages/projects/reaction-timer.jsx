@@ -37,7 +37,9 @@ function ReactionInterface() {
       seStatus("fail");
     } else if (status == "finished" && reactionTime == 0) {
       const end = new Date().getTime();
-      setReactionTime(end - time.current);
+      let reactionTime = end - time.current;
+      setReactionTime(reactionTime);
+      submitTime(reactionTime);
     } else {
       start();
     }
@@ -51,6 +53,18 @@ function ReactionInterface() {
   function finish() {
     time.current = new Date().getTime();
     seStatus("finished");
+  }
+
+  async function submitTime(reactionTime) {
+    reactionTime = { name: "Sergen", score: reactionTime };
+    const response = await fetch("/api/reaction-leaderboard", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reactionTime),
+    });
+    console.log(response);
   }
 
   return (
