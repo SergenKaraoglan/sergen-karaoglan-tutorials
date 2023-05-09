@@ -103,7 +103,7 @@ function ReactionInterface() {
         </span>
       </div>
       <Score score={reactionTime} />
-      <Leaderboard score={reactionTime}/>
+      {/* <Leaderboard score={reactionTime}/> */}
     </>
   );
 }

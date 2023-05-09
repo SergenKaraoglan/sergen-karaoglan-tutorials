@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 
@@ -57,7 +56,7 @@ export default function Home() {
               <div className="flex-1">
                 <div className="flex items-center space-x-3">
                   <h3 className="text-base font-medium text-gray-900">
-                    Fractal Trees
+                    Fractal Trees with React Three Fiber
                   </h3>
                 </div>
                 <p className="mt-1 text-sm text-gray-500">

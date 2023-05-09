@@ -32,15 +32,16 @@ export default function FractalTreeCanvas({
     <>
       <Suspense fallback={null}>
         <Canvas frameloop="demand" antialias="false">
-          <PerspectiveCamera makeDefault position={[0, 3, 5]} fov={50} />
-          <OrbitControls enableZoom={false} target={[0, 2, 0]} />
-          <hemisphereLight
-            intensity={0.5}
-            skyColor={0xffffbb}
-            groundColor={"#080820"}
-            position={[0, 1, 0]}
-          />
           <Suspense fallback={Loading}>
+            <PerspectiveCamera makeDefault position={[0, 3, 5]} fov={50} />
+            <OrbitControls enableZoom={false} target={[0, 2, 0]} />
+            <hemisphereLight
+              intensity={0.5}
+              skyColor={0xffffbb}
+              groundColor={"#080820"}
+              position={[0, 1, 0]}
+            />
+
             <FractalTree
               depth={depth}
               angleIncrement={angleIncrement}

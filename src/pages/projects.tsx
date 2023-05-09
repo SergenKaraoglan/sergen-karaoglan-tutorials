@@ -12,29 +12,41 @@ const archive_project_list = [
     code: "https://github.com/SergenKaraoglan/t_rex_runner_touchless_interface",
     type: "Game",
   },
+  
+];
+
+const project_list = [
+  {
+    name: "Fractal Trees with React Three Fiber",
+    title: "Fractal Trees",
+    image: "/fractal-tree.png",
+    technologies: ["Next.js", "Tailwind", "React Three Fiber"],
+    description:
+      "Interact with and learn to create fractal trees with React Three Fiber.",
+    demo: "/projects/fractal-trees/",
+    code: "https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/components/fractal-tree.jsx",
+    type: "Procedural art",
+  },
   {
     name: "reaction-timer",
     title: "Reaction Time Test",
-    technologies: ["React", "Tailwind CSS", "Next.js"],
+    image: "/reaction-timer.png",
+    technologies: ["React", "Tailwind", "Next.js"],
     description: "Test your reaction time.",
     demo: "/projects/reaction-timer",
     code: "https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/src/pages/projects/reaction-timer.jsx",
     type: "Game",
   },
-];
-
-const project_list = [
   {
-    name: "Fractal Trees",
-    title: "Fractal Trees",
-    image: "/fractal-tree.png",
-    technologies: ["React", "Next.js", "Tailwind", "React Three Fiber"],
-    description:
-      "Interact with and learn to create fractal trees with ReactThree Fiber.",
-    demo: "/projects/fractal-trees/",
-    code: "https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/components/fractal-tree.jsx",
-    type: "Procedural art",
-  },
+    name: "manim",
+    title: "Manim projects",
+    image: "/manim-logo.svg",
+    technologies: ["Python", "Manim"],
+    description: "Animations created with Manim.",
+    demo: "",
+    code: "https://github.com/SergenKaraoglan/Manim_projects",
+    type: "Animation",
+  }
 ];
 
 export default function projects() {
@@ -53,7 +65,7 @@ export default function projects() {
             >
               <div className="flex flex-1 flex-col p-8">
                 <Image
-                  className="mx-auto h-32 w-32 flex-shrink-0 rounded-full object-contain"
+                  className="mx-auto h-36 w-36 flex-shrink-0 rounded-full object-contain"
                   src={project.image}
                   alt=""
                   height={50}
@@ -82,7 +94,8 @@ export default function projects() {
               <div>
                 <div className="-mt-px flex divide-x divide-gray-200">
                   <div className="flex w-0 flex-1">
-                    <a
+                    { project.demo != "" && (
+                    <a 
                       href={project.demo}
                       className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                     >
@@ -104,7 +117,8 @@ export default function projects() {
                         />
                       </svg>
                       <span className="ml-3">Demo</span>
-                    </a>
+                    </a>)
+}
                   </div>
                   <div className="-ml-px flex w-0 flex-1">
                     <a
