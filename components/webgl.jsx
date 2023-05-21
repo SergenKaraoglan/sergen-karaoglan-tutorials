@@ -1,10 +1,7 @@
 import { useEffect, useRef } from "react";
 
-export default function Main() {
-  return MinimalCanvas();
-}
 
-function MinimalCanvas() {
+export function MinimalCanvas() {
   const canvasRef = useRef(null);
   function main() {
     const canvas = canvasRef.current;
