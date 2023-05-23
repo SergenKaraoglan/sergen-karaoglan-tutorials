@@ -34,7 +34,7 @@ export default function FractalTreeCanvas({
             <PerspectiveCamera makeDefault position={[0, 3, 5]} fov={50} />
             <OrbitControls enableZoom={false} target={[0, 2, 0]} />
             <hemisphereLight
-              intensity={0.5}
+              intensity={1.0}
               skyColor={0xffffbb}
               groundColor={0x080820}
               position={[0, 1, 0]}
