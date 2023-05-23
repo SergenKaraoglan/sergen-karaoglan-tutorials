@@ -1,0 +1,28 @@
+---
+import { Image } from "@astrojs/image/components";
+---
+
+<nav class="bg-black">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <div class="flex-shrink-0">
+        <a href="/">
+          <img
+            class="block h-5 w-auto sm:hidden"
+            src="/logo.svg"
+            alt="Sergen Karaoglan logo"
+            height={0}
+            width={0}
+          />
+          <img
+            class="hidden h-5 w-auto sm:block"
+            src="/logo.svg"
+            alt="Sergen Karaoglan logo"
+            height={0}
+            width={0}
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
