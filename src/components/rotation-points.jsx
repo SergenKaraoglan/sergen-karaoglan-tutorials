@@ -1,9 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import * as THREE from "three/src/materials/MeshLambertMaterial";
 import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
-
-const royalblue = new THREE.MeshLambertMaterial({ color: "royalblue" });
 
 export default function RotationCanvas() {
   const [angle, setAngle] = useState(0);
@@ -27,7 +24,7 @@ export default function RotationCanvas() {
           position={[0, 1, 0]}
         />
         <group position={[-5, 0, 0]} rotation={[0, 0, -angle]}>
-          <mesh position={[0, height / 2, 0]} material={royalblue}>
+          <mesh position={[0, height / 2, 0]}>
             <cylinderGeometry
               attach="geometry"
               args={[radiusT, radiusB, height, 32]}
@@ -37,7 +34,6 @@ export default function RotationCanvas() {
         <mesh
           position={[5, height / 2, 0]}
           rotation={[0, 0, -angle]}
-          material={royalblue}
         >
           <cylinderGeometry
             attach="geometry"
