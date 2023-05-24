@@ -1,5 +1,18 @@
 ---
 import Layout from "../layouts/home-layout.astro";
+
+const project_list = [
+  {
+    title: "Fractal Trees with React Three Fiber",
+    image: "/fractal-tree.png",
+    technologies: ["Tailwind", "React Three Fiber, MDX"],
+    description:
+      "Interact with and learn to create fractal trees with React Three Fiber.",
+    demo: "/fractal-trees",
+    github: "https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/src/components/fractal-tree.jsx",
+    type: "Procedural art",
+  },
+];
 ---
 
 <Layout
@@ -52,6 +65,8 @@ import Layout from "../layouts/home-layout.astro";
       Projects
     </h2>
     <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {
+        project_list.map((data) => 
       <li
         class="col-span-2 divide-y divide-gray-200 rounded-lg bg-white shadow"
       >
@@ -59,20 +74,19 @@ import Layout from "../layouts/home-layout.astro";
           <div class="flex-1">
             <div class="flex items-center space-x-3">
               <h3 class="text-base font-medium text-gray-900">
-                Fractal Trees with React Three Fiber
+                {data.title}
               </h3>
             </div>
             <p class="mt-1 text-sm text-gray-500">
-              Tailwind, React Three Fiber
+              {data.technologies.join(", ")}
             </p>
             <p class="mt-1 text-sm text-gray-900">
-              Interact with and learn to create fractal trees with React Three
-              Fiber.
+              {data.description}
             </p>
           </div>
           <img
             class="h-auto w-1/4 flex-shrink-0 rounded"
-            src="/fractal-tree.png"
+            src={data.image}
             alt="fractal-tree"
             height={100}
             width={100}
@@ -82,7 +96,7 @@ import Layout from "../layouts/home-layout.astro";
           <div class="-mt-px flex divide-x divide-gray-200">
             <div class="flex w-0 flex-1">
               <a
-                href="/fractal-trees"
+                href={data.demo}
                 class="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
               >
                 <svg
@@ -105,7 +119,7 @@ import Layout from "../layouts/home-layout.astro";
             </div>
             <div class="-ml-px flex w-0 flex-1">
               <a
-                href="https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/components/fractal-tree.jsx"
+                href={data.github}
                 class="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
               >
                 <svg
@@ -125,6 +139,7 @@ import Layout from "../layouts/home-layout.astro";
           </div>
         </div>
       </li>
+    )}
     </ul>
   </div>
 </Layout>

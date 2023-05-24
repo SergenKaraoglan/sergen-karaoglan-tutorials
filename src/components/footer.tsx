@@ -60,7 +60,7 @@ export default function Footer() {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
+      <div className="mx-auto max-w-7xl px-6 pb-8 pt-10 sm:pt-16 lg:px-8 lg:pt-24">
         <div className="border-t border-gray-900/10 pt-8 lg:flex lg:items-center lg:justify-between">
           <div>
             <h3 className="text-sm font-semibold leading-6 text-gray-900">
