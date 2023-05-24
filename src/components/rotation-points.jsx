@@ -17,24 +17,18 @@ export default function RotationCanvas() {
       <Canvas frameloop="demand" antialias="false">
         <PerspectiveCamera makeDefault position={[0, 1, 9]} fov={90} />
         <OrbitControls enableZoom={false} target={[0, 2, 0]} />
-        <hemisphereLight
-          intensity={0.5}
-          skyColor={0xffffbb}
-          groundColor={"#080820"}
-          position={[0, 1, 0]}
-        />
+        <directionalLight intensity={0.5} color="blue" position={[0, 0, 5]} />
         <group position={[-5, 0, 0]} rotation={[0, 0, -angle]}>
           <mesh position={[0, height / 2, 0]}>
+            <meshLambertMaterial />
             <cylinderGeometry
               attach="geometry"
               args={[radiusT, radiusB, height, 32]}
             />
           </mesh>
         </group>
-        <mesh
-          position={[5, height / 2, 0]}
-          rotation={[0, 0, -angle]}
-        >
+        <mesh position={[5, height / 2, 0]} rotation={[0, 0, -angle]}>
+          <meshLambertMaterial />
           <cylinderGeometry
             attach="geometry"
             args={[radiusT, radiusB, height, 32]}

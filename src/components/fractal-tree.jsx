@@ -2,7 +2,6 @@ import React, { Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera, OrbitControls, Html } from "@react-three/drei";
 
-
 export default function FractalTreeCanvas({
   is3D = false,
   initDepth,
@@ -33,11 +32,10 @@ export default function FractalTreeCanvas({
           <Suspense fallback={Loading}>
             <PerspectiveCamera makeDefault position={[0, 3, 5]} fov={50} />
             <OrbitControls enableZoom={false} target={[0, 2, 0]} />
-            <hemisphereLight
-              intensity={1.0}
-              skyColor={0xffffbb}
-              groundColor={0x080820}
-              position={[0, 1, 0]}
+            <directionalLight
+              intensity={0.5}
+              color="blue"
+              position={[0, 0, 5]}
             />
 
             <FractalTree
@@ -122,6 +120,7 @@ function Branch({ radiusT, radiusB, height, x, y, z, angleZ, angleX, shape }) {
   return (
     <group position={[x, y, z]} rotation={[angleX, 0, angleZ]}>
       <mesh position={[0, height / 2, 0]} color="red">
+        <meshLambertMaterial />
         {shape === "cylinder" ? (
           <cylinderGeometry
             attach="geometry"
