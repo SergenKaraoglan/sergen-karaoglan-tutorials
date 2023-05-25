@@ -34,8 +34,8 @@ const navigation = {
       console.log("clicked");
       navigator.clipboard.writeText("sergenkaraoglan@outlook.com");
       let emailtip = document.getElementById("email-tooltip");
-      emailtip.style.scale = "1";
-      setTimeout(() => {emailtip.style.scale = "0"}, 1000);
+      emailtip.style.visibility = "visible";
+      setTimeout(() => {emailtip.style.visibility = "hidden"}, 1000);
     });
   
 </script>
@@ -63,7 +63,7 @@ const navigation = {
         </div>
         <span
           id="email-tooltip"
-          class="absolute bottom-full m-auto right-0 left-0 max-w-fit rounded bg-gray-800 p-2 text-xs text-white ease-out duration-300 scale-0"
+          class="absolute bottom-full m-auto right-0 left-0 max-w-fit rounded bg-gray-800 p-2 text-xs text-white ease-out duration-300 invisible"
         >
           Copied!
           <svg
