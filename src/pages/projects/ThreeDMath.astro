@@ -1,31 +1,27 @@
 ---
 ---
 
-<script src="../../scripts/p5.min.js"></script>
 <script is:inline>
-  const width = 400;
-  const height = 400;
-  function setup() {
-    let mycanvas = createCanvas(width, height);
-    mycanvas.parent("p5");
-  }
+  //let ctx = document.getElementById('1d').getContext('2d');
 
-  function draw() {
-    // draw number line
-    background(255);
-    strokeWeight(10);
-    stroke(0);
-    line(0, height/2, width, height/2);
-    // draw point on number line
-    strokeWeight(20);
-    stroke(0);
-    point(width/2, height/2);
-    // draw text
-    textSize(48);
-    textAlign(CENTER);
-    strokeWeight(0);
-    text('0', width/2, 150);
+  function set1dValue(slider) {
+    const oned = document.getElementById("1d");
+    oned.innerHTML = slider.value;
   }
 </script>
 
-<div id="p5" class = "mx-auto w-fit my-3"></div>
+<div class="mx-auto my-3 w-fit">
+  <div id="1d" class="w-52 h-52 flex justify-center items-center text-5xl">
+    0
+  </div>
+  <div class="flex justify-center">
+    <input
+      class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600"
+      type="range"
+      min="-5"
+      max="5"
+      step="0.1"
+      oninput="set1dValue(this)"
+    />
+  </div>
+</div>
