@@ -1,0 +1,31 @@
+---
+---
+
+<script src="../../scripts/p5.min.js"></script>
+<script is:inline>
+  const width = 400;
+  const height = 400;
+  function setup() {
+    let mycanvas = createCanvas(width, height);
+    mycanvas.parent("p5");
+  }
+
+  function draw() {
+    // draw number line
+    background(255);
+    strokeWeight(10);
+    stroke(0);
+    line(0, height/2, width, height/2);
+    // draw point on number line
+    strokeWeight(20);
+    stroke(0);
+    point(width/2, height/2);
+    // draw text
+    textSize(48);
+    textAlign(CENTER);
+    strokeWeight(0);
+    text('0', width/2, 150);
+  }
+</script>
+
+<div id="p5" class = "mx-auto w-fit my-3"></div>
