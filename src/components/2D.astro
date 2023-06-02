@@ -49,30 +49,6 @@
     }
     anim();
   };
-
-  function set1dValue(slider) {
-    const oned = document.getElementById("1d");
-    oned.innerHTML = slider.value;
-  }
 </script>
-
-<div class="mx-auto my-3 w-fit">
-  <div
-    id="1d"
-    class="w-52 h-52 flex justify-center items-center text-5xl border-2"
-  >
-    0
-  </div>
-  <div class="flex justify-center my-3">
-    <input
-      class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600"
-      type="range"
-      min="-5"
-      max="5"
-      step="0.1"
-      oninput="set1dValue(this)"
-    />
-  </div>
-</div>
 
 <canvas id="2d" width="300" height="300" class="border-2 mx-auto my-5"></canvas>

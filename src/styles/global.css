@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .thumb-lg-blue-600::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
