@@ -1,0 +1,23 @@
+<script>
+    import * as d3 from "d3";
+    
+    let html = `
+  <html>
+    <body>
+        <h1 id="title">Page Title</h1>
+    </body>
+  </html>
+`;
+
+const parser = new DOMParser();
+const document = parser.parseFromString(html, "text/html");
+
+console.log(document);
+// get all DOM elements
+const allElements = document.getElementsByTagName("*");
+console.log(allElements);
+
+const children = document.childNodes;
+console.log(children);
+console.log(children[0].childNodes[1].childNodes)
+</script>

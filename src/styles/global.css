@@ -10,3 +10,9 @@
   width: 1.5rem;
   border-radius: 100%;
 }
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

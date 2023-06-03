@@ -9,9 +9,13 @@
 	let blue = 0;
 	let alpha = 1;
 
+	// background image
+	// selector
+	// height / width
+	// box model
 </script>
 
-<div class="h-48 w-48 mx-auto flex justify-center items-center" style="background-color: {hex}; color: {textColor}">
+<div class="h-48 w-48 mx-auto flex-center" style="background-color: {hex}; color: {textColor}">
 	{hex}
 </div>
 
@@ -20,3 +24,4 @@
 <input type=range min=0 max=255 step=1 bind:value={green}>
 <input type=range min=0 max=255 step=1 bind:value={blue}>
 </div>
+
