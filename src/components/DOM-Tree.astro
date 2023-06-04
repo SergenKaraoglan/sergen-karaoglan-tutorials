@@ -1,6 +1,4 @@
 <script>
-    import * as d3 from "d3";
-    
     let html = `
   <html>
     <body>
@@ -11,13 +9,22 @@
 
 const parser = new DOMParser();
 const document = parser.parseFromString(html, "text/html");
+const data = [];
 
-console.log(document);
-// get all DOM elements
-const allElements = document.getElementsByTagName("*");
-console.log(allElements);
+function traverse(nodes, parentArray){
+    nodes.forEach(node => {
+        console.log(node['nodeName'])
+        const newData = [];
+        parentArray.push({name: node['nodeName'], children: newData});
 
-const children = document.childNodes;
-console.log(children);
-console.log(children[0].childNodes[1].childNodes)
+        if(node.childNodes.length){
+            traverse(node.childNodes, newData)
+        }
+        
+    })
+}
+
+traverse(document.childNodes, data);
 </script>
+
+<input type="text" id="html-input" value="Hello World!" oninput="parseTree()">

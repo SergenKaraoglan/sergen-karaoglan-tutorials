@@ -1,0 +1,48 @@
+
+---
+import { Treant } from "treant-js";
+---
+    
+<script is:inline>
+   var tree = {
+  chart: {
+    container: "#chart"
+  },
+
+  nodeStructure: {
+    text: { name: "Parent node" },
+    children: [
+      {
+        text: { name: "First child" },
+        children: [
+          {
+            text: { name: "First ko first" }
+          },
+          {
+            text: { name: "First ko Second " }
+          }
+        ]
+      },
+      {
+        text: { name: "Second child" },
+        children: [
+          {
+            text: { name: "Second ko first" }
+          },
+          {
+            text: { name: "Second ko Second " }
+          }
+        ]
+      }
+    ]
+  }
+};
+
+new Treant(tree);
+
+</script>
+
+<body>
+    <div id="tree-simple" style="width:335px; height: 160px"> </div>
+    
+</body>
