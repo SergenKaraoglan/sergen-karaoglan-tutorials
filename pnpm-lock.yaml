@@ -34,6 +34,9 @@ dependencies:
   astro:
     specifier: ^2.5.6
     version: 2.5.6
+  babylonjs:
+    specifier: ^6.6.0
+    version: 6.6.0
   d3:
     specifier: ^7.8.5
     version: 7.8.5
@@ -1438,6 +1441,11 @@ packages:
       picocolors: 1.0.0
       postcss: 8.4.24
       postcss-value-parser: 4.2.0
+    dev: false
+
+  /babylonjs@6.6.0:
+    resolution: {integrity: sha512-kHVnAS/6Y6gnAetfUblhpDis1hBxofPhwTxewhHsDRjCNpifHUSfGbvLPK55kl9wpuz5VAvJIWCM4tF28pg1Pg==}
+    requiresBuild: true
     dev: false
 
   /bail@2.0.2:
