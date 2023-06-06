@@ -4,18 +4,32 @@
     import "../styles/global.css"
     
     let canvas;
+    let engine;
     onMount(() => {
+        engine = new BABYLON.Engine(canvas);
+        
+
         run();
     });
-
+let scene;
 function run(){
-        const engine = new BABYLON.Engine(canvas);
-        const scene = new BABYLON.Scene(engine);
+        if(scene){
+            scene.dispose();
+        }
+    scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
         const light = new BABYLON.HemisphericLight("HemiLight", new BABYLON.Vector3(0, 1, 0), scene);
         const camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 10, new BABYLON.Vector3(0, 3, 0), scene, );
         camera.attachControl(canvas, true);
+
+        engine.runRenderLoop(function(){
+            scene.render();
+        });
     
+        window.addEventListener('resize', function(){
+            engine.resize();
+        });
+
         const ratio = 0.75;
         const depth = document.getElementById('depth').value;
         const angle = 0.5;
@@ -47,15 +61,9 @@ function run(){
         genFractalTree(depth);
         //scene.dispose();
     
-        engine.runRenderLoop(function(){
-            scene.render();
-        });
-    
-        window.addEventListener('resize', function(){
-            engine.resize();
-        });
+        
     }
-    </script>
+</script>
     
-    <canvas bind:this={canvas} class="mx-auto h-screen-1/2 border"></canvas>
-    <input type="range" min="1" max="10" step="1" value="1" id="depth" on:input={run}>
+<canvas bind:this={canvas} class="mx-auto h-screen-1/2 border"></canvas>
+<input type="range" min="1" max="10" step="1" value="1" id="depth" on:input={run}>
