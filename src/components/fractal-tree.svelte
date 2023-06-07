@@ -7,8 +7,9 @@
     let engine;
     let scene;
     let angle = 0.5;
+    let maxDepth = 8;
+    let is3D = false;
     const ratio = 0.75;
-    let maxDepth = 10;
     const branches = [];
     const instanceMeshes = [];
     onMount(() => {
@@ -59,11 +60,16 @@
     
             x -= Math.sin(angleZ) * Math.cos(angleX) * height;
             y += Math.cos(angleZ) * Math.cos(angleX) * height;
+            z += Math.sin(angleX) * height;
             diameter *= ratio;
             height *= ratio;
     
-            genFractalTree(depth + 1, angleZ + angle, angleX, diameter, height, x, y, z);
-            genFractalTree(depth + 1, angleZ - angle, angleX, diameter, height, x, y, z);
+            genFractalTree(depth + 1, angleZ + angle, 0, diameter, height, x, y, z);
+            genFractalTree(depth + 1, angleZ - angle, 0, diameter, height, x, y, z);
+            if (is3D){
+                genFractalTree(depth + 1, 0, angleX + angle, diameter, height, x, y, z);
+                genFractalTree(depth + 1, 0, angleX - angle, diameter, height, x, y, z);
+            }
     }
 
     function disposeAll(){
@@ -71,6 +77,10 @@
                 branches[i].dispose();
         }
         branches.length = 0;
+    }
+
+    function checkFPS(){
+        console.log(engine.getFps());
     }
 
 </script>
