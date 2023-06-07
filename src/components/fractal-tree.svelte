@@ -5,16 +5,11 @@
     
     let canvas;
     let engine;
+    let scene;
+    let curDepth = 10;
+    const branches = [];
     onMount(() => {
         engine = new BABYLON.Engine(canvas);
-        
-        run();
-    });
-let scene;
-function run(){
-        if(scene){
-            scene.dispose();
-        }
         scene = new BABYLON.Scene(engine);
         //scene.performancePriority = BABYLON.ScenePerformancePriority.Aggressive;
         scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
@@ -31,22 +26,30 @@ function run(){
         });
 
         const ratio = 0.75;
-        const depth = document.getElementById('depth').value;
+        const maxDepth = 10;
         const angle = 0.5;
-        const root = BABYLON.MeshBuilder.CreateCylinder("root", {height: 1, diameter: 0.4, diameterTop:0.4*ratio}, scene);
-        root.isVisible = false;
+        
+        const instanceMeshes = [];
         function genFractalTree(depth, angleZ = 0, angleX = 0, diameter = 0.4, height = 1, x = 0, y = 0, z = 0){
             if(depth === 0){
                 return;
             }
 
             // instance
-            const branch = BABYLON.MeshBuilder.CreateCylinder("branch", {height: height, diameter: diameter, diameterTop:diameter*ratio}, scene);
-            const branch_mat = new BABYLON.StandardMaterial("branchMat", scene);
-            branch_mat.diffuseColor = new BABYLON.Color3(0, 0, 1);
-            branch_mat.freeze();
-            branch.material = branch_mat;
-            branch.freezeWorldMatrix();
+            if (instanceMeshes.length == maxDepth - depth) {
+                const instanceMesh = BABYLON.MeshBuilder.CreateCylinder("instance", {height: height, diameter: diameter, diameterTop:diameter*ratio}, scene);
+                const instanceMesh_mat = new BABYLON.StandardMaterial("instanceMat", scene);
+                instanceMesh_mat.diffuseColor = new BABYLON.Color3(0, 0, 1);
+                instanceMesh_mat.freeze();
+                instanceMesh.material = instanceMesh_mat;
+                instanceMesh.freezeWorldMatrix();
+                instanceMesh.isVisible = false;
+                instanceMeshes.push(instanceMesh);
+                
+                branches.push([]);
+            }
+            const branch = instanceMeshes[maxDepth - depth].createInstance("branch");
+            branches[maxDepth - depth].push(branch);
 
             const pivot = new BABYLON.TransformNode("pivot");
             pivot.position = new BABYLON.Vector3(x, y , z);
@@ -63,12 +66,28 @@ function run(){
             genFractalTree(depth - 1, angleZ - angle, angleX, diameter, height, x, y, z);
         }
     
-        genFractalTree(depth);
-        //scene.dispose();
-    
+        genFractalTree(maxDepth);
+
         
-    }
+        makeVisible();
+    });
+
+    function makeVisible(){
+            for(let i = 0; i < branches.length; i++){
+                for(let j = 0; j < branches[i].length; j++){
+                    branches[i][j].isVisible = false;
+                }
+            }
+            for(let i = 0; i < curDepth; i++){
+                for(let j = 0; j < branches[i].length; j++){
+                    branches[i][j].isVisible = true;
+                }
+            }
+        }
+
 </script>
     
 <canvas bind:this={canvas} class="mx-auto h-screen-1/2 border"></canvas>
-<input type="range" min="1" max="10" step="1" value="10" id="depth" on:input={run}>
+<div class="mx-auto w-fit mt-3">
+    <input type="range" min="1" max="10" step="1" bind:value={curDepth} on:input={makeVisible} >
+</div>
