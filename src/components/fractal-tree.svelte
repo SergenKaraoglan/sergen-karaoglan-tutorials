@@ -15,7 +15,7 @@
     const branches = [];
     const instanceMeshes = [];
     onMount(() => {
-        engine = new BABYLON.Engine(canvas);
+        engine = new BABYLON.Engine(canvas, true);
         scene = new BABYLON.Scene(engine);
 
         scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
@@ -23,6 +23,8 @@
         const camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 8, new BABYLON.Vector3(0, 2, 0), scene,);
         camera.fov = Math.PI / 5;
         camera.attachControl(canvas, true);
+        camera.lowerRadiusLimit = 8;
+        camera.upperRadiusLimit = 8;
 
         engine.runRenderLoop(function(){
             scene.render();
@@ -56,9 +58,12 @@
 
             const pivot = new BABYLON.TransformNode("pivot");
             pivot.position = new BABYLON.Vector3(x, y , z);
+            branch.freezeWorldMatrix();
             branch.parent = pivot;
             branch.position = new BABYLON.Vector3(0, height / 2, 0);
             pivot.rotation = new BABYLON.Vector3(angleX, 0, angleZ);
+
+            
     
             x -= Math.sin(angleZ) * Math.cos(angleX) * height;
             y += Math.cos(angleZ) * Math.cos(angleX) * height;

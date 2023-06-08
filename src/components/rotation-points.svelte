@@ -17,6 +17,8 @@
         const camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 8, new BABYLON.Vector3(0, 2, 5), scene,);
         camera.fov = Math.PI / 5;
         camera.attachControl(canvas, true);
+        camera.lowerRadiusLimit = 8;
+        camera.upperRadiusLimit = 8;
 
         engine.runRenderLoop(function(){
             scene.render();
