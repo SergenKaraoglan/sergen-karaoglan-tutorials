@@ -1,24 +1,27 @@
 <script>
     import * as BABYLON from 'babylonjs';
     import { onMount } from 'svelte';
-    import "../styles/global.css"
+    import "../styles/global.css";
     
+    export let showAngle = false;
+    export let showDepth = false;
     let canvas;
     let engine;
     let scene;
     let angle = 0.5;
-    let maxDepth = 8;
-    let is3D = false;
+    export let maxDepth = 10;
+    export let is3D = false;
     const ratio = 0.75;
     const branches = [];
     const instanceMeshes = [];
     onMount(() => {
         engine = new BABYLON.Engine(canvas);
         scene = new BABYLON.Scene(engine);
-        //scene.performancePriority = BABYLON.ScenePerformancePriority.Aggressive;
+
         scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
         const light = new BABYLON.HemisphericLight("HemiLight", new BABYLON.Vector3(0, 1, 0), scene);
-        const camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 8, new BABYLON.Vector3(0, 3, 0), scene, );
+        const camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 8, new BABYLON.Vector3(0, 2, 0), scene,);
+        camera.fov = Math.PI / 5;
         camera.attachControl(canvas, true);
 
         engine.runRenderLoop(function(){
@@ -38,7 +41,6 @@
                 return;
             }
 
-            // instance
             if (instanceMeshes.length == depth) {
                 const instanceMesh = BABYLON.MeshBuilder.CreateCylinder("instance", {height: height, diameter: diameter, diameterTop:diameter*ratio}, scene);
                 const instanceMesh_mat = new BABYLON.StandardMaterial("instanceMat", scene);
@@ -85,8 +87,12 @@
 
 </script>
     
-<canvas bind:this={canvas} class="mx-auto h-screen-1/2 border"></canvas>
+<canvas class="mx-auto h-96 w-96" bind:this={canvas}></canvas>
 <div class="mx-auto w-fit mt-3">
-    <input type="range" min="1" max="10" step="1" bind:value={maxDepth} on:input={() => {disposeAll(), genFractalTree()}} >
-    <input type="range" min="0" max="2" step="0.05" bind:value={angle} on:input={() => {disposeAll(), genFractalTree()}}>
+    {#if showDepth}
+        <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="1" max="10" step="1" bind:value={maxDepth} on:input={() => {disposeAll(), genFractalTree()}} >
+    {/if}
+    {#if showAngle}
+        <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="0" max="2" step="0.05" bind:value={angle} on:input={() => {disposeAll(), genFractalTree()}}>
+    {/if}
 </div>
