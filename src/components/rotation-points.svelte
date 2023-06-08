@@ -64,7 +64,7 @@
     }
 </script>
 
-<canvas class="mx-auto h-96 w-96" bind:this={canvas}></canvas>
+<canvas class="mx-auto h-80 w-80 sm:h-96 sm:w-96" bind:this={canvas}></canvas>
 <div class="mx-auto w-fit mt-3">
     <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="0" max={Math.PI * 2} step="0.01" bind:value={angle} on:input={rotate}>
 </div>

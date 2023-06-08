@@ -10,10 +10,12 @@
     let scene;
     let angle = 0.5;
     export let maxDepth = 10;
+    let curDepth = 5;
     export let is3D = false;
     const ratio = 0.75;
     const branches = [];
     const instanceMeshes = [];
+    let id=0;
     onMount(() => {
         engine = new BABYLON.Engine(canvas, true);
         scene = new BABYLON.Scene(engine);
@@ -36,7 +38,7 @@
             engine.resize();
         });
     
-        genFractalTree();
+        genFractalTree(0);
 
     });
 
@@ -55,15 +57,30 @@
                 instanceMesh.isVisible = false;
                 instanceMeshes.push(instanceMesh);
             }
-            const branch = instanceMeshes[depth].createInstance("branch");
-            branches.push(branch);
+            // check if branch already exists
+            if (branches.length > id) {
+                if (depth > curDepth) {
+                    branches[id].isVisible = false;
+                }
+                else {
+                    branches[id].isVisible = true;
+                }
+                const branch = branches[id];
+                const pivot = branch.parent;
+                pivot.position = new BABYLON.Vector3(x, y , z);
+                branch.position = new BABYLON.Vector3(0, height / 2, 0);
+                pivot.rotation = new BABYLON.Vector3(angleX, 0, angleZ);
+            }
+            else {
+                const branch = instanceMeshes[depth].createInstance("branch");
+                branches.push(branch);
 
-            const pivot = new BABYLON.TransformNode("pivot");
-            pivot.position = new BABYLON.Vector3(x, y , z);
-            branch.freezeWorldMatrix();
-            branch.parent = pivot;
-            branch.position = new BABYLON.Vector3(0, height / 2, 0);
-            pivot.rotation = new BABYLON.Vector3(angleX, 0, angleZ);
+                const pivot = new BABYLON.TransformNode("pivot");
+                pivot.position = new BABYLON.Vector3(x, y , z);
+                branch.parent = pivot;
+                branch.position = new BABYLON.Vector3(0, height / 2, 0);
+                pivot.rotation = new BABYLON.Vector3(angleX, 0, angleZ);
+            }
 
             
     
@@ -72,7 +89,7 @@
             z += Math.sin(angleX) * height;
             diameter *= ratio;
             height *= ratio;
-    
+            id++;
             genFractalTree(depth + 1, angleZ + angle, 0, diameter, height, x, y, z);
             genFractalTree(depth + 1, angleZ - angle, 0, diameter, height, x, y, z);
             if (is3D){
@@ -80,26 +97,18 @@
                 genFractalTree(depth + 1, 0, angleX - angle, diameter, height, x, y, z);
             }
     }
-
-    function disposeAll(){
-        for(let i = 0; i < branches.length; i++){
-                branches[i].dispose();
-        }
-        branches.length = 0;
-    }
-
     function checkFPS(){
         console.log(engine.getFps());
     }
 
 </script>
     
-<canvas class="mx-auto h-96 w-96" bind:this={canvas}></canvas>
+<canvas class="mx-auto h-80 w-80 sm:h-96 sm:w-96" bind:this={canvas}></canvas>
 <div class="mx-auto w-fit mt-3">
     {#if showDepth}
-        <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="1" max="10" step="1" bind:value={maxDepth} on:input={() => {disposeAll(), genFractalTree()}} >
+        <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="1" max="10" step="1" bind:value={curDepth} on:input={() => {id=0, genFractalTree()}} >
     {/if}
     {#if showAngle}
-        <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="0" max="2" step="0.1" bind:value={angle} on:input={() => {disposeAll(), genFractalTree()}}>
+        <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="0" max="2" step="0.1" bind:value={angle} on:input={() => {id=0, genFractalTree()}}>
     {/if}
 </div>
