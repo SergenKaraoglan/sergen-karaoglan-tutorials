@@ -10,7 +10,7 @@
     let scene;
     let angle = 0.5;
     export let maxDepth = 10;
-    let curDepth = 5;
+    export let curDepth = 10;
     export let is3D = false;
     const ratio = 0.75;
     const branches = [];
@@ -74,7 +74,12 @@
             else {
                 const branch = instanceMeshes[depth].createInstance("branch");
                 branches.push(branch);
-
+                if (depth > curDepth) {
+                    branch.isVisible = false;
+                }
+                else {
+                    branch.isVisible = true;
+                }
                 const pivot = new BABYLON.TransformNode("pivot");
                 pivot.position = new BABYLON.Vector3(x, y , z);
                 branch.parent = pivot;
@@ -106,7 +111,7 @@
 <canvas class="mx-auto h-80 w-80 sm:h-96 sm:w-96" bind:this={canvas}></canvas>
 <div class="mx-auto w-fit mt-3">
     {#if showDepth}
-        <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="1" max="10" step="1" bind:value={curDepth} on:input={() => {id=0, genFractalTree()}} >
+        <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="0" max="10" step="1" bind:value={curDepth} on:input={() => {id=0, genFractalTree()}} >
     {/if}
     {#if showAngle}
         <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="0" max="2" step="0.1" bind:value={angle} on:input={() => {id=0, genFractalTree()}}>
