@@ -40,11 +40,20 @@
         pivot1.position = new BABYLON.Vector3(2, 0, 0);
         cylinder1.parent = pivot1;
         cylinder1.material = c_mat;
+        
+        const s_mat = new BABYLON.StandardMaterial("s_mat", scene);
+        s_mat.diffuseColor = new BABYLON.Color3(0, 1, 1);
+        const cor = BABYLON.MeshBuilder.CreateSphere("cor", {diameter: 0.5}, scene);
+        cor.position = new BABYLON.Vector3(2, 0, 0.3);
+        cor.material = s_mat;
 
         //cylinder 2
         const cylinder2 = BABYLON.MeshBuilder.CreateCylinder("cylinder2", {height: height}, scene);
         cylinder2.position = new BABYLON.Vector3(-2, height/2, 0);
         cylinder2.material = c_mat;
+        const cor2 = BABYLON.MeshBuilder.CreateSphere("cor2", {diameter: 0.5}, scene);
+        cor2.position = new BABYLON.Vector3(-2, height/2, 0.3);
+        cor2.material = s_mat;
     })
 
     function rotate(){

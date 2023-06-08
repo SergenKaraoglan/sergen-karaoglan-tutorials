@@ -17,6 +17,8 @@
     onMount(() => {
         engine = new BABYLON.Engine(canvas, true);
         scene = new BABYLON.Scene(engine);
+        //scene.debugLayer.show();
+        
 
         scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
         const light = new BABYLON.HemisphericLight("HemiLight", new BABYLON.Vector3(0, 1, 0), scene);
@@ -98,6 +100,6 @@
         <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="1" max="10" step="1" bind:value={maxDepth} on:input={() => {disposeAll(), genFractalTree()}} >
     {/if}
     {#if showAngle}
-        <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="0" max="2" step="0.05" bind:value={angle} on:input={() => {disposeAll(), genFractalTree()}}>
+        <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="0" max="2" step="0.1" bind:value={angle} on:input={() => {disposeAll(), genFractalTree()}}>
     {/if}
 </div>
