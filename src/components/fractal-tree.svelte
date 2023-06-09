@@ -73,6 +73,7 @@
             }
             else {
                 const branch = instanceMeshes[depth].createInstance("branch");
+                branch.material.freeze();
                 branches.push(branch);
                 if (depth > curDepth) {
                     branch.isVisible = false;
@@ -86,8 +87,6 @@
                 branch.position = new BABYLON.Vector3(0, height / 2, 0);
                 pivot.rotation = new BABYLON.Vector3(angleX, 0, angleZ);
             }
-
-            
     
             x -= Math.sin(angleZ) * Math.cos(angleX) * height;
             y += Math.cos(angleZ) * Math.cos(angleX) * height;
