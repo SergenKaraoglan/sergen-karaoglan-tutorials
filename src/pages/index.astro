@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/home-layout.astro";
+import { Picture } from '@astrojs/image/components';
 
 const project_list = [
   {
@@ -7,7 +8,7 @@ const project_list = [
     image: "/fractal-tree.png",
     technologies: ["Tailwind", "Babylon.js", "Svelte"],
     description:
-      "Interact with and learn to create fractal trees with React Three Fiber.",
+      "Interact with and learn to create fractal trees.",
     demo: "/projects/fractal-trees",
     github: "https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/src/components/fractal-tree.jsx",
     type: "Procedural art",
@@ -84,13 +85,15 @@ const project_list = [
               {data.description}
             </p>
           </div>
-          <img
-            class="h-auto w-1/4 flex-shrink-0 rounded"
+          <div class="h-auto w-1/4 flex-shrink-0">
+          <Picture
             src={data.image}
-            alt="fractal-tree"
-            height={100}
-            width={100}
+            alt={data.title}
+            //height={100}
+            widths={[300, 400]}
+            aspectRatio="4:3"
           />
+          </div>
         </div>
         <div>
           <div class="-mt-px flex divide-x divide-gray-200">
