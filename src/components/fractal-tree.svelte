@@ -23,7 +23,6 @@
         scene.skipPointerMovePicking = true
         //scene.debugLayer.show();
         
-
         scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
         const light = new BABYLON.HemisphericLight("HemiLight", new BABYLON.Vector3(0, 1, 0), scene);
         const camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 8, new BABYLON.Vector3(0, 2, 0), scene,);
@@ -60,36 +59,31 @@
                 instanceMesh.isVisible = false;
                 instanceMeshes.push(instanceMesh);
             }
+
+            let branch;
+            let pivot;
             // check if branch already exists
             if (branches.length > id) {
-                if (depth > curDepth) {
-                    branches[id].isVisible = false;
-                }
-                else {
-                    branches[id].isVisible = true;
-                }
-                const branch = branches[id];
-                const pivot = branch.parent;
-                pivot.position = new BABYLON.Vector3(x, y , z);
-                branch.position = new BABYLON.Vector3(0, height / 2, 0);
-                pivot.rotation = new BABYLON.Vector3(angleX, 0, angleZ);
+                branch = branches[id];
+                pivot = branch.parent;
             }
             else {
-                const branch = instanceMeshes[depth].createInstance("branch");
+                branch = instanceMeshes[depth].createInstance("branch");
                 branch.material.freeze();
                 branches.push(branch);
-                if (depth > curDepth) {
-                    branch.isVisible = false;
-                }
-                else {
-                    branch.isVisible = true;
-                }
-                const pivot = new BABYLON.TransformNode("pivot");
-                pivot.position = new BABYLON.Vector3(x, y , z);
+                pivot = new BABYLON.TransformNode("pivot");
                 branch.parent = pivot;
-                branch.position = new BABYLON.Vector3(0, height / 2, 0);
-                pivot.rotation = new BABYLON.Vector3(angleX, 0, angleZ);
             }
+
+            if (depth > curDepth) {
+                    branch.isVisible = false;
+            }
+            else {
+                branch.isVisible = true;
+            }
+            pivot.position = new BABYLON.Vector3(x, y , z);
+            branch.position = new BABYLON.Vector3(0, height / 2, 0);
+            pivot.rotation = new BABYLON.Vector3(angleX, 0, angleZ);
     
             x -= Math.sin(angleZ) * Math.cos(angleX) * height;
             y += Math.cos(angleZ) * Math.cos(angleX) * height;
