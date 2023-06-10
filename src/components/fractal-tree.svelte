@@ -19,6 +19,7 @@
     let id=0;
     onMount(() => {
         engine = new BABYLON.Engine(canvas, true);
+        engine.displayLoadingUI();
         scene = new BABYLON.Scene(engine);
         scene.skipPointerMovePicking = true
         //scene.debugLayer.show();
@@ -45,6 +46,7 @@
         instanceMesh_mat.freeze();
         genFractalTree();
 
+        engine.hideLoadingUI();
     });
 
     function genFractalTree(depth=0, angleZ = 0, angleX = 0, diameter = 0.4, height = 1, x = 0, y = 0, z = 0){
