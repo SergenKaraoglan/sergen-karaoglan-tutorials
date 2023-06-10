@@ -1,5 +1,6 @@
 <script>
     import * as BABYLON from 'babylonjs';
+    //import '@babylonjs/core/Engines/WebGPU/Extensions/'
     import { onMount } from 'svelte';
     import "../styles/global.css";
 
@@ -9,7 +10,12 @@
     let scene;
     let angle = 0;
     onMount(() => {
-        engine = new BABYLON.Engine(canvas);
+        engine = new BABYLON.Engine(canvas, true);
+        // async function init_engine(){
+        //     engine = new BABYLON.WebGPUEngine(canvas);
+        //     await engine.initAsync();
+        // }
+        // init_engine();
         scene = new BABYLON.Scene(engine);
 
         scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);

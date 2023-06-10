@@ -15,10 +15,12 @@
     const ratio = 0.75;
     const branches = [];
     const instanceMeshes = [];
+    let instanceMesh_mat;
     let id=0;
     onMount(() => {
         engine = new BABYLON.Engine(canvas, true);
         scene = new BABYLON.Scene(engine);
+        scene.skipPointerMovePicking = true
         //scene.debugLayer.show();
         
 
@@ -37,8 +39,12 @@
         window.addEventListener('resize', function(){
             engine.resize();
         });
-    
-        genFractalTree(0);
+        
+        // material
+        instanceMesh_mat = new BABYLON.StandardMaterial("instanceMat", scene);
+        instanceMesh_mat.diffuseColor = new BABYLON.Color3(0, 0, 1);
+        instanceMesh_mat.freeze();
+        genFractalTree();
 
     });
 
@@ -49,9 +55,6 @@
 
             if (instanceMeshes.length == depth) {
                 const instanceMesh = BABYLON.MeshBuilder.CreateCylinder("instance", {height: height, diameter: diameter, diameterTop:diameter*ratio}, scene);
-                const instanceMesh_mat = new BABYLON.StandardMaterial("instanceMat", scene);
-                instanceMesh_mat.diffuseColor = new BABYLON.Color3(0, 0, 1);
-                instanceMesh_mat.freeze();
                 instanceMesh.material = instanceMesh_mat;
                 instanceMesh.freezeWorldMatrix();
                 instanceMesh.isVisible = false;
