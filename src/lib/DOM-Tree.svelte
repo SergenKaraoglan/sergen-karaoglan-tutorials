@@ -1,6 +1,7 @@
 <script>
     import * as d3 from "d3";
 
+    let svg_container;
     let html = `
   <html>
     <body>
@@ -129,7 +130,9 @@ console.log(tree_svg);
 
 document.getElementById('svg-container').append(tree_svg);
 
+function parseTree(){}
+
 </script>
 
-<div id="svg-container"></div>
-<input type="text" id="html-input" value="Hello World!" oninput="parseTree()">
+<div bind:this={svg_container}></div>
+<input type="text" id="html-input" value="Hello World!" on:input={parseTree}>

@@ -2,7 +2,6 @@
     import * as BABYLON from 'babylonjs';
     //import '@babylonjs/core/Engines/WebGPU/Extensions/'
     import { onMount } from 'svelte';
-    import "../styles/global.css";
 
     // setup babylon
     let canvas;

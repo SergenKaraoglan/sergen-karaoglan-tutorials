@@ -1,7 +1,4 @@
----
-import Layout from "../layouts/home-layout.astro";
-import { Picture } from '@astrojs/image/components';
-
+<script>
 const project_list = [
   {
     title: "Fractal Tree",
@@ -9,18 +6,19 @@ const project_list = [
     technologies: ["Tailwind", "Babylon.js", "Svelte"],
     description:
       "Interact with and learn to create fractal trees.",
-    demo: "/projects/fractal-trees",
+    demo: "/fractal-tree",
     github: "https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/src/components/fractal-tree.jsx",
     type: "Procedural art",
   },
 ];
----
+</script>
 
-<Layout
-  title="Home | Sergen Karaoglan"
-  description="Portfolio homepage of Sergen Karaoglan"
->
-  <div
+<svelte:head>
+    <title>Home | Sergen Karaoglan</title>
+    <meta name="description" content="Portfolio homepage of Sergen Karaoglan" />
+</svelte:head>
+
+<div
     class="relative overflow-hidden min-h-screen w-full pb-16 sm:pb-24 lg:pb-32"
   >
     <video
@@ -39,7 +37,7 @@ const project_list = [
           <h1
             class="text-4xl font-medium tracking-tight text-white sm:text-6xl"
           >
-            Developing interactive tutorials on STEM, games and procedural art
+            Interactive tutorials on STEM, games and procedural art
           </h1>
           <div class="mt-10 flex items-center justify-center gap-x-6">
             <a
@@ -65,9 +63,8 @@ const project_list = [
     >
       Projects
     </h2>
-    <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-      {
-        project_list.map((data) => 
+    <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {#each project_list as data}
       <li
         class="col-span-2 divide-y divide-gray-200 rounded-lg bg-white shadow"
       >
@@ -86,13 +83,13 @@ const project_list = [
             </p>
           </div>
           <div class="h-auto w-1/4 flex-shrink-0">
-          <Picture
+          <!-- <Picture
             src={data.image}
             alt={data.title}
-            //height={100}
+            height={100}
             widths={[300, 400]}
             aspectRatio="4:3"
-          />
+          /> -->
           </div>
         </div>
         <div>
@@ -142,7 +139,7 @@ const project_list = [
           </div>
         </div>
       </li>
-    )}
+        {/each}
     </ul>
   </div>
-</Layout>
+

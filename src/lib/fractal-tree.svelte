@@ -1,7 +1,6 @@
 <script>
     import * as BABYLON from 'babylonjs';
     import { onMount } from 'svelte';
-    import "../styles/global.css";
     
     export let showAngle = false;
     export let showDepth = false;
