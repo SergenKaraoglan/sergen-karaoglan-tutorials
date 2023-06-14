@@ -43,7 +43,7 @@
         instanceMesh_mat = new BABYLON.StandardMaterial("instanceMat", scene);
         instanceMesh_mat.diffuseColor = new BABYLON.Color3(0, 0, 1);
         instanceMesh_mat.freeze();
-        genFractalTree();
+        //genFractalTree();
 
         engine.hideLoadingUI();
     });
@@ -52,7 +52,6 @@
             if(depth === maxDepth){
                 return;
             }
-
             if (instanceMeshes.length == depth) {
                 const instanceMesh = BABYLON.MeshBuilder.CreateCylinder("instance", {height: height, diameter: diameter, diameterTop:diameter*ratio}, scene);
                 instanceMesh.material = instanceMesh_mat;
@@ -105,7 +104,7 @@
 
 </script>
     
-<canvas class="mx-auto h-80 w-80 sm:h-96 sm:w-96" bind:this={canvas}></canvas>
+<canvas class="mx-auto h-80 w-80 sm:h-96 sm:w-96" bind:this={canvas} on:click|once={() => genFractalTree()}></canvas>
 <div class="mx-auto w-fit mt-3">
     {#if showDepth}
         <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="0" max="10" step="1" bind:value={curDepth} on:input={() => {id=0, genFractalTree()}} >
