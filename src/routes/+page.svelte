@@ -1,8 +1,10 @@
 <script>
+  import treeimage from "$lib/assets/fractal-tree.png"
+
 const project_list = [
   {
     title: "Fractal Tree",
-    image: "/fractal-tree.png",
+    image: treeimage,
     technologies: ["Tailwind", "Babylon.js", "Svelte"],
     description:
       "Interact with and learn to create fractal trees.",
@@ -83,13 +85,10 @@ const project_list = [
             </p>
           </div>
           <div class="h-auto w-1/4 flex-shrink-0">
-          <!-- <Picture
+          <img
             src={data.image}
             alt={data.title}
-            height={100}
-            widths={[300, 400]}
-            aspectRatio="4:3"
-          /> -->
+            >
           </div>
         </div>
         <div>

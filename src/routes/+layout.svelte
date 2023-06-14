@@ -1,6 +1,6 @@
 <script>
 import "../app.css";
-
+import {fade} from "svelte/transition";
 const navigation = {
   social: [
     {
@@ -27,10 +27,11 @@ const navigation = {
 };
 
 const email = "sergenkaraoglan@outlook.com";
+let showTip = false;
   function copyEmail() {
       navigator.clipboard.writeText(email);
-      emailtip.style.visibility = "visible";
-      setTimeout(() => {emailtip.style.visibility = "hidden"}, 1000);
+      showTip = true;
+      setTimeout(() => {showTip = false}, 1000);
     };
   
 </script>
@@ -85,9 +86,11 @@ const email = "sergenkaraoglan@outlook.com";
             </svg>
             
         </div>
-        <span
-            class="absolute bottom-full m-auto right-0 left-0 max-w-fit rounded bg-gray-800 p-2 text-xs text-white ease-out duration-300 invisible"
-        >
+        {#if showTip}
+            <span
+                transition:fade
+                class="absolute bottom-full m-auto right-0 left-0 max-w-fit rounded bg-gray-800 p-2 text-xs text-white"
+            >
             Copied!
             <svg
             class="absolute text-black h-2 w-full left-0 top-full"
@@ -99,6 +102,7 @@ const email = "sergenkaraoglan@outlook.com";
             ></polygon>
             </svg>
         </span>
+        {/if}
         </button>
     </div>
     <div
