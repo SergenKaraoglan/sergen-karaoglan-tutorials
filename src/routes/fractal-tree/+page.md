@@ -3,19 +3,9 @@ import FractalTree from "$lib/fractal-tree.svelte";
 import Rotation from "$lib/rotation-points.svelte";
 import Loading from "$lib/loading.svelte";
 
-let article
-let loading;
-function show(){
-    loading.style.display = "none";
-    article.style.display = "block";
-}
 </script>
 
-<div bind:this={loading}>
-  <Loading />
-</div>
-
-<article class="max-sm:mx-4 prose lg:prose-xl m-auto pt-16 hidden" bind:this={article}>
+<article class="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
 
 # Fractal Tree
 
@@ -26,7 +16,7 @@ A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Re
 Below is a fractal tree that is intentionally left with only the first [mesh](https://en.wikipedia.org/wiki/Polygon_mesh) drawn. Increase the range of the slider to see how the tree is recursively built.
 
 <div class="m-auto py-5">
-  <FractalTree on:loaded={show} showDepth={true} curDepth={0} />
+  <FractalTree showDepth={true} curDepth={0} />
 </div>
 
 A convenient property of procedurally generated art is that you can tweak the parameters to customise the appearance with ease. The recursive depth here is limited at 10 but you can edit the code to go as far as your hardware can handle. Another property is the angle. Each branch (cylinder) splits at a fixed angle from the previous branch.
