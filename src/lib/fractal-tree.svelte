@@ -57,8 +57,10 @@
 		instanceMesh_mat.freeze();
 
 		genFractalTree();
-		engine.hideLoadingUI();
-		
+        scene.executeWhenReady(function() {
+            engine.hideLoadingUI();
+            console.log(scene.isReady())
+        })
 	});
 
 	function genFractalTree(
