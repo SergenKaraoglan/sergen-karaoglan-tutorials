@@ -1,3 +1,0 @@
-<p class="text-9xl flex-center">
-    Loading...
-</p>

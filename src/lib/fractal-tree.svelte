@@ -55,11 +55,10 @@
 		instanceMesh_mat = new BABYLON.StandardMaterial('instanceMat', scene);
 		instanceMesh_mat.diffuseColor = new BABYLON.Color3(0, 0, 1);
 		instanceMesh_mat.freeze();
-
 		genFractalTree();
         scene.executeWhenReady(function() {
             engine.hideLoadingUI();
-            console.log(scene.isReady())
+            //console.log(scene.isReady())
         })
 	});
 

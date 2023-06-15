@@ -1,9 +1,13 @@
 <script>
-import FractalTree from "$lib/fractal-tree.svelte";
 import Rotation from "$lib/rotation-points.svelte";
-import Loading from "$lib/loading.svelte";
+import Lazy from "$lib/Lazy.svelte";
 
 </script>
+
+<svelte:head>
+	<title>Fractal Trees | Sergen Karaoglan</title>
+	<meta name="description" content="Build and learnt about fractal trees with a interactive 3D fractal tree generator." />
+</svelte:head>
 
 <article class="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
 
@@ -15,15 +19,30 @@ A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Re
 
 Below is a fractal tree that is intentionally left with only the first [mesh](https://en.wikipedia.org/wiki/Polygon_mesh) drawn. Increase the range of the slider to see how the tree is recursively built.
 
+
 <div class="m-auto py-5">
-  <FractalTree showDepth={true} curDepth={0} />
+  <Lazy
+	this={() => import("$lib/fractal-tree.svelte")}
+	>
+	<div slot="loading">Loading...</div>
+	<svelte:fragment slot="component" let:Component>
+		<Component showDepth={true} curDepth={0} />
+	</svelte:fragment>
+</Lazy>
 </div>
 
 A convenient property of procedurally generated art is that you can tweak the parameters to customise the appearance with ease. The recursive depth here is limited at 10 but you can edit the code to go as far as your hardware can handle. Another property is the angle. Each branch (cylinder) splits at a fixed angle from the previous branch.
 Try the slider below to see how the angle changes the appearance of our fractal tree.
 
 <div class="m-auto py-5">
-  <FractalTree showAngle={true}  />
+  <Lazy
+	this={() => import("$lib/fractal-tree.svelte")}
+	>
+	<div slot="loading">Loading...</div>
+	<svelte:fragment slot="component" let:Component>
+		<Component showAngle={true} />
+	</svelte:fragment>
+</Lazy>
 </div>
 
 By now you probably have a good idea of what a fractal tree is, in which case we will now begin to build one using R3F.
@@ -42,9 +61,14 @@ We don't necessarily need to use a cylinder and you can experiment with other sh
 
 Next we would like to be able to rotate our mesh but first we need to get into a few specifics with R3F. For convenience, we would like to change the centre of rotation from the centre of the mesh to its endpoint. To achieve this in R3F it is common practice to nest a mesh within a group and use the group as the centre of rotation. We place our mesh above the origin of the group so the centre of rotation of the group meets the endpoint of our mesh. By interacting with the sliders you can see the difference in our desired centre of rotation (left) and the default centre of rotation (right).
 
-<div class="m-auto py-5">
-  <Rotation />
-</div>
+<Lazy
+	this={() => import("$lib/rotation-points.svelte")}
+	>
+	<div slot="loading">Loading...</div>
+	<svelte:fragment slot="component" let:Component>
+		<Component />
+	</svelte:fragment>
+</Lazy>
 
 The final Branch component we return is the following and contains the only mesh we need to build our tree.
 
@@ -117,7 +141,14 @@ Finally once we have reached the end of recursion we return the array of branche
 The mesh may be 3D but we are only rotating by the Z axis. We can extend the tree by adding two more branches that rotate by the X axis. You can orbit the tree with a cursor or touchscreen.
 
 <div class="m-auto py-5">
-  <FractalTree curDepth={7} maxDepth={7} is3D={true}  />
+  <Lazy
+	this={() => import("$lib/fractal-tree.svelte")}
+	>
+	<div slot="loading">Loading...</div>
+	<svelte:fragment slot="component" let:Component>
+		<Component curDepth={7} maxDepth={7} is3D={true}  />
+	</svelte:fragment>
+</Lazy>
 </div>
 
 ```js
