@@ -1,7 +1,9 @@
 <script>
     import * as BABYLON from 'babylonjs';
     import { onMount } from 'svelte';
-    import "../styles/global.css";
+    import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
     
     export let showAngle = false;
     export let showDepth = false;
@@ -17,6 +19,7 @@
     const instanceMeshes = [];
     let instanceMesh_mat;
     let id=0;
+
     onMount(() => {
         engine = new BABYLON.Engine(canvas, true);
         engine.displayLoadingUI();
@@ -47,13 +50,13 @@
         genFractalTree();
 
         engine.hideLoadingUI();
+        dispatch('loaded');
     });
 
     function genFractalTree(depth=0, angleZ = 0, angleX = 0, diameter = 0.4, height = 1, x = 0, y = 0, z = 0){
             if(depth === maxDepth){
                 return;
             }
-
             if (instanceMeshes.length == depth) {
                 const instanceMesh = BABYLON.MeshBuilder.CreateCylinder("instance", {height: height, diameter: diameter, diameterTop:diameter*ratio}, scene);
                 instanceMesh.material = instanceMesh_mat;

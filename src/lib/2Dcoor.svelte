@@ -1,9 +1,8 @@
----
----
+<script>
+  import {onMount} from "svelte";
 
-<script is:inline>
-  window.onload = function () {
-    const canvas = document.getElementById("2d");
+  let canvas;
+   onMount(() => {
     const ctx = canvas.getContext("2d");
     const width = canvas.width;
     const height = canvas.height;
@@ -48,7 +47,7 @@
       draw();
     }
     anim();
-  };
+  });
 </script>
 
-<canvas id="2d" width="300" height="300" class="border-2 mx-auto my-5"></canvas>
+<canvas bind:this={canvas} width="300" height="300" class="border-2 mx-auto my-5"></canvas>

@@ -2,14 +2,13 @@
     import * as BABYLON from 'babylonjs';
     //import '@babylonjs/core/Engines/WebGPU/Extensions/'
     import { onMount } from 'svelte';
-    import "../styles/global.css";
 
     // setup babylon
     let canvas;
     let engine;
     let scene;
     let angle = 0;
-    onMount(() => {
+    onMount(() =>{
         engine = new BABYLON.Engine(canvas, true);
         // async function init_engine(){
         //     engine = new BABYLON.WebGPUEngine(canvas);
@@ -60,7 +59,7 @@
         const cor2 = BABYLON.MeshBuilder.CreateSphere("cor2", {diameter: 0.5}, scene);
         cor2.position = new BABYLON.Vector3(-2, height/2, 0.3);
         cor2.material = s_mat;
-    })
+    });
 
     function rotate(){
         const pivot1 = scene.getTransformNodeByName("pivot1");
