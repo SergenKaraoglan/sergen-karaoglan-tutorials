@@ -2,13 +2,14 @@
     import * as BABYLON from 'babylonjs';
     //import '@babylonjs/core/Engines/WebGPU/Extensions/'
     import { onMount } from 'svelte';
+    import "../styles/global.css";
 
     // setup babylon
     let canvas;
     let engine;
     let scene;
     let angle = 0;
-    function init(){
+    onMount(() => {
         engine = new BABYLON.Engine(canvas, true);
         // async function init_engine(){
         //     engine = new BABYLON.WebGPUEngine(canvas);
@@ -59,7 +60,7 @@
         const cor2 = BABYLON.MeshBuilder.CreateSphere("cor2", {diameter: 0.5}, scene);
         cor2.position = new BABYLON.Vector3(-2, height/2, 0.3);
         cor2.material = s_mat;
-    }
+    })
 
     function rotate(){
         const pivot1 = scene.getTransformNodeByName("pivot1");
@@ -69,7 +70,7 @@
     }
 </script>
 
-<canvas class="mx-auto h-80 w-80 sm:h-96 sm:w-96" bind:this={canvas} on:click={() => init()}></canvas>
+<canvas class="mx-auto h-80 w-80 sm:h-96 sm:w-96" bind:this={canvas}></canvas>
 <div class="mx-auto w-fit mt-3">
     <input class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600" type="range" min="0" max={Math.PI * 2} step="0.01" bind:value={angle} on:input={rotate}>
 </div>
