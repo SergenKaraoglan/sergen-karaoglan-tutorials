@@ -1,9 +1,6 @@
 <script>
 	import * as BABYLON from 'babylonjs';
 	import { onMount } from 'svelte';
-	import { createEventDispatcher } from 'svelte';
-
-	const dispatchEvent = createEventDispatcher();
 
 	export let showAngle = false;
 	export let showDepth = false;
@@ -20,10 +17,8 @@
 	let instanceMesh_mat;
 	let id = 0;
 	onMount(() => {
-        dispatchEvent('loaded');
 
 		engine = new BABYLON.Engine(canvas, true);
-		//engine.displayLoadingUI();
 		scene = new BABYLON.Scene(engine);
 		scene.skipPointerMovePicking = true;
 		//scene.debugLayer.show();
@@ -56,10 +51,6 @@
 		instanceMesh_mat.diffuseColor = new BABYLON.Color3(0, 0, 1);
 		instanceMesh_mat.freeze();
 		genFractalTree();
-        // scene.executeWhenReady(function() {
-        //     engine.hideLoadingUI();
-        //     //console.log(scene.isReady())
-        // })
 	});
 
 	function genFractalTree(
