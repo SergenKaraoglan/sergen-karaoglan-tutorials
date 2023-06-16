@@ -1,7 +1,7 @@
 <script>
 import Rotation from "$lib/rotation-points.svelte";
 import Lazy from "$lib/Lazy.svelte";
-
+import '$lib/styles/vscode-dark.css';
 </script>
 
 <svelte:head>
@@ -15,7 +15,7 @@ import Lazy from "$lib/Lazy.svelte";
 
 ## What is a Fractal Tree
 
-A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one with React Three Fiber (R3F) by walking through the process I took to build one. As you might have guessed, fractal trees purely serve as art but similar patterns can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are governed by these simple patterns. They are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal).
+A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one with React Three Fiber (R3F) by walking through the process I took to build one. As you might have guessed, fractal trees purely serve as art but similar patterns can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are governed by these simple patterns. They are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal) which often posess the property of [self-similarity](https://en.wikipedia.org/wiki/Self-similarity).
 
 Below is a fractal tree that is intentionally left with only the first [mesh](https://en.wikipedia.org/wiki/Polygon_mesh) drawn. Increase the range of the slider to see how the tree is recursively built.
 
