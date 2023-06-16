@@ -23,7 +23,7 @@
         dispatchEvent('loaded');
 
 		engine = new BABYLON.Engine(canvas, true);
-		engine.displayLoadingUI();
+		//engine.displayLoadingUI();
 		scene = new BABYLON.Scene(engine);
 		scene.skipPointerMovePicking = true;
 		//scene.debugLayer.show();
@@ -56,10 +56,10 @@
 		instanceMesh_mat.diffuseColor = new BABYLON.Color3(0, 0, 1);
 		instanceMesh_mat.freeze();
 		genFractalTree();
-        scene.executeWhenReady(function() {
-            engine.hideLoadingUI();
-            //console.log(scene.isReady())
-        })
+        // scene.executeWhenReady(function() {
+        //     engine.hideLoadingUI();
+        //     //console.log(scene.isReady())
+        // })
 	});
 
 	function genFractalTree(
