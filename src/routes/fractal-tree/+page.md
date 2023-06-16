@@ -51,7 +51,7 @@ By now you probably have a good idea of what a fractal tree is, in which case we
 
 We can start by first building our "Branch" component that returns a mesh with [cylinder geometry](https://threejs.org/docs/index.html#api/en/geometries/CylinderGeometry). The geometry will take the parameters: radius top, radius bottom, height and radial segments, in that order, that will be modified as the tree 'grows'.
 
-```js
+```jsx
 <cylinderGeometry attach="geometry" args={[radiusT, radiusB, height, 32]} />
 ```
 
@@ -59,7 +59,7 @@ We don't necessarily need to use a cylinder and you can experiment with other sh
 
 ### Rotating branches
 
-Next we would like to be able to rotate our mesh but first we need to get into a few specifics with R3F. For convenience, we would like to change the centre of rotation from the centre of the mesh to its endpoint. To achieve this in R3F it is common practice to nest a mesh within a group and use the group as the centre of rotation. We place our mesh above the origin of the group so the centre of rotation of the group meets the endpoint of our mesh. By interacting with the sliders you can see the difference in our desired centre of rotation (left) and the default centre of rotation (right).
+Next we would like to be able to rotate our mesh but first we need to get into a few specifics with R3F. For convenience, we would like to change the centre of rotation from the centre of the mesh to its endpoint. To achieve this in R3F it is common practice to nest a mesh within a group and use the group as the centre of rotation. We place our mesh above the origin of the group so the centre of rotation of the group meets the endpoint of our mesh. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right).
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
 <Lazy
@@ -73,7 +73,7 @@ Next we would like to be able to rotate our mesh but first we need to get into a
 </div>
 The final Branch component we return is the following and contains the only mesh we need to build our tree.
 
-```js
+```jsx
 <group position={[x, y, z]} rotation={[angleX, 0, angleZ]}>
   <mesh position={[0, height / 2, 0]} material={royalblue}>
     <cylinderGeometry attach="geometry" args={[radiusT, radiusB, height, 32]} />
@@ -86,7 +86,7 @@ The final Branch component we return is the following and contains the only mesh
 Knowing the pattern repeats we can build a fractal tree using recursion. For every branch, we connect two more branches that split at a fixed angle in opposing directions.
 Our termination condition is the depth. The larger the depth the more branches we stack, hence the larger our tree.
 
-```js
+```jsx
 function generate(depth ...) {
   if (depth === 0) {
     return;
@@ -98,7 +98,7 @@ function generate(depth ...) {
 
 We update the height and radius of every branch as we progress by a fixed ratio less than 1 so they decrease in size as the tree progresses. We also increase and decrease the angle by a fixed amount to achieve the effect of our tree growing outwards.
 
-```js
+```jsx
 function generate(depth, angleZ, angleX, radius, height, x, y, z) {
   ...
   branches.push(
@@ -128,7 +128,7 @@ You may have noticed we are converting the angle first to an integer and then di
 
 We want to connect the branches, to do this we need to know the start point of the previous branch. By knowing the angle we can achieve this using [trigonometry](https://en.wikipedia.org/wiki/Trigonometry.) and update the x,y,z coordinates as we progress along the tree. Remember how we changed the centre of rotation? We did this to rotate by the point each branch is connected by.
 
-```js
+```jsx
 // cartesian coordinates
 x -= Math.sin(angleZ) * Math.cos(angleX) * height;
 y += Math.cos(angleZ) * Math.cos(angleX) * height;
@@ -152,7 +152,7 @@ The mesh may be 3D but we are only rotating by the Z axis. We can extend the tre
   </Lazy>
 </div>
 
-```js
+```jsx
 let angleXL = (angleX * 10 + angleIncrement * 10) / 10;
 let angleXR = (angleX * 10 - angleIncrement * 10) / 10;
 generate(depth, 0, angleXL, radius, height, x, y, z);
