@@ -1,5 +1,4 @@
 <script>
-import Rotation from "$lib/rotation-points.svelte";
 import Lazy from "$lib/Lazy.svelte";
 import '$lib/styles/vscode-dark.css';
 </script>

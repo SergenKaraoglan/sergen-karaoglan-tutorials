@@ -1,4 +1,4 @@
-<!-- <script>
+<script>
 	import { onMount } from 'svelte';
 	/* eslint-disable no-undef */
 	import * as d3 from 'd3';
@@ -72,7 +72,6 @@
 			.create('svg')
 			.attr('width', width)
 			.attr('height', height)
-			.attr('viewBox', [-1000, -500, width, height])
 			.attr('style', 'max-width: 100%; height: auto; height: intrinsic;');
 
 		const link = svg
@@ -146,15 +145,15 @@
 			nodeGroup: (d) => d.group,
 			nodeTitle: (d) => `${d.id}\n${d.group}`,
 			linkStrokeWidth: (l) => Math.sqrt(l.value),
-			width: 2000,
-			height: 2000
+			width: 1000,
+			height: 1000
 		});
 
 		document.getElementById('svg').append(graph);
 	});
 </script>
-<div id="svg" /> -->
+<div id="svg" />
 
-<script>
-    
-</script>
+<!-- <script>
+
+</script> -->
