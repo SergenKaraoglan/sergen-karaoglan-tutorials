@@ -37,10 +37,6 @@
 		camera.lowerRadiusLimit = 8;
 		camera.upperRadiusLimit = 8;
 
-		// engine.runRenderLoop(function () {
-		// 	scene.render();
-		// });
-
 		let observer = new IntersectionObserver(
 			function (entries) {
 				entries.forEach(function (entry) {

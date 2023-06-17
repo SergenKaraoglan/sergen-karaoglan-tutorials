@@ -32,9 +32,24 @@
 		camera.lowerRadiusLimit = 8;
 		camera.upperRadiusLimit = 8;
 
-		engine.runRenderLoop(function () {
-			scene.render();
-		});
+		let observer = new IntersectionObserver(
+			function (entries) {
+				entries.forEach(function (entry) {
+					if (entry.isIntersecting) {
+						// If the canvas is visible, start the engine
+						engine.runRenderLoop(function () {
+							scene.render();
+							//console.log('a');
+						});
+					} else {
+						// If the canvas is not visible, stop the engine
+						engine.stopRenderLoop();
+					}
+				});
+			},
+			{ threshold: 0.1 }
+		);
+		observer.observe(canvas);
 
 		window.addEventListener('resize', function () {
 			engine.resize();
