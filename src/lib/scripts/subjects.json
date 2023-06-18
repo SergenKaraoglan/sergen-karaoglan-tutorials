@@ -7,7 +7,10 @@
       {"name": "Computer Science"}
     ],
     "links": [
-      {"source": "Fractal Tree", "target": "Trigonometry", "value": 1}
+      {"source": "Fractal Tree", "target": "Trigonometry"},
+      {"source": "Fractal Tree", "target": "Fractal"},
+      {"source": "Fractal Tree", "target": "Procedural Art"},
+      {"source": "Procedural Art", "target": "Computer Science"}
     ]
   }
   

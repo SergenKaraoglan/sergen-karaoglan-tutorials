@@ -11,10 +11,20 @@
 	const rx = 60;
 	const ry = 40;
 	onMount(() => {
-	    const nodes = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        nodes.setAttribute('stroke', 'blue')
-        nodes.setAttribute('fill', 'blue')
-        nodes.setAttribute('stroke-width', '1')
+		const nodes = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+		nodes.setAttribute('stroke', 'blue');
+		nodes.setAttribute('fill', 'blue');
+		nodes.setAttribute('stroke-width', '1');
+
+		const text_nodes = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+		text_nodes.setAttribute('fill', 'black');
+		text_nodes.setAttribute('font-size', '12');
+		text_nodes.setAttribute('font-family', 'sans-serif');
+
+        const link_nodes = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        link_nodes.setAttribute('stroke', 'black');
+        link_nodes.setAttribute('stroke-width', '1');
+        
 		let cx;
 		let cy;
 		for (const subject of subjects) {
@@ -26,7 +36,6 @@
 				for (const node of nodes.children) {
 					const x = node.cx.baseVal.value;
 					const y = node.cy.baseVal.value;
-					console.log(cx, cy, x, y);
 
 					if (Math.abs(x - cx) < rx * 2 && Math.abs(y - cy) < ry * 2) {
 						finished = false;
@@ -43,7 +52,7 @@
 			const ellipse = createEllipse(rx, ry, cx, cy);
 			nodes.append(ellipse);
 			const textNode = createText(subject.name, cx - rx * 0.8, cy);
-			svg_canvas.append(textNode);
+			text_nodes.append(textNode);
 		}
 
 		for (const link of links) {
@@ -57,15 +66,17 @@
 					target = subject;
 				}
 			}
-			console.log(source, target);
 			const x1 = source.cx;
 			const y1 = source.cy;
 			const x2 = target.cx;
 			const y2 = target.cy;
 			const line = createLine(x1, y1, x2, y2);
-			svg_canvas.append(line);
+			link_nodes.append(line);
 		}
-        svg_canvas.append(nodes);
+        svg_canvas.append(link_nodes);
+		svg_canvas.append(nodes);
+        svg_canvas.append(text_nodes);
+        
 	});
 
 	function createEllipse(rx, ry, cx, cy) {
@@ -80,8 +91,6 @@
 	function createText(text, x, y) {
 		const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
 		textElement.textContent = text;
-		textElement.setAttribute('fill', 'black');
-		textElement.setAttribute('font-size', '16px');
 		textElement.setAttribute('x', x);
 		textElement.setAttribute('y', y);
 		return textElement;
@@ -93,11 +102,8 @@
 		line.setAttribute('x2', x2);
 		line.setAttribute('y1', y1);
 		line.setAttribute('y2', y2);
-		line.setAttribute('stroke-width', 3);
-        line.setAttribute('stroke', 'black');
-        return line;
+		return line;
 	}
 </script>
 
-<svg bind:this={svg_canvas} class="m-auto outline" {width} {height}>
-</svg>
+<svg bind:this={svg_canvas} class="m-auto" {width} {height} />
