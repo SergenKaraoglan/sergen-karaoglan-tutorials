@@ -2,25 +2,31 @@
 	import { onMount } from 'svelte';
 	import * as subject_graph from '$lib/scripts/subjects.json';
 
-	let svg_canvas;
-	const width = 500;
-	const height = 500;
+    let container;
 
 	const subjects = subject_graph.subjects;
 	const links = subject_graph.links;
 	const rx = 70;
 	const ry = 40;
 	onMount(() => {
+        generateGraph();
+        window.addEventListener("resize", () => {container.removeChild(container.firstChild), generateGraph()});
+	});
+
+    function generateGraph(){
+        
+        const width = window.innerWidth;
+	    const height = window.innerHeight;
+        const svg_canvas = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg_canvas.setAttribute('width', width);
+        svg_canvas.setAttribute('height', height);
+
 		const nodes = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-		nodes.setAttribute('stroke', 'blue');
-		nodes.setAttribute('fill', 'blue');
+		nodes.setAttribute('stroke', 'white');
+		nodes.setAttribute('fill', 'black');
 		nodes.setAttribute('stroke-width', '1');
 
 		const text_nodes = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-		text_nodes.setAttribute('fill', 'white');
-		text_nodes.setAttribute('font-size', '16');
-		text_nodes.setAttribute('font-family', 'sans-serif');
-        text_nodes.setAttribute('text-anchor', 'middle');
 
         const link_nodes = document.createElementNS('http://www.w3.org/2000/svg', 'g');
         link_nodes.setAttribute('stroke', 'grey');
@@ -51,13 +57,17 @@
 			}
 
 			const ellipse = createEllipse(rx, ry, cx, cy);
-            const anode = document.createElementNS('http://www.w3.org/2000/svg', 'a');
-            anode.setAttribute('href', '/');
-            anode.append(ellipse);
-            svg_canvas.append(anode);
-			//nodes.append(ellipse);
+			nodes.append(ellipse);
 			const textNode = createText(subject.name, cx, cy);
-			text_nodes.append(textNode);
+            if (subject.url == ""){
+                text_nodes.append(textNode);
+                continue;
+            }
+            textNode.setAttribute('fill', '#02d9fa')
+            const aNode = document.createElementNS('http://www.w3.org/2000/svg', 'a');
+            aNode.setAttribute('href', subject.url);
+            aNode.append(textNode);
+			text_nodes.append(aNode);
 		}
 
 		for (const link of links) {
@@ -78,11 +88,12 @@
 			const line = createLine(x1, y1, x2, y2);
 			link_nodes.append(line);
 		}
+        
         svg_canvas.append(link_nodes);
 		svg_canvas.append(nodes);
         svg_canvas.append(text_nodes);
-        
-	});
+        container.append(svg_canvas);
+    }
 
 	function createEllipse(rx, ry, cx, cy) {
 		const ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
@@ -98,6 +109,10 @@
 		textElement.textContent = text;
 		textElement.setAttribute('x', x);
 		textElement.setAttribute('y', y);
+        textElement.setAttribute('fill', 'white');
+		textElement.setAttribute('font-size', '18');
+		textElement.setAttribute('font-family', 'sans-serif');
+        textElement.setAttribute('text-anchor', 'middle');
 		return textElement;
 	}
 
@@ -109,6 +124,11 @@
 		line.setAttribute('y2', y2);
 		return line;
 	}
+
+
 </script>
 
-<svg bind:this={svg_canvas} class="m-auto bg-black" {width} {height} />
+<!-- <svg bind:this={svg_canvas} class="m-auto bg-black" {width} {height} /> -->
+<div bind:this={container} class="m-auto w-fit bg-black">
+
+</div>

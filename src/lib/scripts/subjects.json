@@ -1,10 +1,10 @@
 {
     "subjects": [
-      {"name": "Fractal"},
-      {"name": "Procedural Art"},
-      {"name": "Trigonometry"},
-      {"name": "Fractal Tree"},
-      {"name": "Computer Science"}
+      {"name": "Fractal", "url": ""},
+      {"name": "Procedural Art", "url": ""},
+      {"name": "Trigonometry", "url": ""},
+      {"name": "Fractal Tree", "url": "/fractal-tree"},
+      {"name": "Computer Science", "url": ""}
     ],
     "links": [
       {"source": "Fractal Tree", "target": "Trigonometry"},
