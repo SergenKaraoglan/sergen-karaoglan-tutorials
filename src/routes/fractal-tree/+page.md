@@ -23,7 +23,6 @@ Below is a fractal tree that is intentionally left with only the first [mesh](ht
   <Lazy
 	this={() => import("$lib/fractal-tree.svelte")}
 	>
-	<div slot="loading">Loading...</div>
 	<svelte:fragment slot="component" let:Component>
 		<Component showDepth={true} curDepth={0} />
 	</svelte:fragment>
@@ -37,7 +36,6 @@ Try the slider below to see how the angle changes the appearance of our fractal 
   <Lazy
 	this={() => import("$lib/fractal-tree.svelte")}
 	>
-	<div slot="loading">Loading...</div>
 	<svelte:fragment slot="component" let:Component>
 		<Component showAngle={true} />
 	</svelte:fragment>
@@ -64,7 +62,6 @@ Next we would like to be able to rotate our mesh but first we need to get into a
 <Lazy
 	this={() => import("$lib/rotation-points.svelte")}
 	>
-	<div slot="loading">Loading...</div>
 	<svelte:fragment slot="component" let:Component>
 		<Component />
 	</svelte:fragment>
@@ -144,7 +141,6 @@ The mesh may be 3D but we are only rotating by the Z axis. We can extend the tre
     <Lazy
     this={() => import("$lib/fractal-tree.svelte")}
     >
-    <div slot="loading">Loading...</div>
     <svelte:fragment slot="component" let:Component>
       <Component curDepth={7} maxDepth={7} is3D={true}  />
     </svelte:fragment>

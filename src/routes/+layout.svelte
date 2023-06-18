@@ -5,7 +5,6 @@
 	inject({ mode: dev ? 'development' : 'production' });
 
 	import '../app.css';
-	import { scale } from 'svelte/transition';
 	const navigation = {
 		social: [
 			{
@@ -51,15 +50,11 @@
 						class="block h-4 w-auto sm:hidden"
 						src="/logo.svg"
 						alt="Sergen Karaoglan logo"
-						height={0}
-						width={0}
 					/>
 					<img
 						class="hidden h-4 w-auto sm:block"
 						src="/logo.svg"
 						alt="Sergen Karaoglan logo"
-						height={0}
-						width={0}
 					/>
 				</a>
 			</div>
@@ -103,7 +98,6 @@
 				</div>
 				{#if showTip}
 					<span
-						transition:scale="{{duration: 100 }}"
 						class="absolute bottom-full m-auto right-0 left-0 max-w-fit rounded bg-gray-800 p-2 text-xs text-white"
 					>
 						Copied!

@@ -8,7 +8,7 @@
 
 	const subjects = subject_graph.subjects;
 	const links = subject_graph.links;
-	const rx = 60;
+	const rx = 70;
 	const ry = 40;
 	onMount(() => {
 		const nodes = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -17,12 +17,13 @@
 		nodes.setAttribute('stroke-width', '1');
 
 		const text_nodes = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-		text_nodes.setAttribute('fill', 'black');
-		text_nodes.setAttribute('font-size', '12');
+		text_nodes.setAttribute('fill', 'white');
+		text_nodes.setAttribute('font-size', '16');
 		text_nodes.setAttribute('font-family', 'sans-serif');
+        text_nodes.setAttribute('text-anchor', 'middle');
 
         const link_nodes = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        link_nodes.setAttribute('stroke', 'black');
+        link_nodes.setAttribute('stroke', 'grey');
         link_nodes.setAttribute('stroke-width', '1');
         
 		let cx;
@@ -37,7 +38,7 @@
 					const x = node.cx.baseVal.value;
 					const y = node.cy.baseVal.value;
 
-					if (Math.abs(x - cx) < rx * 2 && Math.abs(y - cy) < ry * 2) {
+					if (Math.abs(x - cx) < rx * 2.5 && Math.abs(y - cy) < ry * 2.5) {
 						finished = false;
 						break;
 					}
@@ -50,8 +51,12 @@
 			}
 
 			const ellipse = createEllipse(rx, ry, cx, cy);
-			nodes.append(ellipse);
-			const textNode = createText(subject.name, cx - rx * 0.8, cy);
+            const anode = document.createElementNS('http://www.w3.org/2000/svg', 'a');
+            anode.setAttribute('href', '/');
+            anode.append(ellipse);
+            svg_canvas.append(anode);
+			//nodes.append(ellipse);
+			const textNode = createText(subject.name, cx, cy);
 			text_nodes.append(textNode);
 		}
 
@@ -106,4 +111,4 @@
 	}
 </script>
 
-<svg bind:this={svg_canvas} class="m-auto" {width} {height} />
+<svg bind:this={svg_canvas} class="m-auto bg-black" {width} {height} />

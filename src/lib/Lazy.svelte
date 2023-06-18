@@ -18,7 +18,7 @@
 	/>
 {:else}
 	{#await componentPromise}
-		<slot name="loading">Loading...</slot>
+		<img src="./loading.svg" class="h-48 w-48">
 	{:then { default: Component }}
 		<slot name="component" {Component} />
 	{/await}
