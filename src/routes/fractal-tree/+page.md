@@ -97,6 +97,7 @@ function generate(depth ...) {
 
 We update the height and radius of every branch as we progress by a fixed ratio less than 1 so they decrease in size as the tree progresses. We also increase and decrease the angle by a fixed amount to achieve the effect of our tree growing outwards.
 
+
 ```jsx
 function generate(depth, angleZ, angleX, radius, height, x, y, z) {
   ...
@@ -118,7 +119,6 @@ function generate(depth, angleZ, angleX, radius, height, x, y, z) {
 
 return branches;
 ```
-
 <figcaption>Full source code is available at the end of the page.</figcaption>
 
 You may have noticed we are converting the angle first to an integer and then dividing, this to avoid [floating point inaccuracies](https://www.w3schools.com/js/tryit.asp?filename=tryjs_numbers_inaccurate3).
@@ -162,7 +162,6 @@ generate(depth, 0, angleXR, radius, height, x, y, z);
 
 You now know what a Fractal Tree is and saw how to build one in R3F. Procedural generation and fractals are both intriguing areas that can be explored much further as this is one of many fractals and arguably the simplest fractal. I thought I would start with a simple algorithm before branching off to more complex algorithms as I learn R3F. That being said, I hope you enjoyed a brief demonstration of a simple yet elegant pattern that can be found across nature.
 
-[Source code](https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/components/fractal-tree.jsx)
 
 ## Resources
 [Wikipedia](https://en.wikipedia.org/wiki/Fractal_canopy)
@@ -170,4 +169,18 @@ You now know what a Fractal Tree is and saw how to build one in R3F. Procedural 
 [Coding Train](https://www.youtube.com/watch?v=0jjeOYMjmDU)
 
 [Modernescartes](https://www.moderndescartes.com/essays/plants/)
+
+___
+
+<!-- [Source code](https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/components/fractal-tree.jsx) -->
+<div class="flex items-center w-[90px]">
+  <a href='https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio' class="no-underline flex items-center w-full px-4 py-2 text-base font-medium text-black bg-white border rounded-md hover:bg-gray-100">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 1792 1792">
+              <path d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z">
+              </path>
+          </svg>
+          Star
+  </a>
+</div>
 </article>
+

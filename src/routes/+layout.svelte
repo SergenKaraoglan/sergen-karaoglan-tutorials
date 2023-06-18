@@ -5,7 +5,7 @@
 	inject({ mode: dev ? 'development' : 'production' });
 
 	import '../app.css';
-	import { fade } from 'svelte/transition';
+	import { scale } from 'svelte/transition';
 	const navigation = {
 		social: [
 			{
@@ -103,7 +103,7 @@
 				</div>
 				{#if showTip}
 					<span
-						transition:fade
+						transition:scale="{{duration: 100 }}"
 						class="absolute bottom-full m-auto right-0 left-0 max-w-fit rounded bg-gray-800 p-2 text-xs text-white"
 					>
 						Copied!
