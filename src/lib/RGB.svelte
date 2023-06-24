@@ -1,6 +1,4 @@
 <script>
-	import "../styles/global.css"
-
 	$: hex =  "#" + ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1);
 	// calculate luminance
 	$: textColor = ((0.2126*red + 0.7152*green + 0.0722*blue) < 128 && alpha > 0.5) ? "#ffffff" : "#000000";

@@ -1,138 +1,153 @@
 <script>
-    import * as d3 from "d3";
+	import * as d3 from 'd3';
+	import { onMount } from 'svelte';
 
-    let svg_container;
-    let html = `
+	let svg_container;
+	let html = `
   <html>
     <body>
         <h1 id="title">Page Title</h1>
     </body>
   </html>
 `;
+	onMount(() => {
+	const parser = new DOMParser();
+	const example_doc = parser.parseFromString(html, 'text/html');
 
- const parser = new DOMParser();
- const example_doc = parser.parseFromString(html, "text/html");
+	let d3_data = d3.hierarchy(example_doc.children[0]);
 
-let d3_data = d3.hierarchy(example_doc.children[0]);
+	function Tree(
+		data,
+		{
+			path,
+			id = Array.isArray(data) ? (d) => d.id : null,
+			parentId = Array.isArray(data) ? (d) => d.parentId : null,
+			children,
+			tree = d3.tree,
+			sort,
+			label = (d) => d.data.tagName, // given a node d, returns the display name
+			title, // given a node d, returns its hover text
+			link, // given a node d, its link (if any)
+			linkTarget = '_blank', // the target attribute for links (if any)
+			width = 640, // outer width, in pixels
+			height, // outer height, in pixels
+			r = 3,
+			padding = 1, // horizontal padding for first and last column
+			fill = '#999', // fill for nodes
+			fillOpacity, // fill opacity for nodes
+			stroke = '#555', // stroke for links
+			strokeWidth = 1.5,
+			strokeOpacity = 0.4,
+			strokeLinejoin,
+			strokeLinecap,
+			halo = '#fff',
+			haloWidth = 3,
+			curve = d3.curveBumpX
+		} = {}
+	) {
+		// If id and parentId options are specified, or the path option, use d3.stratify
+		// to convert tabular data to a hierarchy; otherwise we assume that the data is
+		// specified as an object {children} with nested objects (a.k.a. the “flare.json”
+		// format), and use d3.hierarchy.
+		const root =
+			path != null
+				? d3.stratify().path(path)(data)
+				: id != null || parentId != null
+				? d3.stratify().id(id).parentId(parentId)(data)
+				: d3.hierarchy(data, children);
 
-function Tree(data, {
-  path,
-  id = Array.isArray(data) ? d => d.id : null,
-  parentId = Array.isArray(data) ? d => d.parentId : null,
-  children,
-  tree = d3.tree,
-  sort,
-  label = d => d.data.tagName, // given a node d, returns the display name
-  title, // given a node d, returns its hover text
-  link, // given a node d, its link (if any)
-  linkTarget = "_blank", // the target attribute for links (if any)
-  width = 640, // outer width, in pixels
-  height, // outer height, in pixels
-  r = 3, 
-  padding = 1, // horizontal padding for first and last column
-  fill = "#999", // fill for nodes
-  fillOpacity, // fill opacity for nodes
-  stroke = "#555", // stroke for links
-  strokeWidth = 1.5,
-  strokeOpacity = 0.4,
-  strokeLinejoin, 
-  strokeLinecap, 
-  halo = "#fff", 
-  haloWidth = 3,
-  curve = d3.curveBumpX,
-} = {}) {
+		// Sort the nodes.
+		if (sort != null) root.sort(sort);
 
-  // If id and parentId options are specified, or the path option, use d3.stratify
-  // to convert tabular data to a hierarchy; otherwise we assume that the data is
-  // specified as an object {children} with nested objects (a.k.a. the “flare.json”
-  // format), and use d3.hierarchy.
-  const root = path != null ? d3.stratify().path(path)(data)
-      : id != null || parentId != null ? d3.stratify().id(id).parentId(parentId)(data)
-      : d3.hierarchy(data, children);
+		// Compute labels and titles.
+		const descendants = root.descendants();
+		const L = label == null ? null : descendants.map((d) => label(d.data, d));
 
-  // Sort the nodes.
-  if (sort != null) root.sort(sort);
+		// Compute the layout.
+		const dx = 10;
+		const dy = width / (root.height + padding);
+		tree().nodeSize([dx, dy])(root);
 
-  // Compute labels and titles.
-  const descendants = root.descendants();
-  const L = label == null ? null : descendants.map(d => label(d.data, d));
+		// Center the tree.
+		let x0 = Infinity;
+		let x1 = -x0;
+		root.each((d) => {
+			if (d.x > x1) x1 = d.x;
+			if (d.x < x0) x0 = d.x;
+		});
 
-  // Compute the layout.
-  const dx = 10;
-  const dy = width / (root.height + padding);
-  tree().nodeSize([dx, dy])(root);
+		// Compute the default height.
+		if (height === undefined) height = x1 - x0 + dx * 2;
 
-  // Center the tree.
-  let x0 = Infinity;
-  let x1 = -x0;
-  root.each(d => {
-    if (d.x > x1) x1 = d.x;
-    if (d.x < x0) x0 = d.x;
-  });
+		// Use the required curve
+		if (typeof curve !== 'function') throw new Error(`Unsupported curve`);
 
-  // Compute the default height.
-  if (height === undefined) height = x1 - x0 + dx * 2;
+		const svg = d3
+			.create('svg')
+			.attr('viewBox', [(-dy * padding) / 2, x0 - dx, width, height])
+			.attr('width', width)
+			.attr('height', height)
+			.attr('style', 'max-width: 100%; height: auto; height: intrinsic;')
+			.attr('font-family', 'sans-serif')
+			.attr('font-size', 10);
 
-  // Use the required curve
-  if (typeof curve !== "function") throw new Error(`Unsupported curve`);
+		svg
+			.append('g')
+			.attr('fill', 'none')
+			.attr('stroke', stroke)
+			.attr('stroke-opacity', strokeOpacity)
+			.attr('stroke-linecap', strokeLinecap)
+			.attr('stroke-linejoin', strokeLinejoin)
+			.attr('stroke-width', strokeWidth)
+			.selectAll('path')
+			.data(root.links())
+			.join('path')
+			.attr(
+				'd',
+				d3
+					.link(curve)
+					.x((d) => d.y)
+					.y((d) => d.x)
+			);
 
-  const svg = d3.create("svg")
-      .attr("viewBox", [-dy * padding / 2, x0 - dx, width, height])
-      .attr("width", width)
-      .attr("height", height)
-      .attr("style", "max-width: 100%; height: auto; height: intrinsic;")
-      .attr("font-family", "sans-serif")
-      .attr("font-size", 10);
+		const node = svg
+			.append('g')
+			.selectAll('a')
+			.data(root.descendants())
+			.join('a')
+			.attr('xlink:href', link == null ? null : (d) => link(d.data, d))
+			.attr('target', link == null ? null : linkTarget)
+			.attr('transform', (d) => `translate(${d.y},${d.x})`);
 
-  svg.append("g")
-      .attr("fill", "none")
-      .attr("stroke", stroke)
-      .attr("stroke-opacity", strokeOpacity)
-      .attr("stroke-linecap", strokeLinecap)
-      .attr("stroke-linejoin", strokeLinejoin)
-      .attr("stroke-width", strokeWidth)
-    .selectAll("path")
-      .data(root.links())
-      .join("path")
-        .attr("d", d3.link(curve)
-            .x(d => d.y)
-            .y(d => d.x));
+		node
+			.append('circle')
+			.attr('fill', (d) => (d.children ? stroke : fill))
+			.attr('r', r);
 
-  const node = svg.append("g")
-    .selectAll("a")
-    .data(root.descendants())
-    .join("a")
-      .attr("xlink:href", link == null ? null : d => link(d.data, d))
-      .attr("target", link == null ? null : linkTarget)
-      .attr("transform", d => `translate(${d.y},${d.x})`);
+		if (title != null) node.append('title').text((d) => title(d.data, d));
 
-  node.append("circle")
-      .attr("fill", d => d.children ? stroke : fill)
-      .attr("r", r);
+		if (L)
+			node
+				.append('text')
+				.attr('dy', '0.32em')
+				.attr('x', (d) => (d.children ? -6 : 6))
+				.attr('text-anchor', (d) => (d.children ? 'end' : 'start'))
+				.attr('paint-order', 'stroke')
+				.attr('stroke', halo)
+				.attr('stroke-width', haloWidth)
+				.text((d, i) => L[i]);
 
-  if (title != null) node.append("title")
-      .text(d => title(d.data, d));
+		return svg.node();
+	}
 
-  if (L) node.append("text")
-      .attr("dy", "0.32em")
-      .attr("x", d => d.children ? -6 : 6)
-      .attr("text-anchor", d => d.children ? "end" : "start")
-      .attr("paint-order", "stroke")
-      .attr("stroke", halo)
-      .attr("stroke-width", haloWidth)
-      .text((d, i) => L[i]);
+	let tree_svg = Tree(d3_data);
+	console.log(tree_svg);
 
-  return svg.node();
-}
+	svg_container.append(tree_svg);
 
-let tree_svg = Tree(d3_data);
-console.log(tree_svg);
-
-document.getElementById('svg-container').append(tree_svg);
-
-function parseTree(){}
-
+	function parseTree() {}
+});
 </script>
 
-<div bind:this={svg_container}></div>
-<input type="text" id="html-input" value="Hello World!" on:input={parseTree}>
+<div bind:this={svg_container} />
+<!-- <input type="text" id="html-input" value="Hello World!" on:input={parseTree} /> -->

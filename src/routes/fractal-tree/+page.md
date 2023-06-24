@@ -160,6 +160,7 @@ You now know what a Fractal Tree is and saw how to build one in R3F. Procedural 
 
 
 ## Resources
+
 [Wikipedia](https://en.wikipedia.org/wiki/Fractal_canopy)
 
 [Coding Train](https://www.youtube.com/watch?v=0jjeOYMjmDU)

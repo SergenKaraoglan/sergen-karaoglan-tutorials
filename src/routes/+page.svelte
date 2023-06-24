@@ -8,9 +8,6 @@
 			technologies: ['Procedural Art', 'Fractals', 'Trigonometry', '3D Graphics'],
 			description: 'Interact with and learn to create fractal trees.',
 			demo: '/fractal-tree',
-			github:
-				'https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/src/components/fractal-tree.jsx',
-			type: 'Procedural art'
 		}
 	];
 </script>
