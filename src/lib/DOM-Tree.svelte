@@ -2,19 +2,12 @@
 	import * as d3 from 'd3';
 	import { onMount } from 'svelte';
 
+	let placeholder = "<h1 id='title'>Page Title</h1>";
 	let svg_container;
-	let html = `
-  <html>
-    <body>
-        <h1 id="title">Page Title</h1>
-    </body>
-  </html>
-`;
-	onMount(() => {
-	const parser = new DOMParser();
-	const example_doc = parser.parseFromString(html, 'text/html');
 
-	let d3_data = d3.hierarchy(example_doc.children[0]);
+	onMount(() => {
+		parseTree();
+	});
 
 	function Tree(
 		data,
@@ -41,7 +34,7 @@
 			strokeLinejoin,
 			strokeLinecap,
 			halo = '#fff',
-			haloWidth = 3,
+			haloWidth = 1,
 			curve = d3.curveBumpX
 		} = {}
 	) {
@@ -140,14 +133,34 @@
 		return svg.node();
 	}
 
-	let tree_svg = Tree(d3_data);
-	console.log(tree_svg);
+	function parseTree() {
+		svg_container.innerHTML = '';
+		let html = `
+  <html>
+    <body>
+        <h1 id="title">Page Title</h1>
+		${placeholder}
+    </body>
+  </html>
+`;
 
-	svg_container.append(tree_svg);
-
-	function parseTree() {}
-});
+		const parser = new DOMParser();
+		const example_doc = parser.parseFromString(html, 'text/html');
+		let d3_data = d3.hierarchy(example_doc.children[0]);
+		let tree_svg = Tree(d3_data);
+		// console.log(tree_svg);
+		svg_container.append(tree_svg);
+	}
 </script>
 
-<div bind:this={svg_container} />
-<!-- <input type="text" id="html-input" value="Hello World!" on:input={parseTree} /> -->
+<div class="grid grid-rows-2">
+	<div class="mx-auto" bind:this={svg_container} />
+	<input
+		class="mx-auto my-5"
+		type="text"
+		id="html-input"
+		size="50"
+		bind:value={placeholder}
+		on:input={parseTree}
+	/>
+</div>

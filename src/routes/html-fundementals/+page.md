@@ -8,10 +8,15 @@ import RGB from "$lib/RGB.svelte";
 	<meta name="description" content="Learn the fundamentals of CSS and HTML" />
 </svelte:head>
 
-<DOMTree />
+
 
 <article class="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
+
 # HTML and CSS Fundamentals
+
+<div class="w-fit m-auto p-5">
+<DOMTree />
+</div>
 
 Let me just start by saying there are 3 fundamental concepts about CSS that you only need to understand to be able create pretty much any website with any styling you want. It is common for a tutorial to bore you with syntax details or for a beginner to get lost with the breadth of features that CSS provides. I mean CSS provides enough features that you can build your own [game](https://codeburst.io/mario-kart-css-7572bd2ce608) without any JavaScript.
 
