@@ -20,7 +20,7 @@ import DOMTree from "$lib/DOM-Tree.svelte";
 
 ## Resources
 ### HTML
-[DOM Tree](https://bioub.github.io/dom-visualizer/)
-[DOM CSS Tree](https://fritscher.ch/dom-css/)
-
+[W3Schools](https://www.w3schools.com/html/default.asp)
+[Mozilla](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[web.dev](https://web.dev/learn/html/)
 </article>

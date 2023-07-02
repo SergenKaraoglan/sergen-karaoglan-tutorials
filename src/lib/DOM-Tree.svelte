@@ -1,7 +1,6 @@
 <script>
 	import * as d3 from 'd3';
 	import { onMount } from 'svelte';
-	import doge from '$lib/assets/doge.jpeg';
 
 	let svg_container;
 	let html = `<html>
@@ -151,13 +150,13 @@
 	}
 </script>
 
-<div class="grid grid-rows-3">
-	<iframe class="mx-auto h-96 w-96" srcdoc={html} title="HTML example" />
-	<div class="mx-auto" bind:this={svg_container} />
+<div class="">
+	<iframe class="mx-auto h-96 w-96 my-5" srcdoc={html} title="HTML example" />
+	<div class="mx-auto my-5" bind:this={svg_container} />
 	<textarea
 		bind:value={html}
-		class="mx-auto"
-		rows="4" cols="50"
+		class="mx-auto my-5"
+		rows="8" cols="50"
 		on:input={parseTree}
 	/>
 </div>
