@@ -100,7 +100,7 @@
 					<span
 						class="absolute bottom-full m-auto right-0 left-0 max-w-fit rounded bg-gray-800 p-2 text-xs text-white"
 					>
-						Copied!
+						Copied
 						<svg
 							class="absolute text-black h-2 w-full left-0 top-full"
 							x="0px"

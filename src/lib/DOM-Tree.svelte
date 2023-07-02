@@ -1,9 +1,16 @@
 <script>
 	import * as d3 from 'd3';
 	import { onMount } from 'svelte';
+	import doge from '$lib/assets/doge.jpeg';
 
-	let placeholder = "<h1 id='title'>Page Title</h1>";
 	let svg_container;
+	let html = `<html>
+    <body>
+		<h1>Doge</h1>
+		<img src="https://slang.net/img/slang/lg/doge_3536.jpg" >
+    </body>
+  </html>
+`;
 
 	onMount(() => {
 		parseTree();
@@ -135,15 +142,6 @@
 
 	function parseTree() {
 		svg_container.innerHTML = '';
-		let html = `
-  <html>
-    <body>
-        <h1 id="title">Page Title</h1>
-		${placeholder}
-    </body>
-  </html>
-`;
-
 		const parser = new DOMParser();
 		const example_doc = parser.parseFromString(html, 'text/html');
 		let d3_data = d3.hierarchy(example_doc.children[0]);
@@ -153,14 +151,13 @@
 	}
 </script>
 
-<div class="grid grid-rows-2">
+<div class="grid grid-rows-3">
+	<iframe class="mx-auto h-96 w-96" srcdoc={html} title="HTML example" />
 	<div class="mx-auto" bind:this={svg_container} />
-	<input
-		class="mx-auto my-5"
-		type="text"
-		id="html-input"
-		size="50"
-		bind:value={placeholder}
+	<textarea
+		bind:value={html}
+		class="mx-auto"
+		rows="4" cols="50"
 		on:input={parseTree}
 	/>
 </div>
