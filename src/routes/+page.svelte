@@ -5,9 +5,16 @@
 		{
 			title: 'Fractal Tree',
 			image: treeimage,
-			technologies: ['Procedural Art', 'Fractals', 'Trigonometry', '3D Graphics'],
+			topics: ['Procedural Art', 'Fractals', 'Trigonometry', '3D Graphics'],
 			description: 'Interact with and learn to create fractal trees.',
 			demo: '/fractal-tree'
+		},
+		{
+			title: 'HTML Fundementals',
+			image: '',
+			topics: ['HTML', 'DOM', 'Markup'],
+			description: 'Learn the basics of HTML.',
+			demo: '/html-fundementals'
 		}
 	];
 </script>
@@ -57,7 +64,7 @@
 							</h3>
 						</div>
 						<p class="mt-1 text-sm text-gray-500">
-							{data.technologies.join(', ')}
+							{data.topics.join(', ')}
 						</p>
 						<p class="mt-1 text-sm text-gray-900">
 							{data.description}
@@ -91,7 +98,7 @@
 										clip-rule="evenodd"
 									/>
 								</svg>
-								<span class="ml-3">Demo</span>
+								<span class="ml-3">Projects</span>
 							</a>
 						</div>
 					</div>
