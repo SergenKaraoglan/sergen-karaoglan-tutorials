@@ -1,6 +1,6 @@
 <script>
 	import treeimage from '$lib/assets/fractal-tree.png';
-
+	import htmlimage from '$lib/assets/HTML5.svg';
 	const project_list = [
 		{
 			title: 'Fractal Tree',
@@ -9,13 +9,13 @@
 			description: 'Interact with and learn to create fractal trees.',
 			demo: '/fractal-tree'
 		},
-		// {
-		// 	title: 'HTML',
-		// 	image: '',
-		// 	topics: ['HTML', 'DOM', 'Markup'],
-		// 	description: 'Learn the basics of HTML.',
-		// 	demo: '/html-fundementals'
-		// }
+		{
+			title: 'HTML',
+			image: htmlimage,
+			topics: ['HTML', 'DOM', 'Markup'],
+			description: 'Learn the basics of HTML.',
+			demo: '/html-fundementals'
+		}
 	];
 </script>
 
@@ -69,7 +69,7 @@
 							</p>
 						</div>
 						<div class="h-auto w-1/4 flex-shrink-0">
-							<img src={data.image} alt={data.title} />
+							<img class="mx-auto h-20 sm:h-32" src={data.image} alt={data.title} />
 						</div>
 					</div>
 				</a>

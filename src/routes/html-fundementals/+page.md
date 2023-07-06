@@ -21,7 +21,7 @@ Now that you probably have a decent grasp of HTML, I will give a bit more contex
 Now here is an important detail every web developer should be famillar with. HTML builds something known as the [Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model)
 
 <div class="w-fit m-auto p-5">
-<!-- <DOMTree /> -->
+<DOMTree />
 </div>
 
 Now, unless you are already famillar, you might be saying "how do I style a page, or give it functionallity such as showing a modal". Well this is done using other lanugages understood by your browser which are Cascading Style Sheets (CSS), and JavaScript which won't be covered here but also heavily build on top of the concept of the DOM Tree and HTML elements, so definitely take the time to understand it because if you do you have alredy covered an important topic that matters at all levels of expereience and something I especially wanted to highlight. As a quick side note, browsers are typically implemented using C++.
