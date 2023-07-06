@@ -5,12 +5,12 @@
 		{
 			title: 'Fractal Tree',
 			image: treeimage,
-			topics: ['Procedural Art', 'Fractals', 'Trigonometry', '3D Graphics'],
+			topics: ['Procedural Art', 'Fractals', 'Trigonometry', '3D Graphics', 'Recursion'],
 			description: 'Interact with and learn to create fractal trees.',
 			demo: '/fractal-tree'
 		},
 		// {
-		// 	title: 'HTML Fundementals',
+		// 	title: 'HTML',
 		// 	image: '',
 		// 	topics: ['HTML', 'DOM', 'Markup'],
 		// 	description: 'Learn the basics of HTML.',
