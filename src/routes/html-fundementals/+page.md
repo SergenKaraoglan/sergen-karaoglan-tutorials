@@ -1,5 +1,6 @@
 <script>
 import DOMTree from "$lib/DOM-Tree.svelte";
+import HTMLatt from "$lib/HTML-Attributes.svelte";
 </script>
 
 <svelte:head>
@@ -12,13 +13,21 @@ import DOMTree from "$lib/DOM-Tree.svelte";
 <article class="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
 
 # HTML
-What your browser just requested and has rendered is a HyperText Markup Language ([HTML](https://en.wikipedia.org/wiki/HTML)) page or more specifically [HTML5](https://en.wikipedia.org/wiki/HTML5), which is the current [markup language](https://en.wikipedia.org/wiki/Markup_language) for browsers used for structuring and determining the behaviour of a webpage. Whether it is link, an image or a video, this is done using HTML. Now there are a countless number of HTML tutorials out there but I wanted to try something different and give a bit more context to HTML than usual and show a bit on how it works behind the scenes. HTML is written using a series of tags that look like the following: "<tagname> content </tagname>. In this example I just used a placeholder name but depending on the name, a specified behaviour will be performed. 
+What your browser just requested and has rendered is a [HyperText Markup Language](https://en.wikipedia.org/wiki/HTML) (HTML) document or more specifically [HTML5](https://en.wikipedia.org/wiki/HTML5), which is the current [markup language](https://en.wikipedia.org/wiki/Markup_language) for browsers used for structuring and determining the behaviour of a webpage also commonly refferered to as the building blocks of a webpage. Whether it is a link, an image or a video, this is done using HTML. Now there are a countless number of HTML tutorials out there but I wanted to try something different and give a bit more context to HTML than usual and show a bit on how it works behind the scenes. HTML is written using a series of tags that look like the following: ```<tagname> content </tagname>```, respectively known as the opening and closing tag. In this example I just used a placeholder name but for recognised tags you will recieve different outputs within the browser. 
 
-Now, here is where I insert my own style of teaching. There are over 100 HTML which can all be found from a [reference](https://www.w3schools.com/tags/). Many tutorials will go through a bunch of individual tags with an explanation, but you can easily skim through and find out but trying to remember them before wrtiting a webpage is pointless. If you have a desired behaviour in mind, it is more than effective to look through the reference and see if it is available.
 
-Now that you probably have a decent grasp of HTML, I will give a bit more context to those interested, so it seems a little less like magic. HTML needs to be defined by someone, or some group of people for which then browser vendors (Chrome, Safari, Firefox, etc.) can then implement so we have a consistently functioning web across diferrent devices and different browsers. For those interested in what's going on behind the scenes in browsers, you can take a look at thr repository of Chromium which is an open source browser that Chrome, Edge, Brave and more use a fork of. 
 
-Now here is an important detail every web developer should be famillar with. HTML builds something known as the [Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model)
+There are over 100 HTML which can all be found from a [reference](https://www.w3schools.com/tags/) but before that intimadates you, it is worth specifying a few things. Many tutorials will go through many individual tags with an explanation, though you can easily skim through a reference and find out about all tags and their respective output. Trying to remember them before wrtiting a webpage is not a requirement and you will mostly be using only a subset of HTML tags. If you have a desired output in mind such as displaying a video, it is more than effective to look through a reference.
+
+Now lets get to an example. This example also includes attributes that allow you to modify how the browser renders your page.
+<HTMLatt />
+
+[WHATWG](https://en.wikipedia.org/wiki/WHATWG)
+[W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium)
+
+If all you want to do is build a static site without styiling, you already have the basics and the reference to do so. You might even be surprised by how much can be done with just HTML. Saying that, I will give a bit more context to those interested, so it all seems a little less like magic. HTML needs to be defined by someone, or some group of people for which then browser vendors (Chrome, Safari, Firefox, etc.) can then implement so we have a consistently functioning web across diferrent devices and different browsers. For those interested in what's going on behind the scenes in browsers, you can take a look at thr repository of Chromium which is an open source browser that Chrome, Edge, Brave and more use a fork of. 
+
+To following is important to know for those who want to include interactivity and styiling. HTML builds something known as the [Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model) (DOM)
 
 <div class="w-fit m-auto p-5">
 <DOMTree />
@@ -28,6 +37,12 @@ Now, unless you are already famillar, you might be saying "how do I style a page
 
 Eventough I said, I won't be going through a bunch of tags, I think showing some of the current best practices is still important to get started. Feel free to write whatever you want and watch as the DOM tree updates and HTML renders live in your browser.
 
+<!-- API -->
+
+I have included a border so you can visualise more specifically how the browser is rendering the tags.
+Containers
+
+[Browser engine](https://en.wikipedia.org/wiki/Browser_engine)
 ## Resources
 [W3Schools](https://www.w3schools.com/html/default.asp)
 

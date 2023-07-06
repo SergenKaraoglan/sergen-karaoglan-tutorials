@@ -5,8 +5,8 @@
 	let svg_container;
 	let html = `<html>
     <body>
-		<h1>Doge</h1>
-		<img src="https://slang.net/img/slang/lg/doge_3536.jpg" >
+		<h1>Pikachu</h1>
+		<img src="https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png" >
     </body>
   </html>
 `;

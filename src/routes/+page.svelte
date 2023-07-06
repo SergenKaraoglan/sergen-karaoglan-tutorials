@@ -3,19 +3,20 @@
 	import htmlimage from '$lib/assets/HTML5.svg';
 	const project_list = [
 		{
+			title: 'HTML',
+			image: htmlimage,
+			topics: ['HTML', 'DOM', 'Markup'],
+			description: 'Learn the fundamentals of HTML.',
+			demo: '/html-fundementals'
+		},
+		{
 			title: 'Fractal Tree',
 			image: treeimage,
 			topics: ['Procedural Art', 'Fractals', 'Trigonometry', '3D Graphics', 'Recursion'],
 			description: 'Interact with and learn to create fractal trees.',
 			demo: '/fractal-tree'
 		},
-		{
-			title: 'HTML',
-			image: htmlimage,
-			topics: ['HTML', 'DOM', 'Markup'],
-			description: 'Learn the basics of HTML.',
-			demo: '/html-fundementals'
-		}
+		
 	];
 </script>
 
