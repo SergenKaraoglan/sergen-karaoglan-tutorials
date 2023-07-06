@@ -3,7 +3,7 @@
 	import htmlimage from '$lib/assets/HTML5.svg';
 	const project_list = [
 		{
-			title: 'HTML',
+			title: 'HTML Fundamentals',
 			image: htmlimage,
 			topics: ['HTML', 'DOM', 'Markup'],
 			description: 'Learn the fundamentals of HTML.',

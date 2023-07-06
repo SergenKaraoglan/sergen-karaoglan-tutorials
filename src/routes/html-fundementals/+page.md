@@ -5,7 +5,7 @@ import HTMLrender from "$lib/HTML-Render.svelte";
 </script>
 
 <svelte:head>
-	<title>HTML | Sergen Karaoglan</title>
+	<title>HTML Fundamentals| Sergen Karaoglan</title>
 	<meta name="description" content="Learn the fundamentals of HTML" />
 </svelte:head>
 
@@ -13,7 +13,7 @@ import HTMLrender from "$lib/HTML-Render.svelte";
 
 <article class="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
 
-# HTML
+# HTML Fundamentals
 What your browser just requested and has rendered is a [HyperText Markup Language](https://en.wikipedia.org/wiki/HTML) (HTML) document or more specifically [HTML5](https://en.wikipedia.org/wiki/HTML5), which is the current [markup language](https://en.wikipedia.org/wiki/Markup_language) for browsers used for structuring and determining the behaviour of a webpage also commonly refferered to as the building blocks of a webpage. Whether it is a link, an image or a video, this is done using HTML. Now there are a countless number of HTML tutorials out there but I wanted to try something different and give a bit more context to HTML than usual and show a bit on how it works behind the scenes. HTML is written using a series of tags that look like the following: ```<tagname> content </tagname>```, respectively known as the opening and closing tag. In this example I just used a placeholder name but for recognised tags you will recieve different outputs within the browser. 
 
 
