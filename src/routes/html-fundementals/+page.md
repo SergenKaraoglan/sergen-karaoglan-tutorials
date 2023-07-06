@@ -1,6 +1,7 @@
 <script>
 import DOMTree from "$lib/DOM-Tree.svelte";
 import HTMLatt from "$lib/HTML-Attributes.svelte";
+import HTMLrender from "$lib/HTML-Render.svelte";
 </script>
 
 <svelte:head>
@@ -41,6 +42,8 @@ Eventough I said, I won't be going through a bunch of tags, I think showing some
 
 I have included a border so you can visualise more specifically how the browser is rendering the tags.
 Containers
+
+<HTMLrender />
 
 [Browser engine](https://en.wikipedia.org/wiki/Browser_engine)
 ## Resources
