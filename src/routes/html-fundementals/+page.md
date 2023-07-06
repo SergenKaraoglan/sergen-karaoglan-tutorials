@@ -36,11 +36,11 @@ To following is important to know for those who want to include interactivity an
 
 Now, unless you are already famillar, you might be saying "how do I style a page, or give it functionallity such as showing a modal". Well this is done using other lanugages understood by your browser which are Cascading Style Sheets (CSS), and JavaScript which won't be covered here but also heavily build on top of the concept of the DOM Tree and HTML elements, so definitely take the time to understand it because if you do you have alredy covered an important topic that matters at all levels of expereience and something I especially wanted to highlight. As a quick side note, browsers are typically implemented using C++.
 
-Eventough I said, I won't be going through a bunch of tags, I think showing some of the current best practices is still important to get started. Feel free to write whatever you want and watch as the DOM tree updates and HTML renders live in your browser.
+Feel free to write whatever you want and watch as the DOM tree updates and HTML renders live in your browser.
 
 <!-- API -->
 
-I have included a border so you can visualise more specifically how the browser is rendering the tags.
+I have included a border so you can visualise more specifically how the browser is rendering the content.
 Containers
 
 <HTMLrender />

@@ -156,7 +156,7 @@ generate(depth, 0, angleXR, radius, height, x, y, z);
 
 ## Finishing up
 
-You now know what a Fractal Tree is and saw how to build one in R3F. Procedural generation and fractals are both intriguing areas that can be explored much further as this is one of many fractals and arguably the simplest fractal. I thought I would start with a simple algorithm before branching off to more complex algorithms as I learn R3F. That being said, I hope you enjoyed a brief demonstration of a simple yet elegant pattern that can be found across nature.
+You now know what a Fractal Tree is and saw how to build one in R3F. Procedural generation and fractals are both intriguing areas that can be explored much further as this is one of many fractals and arguably the simplest fractal. I hope you enjoyed a brief demonstration of a simple yet elegant pattern that can be found across nature.
 
 
 ## Resources
