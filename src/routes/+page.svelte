@@ -50,7 +50,7 @@
 		</div>
 	</div>
 </div>
-<div id="featured-projects" class="mx-auto max-w-4xl py-20 lg:py-32">
+<div id="featured-projects" class="mx-auto max-w-4xl pt-20 lg:pt-28 pb-10">
 	<ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
 		{#each project_list as data}
 			<li class="col-span-2 divide-y divide-gray-200 rounded-lg bg-white shadow">
