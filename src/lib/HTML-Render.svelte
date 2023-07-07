@@ -13,7 +13,7 @@
   </html>
 `;
 
-	let html2 = `<html >
+let html2 = `<html >
         <head>
         <style>
             * {
@@ -21,9 +21,8 @@
             }
             </style>
     </head>
-    <body >
+    <body>
         <h1 >Pikachu</h1>
-        <p >Pokemon number 25</p> 
     </body>
   </html>
 `;
@@ -39,12 +38,27 @@
     <body >
         <h1 >Pikachu</h1>
         <p >Pokemon number 25</p> 
-        <img src="https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png" >
     </body>
   </html>
 `;
 
 	let html4 = `<html >
+        <head>
+        <style>
+            * {
+                border: solid;
+            }
+            </style>
+    </head>
+    <body >
+        <h1 >Pikachu</h1>
+        <p >Pokemon number 25</p> 
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png" >
+    </body>
+  </html>
+`;
+
+	let html5 = `<html >
     <head>
         <style>
             * {
@@ -76,10 +90,14 @@ let time = 1500
 		setTimeout(() => {
 			html = html4;
 		}, (time * 3));
+
+        setTimeout(() => {
+            html = html5;
+        }, (time * 4));
 	}
 
     animate();
-    setInterval(() => animate(), (time * 4));
+    setInterval(() => animate(), (time * 5));
 </script>
 
 <iframe class="mx-auto h-96 w-96 my-5" srcdoc={html} title="HTML example" />
