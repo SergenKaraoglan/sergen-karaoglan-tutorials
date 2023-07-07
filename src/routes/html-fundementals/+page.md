@@ -22,21 +22,20 @@ I will show a single concrete example. This example also includes attributes tha
 
 Each time you change the value, HTML is re-rendering the image to the specified width. You can swap the 'img' element to a 'video' element if you want to instead insert a video and so forth.
 
-There are over 100 HTML elements which can all be found from a [reference](https://www.w3schools.com/tags/) but before that intimidates you, it is worth specifying a few things. While I can go through many elements with an explanation of what each is responsible for, memorising elements before writing a webpage is not a requirement and you will mostly be using only a subset of HTML elements. If you have a desired output in mind such as displaying a video, it is more than effective to look through a reference to find out which element is appropriate.
+There are over 100 HTML elements which can all be found from a [reference](https://www.w3schools.com/tags/) but before that intimidates you, know that memorising elements before writing a webpage is not a requirement and you will mostly be using only a subset of HTML elements. If you have a desired output in mind such as displaying a video, it is more than effective to look through a reference to find out which element is appropriate.
 
-Now, unless you are already familiar, you might be asking "ok so HTML allows you to insert and structure content on page but how do I style a page, or make it interactive?". Well this is done using other languages understood by your browser which are [Cascading Style Sheets](https://en.wikipedia.org/wiki/CSS) (CSS), and [JavaScript](https://en.wikipedia.org/wiki/JavaScript) which won't be covered here but build on top of the concept of the [Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model) (DOM) and HTML elements. As seen below the DOM is rendered as a tree structure with each part of the page being represented as a node. In order for you browser to understand how to render the content it builds a DOM tree first.
+Now, in order for you browser to understand how to render the content it needs to builds a [Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model) using the specfied elements first.
+Below is a self-contained HTML page that renders a heading (h1), paragraph (p) and an image (img) with its DOM represented in a tree structure containing each element as node. Each element can be nested within another element to make it a 'child' element. As we see all content is nested within the 'html' element and the rendered content is nested in a 'body' element which specifies all the content that should be rendered. Within the DOM tree you can see three nodes 'h1', 'p' and 'img' branch out from the 'body' node which branches out of the 'html' node. 
 
-Below is a self-contained HTML page that renders a heading (h1), paragraph (p) and an image (img). Each element can be nested within another element which makes it the 'child' of the element it is nested in. As we see all content is nested within the 'html' element and the rendered content is nested in a 'body' element which specifies all the content that should be rendered. Within the DOM tree you can see three nodes h1, p and img branch out from the 'body' node which branches out of the html node. <!-- id, class -->
 Feel free to write whatever you want and watch as the DOM tree updates and HTML renders live in your browser. If you want an example try ```<p>Electric type</p>``` which is a paragraph element with the content "Electric type".
 
 <div class="w-fit m-auto p-5">
 <DOMTree />
 </div>
 
+I have included a border around each element with the elements sequentially being included so you can visualise more specifically how the browser is rendering the content.
 
-I have included a border around each element with the elements sequentially being added so you can visualise more specifically how the browser is rendering the content.
-
-  <Lazy
+<Lazy
 	this={() => import("$lib/HTML-Render.svelte")}
 	>
 	<svelte:fragment slot="component" let:Component>
@@ -44,7 +43,7 @@ I have included a border around each element with the elements sequentially bein
 	</svelte:fragment>
 </Lazy>
 
-You can see how each content creates a container around itself and how you can group content together. There is even an element just for grouping elements and is one of the most used elements called 'DIV' which I used to group the heading and paragraph in the last sequence of the animation.
+You can see how each content creates a container around itself and how you can group content together. There is even an element just for grouping elements and is one of the most used elements called 'div' which I used to group the heading and paragraph in the last sequence of the animation.
 
 If all you want to do is build a static site without styling, you already have the basics and the reference to do so. If you want to move straight to learning how to style or make a page interactive, you are also ready but you might even be surprised by how much can be done with just HTML. Check out the resources below if you want to find out more about HTML and try building your first static site.
 
