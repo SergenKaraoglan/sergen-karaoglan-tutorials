@@ -6,6 +6,9 @@
             * {
                 border: solid;
             }
+            * {
+                margin: 5px;
+            }
             </style>
     </head>
     <body>
@@ -18,6 +21,9 @@ let html2 = `<html >
         <style>
             * {
                 border: solid;
+            }
+            * {
+                margin: 5px;
             }
             </style>
     </head>
@@ -33,6 +39,9 @@ let html2 = `<html >
             * {
                 border: solid;
             }
+            * {
+                margin: 5px;
+            }
             </style>
     </head>
     <body >
@@ -47,6 +56,9 @@ let html2 = `<html >
         <style>
             * {
                 border: solid;
+            }
+            * {
+                margin: 5px;
             }
             </style>
     </head>
@@ -64,6 +76,9 @@ let html2 = `<html >
             * {
                 border: solid;
             }
+            * {
+                margin: 5px;
+            }
             </style>
     </head>
     <body>
@@ -76,7 +91,7 @@ let html2 = `<html >
   </html>
 `;
 
-let time = 1500
+let time = 1000
 	function animate() {
 		html = html1;
 		setTimeout(() => {
