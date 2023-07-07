@@ -17,7 +17,7 @@ import '$lib/styles/vscode-dark.css';
 <article class="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
 
 # HTML Fundamentals
-## Elements
+## Elements and Attributes
 What your browser just requested and has rendered is a [HyperText Markup Language](https://en.wikipedia.org/wiki/HTML) (HTML) document or more specifically [HTML5](https://en.wikipedia.org/wiki/HTML5), which is the current [markup language](https://en.wikipedia.org/wiki/Markup_language) for browsers used for structuring and determining the behaviour of a webpage also commonly referred to as the building blocks of a webpage. Whether it is a link, an image or a video, this is implemented using HTML. Now there are a countless number of HTML tutorials out there but I wanted to try something different and give a bit more context to HTML than usual and show a bit on how it works behind the scenes but first lets go straight to covering some basics. HTML is written using what are known as elements that mostly look like the following: ```<tagname> content </tagname>```. Elements are made up of tags usually involving an opening ```<>``` and closing tag ```</>``` with content nested between. In this example I just used a placeholder name but for recognised tag names you will receive different outputs within the browser.
 
 Below is an example of a 'h1' element that includes the content HTML. The 'h1' element tells the browser to render text you include within it as a heading that can be editied.
@@ -41,7 +41,7 @@ Feel free to write whatever you want and watch as the DOM tree updates and HTML 
 <DOMTree />
 </div>
 
-## Containers and Grouping
+## Rendering
 I have included a border around each element with the elements sequentially being included so you can visualise more specifically how the browser is rendering the content.
 
 <Lazy
