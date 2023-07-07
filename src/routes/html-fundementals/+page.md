@@ -46,7 +46,7 @@ I have included a border around each element with the elements sequentially bein
 
 You can see how each content creates a container around itself and how you can group content together. There is even an element just for grouping elements and is one of the most used elements called 'div' which I used to group the heading and paragraph in the last sequence of the animation.
 
-If all you want to do is build a static site without styling, you already have the basics and the reference to do so. If you want to move straight to learning how to style or make a page interactive, you are also ready but you might even be surprised by how much can be done with just HTML. Check out the resources below if you want to find out more about HTML and try building your first static site.
+If all you want to do is build a static site without styling, you already have the basics and the reference to do so. If you want to move straight to learning how to style or make a page interactive, you will need to learn [CSS](https://en.wikipedia.org/wiki/CSS) and [JavaScript](https://en.wikipedia.org/wiki/JavaScript) respectively which build on the concepts here but you might be surprised by how much can be done with just HTML. Check out the resources below if you want to find out more about HTML and try building your first static site.
 
 To get started here is a template:
 
@@ -54,9 +54,9 @@ To get started here is a template:
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8" />
 		<title> title </title>
-		<link rel="icon" href="/favicon.ico" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
 	</head>
 	<body>
 		content
