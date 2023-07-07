@@ -71,7 +71,7 @@
 			<div>
 				<h3 class="text-sm font-semibold leading-6 text-gray-900">Contact</h3>
 				<p class="mt-2 text-sm leading-6 text-gray-600">
-					Interested in front-end and full-stack web development, full-time, on-site (UK) or remote.
+					Open to job opportunities, feedback and questions.
 				</p>
 			</div>
 			<button

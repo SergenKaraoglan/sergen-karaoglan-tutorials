@@ -1,4 +1,5 @@
 <script>
+import GithubStar from "$lib/GithubStar.svelte";
 import DOMTree from "$lib/DOM-Tree.svelte";
 import HTMLatt from "$lib/HTML-Attributes.svelte";
 import HTMLele from "$lib/HTML-Element.svelte";
@@ -75,6 +76,9 @@ To get started here is a template:
 
 [web.dev](https://web.dev/learn/html/)
 
+___
+
+<GithubStar />
 <!-- The group that specifies HTML and the DOM is called [WHATWG](https://en.wikipedia.org/wiki/WHATWG) and use to be the [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium). The [browser engine](https://en.wikipedia.org/wiki/Browser_engine) is responsible for what is responsible for rendering HTML into a webpage and needs to be developed by browser vendors (Chrome, Safari, Firefox etc.) to match the HTML specification so we have a consistently functioning web pages across diferrent devices and different browsers. -->
 
 </article>
