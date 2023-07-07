@@ -34,7 +34,7 @@ Below is a self-contained HTML page that renders a heading (h1), paragraph (p) a
 
 Feel free to write whatever you want and watch as the DOM tree updates and HTML renders live in your browser. If you want an example try ```<p>Electric type</p>``` which is a paragraph element with the content "Electric type".
 
-<div class="w-fit m-auto p-5">
+<div class="w-fit m-auto py-5">
 <DOMTree />
 </div>
 
