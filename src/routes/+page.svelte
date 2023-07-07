@@ -5,7 +5,7 @@
 		{
 			title: 'HTML Fundamentals',
 			image: htmlimage,
-			topics: ['HTML', 'DOM', 'Markup'],
+			topics: ['HTML', 'DOM', 'Markup', 'Web'],
 			description: 'Learn the fundamentals of HTML.',
 			demo: '/html-fundementals'
 		},

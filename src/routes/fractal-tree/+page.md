@@ -160,7 +160,7 @@ generate(depth, 0, angleXR, radius, height, x, y, z);
 You now know what a Fractal Tree is and saw how to build one in R3F. Procedural generation and fractals are both intriguing areas that can be explored much further as this is one of many fractals and arguably the simplest fractal. I hope you enjoyed a brief demonstration of a simple yet elegant pattern that can be found across nature.
 
 
-## Resources
+### Resources
 
 [Wikipedia](https://en.wikipedia.org/wiki/Fractal_canopy)
 

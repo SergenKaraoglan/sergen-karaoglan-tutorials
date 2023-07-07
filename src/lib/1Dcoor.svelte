@@ -1,5 +1,4 @@
 <script>
-    import "../styles/global.css"
     let value = 0;
 </script>
 
