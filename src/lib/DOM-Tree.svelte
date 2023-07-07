@@ -153,13 +153,6 @@
 	}
 </script>
 
-<div class="">
-	<iframe class="mx-auto h-96 w-96 my-5" srcdoc={html} title="HTML example" />
-	<div class="mx-auto my-5" bind:this={svg_container} />
-	<textarea
-		bind:value={html}
-		class="mx-auto my-5"
-		rows="8" cols="50"
-		on:input={parseTree}
-	/>
-</div>
+<iframe class="mx-auto h-96 w-96 my-5" srcdoc={html} title="HTML example" />
+<div class="mx-auto my-5" bind:this={svg_container} />
+<textarea bind:value={html} class="mx-auto my-5 flex flex-center" rows="8" cols="50" on:input={parseTree} />
