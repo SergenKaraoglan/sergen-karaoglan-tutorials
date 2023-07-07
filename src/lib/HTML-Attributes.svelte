@@ -1,5 +1,5 @@
 <script>
-    let width = 200;
+    let width = 100;
 </script>
 
 <div class="h-52 w-52 m-auto flex flex-center p-5">

@@ -4,10 +4,12 @@
 
 	let svg_container;
 	let html = `<html>
+	<head>
+	</head>
     <body>
 		<h1>Pikachu</h1>
 		<p>Pokemon number 25</p> 
-		<img src="https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png" >
+		<img src="https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png">
     </body>
   </html>
 `;
