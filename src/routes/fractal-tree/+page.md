@@ -15,7 +15,7 @@ import '$lib/styles/vscode-dark.css';
 
 ## What is a Fractal Tree
 
-A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one with React Three Fiber (R3F) by walking through the process I took to build one. As you might have guessed, fractal trees purely serve as art but similar patterns can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are governed by these simple patterns. They are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal) which often posess the property of [self-similarity](https://en.wikipedia.org/wiki/Self-similarity).
+A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one. I will be using Babylon.js but concepts can be generalised to your chosen 3D renderer. As you might have guessed, fractal trees purely serve as art but similar patterns can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are influenced by these simple patterns. They are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal) which often posess the property of [self-similarity](https://en.wikipedia.org/wiki/Self-similarity) as you will soon see.
 
 Below is a fractal tree that is intentionally left with only the first [mesh](https://en.wikipedia.org/wiki/Polygon_mesh) drawn. Increase the range of the slider to see how the tree is recursively built.
 
@@ -43,21 +43,26 @@ Try the slider below to see how the angle changes the appearance of our fractal 
 </Lazy>
 </div>
 
-By now you probably have a good idea of what a fractal tree is, in which case we will now begin to build one using R3F.
+By now you probably have a good idea of what a fractal tree is, in which case we will now begin to build one using Babylon.
 
 ## Building a 2D Fractal Tree
 
-We can start by first building our "Branch" component that returns a mesh with [cylinder geometry](https://threejs.org/docs/index.html#api/en/geometries/CylinderGeometry). The geometry will take the parameters: radius top, radius bottom, height and radial segments, in that order, that will be modified as the tree 'grows'.
+We can start by first creating our "branch" instance which will come in the form of a [cylinder geometry](https://threejs.org/docs/index.html#api/en/geometries/CylinderGeometry) mesh. The geometry will take the parameters: height, diameter bottom and diameter top in that order, that will be modified as the tree 'grows'.
 
 ```jsx
-<cylinderGeometry attach="geometry" args={[radiusT, radiusB, height, 32]} />
+// create branch using cylinder mesh
+branch = BABYLON.MeshBuilder.CreateCylinder(
+  'instance',
+  { height: height, diameter: diameter, diameterTop: diameter * ratio },
+  scene
+);
 ```
 
-We don't necessarily need to use a cylinder and you can experiment with other shapes such as a cube to possibly get interesting results but we will be sticking with a cylinder to most closely resemble a tree.
+We don't necessarily need to use a cylinder and you can experiment with other shapes such as a sphere to possibly get interesting results but we will be sticking with a cylinder to most closely resemble a tree.
 
 ### Rotating branches
 
-Next we would like to be able to rotate our mesh but first we need to get into a few specifics with R3F. For convenience, we would like to change the centre of rotation from the centre of the mesh to its endpoint. To achieve this in R3F it is common practice to nest a mesh within a group and use the group as the centre of rotation. We place our mesh above the origin of the group so the centre of rotation of the group meets the endpoint of our mesh. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right).
+Next we would like to be able to rotate our mesh but first we need to get into a few specifics with Babylon. For convenience, we would like to change the centre of rotation from the centre of the mesh to its endpoint. To achieve this in Babylon it is common practice to use a [TransformNode](https://doc.babylonjs.com/typedoc/classes/BABYLON.TransformNode) as the centre of rotation which is not rendered. We place our mesh above the origin of the tranform node so the centre of rotation of the group meets the endpoint of our mesh. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right). In this example I have also rendered the centre of rotation.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
 <Lazy
@@ -68,14 +73,16 @@ Next we would like to be able to rotate our mesh but first we need to get into a
 	</svelte:fragment>
 </Lazy>
 </div>
-The final Branch component we return is the following and contains the only mesh we need to build our tree.
+
+Once we have our cylinder and pivot we have the ingredients to build our tree.
 
 ```jsx
-<group position={[x, y, z]} rotation={[angleX, 0, angleZ]}>
-  <mesh position={[0, height / 2, 0]} material={royalblue}>
-    <cylinderGeometry attach="geometry" args={[radiusT, radiusB, height, 32]} />
-  </mesh>
-</group>
+// create pivot for branch
+pivot = new BABYLON.TransformNode('pivot');
+branch.parent = pivot;
+pivot.position = new BABYLON.Vector3(x, y, z);
+branch.position = new BABYLON.Vector3(0, height / 2, 0);
+pivot.rotation = new BABYLON.Vector3(angleX, 0, angleZ);
 ```
 
 ### Recursively generating our tree
@@ -84,11 +91,13 @@ Knowing the pattern repeats we can build a fractal tree using recursion. For eve
 Our termination condition is the depth. The larger the depth the more branches we stack, hence the larger our tree.
 
 ```jsx
+const maxDepth = 10;
 function generate(depth ...) {
-  if (depth === 0) {
-    return;
+  // recursion break point
+  if (depth === maxDepth) {
+		return;
   }
-  depth -= 1
+  depth += 1;
   ...
 }
 ```
@@ -98,13 +107,13 @@ We update the height and radius of every branch as we progress by a fixed ratio 
 
 ```jsx
 function generate(depth, angleZ, angleX, radius, height, x, y, z) {
-  ...
-  branches.push(
-    <Branch args={[radius, height, angleZ, angleX, x, y, z]} />
-  );
+  // check depth
+  // create branch and pivot
 
+  // update branch values for next depth
   radius *= ratio;
   height *= ratio;
+  // cartesian coordinates
   x = ...
   y = ...
   z = ...
@@ -114,8 +123,6 @@ function generate(depth, angleZ, angleX, radius, height, x, y, z) {
   generate(depth, angleZL, 0, radius, height, x, y, z);
   generate(depth, angleZR, 0, radius, height, x, y, z);
 }
-
-return branches;
 ```
 <figcaption>Full source code is available at the end of the page.</figcaption>
 
@@ -157,7 +164,7 @@ generate(depth, 0, angleXR, radius, height, x, y, z);
 
 ## Finishing up
 
-You now know what a Fractal Tree is and saw how to build one in R3F. Procedural generation and fractals are both intriguing areas that can be explored much further as this is one of many fractals and arguably the simplest fractal. I hope you enjoyed a brief demonstration of a simple yet elegant pattern that can be found across nature.
+You now know what a Fractal Tree is and saw how to build one in Babylon. Procedural generation and fractals are both intriguing areas that can be explored much further as this is one of many fractals and arguably the simplest fractal. I hope you enjoyed a brief demonstration of a simple yet elegant pattern that can be found across nature.
 
 
 ### Resources
