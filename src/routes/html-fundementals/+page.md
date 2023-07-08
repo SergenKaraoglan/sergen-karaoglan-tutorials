@@ -20,16 +20,16 @@ import '$lib/styles/vscode-dark.css';
 ## Elements and Attributes
 What your browser just requested and has rendered is a [HyperText Markup Language](https://en.wikipedia.org/wiki/HTML) (HTML) document or more specifically [HTML5](https://en.wikipedia.org/wiki/HTML5), which is the current [markup language](https://en.wikipedia.org/wiki/Markup_language) for browsers used for structuring and determining the behaviour of a webpage also commonly referred to as the building blocks of a webpage. Whether it is a link, an image or a video, this is implemented using HTML. Now there are a countless number of HTML tutorials out there but I wanted to try something different and give a bit more context to HTML than usual and show a bit on how it works behind the scenes but first lets go straight to covering some basics. HTML is written using what are known as elements that mostly look like the following: ```<tagname> content </tagname>```. Elements are made up of tags usually involving an opening ```<>``` and closing tag ```</>``` with content nested between. In this example I just used a placeholder name but for recognised tag names you will receive different outputs within the browser.
 
-Below is an example of a 'h1' element that includes the content HTML. The 'h1' element tells the browser to render text you include within it as a heading that can be editied.
+Below is an example of a 'h1' element that includes the content HTML. The 'h1' element tells the browser to render text you include within it as a heading. I made this h1 element editable, everytime you edit it, the h1 element will be rendered with the new content.
 <HTMLele />
 
-Moving on to a slightly less trivial example. This example also includes attributes that allow you to modify the behaviour of the element. In this example you have an img element which displays an image. One attribute is called "src" which takes a link to an image, the other attribute is the width which I have made available to modify. Give it a try.
+Moving on to a slightly less trivial example that doesn't include a closing tag. This example also includes attributes that allow you to modify the behaviour of the element. In this example you have an img element which displays an image. One attribute is called "src" which takes a link to an image, the other attribute is the width which I have made available to modify. Give it a try.
 
 <HTMLatt />
 
-Each time you change the value, HTML is re-rendering the image to the specified width. You can swap the 'img' element to a 'video' element if you want to instead insert a video and so forth.
+Each time you change the attribute value, the image matches the specified width.
 
-There are over 100 HTML elements which can all be found from a [reference](https://www.w3schools.com/tags/) but before that intimidates you, know that memorising elements before writing a webpage is not a requirement and you will mostly be using only a subset of HTML elements. If you have a desired output in mind such as displaying a video, it is more than effective to look through a reference to find out which element is appropriate.
+There are over 100 HTML elements which can all be found from a [reference](https://www.w3schools.com/tags/) but before that intimidates you, know that memorising elements before writing a webpage is not a requirement and you will mostly be using only a subset of HTML elements. If you have a desired output in mind such as displaying a video, it is more than effective to look through a reference to find out which element is appropriate. For example, you can swap the 'img' element above to a 'video' element if you want to instead insert a video and so forth.
 
 ## Document Object Model
 Now, in order for you browser to understand how to render the content it needs to builds a [Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model) using the specified elements first.
@@ -52,7 +52,7 @@ I have included a border around each element with the elements sequentially bein
 	</svelte:fragment>
 </Lazy>
 
-You can see how each content creates a container around itself and how some content is contained together if they are a child of another element. There is even an element just for grouping elements and is one of the most used elements called 'div' which I used to group the heading and paragraph in the last sequence of the animation.
+You can see how each content creates a container around itself and how some content is contained together within another container if they are a child of another element. There is even an element just for grouping elements and is one of the most used elements called 'div' which I used to group the heading and paragraph in the last sequence of the animation.
 
 ## Wrap Up
 If all you want to do is build a static site without styling, you already have the basics and the reference to do so. If you want to move straight to learning how to style or make a page interactive, you will need to learn [CSS](https://en.wikipedia.org/wiki/CSS) and [JavaScript](https://en.wikipedia.org/wiki/JavaScript) respectively which build on the concepts here but you might be surprised by how much can be done with just HTML. Check out the resources below if you want to find out more about HTML and try building your first static site.
