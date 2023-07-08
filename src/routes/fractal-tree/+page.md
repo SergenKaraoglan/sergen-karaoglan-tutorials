@@ -62,7 +62,7 @@ We don't necessarily need to use a cylinder and you can experiment with other sh
 
 ### Rotating branches
 
-Next we would like to be able to rotate our mesh but first we need to get into a few specifics with Babylon. For convenience, we would like to change the centre of rotation from the centre of the mesh to its endpoint. To achieve this in Babylon it is common practice to use a [TransformNode](https://doc.babylonjs.com/typedoc/classes/BABYLON.TransformNode) as the centre of rotation which is not rendered. We place our mesh above the origin of the tranform node so the centre of rotation of the group meets the endpoint of our mesh. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right). In this example I have also rendered the centre of rotation.
+Next we would like to be able to rotate our mesh but first we need to get into a few specifics with Babylon. For convenience, we would like to change the centre of rotation from the centre of the mesh to its endpoint. To achieve this in Babylon it is common practice to use a [TransformNode](https://doc.babylonjs.com/typedoc/classes/BABYLON.TransformNode) which we will name as the pivot as the centre of rotation, which is not rendered. We place our mesh above the origin of the pivot so the centre of rotation of the pivot meets the endpoint of our mesh. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right). In this example I have also rendered the centre of rotation.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
 <Lazy
