@@ -49,6 +49,16 @@ By now you probably have a good idea of what a fractal tree is, in which case we
 
 We can start by first creating our "branch" instance which will come in the form of a [cylinder geometry](https://threejs.org/docs/index.html#api/en/geometries/CylinderGeometry) mesh. The geometry will take the parameters: height, diameter bottom and diameter top in that order, that will be modified as the tree 'grows'.
 
+<div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
+  <Lazy
+	this={() => import("$lib/Cylinder-Growth.svelte")}
+	>
+	<svelte:fragment slot="component" let:Component>
+		<Component showAngle={true} />
+	</svelte:fragment>
+</Lazy>
+</div>
+
 ```jsx
 // create branch using cylinder mesh
 branch = BABYLON.MeshBuilder.CreateCylinder(
@@ -58,7 +68,7 @@ branch = BABYLON.MeshBuilder.CreateCylinder(
 );
 ```
 
-We don't necessarily need to use a cylinder and you can experiment with other shapes such as a sphere to possibly get interesting results but we will be sticking with a cylinder to most closely resemble a tree.
+We don't necessarily need to use a cylinder and you can experiment with other shapes such as a sphere to possibly get interesting results but here we will be sticking with a cylinder to most closely resemble a tree.
 
 ### Rotating branches
 
