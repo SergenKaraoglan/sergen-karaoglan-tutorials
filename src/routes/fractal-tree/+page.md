@@ -143,7 +143,7 @@ Finally once we have reached the end of recursion we return the array of branche
 
 ## Building a 3D Fractal Tree
 
-The mesh may be 3D but we are only rotating by the Z axis. We can extend the tree by adding two more branches that rotate by the X axis. You can orbit the tree with a cursor or touchscreen.
+The mesh may be 3D but we are only rotating by the Z axis. We can extend the tree by adding two more branches that rotate by the X axis. You can orbit the tree by dragging it.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
     <Lazy
@@ -171,7 +171,7 @@ You now know what a Fractal Tree is and saw how to build one in Babylon. Procedu
 
 [Wikipedia](https://en.wikipedia.org/wiki/Fractal_canopy)
 
-[Coding Train](https://www.youtube.com/watch?v=0jjeOYMjmDU)
+[The Coding Train](https://www.youtube.com/watch?v=0jjeOYMjmDU)
 
 [Modernescartes](https://www.moderndescartes.com/essays/plants/)
 
