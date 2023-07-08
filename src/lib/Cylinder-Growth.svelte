@@ -8,6 +8,7 @@
 	let scene;
 	const height = 2;
     let diameter = 1;
+    const ratio = 0.8
     const cylinders = [];
     const num_cylinders = 5;
     let j = 0;
@@ -22,7 +23,7 @@
 			Math.PI / 2,
 			Math.PI / 2,
 			8,
-			new BABYLON.Vector3(0, 3, 10),
+			new BABYLON.Vector3(0, 4, 10),
 			scene
 		);
 		camera.fov = Math.PI / 5;
@@ -59,12 +60,12 @@
 		c_mat.freeze();
 		
         for (let i = 0; i < num_cylinders; i++){
-            const cylinder = BABYLON.MeshBuilder.CreateCylinder('cylinder' + i, { height: height, diameterTop: diameter , diameterBottom: diameter }, scene);
+            const cylinder = BABYLON.MeshBuilder.CreateCylinder('cylinder' + i, { height: height, diameterTop: diameter*ratio , diameterBottom: diameter }, scene);
             cylinder.isVisible = false;
 		    cylinder.position = new BABYLON.Vector3(0, height * i, 0);
 		    cylinder.material = c_mat;
             cylinders.push(cylinder);
-            diameter *= 0.8;
+            diameter *= ratio;
         }
 
         setInterval(function(){

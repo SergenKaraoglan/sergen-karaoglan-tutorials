@@ -115,4 +115,4 @@ let time = 1000
     setInterval(() => animate(), (time * 5));
 </script>
 
-<iframe class="mx-auto h-96 w-96 my-5" srcdoc={html} title="HTML example" />
+<iframe class="mx-auto h-96 w-80 sm:w-96 my-5" srcdoc={html} title="HTML example" />
