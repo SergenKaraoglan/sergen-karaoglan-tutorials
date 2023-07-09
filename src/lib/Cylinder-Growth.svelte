@@ -6,7 +6,7 @@
 	let canvas;
 	let engine;
 	let scene;
-	const height = 2;
+	let height = 2;
     let diameter = 1;
     const ratio = 0.8
     const cylinders = [];
@@ -59,13 +59,16 @@
 		c_mat.diffuseColor = new BABYLON.Color3(0, 0, 1);
 		c_mat.freeze();
 		
+        let totalHeight = 0;
         for (let i = 0; i < num_cylinders; i++){
             const cylinder = BABYLON.MeshBuilder.CreateCylinder('cylinder' + i, { height: height, diameterTop: diameter*ratio , diameterBottom: diameter }, scene);
             cylinder.isVisible = false;
-		    cylinder.position = new BABYLON.Vector3(0, height * i, 0);
+		    cylinder.position = new BABYLON.Vector3(0, totalHeight, 0);
 		    cylinder.material = c_mat;
             cylinders.push(cylinder);
             diameter *= ratio;
+            height *= ratio;
+            totalHeight += height;
         }
 
         setInterval(function(){
