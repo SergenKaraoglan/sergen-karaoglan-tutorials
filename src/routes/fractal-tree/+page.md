@@ -15,7 +15,7 @@ import '$lib/styles/vscode-dark.css';
 
 ## What is a Fractal Tree
 
-A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one. I used [Babylon.js](https://www.babylonjs.com/) but concepts can be generalised to your chosen 3D renderer. A Fractal tree can be categorised as procedural art but similar patterns found in fractal trees can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are influenced by a recursive pattern. They are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal) which often possess the property of [self-similarity](https://en.wikipedia.org/wiki/Self-similarity) as you will soon see.
+A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one. I used [Babylon.js](https://www.babylonjs.com/) but the concepts shown can be generalised to your chosen 3D rendering engine and language of choice. A Fractal tree can be categorised as procedural art but similar patterns found in fractal trees can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are influenced by a recursive pattern. They are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal) which often possess the property of [self-similarity](https://en.wikipedia.org/wiki/Self-similarity) as you will soon see.
 
 Below is a fractal tree that is intentionally left with only the first [mesh](https://en.wikipedia.org/wiki/Polygon_mesh) drawn. Increase the range of the slider to see how the tree is recursively built.
 
@@ -114,13 +114,12 @@ function generate(depth, angleZ, angleX, radius, height, x, y, z) {
   generate(depth, angleZR, 0, radius, height, x, y, z);
 }
 ```
-<figcaption>Full source code is available at the end of the page.</figcaption>
 
 You may have noticed we are converting the angle first to an integer and then dividing, this to avoid [floating point inaccuracies](https://www.w3schools.com/js/tryit.asp?filename=tryjs_numbers_inaccurate3).
 
 #### Using trigonometry to convert polar coordinates to cartesian
 
-We want to connect the branches by their endpoints, to do this we need to know the start point of the previous branch. By knowing the angle we can achieve this using [trigonometry](https://en.wikipedia.org/wiki/Trigonometry.) and update the x,y,z coordinates as we progress along the tree. Remember how we changed the centre of rotation? We did this to rotate by the point each branch is connected by.
+We want to connect the branches by their endpoints, to do this we need to know the start point of the previous branch. By knowing the angle we can achieve this using [trigonometry](https://en.wikipedia.org/wiki/Trigonometry.) and update the x,y,z coordinates as we progress along the tree. Remember how we changed the centre of rotation to the endpoint? We did this to rotate by the point each branch is connected by.
 
 ```jsx
 // cartesian coordinates

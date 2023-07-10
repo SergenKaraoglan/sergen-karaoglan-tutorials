@@ -16,9 +16,11 @@ Let me just start by saying there are 3 fundamental concepts about CSS that you 
 
 Lets start with a div element containing "Hello World". This div like many other HTML elements is made up of an anatomy called the box model.
 
-<div class="h-48 w-48 border-8 mx-auto flex-center">Hello World</div>
+<div class="h-48 w-48 mx-auto flex-center">Hello World</div>
 
 <div class="mt-4" ><BoxModel /></div>
+
+The box is made up of the margin, border, padding and content, in that order.
 
 ### Resources
 [W3Schools](https://www.w3schools.com/css/),
