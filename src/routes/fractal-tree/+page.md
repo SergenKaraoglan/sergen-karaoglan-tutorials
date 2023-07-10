@@ -15,7 +15,7 @@ import '$lib/styles/vscode-dark.css';
 
 ## What is a Fractal Tree
 
-A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one. I will be using Babylon.js but concepts can be generalised to your chosen 3D renderer. As you might have guessed, fractal trees purely serve as art but similar patterns can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are influenced by these simple patterns. They are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal) which often posess the property of [self-similarity](https://en.wikipedia.org/wiki/Self-similarity) as you will soon see.
+A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one. I will be using [Babylon.js](https://www.babylonjs.com/) but concepts can be generalised to your chosen 3D renderer. As you might have guessed, fractal trees purely serve as art but similar patterns can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are influenced by these simple patterns. They are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal) which often posess the property of [self-similarity](https://en.wikipedia.org/wiki/Self-similarity) as you will soon see.
 
 Below is a fractal tree that is intentionally left with only the first [mesh](https://en.wikipedia.org/wiki/Polygon_mesh) drawn. Increase the range of the slider to see how the tree is recursively built.
 
@@ -47,7 +47,7 @@ By now you probably have a good idea of what a fractal tree is, in which case we
 
 ## Building a 2D Fractal Tree
 
-We can start by first creating our "branch" instance which will come in the form of a [cylinder geometry](https://threejs.org/docs/index.html#api/en/geometries/CylinderGeometry) mesh. The geometry will take the parameters: height, diameter bottom and diameter top in that order, that will be modified as the tree 'grows'.
+We can start by first creating our "branch" instance which will come in the form of a [cylinder geometry](https://threejs.org/docs/index.html#api/en/geometries/CylinderGeometry) mesh. The geometry will take the parameters: height, diameter bottom and diameter top, that will be modified as the tree 'grows'.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
   <Lazy
@@ -63,7 +63,7 @@ We don't necessarily need to use a cylinder and you can experiment with other sh
 
 ### Rotating branches
 
-Next we would like to be able to rotate our mesh but first we would like to change the centre of rotation from the centre of the mesh to its endpoint. To achieve this in Babylon it is common practice to use a [TransformNode](https://doc.babylonjs.com/typedoc/classes/BABYLON.TransformNode) which we will name as the pivot as the centre of rotation, which is not rendered. We place our mesh above the origin of the pivot so the centre of rotation of the pivot meets the endpoint of our mesh. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right). In this example I have also rendered the centre of rotation.
+Next we would like to be able to rotate our mesh but first we would like to change the centre of rotation from the centre of the mesh to its endpoint. To achieve this we can use another object as a pivot of each cylinder by making it the centre of transformation. We place our mesh above the origin of the pivot so the centre of rotation of the pivot meets the endpoint of our mesh. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right). In this example I have also rendered the centre of rotation.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
 <Lazy
@@ -150,7 +150,7 @@ The mesh may be 3D but we are only rotating by the Z axis. We can extend the tre
 
 ## Finishing up
 
-You now know what a Fractal Tree is and saw how to build one in Babylon. Procedural generation and fractals are both intriguing areas that can be explored much further as this is one of many fractals and arguably the simplest fractal. I hope you enjoyed a brief demonstration of a simple yet elegant pattern that can be found across nature.
+You now know what a Fractal Tree is and saw how to build one. Procedural generation and fractals are both intriguing areas that can be explored much further as this is one of many fractals and arguably the simplest fractal. I hope you enjoyed a brief demonstration of a simple yet elegant pattern that can be found across nature.
 
 
 ### Resources
