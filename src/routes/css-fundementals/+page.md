@@ -20,7 +20,7 @@ Lets start with a div element containing "Hello World". This div like many other
 
 <div class="mt-4" ><BoxModel /></div>
 
-The box is made up of the margin, border, padding and content, in that order.
+The box is made up of the <span class="text-blue-700">margin</span>, <span class="text-blue-600">border</span>, <span class="text-blue-500">padding</span> and <span class="text-blue-400">content</span>, in that order towards the centre.
 
 ### Resources
 [W3Schools](https://www.w3schools.com/css/),
