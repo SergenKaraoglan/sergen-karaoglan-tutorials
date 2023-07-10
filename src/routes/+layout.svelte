@@ -71,7 +71,7 @@
 			<div>
 				<h3 class="text-sm font-semibold leading-6 text-gray-900">Contact</h3>
 				<p class="mt-2 text-sm leading-6 text-gray-600">
-					Open to job opportunities, feedback and questions.
+					Open to job opportunities, feedback, questions and discussion.
 				</p>
 			</div>
 			<button

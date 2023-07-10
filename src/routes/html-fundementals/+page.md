@@ -12,15 +12,13 @@ import '$lib/styles/vscode-dark.css';
 	<meta name="description" content="Learn the fundamentals of HTML" />
 </svelte:head>
 
-
-
 <article class="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
 
 # HTML Fundamentals
 ## Elements and Attributes
 What your browser just requested and [browser engine](https://en.wikipedia.org/wiki/Browser_engine) has rendered is a [HyperText Markup Language](https://en.wikipedia.org/wiki/HTML) (HTML) document or more specifically [HTML5](https://en.wikipedia.org/wiki/HTML5), which is the current [markup language](https://en.wikipedia.org/wiki/Markup_language) for browsers used for structuring and determining the behaviour of a webpage also commonly referred to as the building blocks of a webpage. Whether it is a link, an image or a video, this is implemented using HTML. Now there are a countless number of HTML tutorials out there but I wanted to try something different and give a bit more context to HTML than usual and show a bit on how it works behind the scenes but first lets go straight to covering some basics. HTML is written using what are known as elements that mostly look like the following: ```<tagname> content </tagname>```. Elements are made up of tags usually involving an opening ```<>``` and closing tag ```</>``` with content nested between. In this example I just used a placeholder name but for recognised tag names you will receive different outputs within the browser.
 
-Below is an example of a 'h1' element that includes the content HTML. The 'h1' element tells the browser to render text you include within it as a heading. I made this h1 element editable, everytime you edit it, the h1 element will be rendered with the new content.
+Below is an example of a 'h1' element that includes the content HTML. The 'h1' element tells the browser to render text you include within it as a heading. I made this h1 element editable, every time you edit it, the h1 element will be rendered with the new content.
 <HTMLele />
 
 Moving on to a slightly less trivial example that doesn't include a closing tag. This example also includes attributes that allow you to modify the behaviour of the element. In this example you have an img element which displays an image. One attribute is called "src" which takes a link to an image, the other attribute is the width which I have made available to modify. Give it a try.
@@ -47,7 +45,7 @@ A typical HTML document structure looks like the following:
 </html>
 ```
 
-You can see beyond text we can even include elements in other elements to change their behaviour. The ```<html>``` element defines our document which is split into ```<head>``` and ```<body>```. All content rendered on the screen is placed in body whereas [metadata](https://en.wikipedia.org/wiki/Metadata) such as the title or the icon of the page is placed in head.
+You can see beyond text we can even include elements in other elements to change their behaviour. The ```<html>``` element defines our document which is split into ```<head>``` and ```<body>```. All content rendered on the screen is placed in body whereas [metadata](https://en.wikipedia.org/wiki/Metadata) such as the title and the icon of the page is placed in head.
 
 ## Document Object Model
 Now, in order for you browser to understand how to render the content it needs to builds a [Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model) using the specified elements first.
@@ -70,7 +68,7 @@ I have included a border around each element with the elements sequentially bein
 	</svelte:fragment>
 </Lazy>
 
-You can see how each element is rendered with a container around its content and how some content is contained together within another container if they are a child of another element. It becomes evident why HTML is known as the 'building blocks of the web'. There is even an element just for grouping elements and is one of the most used elements called 'div' which I used to group the heading and paragraph in the last sequence of the animation.
+You can see how each element is rendered with a container around its content and how some content is contained together within another container if they are a child of another element. It becomes evident why HTML is known as the "building blocks of the web". There is even an element just for grouping elements and is one of the most used elements called 'div' which I used to group the heading and paragraph in the last sequence of the animation.
 
 ## Wrap Up
 If all you want to do is build a static site without styling, you already have the basics and the reference to do so. If you want to move straight to learning how to style or make a page interactive, you will need to learn [CSS](https://en.wikipedia.org/wiki/CSS) and [JavaScript](https://en.wikipedia.org/wiki/JavaScript) respectively which build on the concepts here but you might be surprised by how much can be done with just HTML (build tables, forms, lists and more). Check out the resources below if you want to find out more about HTML and try building your first static site.
@@ -92,15 +90,13 @@ To get started here is a template:
 ```
 
 ### Resources
-[W3Schools](https://www.w3schools.com/html/default.asp)
-
-[Mozilla](https://developer.mozilla.org/en-US/docs/Web/HTML)
-
+[W3Schools](https://www.w3schools.com/html/default.asp),
+[Mozilla](https://developer.mozilla.org/en-US/docs/Web/HTML),
 [web.dev](https://web.dev/learn/html/)
 
 ___
 
 <GithubStar />
-<!-- The group that specifies HTML and the DOM is called [WHATWG](https://en.wikipedia.org/wiki/WHATWG) and use to be the [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium). The [browser engine](https://en.wikipedia.org/wiki/Browser_engine) is responsible for what is responsible for rendering HTML into a webpage and needs to be developed by browser vendors (Chrome, Safari, Firefox etc.) to match the HTML specification so we have a consistently functioning web pages across diferrent devices and different browsers. id, block, inline-->
+<!-- The group that specifies HTML and the DOM is called [WHATWG](https://en.wikipedia.org/wiki/WHATWG) and use to be the [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium). The [browser engine](https://en.wikipedia.org/wiki/Browser_engine) is responsible for what is responsible for rendering HTML into a webpage and needs to be developed by browser vendors (Chrome, Safari, Firefox etc.) to match the HTML specification so we have a consistently functioning web pages across different devices and different browsers. id, block, inline-->
 
 </article>

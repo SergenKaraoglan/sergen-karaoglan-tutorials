@@ -151,10 +151,8 @@ You now know what a Fractal Tree is and saw how to build one. Procedural generat
 
 ### Resources
 
-[Wikipedia](https://en.wikipedia.org/wiki/Fractal_canopy)
-
-[The Coding Train](https://www.youtube.com/watch?v=0jjeOYMjmDU)
-
+[Wikipedia](https://en.wikipedia.org/wiki/Fractal_canopy),
+[The Coding Train](https://www.youtube.com/watch?v=0jjeOYMjmDU),
 [Modernescartes](https://www.moderndescartes.com/essays/plants/)
 
 ___

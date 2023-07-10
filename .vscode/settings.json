@@ -3,4 +3,8 @@
     "editor.defaultFormatter": "svelte.svelte-vscode"
   },
   "cSpell.language": "en-GB",
+  "cSpell.words": [
+    "Karaoglan",
+    "Sergen"
+  ],
 }
