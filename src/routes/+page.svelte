@@ -1,14 +1,22 @@
 <script>
 	import treeimage from '$lib/assets/fractal-tree.png';
 	import htmlimage from '$lib/assets/HTML5.svg';
+	import cssimage from '$lib/assets/CSS3.svg';
 	const project_list = [
 		{
 			title: 'HTML Fundamentals',
 			image: htmlimage,
 			topics: ['HTML', 'DOM', 'Markup', 'Web'],
-			description: 'Learn the fundamentals of HTML.',
+			description: 'Learn how to structure your webpage using HTML.',
 			demo: '/html-fundementals'
 		},
+		// {
+		// 	title: 'CSS Fundamentals',
+		// 	image: cssimage,
+		// 	topics: ['CSS', 'DOM', 'Styling', 'Web'],
+		// 	description: 'Learn how to style your webpage using CSS.',
+		// 	demo: '/css-fundementals'
+		// },
 		{
 			title: 'Fractal Tree',
 			image: treeimage,
@@ -70,7 +78,7 @@
 							</p>
 						</div>
 						<div class="h-auto w-1/4 flex-shrink-0">
-							<img class="mx-auto h-20 sm:h-32" src={data.image} alt={data.title} />
+							<img class="mx-auto h-20 sm:h-32" loading="lazy" src={data.image} alt={data.title} />
 						</div>
 					</div>
 				</a>
