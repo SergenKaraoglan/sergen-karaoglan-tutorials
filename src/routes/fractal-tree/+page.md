@@ -15,10 +15,9 @@ import '$lib/styles/vscode-dark.css';
 
 ## What is a Fractal Tree
 
-A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one. I will be using [Babylon.js](https://www.babylonjs.com/) but concepts can be generalised to your chosen 3D renderer. As you might have guessed, fractal trees purely serve as art but similar patterns can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are influenced by these simple patterns. They are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal) which often posess the property of [self-similarity](https://en.wikipedia.org/wiki/Self-similarity) as you will soon see.
+A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one. I used [Babylon.js](https://www.babylonjs.com/) but concepts can be generalised to your chosen 3D renderer. A Fractal tree can be categorised as procedural art but similar patterns found in fractal trees can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are influenced by a recursive pattern. They are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal) which often possess the property of [self-similarity](https://en.wikipedia.org/wiki/Self-similarity) as you will soon see.
 
 Below is a fractal tree that is intentionally left with only the first [mesh](https://en.wikipedia.org/wiki/Polygon_mesh) drawn. Increase the range of the slider to see how the tree is recursively built.
-
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
   <Lazy
@@ -47,7 +46,7 @@ By now you probably have a good idea of what a fractal tree is, in which case we
 
 ## Building a 2D Fractal Tree
 
-We can start by first creating our "branch" instance which will come in the form of a [cylinder geometry](https://threejs.org/docs/index.html#api/en/geometries/CylinderGeometry) mesh. The geometry will take the parameters: height, diameter bottom and diameter top, that will be modified as the tree 'grows'.
+We can start by first creating our "branch" which will come in the form of a mesh with [cylinder geometry](https://threejs.org/docs/index.html#api/en/geometries/CylinderGeometry). The geometry will take the parameters: height, diameter bottom and diameter top, that will be modified as the tree 'grows'.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
   <Lazy
@@ -59,11 +58,11 @@ We can start by first creating our "branch" instance which will come in the form
 </Lazy>
 </div>
 
-We don't necessarily need to use a cylinder and you can experiment with other shapes such as a sphere to possibly get interesting results but here we will be sticking with a cylinder to most closely resemble a tree.
+You can see the cylinder decrease in height and diameter as we stack more cylinders with the top diameter shorter than the bottom to more closely resemble a branch of a tree.
 
 ### Rotating branches
 
-Next we would like to be able to rotate our mesh but first we would like to change the centre of rotation from the centre of the mesh to its endpoint. To achieve this we can use another object as a pivot of each cylinder by making it the centre of transformation. We place our mesh above the origin of the pivot so the centre of rotation of the pivot meets the endpoint of our mesh. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right). In this example I have also rendered the centre of rotation.
+Next we would like to be able to rotate our mesh but first we would like to change the centre of rotation from the centre of the mesh to its endpoint. There are a number of ways to achieve this but one way is to create and use an object as the parent of each cylinder to use that as the centre of transformation. If we place our mesh above the object so the endpoint of the cylinder meets the object, then by rotating the object we rotate the cylinder by its endpoint. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right). In this example I have also rendered the centre of rotation.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
 <Lazy
@@ -79,8 +78,7 @@ Once we have our cylinder and pivot we have the ingredients to build our tree.
 
 ### Recursively generating our tree
 
-Knowing the pattern repeats we can build a fractal tree using recursion. For every branch, we connect two more branches that split at a fixed angle in opposing directions.
-Our termination condition is the depth. The larger the depth the more branches we stack, hence the larger our tree.
+Knowing the pattern repeats we can build a fractal tree using recursion. Our termination condition is the depth. The larger the depth the more branches we stack, hence the larger our tree.
 
 ```jsx
 const maxDepth = 10;
@@ -94,8 +92,7 @@ function generate(depth ...) {
 }
 ```
 
-We update the height and radius of every branch as we progress by a fixed ratio less than 1 so they decrease in size as the tree progresses. We also increase and decrease the angle by a fixed amount to achieve the effect of our tree growing outwards.
-
+For every call to the generate function, we create a cylinder at a specified angle, and x,y,z coordinate. We then call the function twice more to create two more branches that split at a fixed angle in opposing directions. We also update the height and radius of every branch as we progress by a fixed ratio less than 1 so they decrease in size as the tree progresses.
 
 ```jsx
 function generate(depth, angleZ, angleX, radius, height, x, y, z) {
@@ -123,7 +120,7 @@ You may have noticed we are converting the angle first to an integer and then di
 
 #### Using trigonometry to convert polar coordinates to cartesian
 
-We want to connect the branches, to do this we need to know the start point of the previous branch. By knowing the angle we can achieve this using [trigonometry](https://en.wikipedia.org/wiki/Trigonometry.) and update the x,y,z coordinates as we progress along the tree. Remember how we changed the centre of rotation? We did this to rotate by the point each branch is connected by.
+We want to connect the branches by their endpoints, to do this we need to know the start point of the previous branch. By knowing the angle we can achieve this using [trigonometry](https://en.wikipedia.org/wiki/Trigonometry.) and update the x,y,z coordinates as we progress along the tree. Remember how we changed the centre of rotation? We did this to rotate by the point each branch is connected by.
 
 ```jsx
 // cartesian coordinates
@@ -132,11 +129,11 @@ y += Math.cos(angleZ) * Math.cos(angleX) * height;
 z += Math.sin(angleX) * height;
 ```
 
-Finally once we have reached the end of recursion we return the array of branches to render our tree on the canvas.
+Finally once we have reached the end of recursion our fractal tree will be displayed.
 
 ## Building a 3D Fractal Tree
 
-The mesh may be 3D but we are only rotating by the Z axis. We can extend the tree by simply adding two more branches that rotate by the X axis. This totals to 4 generate function calls per generation which means we are now adding 4 branches for every branch until we reach the depth limit. You can orbit the tree by dragging it.
+As a bonus lets build a 3D fractal. The mesh may be 3D but we are only rotating by the Z axis. We can extend the tree by simply adding two more branches that rotate by the X axis. This totals to 4 generate function calls per generation which means we are now adding 4 branches for every branch until we reach the depth limit. You can orbit the tree by dragging it.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
     <Lazy
