@@ -8,15 +8,15 @@
 			image: htmlimage,
 			topics: ['HTML', 'DOM', 'Markup', 'Web'],
 			description: 'Learn how to structure your webpage using HTML.',
-			demo: '/html-fundementals'
+			demo: '/html-fundamentals'
 		},
-		// {
-		// 	title: 'CSS Fundamentals',
-		// 	image: cssimage,
-		// 	topics: ['CSS', 'DOM', 'Styling', 'Web'],
-		// 	description: 'Learn how to style your webpage using CSS.',
-		// 	demo: '/css-fundementals'
-		// },
+		{
+			title: 'CSS Fundamentals',
+			image: cssimage,
+			topics: ['CSS', 'DOM', 'Styling', 'Web'],
+			description: 'Learn how to style your webpage using CSS.',
+			demo: '/css-fundamentals'
+		},
 		{
 			title: 'Fractal Tree',
 			image: treeimage,
