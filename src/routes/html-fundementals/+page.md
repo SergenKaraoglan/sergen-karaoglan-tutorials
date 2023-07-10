@@ -31,22 +31,23 @@ Each time you change the attribute value, the image matches the specified width.
 
 There are over 100 HTML elements which can all be found from a [reference](https://www.w3schools.com/tags/) but before that intimidates you, know that memorising elements before writing a webpage is not a requirement and you will mostly be using only a subset of HTML elements. If you have a desired output in mind such as displaying a video, it is more than effective to look through a reference to find out which element is appropriate. For example, you can swap the 'img' element above to a 'video' element if you want to instead insert a video and so forth.
 
-## Structure
+## Document Structure
 A typical HTML document structure looks like the following:
 
 ```HTML
 <html>
 	<head>
 		<title> title </title>
+		<link rel="icon" href="/favicon.ico" />
 	</head>
 	<body>
-		<p id="paragraph1" class="paragraph">content</p>
-		<p id="paragraph2" class="paragraph">content</p>
+		<h1>content</h1>
+		<p>content</p>
 	</body>
 </html>
 ```
 
-You can see beyond text we can even include elements in other elements to change their behaviour. The ```<html>``` element defines our document which is split into ```<head>``` and ```<body>```. All content rendered on the screen is placed in body whereas [metadata](https://en.wikipedia.org/wiki/Metadata) such as the title of the page is placed in head.
+You can see beyond text we can even include elements in other elements to change their behaviour. The ```<html>``` element defines our document which is split into ```<head>``` and ```<body>```. All content rendered on the screen is placed in body whereas [metadata](https://en.wikipedia.org/wiki/Metadata) such as the title or the icon of the page is placed in head.
 
 ## Document Object Model
 Now, in order for you browser to understand how to render the content it needs to builds a [Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model) using the specified elements first.
@@ -69,10 +70,10 @@ I have included a border around each element with the elements sequentially bein
 	</svelte:fragment>
 </Lazy>
 
-You can see how each content creates a container around itself like building blocks and how some content is contained together within another container if they are a child of another element. There is even an element just for grouping elements and is one of the most used elements called 'div' which I used to group the heading and paragraph in the last sequence of the animation.
+You can see how each element is rendered with a container around its content and how some content is contained together within another container if they are a child of another element. It becomes evident why HTML is known as the 'building blocks of the web'. There is even an element just for grouping elements and is one of the most used elements called 'div' which I used to group the heading and paragraph in the last sequence of the animation.
 
 ## Wrap Up
-If all you want to do is build a static site without styling, you already have the basics and the reference to do so. If you want to move straight to learning how to style or make a page interactive, you will need to learn [CSS](https://en.wikipedia.org/wiki/CSS) and [JavaScript](https://en.wikipedia.org/wiki/JavaScript) respectively which build on the concepts here but you might be surprised by how much can be done with just HTML. Check out the resources below if you want to find out more about HTML and try building your first static site.
+If all you want to do is build a static site without styling, you already have the basics and the reference to do so. If you want to move straight to learning how to style or make a page interactive, you will need to learn [CSS](https://en.wikipedia.org/wiki/CSS) and [JavaScript](https://en.wikipedia.org/wiki/JavaScript) respectively which build on the concepts here but you might be surprised by how much can be done with just HTML (build tables, forms, lists and more). Check out the resources below if you want to find out more about HTML and try building your first static site.
 
 To get started here is a template:
 
@@ -100,6 +101,6 @@ To get started here is a template:
 ___
 
 <GithubStar />
-<!-- The group that specifies HTML and the DOM is called [WHATWG](https://en.wikipedia.org/wiki/WHATWG) and use to be the [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium). The [browser engine](https://en.wikipedia.org/wiki/Browser_engine) is responsible for what is responsible for rendering HTML into a webpage and needs to be developed by browser vendors (Chrome, Safari, Firefox etc.) to match the HTML specification so we have a consistently functioning web pages across diferrent devices and different browsers. -->
+<!-- The group that specifies HTML and the DOM is called [WHATWG](https://en.wikipedia.org/wiki/WHATWG) and use to be the [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium). The [browser engine](https://en.wikipedia.org/wiki/Browser_engine) is responsible for what is responsible for rendering HTML into a webpage and needs to be developed by browser vendors (Chrome, Safari, Firefox etc.) to match the HTML specification so we have a consistently functioning web pages across diferrent devices and different browsers. id, block, inline-->
 
 </article>

@@ -43,7 +43,7 @@ Try the slider below to see how the angle changes the appearance of our fractal 
 </Lazy>
 </div>
 
-By now you probably have a good idea of what a fractal tree is, in which case we will now begin to build one using Babylon.
+By now you probably have a good idea of what a fractal tree is, in which case we will now begin to build one.
 
 ## Building a 2D Fractal Tree
 
@@ -59,20 +59,11 @@ We can start by first creating our "branch" instance which will come in the form
 </Lazy>
 </div>
 
-```jsx
-// create branch using cylinder mesh
-branch = BABYLON.MeshBuilder.CreateCylinder(
-  'instance',
-  { height: height, diameter: diameter, diameterTop: diameter * ratio },
-  scene
-);
-```
-
 We don't necessarily need to use a cylinder and you can experiment with other shapes such as a sphere to possibly get interesting results but here we will be sticking with a cylinder to most closely resemble a tree.
 
 ### Rotating branches
 
-Next we would like to be able to rotate our mesh but first we need to get into a few specifics with Babylon. For convenience, we would like to change the centre of rotation from the centre of the mesh to its endpoint. To achieve this in Babylon it is common practice to use a [TransformNode](https://doc.babylonjs.com/typedoc/classes/BABYLON.TransformNode) which we will name as the pivot as the centre of rotation, which is not rendered. We place our mesh above the origin of the pivot so the centre of rotation of the pivot meets the endpoint of our mesh. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right). In this example I have also rendered the centre of rotation.
+Next we would like to be able to rotate our mesh but first we would like to change the centre of rotation from the centre of the mesh to its endpoint. To achieve this in Babylon it is common practice to use a [TransformNode](https://doc.babylonjs.com/typedoc/classes/BABYLON.TransformNode) which we will name as the pivot as the centre of rotation, which is not rendered. We place our mesh above the origin of the pivot so the centre of rotation of the pivot meets the endpoint of our mesh. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right). In this example I have also rendered the centre of rotation.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
 <Lazy
@@ -85,15 +76,6 @@ Next we would like to be able to rotate our mesh but first we need to get into a
 </div>
 
 Once we have our cylinder and pivot we have the ingredients to build our tree.
-
-```jsx
-// create pivot for branch
-pivot = new BABYLON.TransformNode('pivot');
-branch.parent = pivot;
-pivot.position = new BABYLON.Vector3(x, y, z);
-branch.position = new BABYLON.Vector3(0, height / 2, 0);
-pivot.rotation = new BABYLON.Vector3(angleX, 0, angleZ);
-```
 
 ### Recursively generating our tree
 
@@ -118,8 +100,9 @@ We update the height and radius of every branch as we progress by a fixed ratio 
 ```jsx
 function generate(depth, angleZ, angleX, radius, height, x, y, z) {
   // check depth
+  ...
   // create branch and pivot
-
+  ...
   // update branch values for next depth
   radius *= ratio;
   height *= ratio;
@@ -153,7 +136,7 @@ Finally once we have reached the end of recursion we return the array of branche
 
 ## Building a 3D Fractal Tree
 
-The mesh may be 3D but we are only rotating by the Z axis. We can extend the tree by adding two more branches that rotate by the X axis. You can orbit the tree by dragging it.
+The mesh may be 3D but we are only rotating by the Z axis. We can extend the tree by simply adding two more branches that rotate by the X axis. This totals to 4 generate function calls per generation which means we are now adding 4 branches for every branch until we reach the depth limit. You can orbit the tree by dragging it.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
     <Lazy
@@ -164,13 +147,6 @@ The mesh may be 3D but we are only rotating by the Z axis. We can extend the tre
     </svelte:fragment>
   </Lazy>
 </div>
-
-```jsx
-let angleXL = (angleX * 10 + angleIncrement * 10) / 10;
-let angleXR = (angleX * 10 - angleIncrement * 10) / 10;
-generate(depth, 0, angleXL, radius, height, x, y, z);
-generate(depth, 0, angleXR, radius, height, x, y, z);
-```
 
 ## Finishing up
 
