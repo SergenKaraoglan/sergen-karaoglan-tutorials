@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.thumb-lg-blue-600::-webkit-slider-thumb {
+.thumb-lg-blue-700::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
     background-color: #1d4ed8;
@@ -10,7 +10,34 @@
     width: 1.5rem;
     border-radius: 100%;
   }
+
+  .thumb-md-red-500::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    background-color: #ef4444;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 100%;
+  }
   
+  .thumb-md-green-500::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    background-color: #22c55e;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 100%;
+  }
+
+  .thumb-md-blue-500::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    background-color: #3b82f6;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 100%;
+  }
+
   .flex-center {
     display: flex;
     justify-content: center;

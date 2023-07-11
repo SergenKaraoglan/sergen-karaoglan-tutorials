@@ -8,7 +8,7 @@
     </div>
     <div class="flex justify-center my-3">
       <input
-        class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-600"
+        class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-700"
         type="range"
         min="-5"
         max="5"

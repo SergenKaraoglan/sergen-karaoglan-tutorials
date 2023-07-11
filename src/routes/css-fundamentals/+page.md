@@ -9,12 +9,13 @@ import RGB from "$lib/RGB.svelte";
 
 <article class="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
 
+** under construction **
 # CSS Fundamentals
 
-Lets jump straight to it, [Cascading Style Sheets](https://en.wikipedia.org/wiki/CSS) (CSS) is a language with the purpose of styling a document. Whilst HTML is used for structuring a page and adding content, with CSS we can customise our document by changing the background color of a page or choosing the exact number of pixels of space we want around our content. It is common for a tutorial to expose you to the sheer breadth of features that CSS provides but there are 3 fundamental concepts that you only need to understand to start styling websites in almost anyway you want, excluding animations.
+[Cascading Style Sheets](https://en.wikipedia.org/wiki/CSS) (CSS) is a language with the purpose of styling a document. Whilst HTML is used for structuring a page and adding content, with CSS we can style our document by for example, changing the background colour of a page or choosing the exact number of pixels of space we want around an element. It is common for a tutorial to expose you to the sheer breadth of features that CSS provides but there are 3 fundamental concepts that you only need to understand to start styling websites in almost anyway you want, excluding animations.
 
-## CSS Box Model
-Lets start with a div element containing "Hello World" at its centre. This div like *all* HTML elements is made up of an anatomy called the **box model** that consists of 4 parts.
+## Box Model
+Lets start with a div element. This element like *all* HTML elements is made up of an anatomy called the **box model** that consists of 4 parts.
 
 <div class="h-48 w-48 mx-auto flex-center">Hello World</div>
 
@@ -33,6 +34,12 @@ The differences become evident when you only display the border and the content 
 <!-- <div class="grid grid-cols-2"><div class="border-4 h-32 w-32 flex-center p-20 mx-auto">Hello World</div>
 <div class="border-4 h-32 w-32 flex-center mt-12 mx-auto">Hello World</div></div> -->
 
+## Selectors and Basic Styling
+Going back to a div element, this time containing a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) value at the centre. Lets say we want to style this element.
+
+<RGB />
+
+## Positioning
 
 ### Resources
 [W3Schools](https://www.w3schools.com/css/),
