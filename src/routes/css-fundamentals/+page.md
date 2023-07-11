@@ -11,10 +11,10 @@ import RGB from "$lib/RGB.svelte";
 
 # CSS Fundamentals
 
-Lets jump straight to it, CSS which stands for [Cascading Style Sheets](https://en.wikipedia.org/wiki/CSS) is a language with the purpose of styling a document. Whilst HTML is used for structuring a page and adding content, with CSS we can further customise our document by changing the background color or choosing the exact number of pixels of space we want around our content. It is common for a tutorial to expose you to the sheer breadth of features that CSS provides but there are 3 fundamental concepts that you only need to understand to start styling websites in almost anyway you want, excluding animations.
+Lets jump straight to it, [Cascading Style Sheets](https://en.wikipedia.org/wiki/CSS) (CSS) is a language with the purpose of styling a document. Whilst HTML is used for structuring a page and adding content, with CSS we can customise our document by changing the background color of a page or choosing the exact number of pixels of space we want around our content. It is common for a tutorial to expose you to the sheer breadth of features that CSS provides but there are 3 fundamental concepts that you only need to understand to start styling websites in almost anyway you want, excluding animations.
 
 ## CSS Box Model
-Lets start with a div element containing "Hello World" at its centre. This div like **all** HTML elements is made up of an anatomy called the box model that consists of 4 parts.
+Lets start with a div element containing "Hello World" at its centre. This div like *all* HTML elements is made up of an anatomy called the **box model** that consists of 4 parts.
 
 <div class="h-48 w-48 mx-auto flex-center">Hello World</div>
 
