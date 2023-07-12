@@ -1,6 +1,7 @@
 <script>
 import RGB from "$lib/RGB.svelte";
 import BoxModel from "$lib/BoxModel.svelte";
+import '$lib/styles/vscode-dark.css';
 </script>
 
 <svelte:head>
@@ -40,13 +41,23 @@ Something to note is that the padding and border size affect the size of the ele
 <div class="border-4 h-32 w-32 flex-center mt-12 mx-auto">Hello World</div></div> -->
 
 ## Selectors and Basic Styling
+The way to style an element comes typically in the following form:
+
+```CSS
+div {
+	background-color: blue;
+}
+```
+
 Going back to a div element, this time containing a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) value at the centre. Lets say we want to style this element.
+With CSS we have to first specify the element we want to specify, which can be done in multiple ways. One way is simply specifying the type of element we want to specify which in this case is a div element. Next, is choosing the attribute of the element we want to tweak. For this example it will be the background color.
 
 <RGB />
 
 ## Positioning
 
-## Finish
+## Style your first webpage 
+While this article covers the fundamentals of CSS, it is barely covering all the little things that can be done with CSS. I recommend taking a look at a [reference](https://www.w3schools.com/cssref/index.php) to see all the ways you can style a page for yourself. But as I mentioned in [my HTML article](/html-fundamentals), remembering everything is not a requirement and the purpose of this article is to give you enough grounding to get started styling your HTML documents. Your skill, knowledge and understanding of CSS will grow as you experiment and style more pages.
 
 ### Resources
 [W3Schools](https://www.w3schools.com/css/),

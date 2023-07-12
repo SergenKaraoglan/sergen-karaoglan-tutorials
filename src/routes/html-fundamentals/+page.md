@@ -72,7 +72,7 @@ You can see how each element is rendered with a container around its content and
 
 One other detail to notice is that each content is rendered on a new line. This is because the chosen elements in this example are all block elements. Elements come in either of two types, that affect how they are rendered known as **block** and **inline**. Block elements are always rendered on a new line with spacing around the element. But if you don't wish for this effect you use an inline element such as ```<span>``` which is the inline equivalent of ```<div>```.
 
-## Wrap Up
+## Build your first webpage
 If all you want to do is build a static site without styling, you already have the basics and the reference to do so. If you want to move straight to learning how to style or make a page interactive, you will need to learn [CSS](https://en.wikipedia.org/wiki/CSS) and [JavaScript](https://en.wikipedia.org/wiki/JavaScript) respectively which build on the concepts here but you might be surprised by how much can be done with just HTML (tables, forms, lists and more). Feel free to check out the resources below if you want to find out more about HTML and try building your first static site.
 
 To get started here is a template:
