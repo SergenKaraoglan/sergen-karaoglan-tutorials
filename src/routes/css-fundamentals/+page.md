@@ -11,7 +11,8 @@ import '$lib/styles/vscode-dark.css';
 
 <article class="max-md:mx-4 prose lg:prose-xl m-auto pt-16">
 
-** under construction **
+**under construction**
+
 # CSS Fundamentals
 
 [Cascading Style Sheets](https://en.wikipedia.org/wiki/CSS) (CSS) is a language with the purpose of styling a document. Whilst HTML is used for structuring a page and adding content, with CSS we can style our document by for example, changing the background colour of a page or choosing the exact number of pixels of space we want around an element. It is common for a tutorial to expose you to the sheer breadth of features that CSS provides but there are 4 fundamental concepts that you only need to understand to start styling websites in almost anyway you want, excluding animations.
@@ -29,19 +30,16 @@ Lets start with a div element. This element like *all* HTML elements is made up 
 	</div>
 </div>
 
-Above you will see the individual parts of the div visualised and consisting of a <span class="text-blue-800">margin</span>, <span class="text-slate-500">border</span>, <span class="text-blue-500">padding</span> and <span class="text-slate-800">content</span>, in that order towards the centre. It is important to note the difference between margin and padding. Margin creates spacing around the element whilst padding creates spacing around the content. The border encapsulates our element which contains the padding and the content. With CSS you can increase or decrease the size of any part of the box model by number of pixels, cm and other units of measurement.
+Above you will see the individual parts of the div visualised and consisting of a <span class="text-blue-800">margin</span>, <span class="text-slate-500">border</span>, <span class="text-blue-500">padding</span> and <span class="text-slate-800">content</span>, in that order towards the centre. The border encapsulates our element which contains the padding and the content. Margin creates spacing around the element whilst padding creates spacing around the content. With CSS you can increase or decrease the size of any part of the box model by number of pixels, cm and other units of measurement.
 
-Below I have three elements with their borders visible. The left, right margin and padding values can be changed with the following sliders to see how changing each value changes our document.
+Below I have three image elements with centre image contained within a div. The left, right margin and padding values can be changed for the div with the sliders below.
 
 <BoxModel />
 
-The key thing to note is how the padding affects the size of the element itself which also holds true for the border.
-
-<!-- <div class="grid grid-cols-2"><div class="border-4 h-32 w-32 flex-center p-20 mx-auto">Hello World</div>
-<div class="border-4 h-32 w-32 flex-center mt-12 mx-auto">Hello World</div></div> -->
+The key thing to note is how the padding affects the size of the element itself as well as create spacing around the content.
 
 ## Selector
-The way to style an element comes typically in the following form:
+The way to style an element typically comes in the following form:
 
 ```CSS
 /* selector */
