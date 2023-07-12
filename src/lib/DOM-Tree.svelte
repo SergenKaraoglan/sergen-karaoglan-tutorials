@@ -1,16 +1,21 @@
 <script>
-	import PixelPlanet from '$lib/assets/pixel-planet.webp';
+	import Chipmunk from '$lib/assets/pixel-chipmunk.webp';
 	import * as d3 from 'd3';
 	import { onMount } from 'svelte';
-
 	let svg_container;
 	let html = `<html>
 	<head>
+		<style>
+			img {
+				width: 250px;
+				height: 250px;
+			}
+			</style>
 	</head>
     <body>
-		<h1>Pikachu</h1>
-		<p>Pokemon number 25</p> 
-		<img src="https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png">
+		<h1>Pixel art Chipmunk</h1>
+		<p>Generated using Dalle</p> 
+		<img src="https://openailabsprodscus.blob.core.windows.net/private/user-WqZKZrMs9xF112uwS6xnbMHP/generations/generation-xMP7pzRv5de7VgrMNuMCskW4/image.webp?st=2023-07-12T18%3A36%3A42Z&se=2023-07-12T20%3A34%3A42Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/webp&skoid=15f0b47b-a152-4599-9e98-9cb4a58269f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-07-12T18%3A30%3A58Z&ske=2023-07-19T18%3A30%3A58Z&sks=b&skv=2021-08-06&sig=sPjs%2BhCldrF8aYyE7JXnqet/SkVhfR2q9IzwzQG%2BdBY%3D">
     </body>
   </html>
 `;
