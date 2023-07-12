@@ -6,11 +6,6 @@
 	let green = 255;
 	let blue = 255;
 	let alpha = 1;
-
-	// background image
-	// selector
-	// height / width
-	// box model
 </script>
 
 <div class="h-48 w-48 mx-auto flex-center" style="background-color: {hex}; color: {textColor}">

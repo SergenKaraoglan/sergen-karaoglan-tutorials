@@ -12,7 +12,7 @@ import '$lib/styles/vscode-dark.css';
 	<meta name="description" content="Learn the fundamentals of HTML" />
 </svelte:head>
 
-<article class="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
+<article class="max-md:mx-4 prose lg:prose-xl m-auto pt-16">
 
 # HTML Fundamentals
 ## Elements and Attributes

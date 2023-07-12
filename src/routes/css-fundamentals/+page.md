@@ -1,5 +1,6 @@
 <script>
 import RGB from "$lib/RGB.svelte";
+import BoxModel from "$lib/BoxModel.svelte";
 </script>
 
 <svelte:head>
@@ -7,7 +8,7 @@ import RGB from "$lib/RGB.svelte";
 	<meta name="description" content="Learn the fundamentals of CSS" />
 </svelte:head>
 
-<article class="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
+<article class="max-md:mx-4 prose lg:prose-xl m-auto pt-16">
 
 ** under construction **
 # CSS Fundamentals
@@ -19,17 +20,21 @@ Lets start with a div element. This element like *all* HTML elements is made up 
 
 <div class="h-48 w-48 mx-auto flex-center">Hello World</div>
 
-Below you will see the div is made up of a <span class="text-blue-700">margin</span>, <span class="text-blue-600">border</span>, <span class="text-blue-500">padding</span> and <span class="text-blue-400">content</span>, in that order towards the centre. While the content and the border are self-explanatory, it is important to note the difference between margin and padding. Margin creates spacing between elements whilst padding creates spacing around the content.
-
-<div class="h-48 w-48 bg-blue-700 mx-auto flex-center ">
-	<div class="h-40 w-40 bg-blue-600 mx-auto flex-center">
+<div class="h-48 w-48 bg-blue-800 mx-auto flex-center ">
+	<div class="h-40 w-40 bg-slate-300 mx-auto flex-center">
 		<div class="h-36 w-36 bg-blue-500 mx-auto flex-center">
-			<div class="h-28 w-28 bg-blue-400 mx-auto flex-center text-white">Hello World</div>
+			<div class="h-28 w-28 bg-slate-800 mx-auto flex-center text-white">Hello World</div>
 		</div>
 	</div>
 </div>
 
-The differences become evident when you only display the border and the content while individually tweaking the margin and padding values.
+Above you will see the individual parts of the div visualised and consisting of a <span class="text-blue-800">margin</span>, <span class="text-slate-500">border</span>, <span class="text-blue-500">padding</span> and <span class="text-slate-800">content</span>, in that order towards the centre. It is important to note the difference between margin and padding. Margin creates spacing around the element whilst padding creates spacing around the content. The border encapsulates our element which contains the padding and the content. With CSS you can increase or decrease the size of any part of the box model by number of pixels, cm and other units of measurement.
+
+Below I have three elements with their borders visible, one of which the values for margin and padding can be tweaked.
+
+<BoxModel />
+
+Something to note is that the padding and border size affect the size of the element itself.
 
 <!-- <div class="grid grid-cols-2"><div class="border-4 h-32 w-32 flex-center p-20 mx-auto">Hello World</div>
 <div class="border-4 h-32 w-32 flex-center mt-12 mx-auto">Hello World</div></div> -->
@@ -40,6 +45,8 @@ Going back to a div element, this time containing a [hexadecimal](https://en.wik
 <RGB />
 
 ## Positioning
+
+## Finish
 
 ### Resources
 [W3Schools](https://www.w3schools.com/css/),

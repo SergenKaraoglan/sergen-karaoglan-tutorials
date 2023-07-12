@@ -7,14 +7,14 @@
 			title: 'HTML Fundamentals',
 			image: htmlimage,
 			topics: ['HTML', 'DOM', 'Markup', 'Web'],
-			description: 'Learn how to structure your webpage using HTML.',
+			description: 'Learn how to structure a webpage using HTML.',
 			demo: '/html-fundamentals'
 		},
 		{
 			title: 'CSS Fundamentals',
 			image: cssimage,
 			topics: ['CSS', 'DOM', 'Styling', 'Web'],
-			description: 'Learn how to style your webpage using CSS.',
+			description: 'Learn how to style a webpage using CSS.',
 			demo: '/css-fundamentals'
 		},
 		{

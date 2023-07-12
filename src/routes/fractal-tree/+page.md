@@ -9,7 +9,7 @@ import '$lib/styles/vscode-dark.css';
 	<meta name="description" content="Build and learnt about fractal trees with a interactive 3D fractal tree generator." />
 </svelte:head>
 
-<article class="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
+<article class="max-md:mx-4 prose lg:prose-xl m-auto pt-16">
 
 # Fractal Tree
 
