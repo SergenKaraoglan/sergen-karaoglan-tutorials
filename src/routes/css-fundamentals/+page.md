@@ -35,7 +35,7 @@ Below I have three elements with their borders visible, one of which the values 
 
 <BoxModel />
 
-Something to note is that the padding and border size affect the size of the element itself.
+The key thing to note is how the padding affects the size of the element itself which also holds true for the border.
 
 <!-- <div class="grid grid-cols-2"><div class="border-4 h-32 w-32 flex-center p-20 mx-auto">Hello World</div>
 <div class="border-4 h-32 w-32 flex-center mt-12 mx-auto">Hello World</div></div> -->
@@ -49,8 +49,9 @@ div {
 }
 ```
 
-Going back to a div element, this time containing a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) value at the centre. Lets say we want to style this element.
-With CSS we have to first specify the element we want to specify, which can be done in multiple ways. One way is simply specifying the type of element we want to specify which in this case is a div element. Next, is choosing the attribute of the element we want to tweak. For this example it will be the background color.
+With CSS we have to first select the element we want to style, using a **selector**. We can select an element in a number of ways but one way is simply specifying the type of an element, which in this case is a div. Next, is choosing the **property** of the selected element such as the background colour (CSS uses American English spelling). Finally we specify the value for the property of the selected element(s).
+
+Below is div with a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) value at its centre. To change the background colour of the element we simply follow the syntax shown above.
 
 <RGB />
 
