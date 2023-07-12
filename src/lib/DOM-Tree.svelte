@@ -10,12 +10,12 @@
 				width: 250px;
 				height: 250px;
 			}
-			</style>
+		</style>
 	</head>
     <body>
 		<h1>Pixel art Chipmunk</h1>
 		<p>Generated using Dalle</p> 
-		<img src="https://openailabsprodscus.blob.core.windows.net/private/user-WqZKZrMs9xF112uwS6xnbMHP/generations/generation-xMP7pzRv5de7VgrMNuMCskW4/image.webp?st=2023-07-12T18%3A36%3A42Z&se=2023-07-12T20%3A34%3A42Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/webp&skoid=15f0b47b-a152-4599-9e98-9cb4a58269f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-07-12T18%3A30%3A58Z&ske=2023-07-19T18%3A30%3A58Z&sks=b&skv=2021-08-06&sig=sPjs%2BhCldrF8aYyE7JXnqet/SkVhfR2q9IzwzQG%2BdBY%3D">
+		<img src="https://i.imgur.com/3FmEZ67.jpg">
     </body>
   </html>
 `;
