@@ -1,6 +1,7 @@
 <script>
 import RGB from "$lib/RGB.svelte";
 import BoxModel from "$lib/BoxModel.svelte";
+import AbsoluteLength from "$lib/AbsoluteLength.svelte";
 import '$lib/styles/vscode-dark.css';
 </script>
 
@@ -84,7 +85,14 @@ So we covered the box model and how to select and change the properties of our e
 Below is div with a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) value at its centre. To change the background colour of the element we can simply set the background-color property with a value such as "red", "blue", "green". But we can have much finer grain of control than that. The hexadecimal value shown is the value of the current background colour of our div that can be changed through the three sliders below. 
 <RGB />
 
+Also, as a fun fact, HTML has its own colour picker built in that you can use by clicking the following:
+<input class="h-20 w-20 mx-auto block" type="color">
+
 ## Units of Measurement
+### Absolute
+<AbsoluteLength />
+
+### Relative
 
 ## Style your first webpage 
 While this article covers the fundamentals of CSS, it is barely covering all the little things that can be done with CSS. I recommend taking a look at a [reference](https://www.w3schools.com/cssref/index.php) to see all the ways you can style a page for yourself. But as I mentioned in [my HTML article](/html-fundamentals), remembering everything is not a requirement and the purpose of this article is to give you enough grounding to get started styling your HTML documents. Your skill, knowledge and understanding of CSS will grow as you experiment and style more pages.

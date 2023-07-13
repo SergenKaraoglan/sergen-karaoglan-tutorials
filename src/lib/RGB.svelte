@@ -13,8 +13,8 @@
 </div>
 
 <div class="mx-auto w-fit mt-3">
-<input class="appearance-none bg-red-500 thumb-md-red-500 rounded-lg h-2" type=range min=0 max=255 step=1 bind:value={red}>
-<input class="appearance-none bg-green-500 thumb-md-green-500 rounded-lg h-2" type=range min=0 max=255 step=1 bind:value={green}>
-<input class="appearance-none bg-blue-500 thumb-md-blue-500 rounded-lg h-2" type=range min=0 max=255 step=1 bind:value={blue}>
+<input class="appearance-none bg-red-500 thumb-md-red-500 rounded-lg h-2 w-24 sm:w-32" type=range min=0 max=255 step=1 bind:value={red}>
+<input class="appearance-none bg-green-500 thumb-md-green-500 rounded-lg h-2 w-24 sm:w-32" type=range min=0 max=255 step=1 bind:value={green}>
+<input class="appearance-none bg-blue-500 thumb-md-blue-500 rounded-lg h-2 w-24 sm:w-32" type=range min=0 max=255 step=1 bind:value={blue}>
 </div>
 

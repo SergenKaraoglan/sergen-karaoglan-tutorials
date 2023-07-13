@@ -13,7 +13,7 @@
 		</style>
 	</head>
     <body>
-		<h1>Pixel art Chipmunk</h1>
+		<h1>Chipmunk</h1>
 		<p>Generated using Dalle</p> 
 		<img src="https://i.imgur.com/3FmEZ67.jpg">
     </body>

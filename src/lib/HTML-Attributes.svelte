@@ -7,4 +7,4 @@
 <img src={PixelPlanet} width={width} alt="an image is supposed to be here!">
 </div>
 
-<code class="m-auto flex flex-center">&ltimg src='planet.png' width=<input class="border" type="text" minlength="4" maxlength="8" size="10" bind:value={width}>&gt</code>
+<code class="m-auto flex flex-center">&ltimg src='img.png' width=<input class="border" type="text" minlength="4" maxlength="8" size="10" bind:value={width}>&gt</code>

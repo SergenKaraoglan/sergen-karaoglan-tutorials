@@ -66,7 +66,7 @@ Next we would like to be able to rotate our mesh but first we would like to chan
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
 <Lazy
-	this={() => import("$lib/rotation-points.svelte")}
+	this={() => import("$lib/RotationPoints.svelte")}
 	>
 	<svelte:fragment slot="component" let:Component>
 		<Component />

@@ -26,15 +26,15 @@
 
 	let html = '';
 	let html1 = createHTML('');
-	let html2 = createHTML('<h1>Pixel art Chipmunk</h1>');
+	let html2 = createHTML('<h1>Chipmunk</h1>');
 
 	let html3 = createHTML(`
-	<h1>Pixel art Chipmunk</h1>
+	<h1>Chipmunk</h1>
 		<p>Generated using Dalle</p> 
 `);
 
 	let html4 = createHTML(`
-	<h1>Pixel art Chipmunk</h1>
+	<h1>Chipmunk</h1>
 		<p>Generated using Dalle</p> 
 		<img src="https://i.imgur.com/3FmEZ67.jpg">
 `);
@@ -42,7 +42,7 @@
 	let html5 = createHTML(`
     <body>
         <div >
-			<h1>Pixel art Chipmunk</h1>
+			<h1>Chipmunk</h1>
 		<p>Generated using Dalle</p> 
     </div>
 	<img src="https://i.imgur.com/3FmEZ67.jpg">
