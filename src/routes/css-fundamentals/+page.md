@@ -84,11 +84,6 @@ We have two div elements with the same class but different id's. Both div's will
 ## Positioning
 So we covered the box model and how to select and change the properties of our elements but how do we change the position of an element?
 
-Static - normal flow
-Fixed - relative to viewport
-Sticky - toggles between relative and fixed
-Relative - relative to normal position
-Absolute - relative to nearest ancestor
 <Positioning />
 
 ## Colour
