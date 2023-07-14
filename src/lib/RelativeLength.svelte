@@ -6,7 +6,7 @@
 
 <div class="w-48 h-48 m-auto flex-center">
 	<div class="border-2 flex-center m-auto" style="height:{height}px; width:{width}px">
-		<img src={PixelGoldfish} class="h-3/4 w-3/4 " />
+		<img src={PixelGoldfish} alt="Goldfish pixel art" class="h-3/4 w-3/4 " />
 	</div>
 </div>
 

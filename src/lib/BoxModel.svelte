@@ -5,14 +5,14 @@
 </script>
 
 <div class="mx-auto w-fit flex-center">
-	<img src={PixelAstro} class="sm:h-32 sm:w-32 h-10 w-10 mx-5" />
+	<img src={PixelAstro} alt="astronaut pixel art" class="sm:h-32 sm:w-32 h-10 w-10 mx-5" />
 	<div
 		class="box-content sm:h-32 sm:w-32 h-10 w-10 mx-5 flex-center border-2"
 		style="padding-left: {padding}px; padding-right: {padding}px; margin-left: {margin}px; margin-right: {margin}px;"
 	>
-		<img src={PixelAstro} />
+		<img src={PixelAstro} alt="astronaut pixel art"/>
 	</div>
-	<img src={PixelAstro} class="sm:h-32 sm:w-32 h-10 w-10 mx-5" />
+	<img src={PixelAstro} alt="astronaut pixel art" class="sm:h-32 sm:w-32 h-10 w-10 mx-5" />
 </div>
 
 <div class="mx-auto w-fit mt-3">
