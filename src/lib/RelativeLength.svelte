@@ -1,12 +1,12 @@
 <script>
-    import PixelAstro from '$lib/assets/pixel-astro.webp';
+    import PixelGoldfish from '$lib/assets/pixel-fishbowl.webp';
 	let height = 100;
 	let width = 100;
 </script>
 
 <div class="w-48 h-48 m-auto flex-center">
 	<div class="border-2 flex-center m-auto" style="height:{height}px; width:{width}px">
-		<img src={PixelAstro} class="h-1/2 w-1/2 " />
+		<img src={PixelGoldfish} class="h-1/2 w-1/2 " />
 	</div>
 </div>
 
