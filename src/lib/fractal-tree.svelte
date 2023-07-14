@@ -137,7 +137,7 @@
 <div class="mx-auto w-fit mt-3">
 	{#if showDepth}
 		<input
-			class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-700"
+			class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-700 w-40"
 			type="range"
 			min="0"
 			max="10"
@@ -150,7 +150,7 @@
 	{/if}
 	{#if showAngle}
 		<input
-			class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-700"
+			class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-700 w-40"
 			type="range"
 			min="0"
 			max="2"

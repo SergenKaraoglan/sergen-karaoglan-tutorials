@@ -84,10 +84,12 @@ We have two div elements with the same class but different id's. Both div's will
 So we covered the box model and how to select and change the properties of our elements but how do we change the position of an element?
 
 ## Colour
-Below is div with a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) value at its centre. To change the background colour of the element we can simply set the background-color property with a value such as "red", "blue", "green". But we can have much finer grain of control than that. The hexadecimal value shown is the value of the current background colour of our div that can be changed through the three sliders below. 
+Below is div with a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) value at its centre. To change the background colour of the element we can simply set the background-color property with a value such as "orange", "purple", "green". But we can have much finer grain of control than that. Each pixel of your screen is made up of red, green and blue (RGB), which in combination make a single colour. The value of each colour range from 0-255 and can be controlled with the sliders below changing the background colour of our div, the hexadecimal value represents the total RGB value.
+
 <RGB />
 
-Also, as a fun fact, HTML has its own colour picker built in that you can use by clicking the following:
+In CSS you can use any of the specified type of values and more to pick a colour.
+As a small fun fact, HTML has its own colour picker built in that you can use by clicking the following:
 <input class="h-20 w-20 mx-auto block" type="color">
 
 ## Units of Measurement
@@ -97,18 +99,18 @@ There are many absolute units of measurements that allow to adjust our elements 
 <AbsoluteLength />
 
 ### Relative
-With relative measurements, our measurement is well relative... What this means, is that the value is dependent on value of another element. Let's take a look at a concrete example below.
-What we have is an img element nested in a div. The height and width of the image is relative to its parent div or more specifically for this example, half the height and width using the style: ```height: 50%; width: 50%```. '%' being one of the many relative units of measurements.
+With relative units, our value is well [relative](https://en.wiktionary.org/wiki/relative#English)... What this means, is that the value we receive is dependent on another value. Let's take a look at the following concrete example:
+What we have is an img element nested in a div. The height and width of the image is relative to its parent div or more specifically for this example, half the height and width using the style: ```height: 75%; width: 75%```. '%' being one of the many relative units of measurements.
 
-You can *only* control the height/width of the parent element but watch as the nested image automatically adjusts to remain at 50% of the parent div.
+You can *only* control the height/width of the parent element but watch as the nested image automatically adjusts to remain at 75% of the parent div.
 
 <RelativeLength />
 
 Some of the other relative units include units such as 'vw', 'vh' that output values relative to to the [viewport](https://en.wikipedia.org/wiki/Viewport) width and height respectively.
-Something you might do is set a div to 100vh so it always fills 100% of the height of the browser viewport.
+Something you might do is set a div to 100vh so it always fills 100% of the height of the browser viewport whether it is on a small mobile screen or a large monitor.
 
 ## Style your first webpage 
-While this article covers the fundamentals of CSS, it is barely covering all the little things that can be done with CSS. I recommend taking a look at a [reference](https://www.w3schools.com/cssref/index.php) to see all the ways you can style a page for yourself. But as I mentioned in [my HTML article](/html-fundamentals), remembering everything is not a requirement and the purpose of this article is to give you enough grounding to get started styling your HTML documents. Your skill, knowledge and understanding of CSS will grow as you experiment and style more pages. Style your elements individually and coordinate them together to create a stylised webpage.
+While this article covers the fundamentals of CSS, it is barely covering all the little things that can be done with CSS. I recommend taking a look at a [reference](https://www.w3schools.com/cssref/index.php) to see all the ways you can style a page for yourself. But as I mentioned in my [HTML article](/html-fundamentals), remembering everything is not a requirement and the purpose of this article is to give you enough grounding to get started styling your HTML documents. Your skill, knowledge and understanding of CSS will grow as you experiment and style your elements and coordinate them to create a stylised webpage.
 
 <CSSMontage />
 
