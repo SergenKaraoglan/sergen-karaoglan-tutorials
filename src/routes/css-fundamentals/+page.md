@@ -1,6 +1,7 @@
 <script>
 import RGB from "$lib/RGB.svelte";
 import BoxModel from "$lib/BoxModel.svelte";
+import Positioning from "$lib/CSSposition.svelte";
 import AbsoluteLength from "$lib/AbsoluteLength.svelte";
 import RelativeLength from "$lib/RelativeLength.svelte";
 import CSSMontage from "$lib/CSSMontage.svelte";
@@ -18,7 +19,7 @@ import '$lib/styles/vscode-dark.css';
 
 # CSS Fundamentals
 
-[Cascading Style Sheets](https://en.wikipedia.org/wiki/CSS) (CSS) is a language with the purpose of styling a document. Whilst HTML is used for structuring a page and adding content, with CSS we can style our document by for example, changing the background colour of a page or choosing the exact number of pixels of space we want around an element. It is common for a tutorial to expose you to the sheer breadth of features that CSS provides but there are 4 fundamental concepts that you only need to understand to start styling websites in almost anyway you want, excluding animations.
+[Cascading Style Sheets](https://en.wikipedia.org/wiki/CSS) (CSS) is a language with the purpose of styling a document. Whilst HTML is used for structuring a page and adding content, with CSS we can style our document by for example, changing the background colour of a page or choosing the exact number of pixels of space we want around an element. It is common for a tutorial to expose you to the sheer breadth of features that CSS provides but we will only be covering fundamental concepts to quickly get started with styling webpages and have a foundation to quickly learn more.
 
 ## Box Model
 Lets start with a div element. This element like *all* HTML elements is made up of an anatomy called the **box model** that consists of 4 parts.
@@ -82,6 +83,13 @@ We have two div elements with the same class but different id's. Both div's will
 
 ## Positioning
 So we covered the box model and how to select and change the properties of our elements but how do we change the position of an element?
+
+Static - normal flow
+Fixed - relative to viewport
+Sticky - toggles between relative and fixed
+Relative - relative to normal position
+Absolute - relative to nearest ancestor
+<Positioning />
 
 ## Colour
 Below is div with a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) value at its centre. To change the background colour of the element we can simply set the background-color property with a value such as "orange", "purple", "green". But we can have much finer grain of control than that. Each pixel of your screen is made up of red, green and blue (RGB), which in combination make a single colour. The value of each colour range from 0-255 and can be controlled with the sliders below changing the background colour of our div, the hexadecimal value represents the total RGB value.

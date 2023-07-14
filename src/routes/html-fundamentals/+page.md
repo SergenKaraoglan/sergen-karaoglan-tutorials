@@ -33,6 +33,7 @@ There are over 100 HTML elements which can all be found on a [reference](https:/
 A typical HTML document structure looks like the following:
 
 ```HTML
+<!DOCTYPE html>
 <html>
 	<head>
 		<title> title </title>
@@ -45,7 +46,7 @@ A typical HTML document structure looks like the following:
 </html>
 ```
 
-You can see beyond text we can even include elements in other elements to change their behaviour. The ```<html>``` element defines our document which directly includes the elements ```<head>``` and ```<body>```. All content rendered on the screen is placed in body whereas [metadata](https://en.wikipedia.org/wiki/Metadata) such as the title and the icon of the page is placed in head.
+You can see beyond text we can even include elements in other elements to change their behaviour. The ```<html>``` element defines our document which directly includes the elements ```<head>``` and ```<body>```. All content rendered on the screen is placed in body whereas [metadata](https://en.wikipedia.org/wiki/Metadata) such as the title and the icon of the page is placed in head. Understanding the details of [DOCTYPE](https://html.spec.whatwg.org/multipage/syntax.html#the-doctype) is not important at this stage but it is required for our browser to render HTML appropriately.
 
 ## Document Object Model
 Now, in order for you browser to understand how to render the content it needs to builds a [Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model) using the specified elements first.
@@ -99,6 +100,6 @@ To get started here is a template:
 ___
 
 <GithubStar />
-<!-- The group that specifies HTML and the DOM is called [WHATWG](https://en.wikipedia.org/wiki/WHATWG) and use to be the [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium). The [browser engine](https://en.wikipedia.org/wiki/Browser_engine) is responsible for what is responsible for rendering HTML into a webpage and needs to be developed by browser vendors (Chrome, Safari, Firefox etc.) to match the HTML specification so we have a consistently functioning web pages across different devices and different browsers. id,-->
+<!-- The group that specifies HTML and the DOM is called [WHATWG](https://en.wikipedia.org/wiki/WHATWG) and use to be the [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium). The [browser engine](https://en.wikipedia.org/wiki/Browser_engine) is responsible for what is responsible for rendering HTML into a webpage and needs to be developed by browser vendors (Chrome, Safari, Firefox etc.) to match the HTML specification so we have a consistently functioning web pages across different devices and different browsers.-->
 
 </article>

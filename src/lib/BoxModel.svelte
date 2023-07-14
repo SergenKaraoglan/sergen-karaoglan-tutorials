@@ -16,6 +16,6 @@
 </div>
 
 <div class="mx-auto w-fit mt-3">
-	<input class="w-36" type="range" min="0" max="50" step="1" bind:value={padding} />
-	<input class="w-36" type="range" min="0" max="50" step="1" bind:value={margin} />
+	<input class="w-36" type="range" min="0" max="35" step="1" bind:value={padding} />
+	<input class="w-36" type="range" min="0" max="35" step="1" bind:value={margin} />
 </div>
