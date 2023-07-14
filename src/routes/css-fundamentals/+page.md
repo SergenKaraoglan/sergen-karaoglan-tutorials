@@ -2,6 +2,8 @@
 import RGB from "$lib/RGB.svelte";
 import BoxModel from "$lib/BoxModel.svelte";
 import AbsoluteLength from "$lib/AbsoluteLength.svelte";
+import RelativeLength from "$lib/RelativeLength.svelte";
+import CSSMontage from "$lib/CSSMontage.svelte";
 import '$lib/styles/vscode-dark.css';
 </script>
 
@@ -90,12 +92,25 @@ Also, as a fun fact, HTML has its own colour picker built in that you can use by
 
 ## Units of Measurement
 ### Absolute
+There are many absolute units of measurements that allow to adjust our elements to the exact number of pixels we want displayed on the screen:
+
 <AbsoluteLength />
 
 ### Relative
+With relative measurements, our measurement is well relative... What this means, is that the value is dependent on value of another element. Let's take a look at a concrete example below.
+What we have is an img element nested in a div. The height and width of the image is relative to its parent div or more specifically for this example, half the height and width using the style: ```height: 50%; width: 50%```. '%' being one of the many relative units of measurements.
+
+You can *only* control the height/width of the parent element but watch as the nested image automatically adjusts to remain at 50% of the parent div.
+
+<RelativeLength />
+
+Some of the other relative units include units such as 'vw', 'vh' that output values relative to to the [viewport](https://en.wikipedia.org/wiki/Viewport) width and height respectively.
+Something you might do is set a div to 100vh so it always fills 100% of the height of the browser viewport.
 
 ## Style your first webpage 
-While this article covers the fundamentals of CSS, it is barely covering all the little things that can be done with CSS. I recommend taking a look at a [reference](https://www.w3schools.com/cssref/index.php) to see all the ways you can style a page for yourself. But as I mentioned in [my HTML article](/html-fundamentals), remembering everything is not a requirement and the purpose of this article is to give you enough grounding to get started styling your HTML documents. Your skill, knowledge and understanding of CSS will grow as you experiment and style more pages.
+While this article covers the fundamentals of CSS, it is barely covering all the little things that can be done with CSS. I recommend taking a look at a [reference](https://www.w3schools.com/cssref/index.php) to see all the ways you can style a page for yourself. But as I mentioned in [my HTML article](/html-fundamentals), remembering everything is not a requirement and the purpose of this article is to give you enough grounding to get started styling your HTML documents. Your skill, knowledge and understanding of CSS will grow as you experiment and style more pages. Style your elements individually and coordinate them together to create a stylised webpage.
+
+<CSSMontage />
 
 ### Resources
 [W3Schools](https://www.w3schools.com/css/),
