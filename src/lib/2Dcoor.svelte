@@ -1,7 +1,11 @@
 <script>
   import {onMount} from "svelte";
+  import PixelTiger from '$lib/assets/pixel-tiger.webp';
 
+  let image;
   let canvas;
+  let x;
+  let y;
    onMount(() => {
     const ctx = canvas.getContext("2d");
     const width = canvas.width;
@@ -22,6 +26,11 @@
     });
 
     function draw() {
+      x = cursor.x;
+      y = cursor.y;
+      // draw image
+      ctx.drawImage(image, cursor.x, cursor.y, 60, 60);
+
       // draw x and y axis lines
       ctx.moveTo(0, 0);
       ctx.lineTo(0, height);
@@ -34,11 +43,6 @@
       // draw x and y axis
       ctx.fillText("X", 15, height - 5);
       ctx.fillText("Y", 5, height - 15);
-
-      // draw circle
-      ctx.beginPath();
-      ctx.arc(cursor.x, cursor.y, 5, 0, 2 * Math.PI);
-      ctx.fill();
     }
 
     function anim() {
@@ -50,4 +54,6 @@
   });
 </script>
 
+<img bind:this={image} src={PixelTiger} alt="Pixel Tiger" class="hidden" />
 <canvas bind:this={canvas} width="300" height="300" class="border-2 mx-auto my-5"></canvas>
+<div class="mx-auto w-fit">X:{x} Y:{y}</div>
