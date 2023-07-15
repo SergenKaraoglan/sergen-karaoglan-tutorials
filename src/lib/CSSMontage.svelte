@@ -8,7 +8,7 @@
         borderRadius = Math.floor(Math.random() * 100);
         borderStyle = ["solid", "dashed", "double"][Math.floor(Math.random() * 3)];
         fontFamily = ["sans-serif", "serif", "monospace", "cursive", "fantasy"][Math.floor(Math.random() * 5)];
-    }, 500);
+    }, 1000);
 
   
   

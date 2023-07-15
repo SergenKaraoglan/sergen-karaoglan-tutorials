@@ -15,8 +15,6 @@ import '$lib/styles/vscode-dark.css';
 
 <article class="max-md:mx-4 prose lg:prose-xl m-auto pt-16">
 
-**under construction**
-
 # CSS Fundamentals
 
 [Cascading Style Sheets](https://en.wikipedia.org/wiki/CSS) (CSS) is a language with the purpose of styling a document. Whilst HTML is used for structuring a page and adding content, with CSS we can style our document by for example, changing the background colour of a page or choosing the exact number of pixels of space we want around an element. It is common for a tutorial to expose you to the sheer breadth of features that CSS provides but we will only be covering fundamental concepts to quickly get started with styling webpages and have a foundation to quickly learn more.
@@ -82,8 +80,14 @@ Going back to learning a bit about HTML, every element can possess the attribute
 We have two div elements with the same class but different id's. Both div's will have the background color blue with a height and width of 100 pixels, whereas only our first div "div1" will have a solid border.
 
 ## Positioning
-So we covered the box model and how to select and change the properties of our elements but how do we change the position of an element?
+When we add a block element it will be placed in the next available line and to the left but what if we want more control on how we want to position our element?
+There are a number of ways to do this, but here I will be covering the **position** property. What you have below is a document with three div elements each with a different position property that I have labelled them with.
 
+Static is the default position value, which means it is positioned according to the normal layout flow of the document. Other position attributes allow us to position our elements using the properties top, left, bottom, right.
+
+If you scroll the document you will notice how the 'Fixed' element remains at the same position. That's because elements with the position value fixed are positioned relative to the viewport.
+
+Elements with value sticky remain in a fixed position once it is scrolled to a given position.
 <Positioning />
 
 ## Colour

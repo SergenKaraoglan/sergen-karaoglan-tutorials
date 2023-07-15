@@ -11,7 +11,7 @@
                 padding: 16px;
                 border-radius: 8px;
                 width: fit-content;
-                margin-top: 16px;
+                margin-top: 10px;
             }
              .fixed {
                 position: fixed;
@@ -37,8 +37,8 @@
             }
             .static {
                 position: static;
-                background-color: yellow;
-                color: black;
+                background-color: red;
+                color: white;
             }
             .absolute {
                 position: absolute;
@@ -54,10 +54,10 @@
         </style>
     </head>
     <body>
-        <div class="static">static</div>
-        <div class="fixed">fixed</div>
+        <div class="static">Static</div>
+        <div class="fixed">Fixed</div>
         
-        <div class="sticky">sticky</div>
+        <div class="sticky">Sticky</div>
         <div class="spacer"></div>
     </body>
     </html>`;
