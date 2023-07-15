@@ -106,7 +106,7 @@ There are many absolute units of measurements that allow to adjust our elements 
 <AbsoluteLength />
 
 ### Relative
-With relative units, our value is well [relative](https://en.wiktionary.org/wiki/relative#English)... What this means, is that the value we receive is dependent on another value. Let's take a look at the following concrete example:
+With relative units, our value is well [relative](https://en.wiktionary.org/wiki/relative#English)... Which means our measurement is dependent on another value. Let's take a look at the following concrete example:
 What we have is an img element nested in a div. The height and width of the image is relative to its parent div or more specifically for this example, half the height and width using the style: ```height: 75%; width: 75%```. '%' being one of the many relative units of measurements.
 
 You can *only* control the height/width of the parent element but watch as the nested image automatically adjusts to remain at 75% of the parent div.
