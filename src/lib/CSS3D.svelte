@@ -1,9 +1,9 @@
 <!--create box-->
 <div id="box" class="m-auto flex-center h-48 w-48 relative">
-	<div class="absolute w-48 h-32 bg-blue-500 rounded m-auto text-white flex-center opacity-50" style="transform: translate3d(30px, 0px, -100px) rotateY(180deg);;">The 3rd dimension</div>
-    <div class="absolute w-48 h-32 bg-red-500 rounded m-auto text-white flex-center opacity-50" style="transform: translate3d(30px, 0px, 100px);">The 3rd dimension</div>
-    <div class="absolute w-48 h-32 bg-green-500 rounded m-auto text-white flex-center opacity-50" style="transform: translate3d(-70px, 0px, 0px) rotateY(-90deg);">The 3rd dimension</div>
-    <div class="absolute w-48 h-32 bg-yellow-500 rounded m-auto text-white flex-center opacity-50" style="transform: translate3d(130px, 0px, 0px) rotateY(90deg);">The 3rd dimension</div>
+	<div class="absolute w-48 h-32 bg-blue-500 rounded m-auto text-white flex-center opacity-75" style="transform: translate3d(30px, 0px, -100px) rotateY(180deg);;">The 3rd dimension</div>
+    <div class="absolute w-48 h-32 bg-red-500 rounded m-auto text-white flex-center opacity-75" style="transform: translate3d(30px, 0px, 100px);">The 3rd dimension</div>
+    <div class="absolute w-48 h-32 bg-green-500 rounded m-auto text-white flex-center opacity-75" style="transform: translate3d(-65px, 0px, 0px) rotateY(-90deg);">The 3rd dimension</div>
+    <div class="absolute w-48 h-32 bg-yellow-500 rounded m-auto text-white flex-center opacity-75" style="transform: translate3d(125px, 0px, 0px) rotateY(90deg);">The 3rd dimension</div>
 </div>
 
 <style>
