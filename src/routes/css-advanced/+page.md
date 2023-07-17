@@ -1,5 +1,6 @@
 <script>
     import Transforms from "$lib/CSSTransforms.svelte";
+    import Animations from "$lib/CSSAnimations.svelte";
 </script>
 
 <svelte:head>
@@ -38,12 +39,15 @@ All these methods are self explanatory if you play with them but one thing you m
 
 <Transforms />
 
-We can even add transitions to our transforms, all just CSS.
+We can even add transitions to our transforms, all with just CSS.
 
-<div class="transition-all duration-500 mx-auto w-32 h-32 bg-blue-500 hover:scale-x-150 hover:scale-y-150 hover:rotate-180 hover:translate-x-28 rounded">
+<div class="transition-all duration-500 text-white flex-center mx-auto w-32 h-32 bg-blue-500 hover:scale-x-150 hover:scale-y-150 hover:rotate-180 hover:translate-x-28 rounded">
+Press/Hover!
 </div>
 
 ## Animations
+Keyframes, timing functions.
+<Animations />
 
 ## Grid and Flexbox
 

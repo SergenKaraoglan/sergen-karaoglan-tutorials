@@ -10,7 +10,7 @@
 </script>
 
 <div class="m-auto w-48 h-48 flex-center">
-	<div class="rounded bg-blue-500 h-10 w-10" style="transform: translate({tx}rem, {ty}rem) rotate({rotate}deg) scale({sx}, {sy}) skew({skewX}deg, {skewY}deg);" />
+	<div class="rounded bg-blue-500 h-12 w-12" style="transform: translate({tx}rem, {ty}rem) rotate({rotate}deg) scale({sx}, {sy}) skew({skewX}deg, {skewY}deg);" />
 </div>
 
 <select bind:value={selected} class="mx-auto mb-5 mt-3 block">
@@ -26,8 +26,8 @@
 	<input type="range" step="0.25" min="-5" max="5" bind:value={tx} />
 	<input type="range" step="0.25" min="-5" max="5" bind:value={ty} />
     {:else if selected == "scale"}
-    <input type="range" step="0.25" min="0" max="5" bind:value={sx} />
-    <input type="range" step="0.25" min="0" max="5" bind:value={sy} />
+    <input type="range" step="0.25" min="0" max="4" bind:value={sx} />
+    <input type="range" step="0.25" min="0" max="4" bind:value={sy} />
     {:else if selected == "rotate"}
     <input type="range" step="1" min="0" max="360" bind:value={rotate} />
     {:else if selected == "skew"}
