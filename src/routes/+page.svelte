@@ -22,7 +22,7 @@
 			image: cssimage,
 			topics: ['CSS', 'DOM', 'Styling', 'Web', 'Animation'],
 			description: 'Add some more flair to your webpage.',
-			demo: '/css-advanced'
+			demo: '/css-advanced',
 		},
 		{
 			title: 'Fractal Tree',
@@ -68,8 +68,8 @@
 <div id="featured-projects" class="mx-auto max-w-4xl pt-20 lg:pt-28 pb-10">
 	<ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
 		{#each project_list as data}
-			<li class="col-span-2 divide-y divide-gray-200 rounded-lg bg-white shadow">
-				<a href={data.demo} class="block hover:bg-gray-50">
+			<li class="col-span-2 divide-y divide-gray-200 rounded-lg bg-white shadow hover:shadow-md transition-all duration-300">
+				<a href={data.demo}>
 					<div class="flex w-full items-center justify-between space-x-6 p-6">
 						<div class="flex-1">
 							<div class="flex items-center space-x-3">

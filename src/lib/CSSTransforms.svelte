@@ -9,8 +9,8 @@
     let skewY = 0;
 </script>
 
-<div class="m-auto w-48 h-48 flex-center border">
-	<div class="bg-blue-500 h-10 w-10" style="transform: translate({tx}rem, {ty}rem) rotate({rotate}deg) scale({sx}, {sy}) skew({skewX}deg, {skewY}deg);" />
+<div class="m-auto w-48 h-48 flex-center">
+	<div class="rounded bg-blue-500 h-10 w-10" style="transform: translate({tx}rem, {ty}rem) rotate({rotate}deg) scale({sx}, {sy}) skew({skewX}deg, {skewY}deg);" />
 </div>
 
 <select bind:value={selected} class="mx-auto mb-5 mt-3 block">
@@ -23,8 +23,8 @@
 
 <div class="m-auto w-fit">
     {#if selected == "translate"}
-	<input type="range" step="0.25" min="-6" max="6" bind:value={tx} />
-	<input type="range" step="0.25" min="-6" max="6" bind:value={ty} />
+	<input type="range" step="0.25" min="-5" max="5" bind:value={tx} />
+	<input type="range" step="0.25" min="-5" max="5" bind:value={ty} />
     {:else if selected == "scale"}
     <input type="range" step="0.25" min="0" max="5" bind:value={sx} />
     <input type="range" step="0.25" min="0" max="5" bind:value={sy} />
