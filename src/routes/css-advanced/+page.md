@@ -1,6 +1,8 @@
 <script>
     import Transforms from "$lib/CSSTransforms.svelte";
+    import CSS3D from "$lib/CSS3D.svelte";
     import Animations from "$lib/CSSAnimations.svelte";
+    import '$lib/styles/vscode-dark.css';
 </script>
 
 <svelte:head>
@@ -45,8 +47,18 @@ We can even add transitions to our transforms, all with just CSS.
 Press/Hover!
 </div>
 
+### 3D Transforms
+And as an extra bonus we can even perform 3D transformations.
+
+<CSS3D />
+
 ## Animations
 Keyframes, timing functions.
+
+CSS provides an **animation** property which is comparable to transitions, in that they both help achieve the effect of smoothly changing the state of an element to another state. But the animation property gives us an extra number of tools. Firstly, we don't need an event such as a hover to trigger the changes in our element. We can also have more than just a start and end state, using an important feature often found in animation software called **keyframes**.
+
+With keyframes we can add several states our element can transition through using the following:
+
 <Animations />
 
 ## Grid and Flexbox
