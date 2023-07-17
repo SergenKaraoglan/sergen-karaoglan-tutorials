@@ -18,6 +18,13 @@
 			demo: '/css-fundamentals'
 		},
 		{
+			title: 'Advanced CSS',
+			image: cssimage,
+			topics: ['CSS', 'DOM', 'Styling', 'Web', 'Animation'],
+			description: 'Add some more flair to your webpage.',
+			demo: '/css-advanced'
+		},
+		{
 			title: 'Fractal Tree',
 			image: treeimage,
 			topics: ['Procedural Art', 'Fractals', 'Trigonometry', '3D Graphics', 'Recursion'],

@@ -9,6 +9,8 @@
 
 <article class="max-md:mx-4 prose lg:prose-xl m-auto pt-16">
 
+** Under construction **
+
 # Advanced CSS
 
 So you learnt the basics of CSS and probably styled at least a webpage but now want to do more *cool* things with CSS. Well this is the right place, as I will be covering
@@ -20,7 +22,7 @@ Transitions are a powerful yet extremely simple to use. I'm going to immediately
 Interact with the red div below to see it transition to different property values in pure CSS.
 
 <div class="h-32 w-32 mx-auto flex-center">
-    <div class="transition-all duration-500 rounded-none bg-red-700 h-32 w-32 mx-auto active:bg-red-500 active:rounded active:h-20 active:w-20 active:text-sm hover:bg-red-500 hover:rounded-3xl hover:h-24 hover:w-24 hover:text-sm text-white flex-center">
+    <div class="transition-all duration-500 rounded-none bg-red-700 h-32 w-32 mx-auto hover:bg-red-500 hover:rounded-3xl hover:h-24 hover:w-24 hover:text-sm text-white flex-center">
         Press/Hover!
     </div>
 </div>
@@ -36,7 +38,7 @@ All these methods are self explanatory if you play with them but one thing you m
 
 <Transforms />
 
-We can even add transitions to our transforms.
+We can even add transitions to our transforms, all just CSS.
 
 <div class="transition-all duration-500 mx-auto w-32 h-32 bg-blue-500 hover:scale-x-150 hover:scale-y-150 hover:rotate-180 hover:translate-x-20">
 </div>

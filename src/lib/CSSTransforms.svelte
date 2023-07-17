@@ -26,12 +26,12 @@
 	<input type="range" step="0.25" min="-6" max="6" bind:value={tx} />
 	<input type="range" step="0.25" min="-6" max="6" bind:value={ty} />
     {:else if selected == "scale"}
-    <input type="range" step="0.25" min="0" max="6" bind:value={sx} />
-    <input type="range" step="0.25" min="0" max="6" bind:value={sy} />
+    <input type="range" step="0.25" min="0" max="5" bind:value={sx} />
+    <input type="range" step="0.25" min="0" max="5" bind:value={sy} />
     {:else if selected == "rotate"}
     <input type="range" step="1" min="0" max="360" bind:value={rotate} />
     {:else if selected == "skew"}
-    <input type="range" step="1" min="0" max="360" bind:value={skewX} />
-    <input type="range" step="1" min="0" max="360" bind:value={skewY} />
+    <input type="range" step="1" min="-30" max="30" bind:value={skewX} />
+    <input type="range" step="1" min="-30" max="30" bind:value={skewY} />
     {/if}
 </div>
