@@ -2,6 +2,7 @@
     import Transforms from "$lib/CSSTransforms.svelte";
     import CSS3D from "$lib/CSS3D.svelte";
     import Animations from "$lib/CSSAnimations.svelte";
+    import ZIndex from "$lib/ZIndex.svelte";
     import '$lib/styles/vscode-dark.css';
 </script>
 
@@ -48,8 +49,10 @@ Press/Hover!
 </div>
 
 ### 3D Transforms
-And as an extra bonus we can even perform 3D transformations.
+And as an extra bonus we can even perform 3D transformations. With 3D transformations we can tweak the X and Y values for a transformation as before and now also a Z value.
+With the function **translate3d** we can input values for x,y,z where z controls the depth of an element. For example, an element with a Z value of 10 will be placed in front of elements with a Z value under 10. Not only can we translate across 3 dimensions, we also have an extra dimension for rotating elements. Below is a demonstration of these concepts.
 
+<ZIndex />
 <CSS3D />
 
 ## Animations
