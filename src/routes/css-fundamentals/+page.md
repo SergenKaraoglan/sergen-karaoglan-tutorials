@@ -6,6 +6,7 @@ import AbsoluteLength from "$lib/AbsoluteLength.svelte";
 import RelativeLength from "$lib/RelativeLength.svelte";
 import CSSMontage from "$lib/CSSMontage.svelte";
 import '$lib/styles/vscode-dark.css';
+import GithubStar from "$lib/GithubStar.svelte";
 </script>
 
 <svelte:head>
@@ -125,5 +126,9 @@ While this article covers the fundamentals of CSS, it is barely covering all the
 [W3Schools](https://www.w3schools.com/css/),
 [Mozilla](https://developer.mozilla.org/en-US/docs/Web/CSS),
 [Web.dev](https://web.dev/learn/css/)
+
+___
+
+<GithubStar />
 
 </article>

@@ -4,6 +4,7 @@
     import Animations from "$lib/CSSAnimations.svelte";
     import ZIndex from "$lib/ZIndex.svelte";
     import '$lib/styles/vscode-dark.css';
+    import GithubStar from "$lib/GithubStar.svelte";
 </script>
 
 <svelte:head>
@@ -68,6 +69,13 @@ With keyframes we can add several states our element can transition through usin
 
 ## End
 
+### Resources
+[W3Schools](https://www.w3schools.com/css/),
+[Mozilla](https://developer.mozilla.org/en-US/docs/Web/CSS),
+[Web.dev](https://web.dev/learn/css/)
+
+___
+<GithubStar />
 
 
 </article>
