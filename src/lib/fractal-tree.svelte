@@ -77,7 +77,7 @@
 		y = 0,
 		z = 0
 	) {
-		if (depth === maxDepth) {
+		if (depth > maxDepth) {
 			return;
 		}
 		if (instanceMeshes.length == depth) {
@@ -140,7 +140,7 @@
 			class="appearance-none bg-blue-500 rounded-lg h-1 thumb-lg-blue-700 w-40"
 			type="range"
 			min="0"
-			max="10"
+			max={maxDepth}
 			step="1"
 			bind:value={curDepth}
 			on:input={() => {

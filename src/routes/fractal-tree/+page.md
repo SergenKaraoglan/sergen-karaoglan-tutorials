@@ -15,9 +15,9 @@ import '$lib/styles/vscode-dark.css';
 
 ## What is a Fractal Tree
 
-A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this post you will learn how to build one. I used [Babylon.js](https://www.babylonjs.com/) but the concepts shown can be generalised to your chosen 3D rendering engine and language of choice. A Fractal tree can be categorised as procedural art but similar patterns found in fractal trees can be found in nature besides trees from within our respiratory system to our blood veins showing that even our everyday lives are influenced by a recursive pattern. They are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal) which often possess the property of [self-similarity](https://en.wikipedia.org/wiki/Self-similarity) as you will soon see.
+A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this article you will learn how to build one. I used [Babylon.js](https://www.babylonjs.com/) but the concepts shown can be generalised to your 3D rendering engine and language of choice. A fractal tree is a type of procedural art but similar patterns found in fractal trees can be found in nature from within our respiratory system to our blood veins. They are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal) which often possess the property of [self-similarity](https://en.wikipedia.org/wiki/Self-similarity) as you will soon see.
 
-Below is a fractal tree that is intentionally left with only the first [mesh](https://en.wikipedia.org/wiki/Polygon_mesh) drawn. Increase the range of the slider to see how the tree is recursively built.
+Below is a fractal tree that is intentionally left with only the first [mesh](https://en.wikipedia.org/wiki/Polygon_mesh) drawn. Increase the slider to see how the tree is recursively built.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
   <Lazy
@@ -26,11 +26,11 @@ Below is a fractal tree that is intentionally left with only the first [mesh](ht
 	<svelte:fragment slot="component" let:Component>
 		<Component showDepth={true} curDepth={0} />
 	</svelte:fragment>
-</Lazy>
+  </Lazy>
 </div>
 
-A convenient property of procedurally generated art is that you can tweak the parameters to customise the appearance with ease. The recursive depth here is limited at 10 but you can edit the code to go as far as your hardware can handle. Another property is the angle. Each branch (cylinder) splits at a fixed angle from the previous branch.
-Try the slider below to see how the angle changes the appearance of our fractal tree.
+A convenient property of procedurally generated art is that you can tweak the parameters to customise the appearance with ease. The recursive depth here is limited at 10 but you can edit the code to go as far as your hardware can handle. Another property is the angle. Each cylinder represented as a branch of the tree which each split at a fixed angle.
+Move the slider below to see how the angle changes the appearance of our fractal tree.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
   <Lazy
@@ -46,7 +46,7 @@ By now you probably have a good idea of what a fractal tree is, in which case we
 
 ## Building a 2D Fractal Tree
 
-We can start by first creating our "branch" which will come in the form of a mesh with [cylinder geometry](https://threejs.org/docs/index.html#api/en/geometries/CylinderGeometry). The geometry will take the parameters: height, diameter bottom and diameter top, that will be modified as the tree 'grows'.
+We can start by first defining our branch which as previously mentioned will come in the form of a mesh with [cylinder geometry](https://threejs.org/docs/index.html#api/en/geometries/CylinderGeometry). The geometry will take the parameters: height, diameter bottom and diameter top, that will be modified as the tree 'grows'.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
   <Lazy
@@ -60,7 +60,7 @@ We can start by first creating our "branch" which will come in the form of a mes
 
 You can see the cylinder decrease in height and diameter as we stack more cylinders with the top diameter shorter than the bottom to more closely resemble a branch of a tree.
 
-### Rotating branches
+### Centre of Rotation
 
 Next we would like to be able to rotate our mesh but first we would like to change the centre of rotation from the centre of the mesh to its endpoint. There are a number of ways to achieve this but one way is to create and use an object as the parent of each cylinder to use that as the centre of transformation. If we place our mesh above the object so the endpoint of the cylinder meets the object, then by rotating the object we rotate the cylinder by its endpoint. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right). In this example I have also rendered the centre of rotation.
 
@@ -132,22 +132,21 @@ Finally once we have reached the end of recursion our fractal tree will be displ
 
 ## Building a 3D Fractal Tree
 
-As a bonus lets build a 3D fractal. The mesh may be 3D but we are only rotating by the Z axis. We can extend the tree by simply adding two more branches that rotate by the X axis. This totals to 4 generate function calls per generation which means we are now adding 4 branches for every branch until we reach the depth limit. You can orbit the tree by dragging it.
+As a bonus lets build a 3D fractal. The mesh may be 3D but we were only rotating by the Z axis. We can add more volume to our tree by simply adding two more branches that instead rotate by the X axis. This totals to 4 generate function calls per generation which means we are now adding 4 branches for every branch until we reach the depth limit. You can orbit the tree by dragging it.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
     <Lazy
     this={() => import("$lib/fractal-tree.svelte")}
     >
     <svelte:fragment slot="component" let:Component>
-      <Component curDepth={7} maxDepth={7} is3D={true}  />
+      <Component curDepth={6} maxDepth={6} is3D={true} showDepth={true}/>
     </svelte:fragment>
   </Lazy>
 </div>
 
 ## Finishing up
 
-You now know what a Fractal Tree is and saw how to build one. Procedural generation and fractals are both intriguing areas that can be explored much further as this is one of many fractals and arguably the simplest fractal. I hope you enjoyed a brief demonstration of a simple yet elegant pattern that can be found across nature.
-
+You now know what a fractal tree is and saw how to build one. Procedural generation and fractals are both intriguing areas that can be explored much further as this is one of many fractals and arguably the simplest fractal. I hope you enjoyed a brief demonstration of a simple yet elegant pattern that can be found across nature.
 
 ### Resources
 
