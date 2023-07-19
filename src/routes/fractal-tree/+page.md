@@ -84,7 +84,7 @@ Knowing the pattern repeats we can build a fractal tree using recursion. Our ter
 const maxDepth = 10;
 function generate(depth ...) {
   // recursion break point
-  if (depth === maxDepth) {
+  if (depth > maxDepth) {
 		return;
   }
   depth += 1;
@@ -92,7 +92,7 @@ function generate(depth ...) {
 }
 ```
 
-For every call to the generate function, we create a cylinder at a specified angle, and x,y,z coordinate. We then call the function twice more to create two more branches that split at a fixed angle in opposing directions. We also update the height and radius of every branch as we progress by a fixed ratio less than 1 so they decrease in size as the tree progresses.
+For every call to the generate function, we create a cylinder at a specified angle, and x,y,z coordinate. We then call the function twice more to create two more branches that split at a fixed angle. We also update the height and radius of every branch as we progress by a fixed ratio less than 1 so they decrease in size as the tree progresses.
 
 ```jsx
 function generate(depth, angleZ, angleX, radius, height, x, y, z) {
@@ -107,15 +107,10 @@ function generate(depth, angleZ, angleX, radius, height, x, y, z) {
   x = ...
   y = ...
   z = ...
-  let angleZL = (angleZ * 10 + angleIncrement * 10) / 10;
-  let angleZR = (angleZ * 10 - angleIncrement * 10) / 10;
-
-  generate(depth, angleZL, 0, radius, height, x, y, z);
-  generate(depth, angleZR, 0, radius, height, x, y, z);
+  generate(depth, angleZ + angle, angleX, radius, height, x, y, z);
+  generate(depth, angleZ - angle, angleX, radius, height, x, y, z);
 }
 ```
-
-You may have noticed we are converting the angle first to an integer and then dividing, this to avoid [floating point inaccuracies](https://www.w3schools.com/js/tryit.asp?filename=tryjs_numbers_inaccurate3).
 
 #### Using trigonometry to convert polar coordinates to cartesian
 
