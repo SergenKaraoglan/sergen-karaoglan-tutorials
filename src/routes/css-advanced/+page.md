@@ -14,7 +14,6 @@
 
 <article class="max-md:mx-4 prose lg:prose-xl m-auto pt-16">
 
-** Under construction **
 
 # Advanced CSS
 
@@ -57,17 +56,28 @@ With the function **translate3d** we can input values for x,y,z where z controls
 <CSS3D />
 
 ## Animations
-Keyframes, timing functions.
+CSS provides an **animation** property which is comparable to transitions, in that they both help achieve the effect of smoothly changing the state of an element to another state. But the animation property gives us an extra number of tools. Firstly, we don't need an event such as a hover to trigger the changes in our element. We can also have more than just a start and end state.
 
-CSS provides an **animation** property which is comparable to transitions, in that they both help achieve the effect of smoothly changing the state of an element to another state. But the animation property gives us an extra number of tools. Firstly, we don't need an event such as a hover to trigger the changes in our element. We can also have more than just a start and end state, using an important feature often found in animation software called **keyframes**.
-
-With keyframes we can add several states our element can transition through using the following:
+To create an animation we first define an animations **[Keyframes](https://en.wikipedia.org/wiki/Key_frame)**. In the example below, an animation called 'pulse' is created with two states. The first state is defined as '0%' meaning the beginning of our animation. In this case our element starts with 0 opacity. At the end of our animation or at '100%' our element will transition to full opacity and a scale of 1.3%. The animation can be seen below the code.
+```CSS
+@keyframes pulse {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			transform: scale(1.3);
+			opacity: 1 ;
+		}
+	}
+```
 
 <Animations />
 
-## Grid and Flexbox
+The animation duration in this case is set to infinite, which means the animation will forever continue to loop, which can't be achieved with transition. We can also choose other keyframe values such as 50% to have a state to transition to midway through the animation.
 
-## End
+
+<!-- ## Make your own animation!
+CSS provides surprisingly simple yet powerful tools that can be taken far depending on how creative you decide to be with it.  -->
 
 ### Resources
 [W3Schools](https://www.w3schools.com/css/),
