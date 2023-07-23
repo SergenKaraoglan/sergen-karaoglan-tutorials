@@ -15,7 +15,7 @@ import '$lib/styles/vscode-dark.css';
 
 ## What is a Fractal Tree
 
-A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this article you will learn how to build one. I used [Babylon.js](https://www.babylonjs.com/) but the concepts shown can be generalised to your 3D rendering engine and language of choice. A fractal tree is a type of procedural art but similar patterns found in fractal trees can be found in nature from within our respiratory system to our blood veins. They are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal) which often possess the property of [self-similarity](https://en.wikipedia.org/wiki/Self-similarity) as you will soon see.
+A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)) using only a single type of geometry and simple rules. This is known as a [fractal tree](https://en.wikipedia.org/wiki/Fractal_canopy) and by the end of this article you will learn how to build one. I used [Babylon.js](https://www.babylonjs.com/) but the concepts shown can be generalised to your 3D rendering engine and language of choice. A fractal tree is a type of procedural art but similar patterns found in fractal trees can be found in nature from within our respiratory system to our blood veins. As the name suggests, they are also a type of geometry known as a [fractal](https://en.wikipedia.org/wiki/Fractal) which often possess the property of [self-similarity](https://en.wikipedia.org/wiki/Self-similarity) as you will soon see.
 
 Below is a fractal tree that is intentionally left with only the first [mesh](https://en.wikipedia.org/wiki/Polygon_mesh) drawn. Increase the slider to see how the tree is recursively built.
 
@@ -29,8 +29,7 @@ Below is a fractal tree that is intentionally left with only the first [mesh](ht
   </Lazy>
 </div>
 
-A convenient property of procedurally generated art is that you can tweak the parameters to customise the appearance with ease. The recursive depth here is limited at 10 but you can edit the code to go as far as your hardware can handle. Another property is the angle. Each cylinder represented as a branch of the tree which each split at a fixed angle.
-Move the slider below to see how the angle changes the appearance of our fractal tree.
+A convenient property of procedurally generated art is that you can tweak the parameters to customise the appearance with ease. The recursive depth here is limited at 10 but you can edit the code to go as far as your hardware can handle. Another modifiable property is the angle. Move the slider below to see how the angle changes the appearance of our fractal tree.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
   <Lazy
@@ -46,23 +45,24 @@ By now you probably have a good idea of what a fractal tree is, in which case we
 
 ## Building a 2D Fractal Tree
 
-We can start by first defining our branch which as previously mentioned will come in the form of a mesh with [cylinder geometry](https://threejs.org/docs/index.html#api/en/geometries/CylinderGeometry). The geometry will take the parameters: height, diameter bottom and diameter top, that will be modified as the tree 'grows'.
+To build a branch we can stack together mesh's with cylinder geometry. The geometry will take the parameters: height, diameter bottom and diameter top, that will change as the tree 'grows'.
+Below is an example of a single branch.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
   <Lazy
 	this={() => import("$lib/Cylinder-Growth.svelte")}
 	>
 	<svelte:fragment slot="component" let:Component>
-		<Component showAngle={true} />
+		<Component />
 	</svelte:fragment>
 </Lazy>
 </div>
 
-You can see the cylinder decrease in height and diameter as we stack more cylinders with the top diameter shorter than the bottom to more closely resemble a branch of a tree.
+You can see the cylinder decrease in height and diameter as we stack more cylinders with the top diameter shorter than the bottom to more closely resemble a branch. Each cylinder is of course rotating as well which will be covered next.
 
 ### Centre of Rotation
 
-Next we would like to be able to rotate our mesh but first we would like to change the centre of rotation from the centre of the mesh to its endpoint. There are a number of ways to achieve this but one way is to create and use an object as the parent of each cylinder to use that as the centre of transformation. If we place our mesh above the object so the endpoint of the cylinder meets the object, then by rotating the object we rotate the cylinder by its endpoint. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right). In this example I have also rendered the centre of rotation.
+We want to rotate our mesh by the end that meets the previous mesh, but by default it is likely that the centre of rotation, is well, the centre of the mesh. To change the centre of rotation, one way is to create and use an object as the parent of each cylinder to use that as the centre of transformation. If we place our mesh above the object so the endpoint of the cylinder meets the object, then by rotating the object we rotate the cylinder by its endpoint. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right). In this example I have also rendered the centre of rotation.
 
 <div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
 <Lazy
@@ -78,7 +78,7 @@ Once we have our cylinder and pivot we have the ingredients to build our tree.
 
 ### Recursively generating our tree
 
-Knowing the pattern repeats we can build a fractal tree using recursion. Our termination condition is the depth. The larger the depth the more branches we stack, hence the larger our tree.
+Knowing the pattern repeats we can build a fractal tree using recursion with a chosen maximum depth as our termination condition. At each depth we are stacking a pair of cylinders to the current top set of cylinders.
 
 ```jsx
 const maxDepth = 10;
@@ -92,7 +92,7 @@ function generate(depth ...) {
 }
 ```
 
-For every call to the generate function, we create a cylinder at a specified angle, and x,y,z coordinate. We then call the function twice more to create two more branches that split at a fixed angle. We also update the height and radius of every branch as we progress by a fixed ratio less than 1 so they decrease in size as the tree progresses.
+Each call to the generate function is responsible for creating a single cylinder at a specified angle, and x,y,z coordinate. We then call the function twice more to create two more branches that we will stack with a reduced height and diameter and angles that decrease and increase by a fixed amount to achieve the affect of splitting branches.
 
 ```jsx
 function generate(depth, angleZ, angleX, radius, height, x, y, z) {
