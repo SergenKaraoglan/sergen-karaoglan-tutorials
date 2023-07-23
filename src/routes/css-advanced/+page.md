@@ -18,13 +18,13 @@
 
 # Advanced CSS
 
-So you learnt the basics of CSS and probably styled at least a webpage but now want to do more *cool* things with CSS. Well this is the right place, as I will be covering
-some more advanced concepts in CSS which aren't technically complicated but still go at least a bit beyond the absolute basics of CSS. This article is a bit of an exception as it wasn't designed to be read from top to bottom, so feel free to go through the headings and go through whatever peaks your interest.
+So you learnt the basics of CSS and probably styled at least a webpage but now want to do more *awesome* things with CSS. Well this is the right place, as I will be covering
+some more advanced concepts in CSS which aren't technically complicated but still go at least a bit beyond the absolute basics of CSS. As a side note, this article is a bit of an exception in that it wasn't designed to be read from top to bottom, so feel free to go through the headings and read through whatever peaks your interest.
 
 ## Transitions
 
-Transitions are a powerful yet extremely simple to use. I'm going to immediately jump into an example so you first get the idea of what one is.
-Interact with the red div below to see it transition to different property values in pure CSS.
+**Transition** is a powerful yet extremely simple to use property in CSS. I'm going to immediately jump into an example so you first get the idea of what it is.
+Interact with the red square below to see it transition from one style to another just using CSS.
 
 <div class="h-32 w-32 mx-auto flex-center">
     <div class="transition-all duration-500 rounded-none bg-red-700 h-32 w-32 mx-auto hover:bg-red-500 hover:rounded-3xl hover:h-24 hover:w-24 hover:text-sm text-white flex-center">
@@ -32,9 +32,9 @@ Interact with the red div below to see it transition to different property value
     </div>
 </div>
 
-So how is this done? Well using the conveniently named **transition** property. With the transition property we can provide the name of other properties such as height and background-color as values. Once the values for the properties we include change, we see the transition effect. In the above example I am using the value 'all' to apply a transition affect to all properties.
+With the transition property we can provide the name of properties such as height and background-color as values. Once the values for these properties change, we will see the transition in effect. In the above example I am using the value 'all' to apply a transition affect to all properties.
 
-We can further customise our transitions by providing different animation durations such as 500ms or 100ms.
+We can even further customise our transitions by providing different animation durations such as 500ms or 100ms to the property **transition-duration**.
 
 ## Transforms
 

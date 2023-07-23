@@ -83,7 +83,7 @@
 			y += height * Math.cos(angle);
 			diameter *= ratio;
 			height *= ratio;
-			angle += Math.PI / 4;
+			angle += 0;
 			
 		}
 

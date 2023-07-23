@@ -58,7 +58,7 @@ Below is an example of a single branch.
 </Lazy>
 </div>
 
-You can see the cylinder decrease in height and diameter as we stack more cylinders with the top diameter shorter than the bottom to more closely resemble a branch. Each cylinder is of course rotating as well which will be covered next.
+You can see the cylinder decrease in height and diameter as we stack more cylinders with the top diameter shorter than the bottom to more closely resemble a branch. Each cylinder needs to be rotated as well which will be covered next.
 
 ### Centre of Rotation
 

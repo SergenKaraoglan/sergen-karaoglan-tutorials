@@ -16,7 +16,7 @@
              .fixed {
                 position: fixed;
                 bottom: 0px;
-                left: 0px;
+                right: 0px;
                 background-color: blue;
                 color: white;
                 
@@ -31,7 +31,8 @@
             .sticky {
                 position: sticky;
                 position: -webkit-sticky;
-                top: 20px;
+                top: 40%;
+                left: 30%;
                 background-color: green;
                 color: white;
             }
