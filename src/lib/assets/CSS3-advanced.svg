@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.7.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="svg3476" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" inkscape:version="0.91 r13725" sodipodi:docname="CSS3.svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 290.2 409.6"
+	 style="enable-background:new 0 0 290.2 409.6;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#264DE4;}
+	.st1{fill:#2965F1;}
+	.st2{fill:#EBEBEB;}
+	.st3{fill:#FFFFFF;}
+	.st4{fill:#B33025;}
+</style>
+<sodipodi:namedview  bordercolor="#666666" borderopacity="1.0" fit-margin-bottom="0" fit-margin-left="0" fit-margin-right="0" fit-margin-top="0" id="base" inkscape:current-layer="layer1" inkscape:cx="181.367" inkscape:cy="256" inkscape:document-units="px" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-height="704" inkscape:window-maximized="1" inkscape:window-width="1366" inkscape:window-x="0" inkscape:window-y="27" inkscape:zoom="0.35" pagecolor="#ffffff" showgrid="false">
+	</sodipodi:namedview>
+<g id="layer1" transform="translate(-193.633,-276.3622)" inkscape:groupmode="layer" inkscape:label="Calque 1">
+	<g id="g3013" transform="translate(119,276.3622)">
+		<polygon id="polygon2989" class="st0" points="364.8,80.5 338.4,376.7 219.5,409.6 101,376.7 74.6,80.5 		"/>
+		<polygon id="polygon2991" class="st1" points="315.8,357.8 338.3,104.7 219.7,104.7 219.7,384.4 		"/>
+		<polygon id="polygon2993" class="st2" points="135.2,214.6 138.4,250.9 219.7,250.9 219.7,214.6 		"/>
+		<polygon id="polygon2995" class="st2" points="219.7,141 219.6,141 128.6,141 131.9,177.4 219.7,177.4 		"/>
+		<polygon id="polygon2997" class="st2" points="219.7,346.7 219.7,308.9 219.6,309 179.1,298 176.5,269.1 156.9,269.1 140.1,269.1 
+			145.1,326.1 219.6,346.8 		"/>
+		<path id="path2999" inkscape:connector-curvature="0" d="M142.9,0h44v18.4h-25.6v18.4h25.6v18.4h-44V0z"/>
+		<path id="path3001" inkscape:connector-curvature="0" d="M195.7,0h44v16h-25.6v3.2h25.6V56h-44V39.2h25.6V36h-25.6V0z"/>
+		<path id="path3003" inkscape:connector-curvature="0" d="M248.5,0h44v16h-25.6v3.2h25.6V56h-44V39.2h25.6V36h-25.6V0z"/>
+		<polygon id="polygon3005" class="st3" points="264.3,250.9 260.1,298 219.6,309 219.6,346.7 294.1,326.1 294.6,320 303.2,224.3 
+			304,214.6 310.6,141 219.6,141 219.6,177.4 270.8,177.4 267.5,214.6 219.6,214.6 219.6,250.9 		"/>
+	</g>
+</g>
+<g>
+	<path class="st4" d="M25.2,81.2l4.5-6.2h6c1.4,0,3.1,0,4.3,0.1c-0.6-0.9-1.7-2.3-2.4-3.5l-4.3-6.4L22,81.2h-8.8l15.4-21.8
+		c1-1.4,2.5-2.7,4.8-2.7c2.2,0,3.7,1.2,4.8,2.7l15,21.8H25.2z"/>
+	<path class="st4" d="M72,81.2H55.9v-15h7.5V75H72c4.1,0,7.1-2.3,7.1-5.8c0-3.4-3.1-5.9-7.1-5.9H55.9l4.8-6.3H72
+		c8.4,0,14.5,4.9,14.5,11.8C86.5,75.9,80.4,81.2,72,81.2z"/>
+	<path class="st4" d="M93.9,57.1l10.8,16l11.3-16h8.8l-15.4,21.8c-1,1.4-2.5,2.7-4.8,2.7c-2.2,0-3.7-1.2-4.8-2.7L84.8,57.1H93.9z"/>
+	<path class="st4" d="M128.4,81.2l4.5-6.2h6c1.4,0,3.1,0,4.3,0.1c-0.6-0.9-1.7-2.3-2.4-3.5l-4.3-6.4l-11.3,16h-8.8l15.4-21.8
+		c1-1.4,2.5-2.7,4.8-2.7c2.2,0,3.7,1.2,4.8,2.7l15,21.8H128.4z"/>
+	<path class="st4" d="M180.5,80.3L165.8,67v14.1H159v-20c0-3.2,1.9-4.5,4.1-4.5c0.9,0,1.8,0.2,3,1.3l14.8,13.2V57.1h6.8V77
+		c0,3.2-1.9,4.5-4.1,4.5C182.6,81.6,181.7,81.4,180.5,80.3z"/>
+	<path class="st4" d="M222.6,75l-4.8,6.2h-12.1c-8.4,0-14.5-5.3-14.5-12.3c0-7.1,6.2-11.8,14.5-11.8h16.9l-4.8,6.3h-12.1
+		c-4,0-7.1,2.4-7.1,5.9c0,3.4,3,5.8,7.1,5.8H222.6z"/>
+	<path class="st4" d="M253.2,75l-4.8,6.2h-23.2V57.1h27.9l-4.8,6.3h-15.6v2.9h19.1l-4.3,5.5h-14.8V75H253.2z"/>
+	<path class="st4" d="M271.9,81.2h-16.1v-15h7.5V75h8.6c4.1,0,7.1-2.3,7.1-5.8c0-3.4-3.1-5.9-7.1-5.9h-16.1l4.8-6.3h11.4
+		c8.4,0,14.5,4.9,14.5,11.8C286.4,75.9,280.2,81.2,271.9,81.2z"/>
+</g>
+</svg>

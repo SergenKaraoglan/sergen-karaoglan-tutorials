@@ -39,18 +39,18 @@ We can even further customise our transitions by providing different animation d
 ## Transforms
 
 CSS gives a number of ways to transform our elements, to rotating, translating, scaling and skewing.
-All these methods are self explanatory if you play with them but one thing you might be wondering is, why use transform for say translating when you can do that with top, left, bottom, right properties? Well that's because using transform is [more performant](https://stackoverflow.com/questions/7108941/css-transform-vs-position).
+All these methods are self explanatory if you play with them but one thing you might be wondering is, why use transform for say translating when you can do that with position properties? Well that's because using transform is [more performant](https://stackoverflow.com/questions/7108941/css-transform-vs-position). You can change the type of transformation below.
 
 <Transforms />
 
 We can even add transitions to our transforms, all with just CSS.
 
-<div class="transition-all duration-500 text-white flex-center mx-auto w-32 h-32 bg-blue-500 hover:scale-x-150 hover:scale-y-150 hover:rotate-180 hover:translate-x-28 rounded">
+<div class="transition-all duration-500 text-white flex-center mx-auto w-28 h-28 bg-blue-500 hover:scale-x-150 hover:scale-y-150 hover:rotate-180 hover:translate-x-28 rounded">
 Press/Hover!
 </div>
 
 ### 3D Transforms
-And as an extra bonus we can even perform 3D transformations. With 3D transformations we can tweak the X and Y values for a transformation as before and now also a Z value.
+As a bonus we can even perform 3D transformations. With 3D transformations we can tweak the X and Y values for a transformation, same as before and now also a Z value.
 With the function **translate3d** we can input values for x,y,z where z controls the depth of an element. For example, an element with a Z value of 10 will be placed in front of elements with a Z value under 10. Not only can we translate across 3 dimensions, we also have an extra dimension for rotating elements. Below is a demonstration of these concepts.
 
 <ZIndex />

@@ -2,6 +2,7 @@
 	import treeimage from '$lib/assets/fractal-tree.png';
 	import htmlimage from '$lib/assets/HTML5.svg';
 	import cssimage from '$lib/assets/CSS3.svg';
+	import cssadvanced from '$lib/assets/CSS3-advanced.svg';
 	const project_list = [
 		{
 			title: 'HTML Fundamentals',
@@ -19,7 +20,7 @@
 		},
 		{
 			title: 'Advanced CSS',
-			image: cssimage,
+			image: cssadvanced,
 			topics: ['CSS', 'DOM', 'Styling', 'Web', 'Animation'],
 			description: 'Add some more flair to your webpage.',
 			demo: '/css-advanced',
