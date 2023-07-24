@@ -10,7 +10,7 @@ import TwoD from "$lib/2Dcoor.svelte";
 	<meta name="description" content="Learn about cartesian coordinates" />
 </svelte:head>
 
-<article class="max-sm:mx-4 prose lg:prose-xl m-auto pt-16">
+<article class="max-md:mx-4 prose lg:prose-xl m-auto pt-16">
 
 # Cartesian Coordinates
 ## One Dimension
@@ -20,6 +20,15 @@ import TwoD from "$lib/2Dcoor.svelte";
 <TwoD />
 
 ## Three Dimensions
+<Lazy
+	this={() => import("$lib/3Dcoor.svelte")}
+	>
+	<svelte:fragment slot="component" let:Component>
+		<Component />
+	</svelte:fragment>
+</Lazy>
+
+### Resources
 ___
 <GithubStar />
 </article>

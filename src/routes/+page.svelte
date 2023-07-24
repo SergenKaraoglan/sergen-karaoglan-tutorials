@@ -32,6 +32,13 @@
 			description: 'Interact with and learn to create fractal trees.',
 			demo: '/fractal-tree'
 		},
+		{
+			title: 'Cartesian Coordinates',
+			image: treeimage,
+			topics: ['Mathematics', 'Geometry', '3D Graphics'],
+			description: 'The Cartesian coordinate system, starting from the one dimension',
+			demo: '/cartesian-coordinates',
+		}
 		
 	];
 </script>

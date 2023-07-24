@@ -63,5 +63,5 @@
 </script>
 
 <img bind:this={image} src={PixelTiger} alt="Pixel Tiger" class="hidden" />
-<canvas bind:this={canvas} on:mousedown={() => startAnim()} on:mouseup={() => endAnim()} width="300" height="300" class="border-2 mx-auto my-5"></canvas>
-<div class="mx-auto w-fit">X:{x} Y:{y}</div>
+<canvas bind:this={canvas} on:mousedown={() => startAnim()} on:mouseup={() => endAnim()} on:pointerleave={() => endAnim()} width="300" height="300" class="border-2 mx-auto my-5"></canvas>
+<div class="mx-auto w-fit text-lg">X:{x} Y:{Math.abs(y - 300)}</div>

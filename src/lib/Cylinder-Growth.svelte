@@ -35,7 +35,6 @@
 						// If the canvas is visible, start the engine
 						engine.runRenderLoop(function () {
 							scene.render();
-							//console.log('a');
 						});
 					} else {
 						// If the canvas is not visible, stop the engine

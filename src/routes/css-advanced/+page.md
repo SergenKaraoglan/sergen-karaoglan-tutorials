@@ -58,7 +58,7 @@ With the function **translate3d** we can input values for x,y,z where z controls
 ## Animations
 CSS provides an **animation** property which is comparable to transitions, in that they both help achieve the effect of smoothly changing the state of an element to another state. But the animation property gives us an extra number of tools. Firstly, we don't need an event such as a hover to trigger the changes in our element. We can also have more than just a start and end state.
 
-To create an animation we first define an animations **[Keyframes](https://en.wikipedia.org/wiki/Key_frame)**. In the example below, an animation called 'pulse' is created with two states. The first state is defined as '0%' meaning the beginning of our animation. In this case our element starts with 0 opacity. At the end of our animation or at '100%' our element will transition to full opacity and a scale of 1.3%. The animation can be seen below the code.
+To create an animation we first define an animations **[Keyframes](https://en.wikipedia.org/wiki/Key_frame)**. In the example below, an animation called 'pulse' is created with two states. The first state is defined as '0%' meaning the beginning of our animation which contains opacity: 0 meaning our animation starts with an opacity of 0. At the end of our animation or at '100%' our element will transition to full opacity and a scale of 1.3%. The animation can be seen below the code.
 ```CSS
 @keyframes pulse {
 		0% {
@@ -73,7 +73,7 @@ To create an animation we first define an animations **[Keyframes](https://en.wi
 
 <Animations />
 
-The animation duration in this case is set to infinite, which means the animation will forever continue to loop, which can't be achieved with transition. We can also choose other keyframe values such as 50% to have a state to transition to midway through the animation.
+The animation duration in this case is set to infinite, which means the animation will forever continue to loop. We can also choose other keyframe values such as 50% to have a state to transition to midway through the animation.
 
 
 <!-- ## Make your own animation!

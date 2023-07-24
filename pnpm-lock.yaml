@@ -5,8 +5,11 @@ dependencies:
     specifier: ^1.0.1
     version: 1.0.1
   babylonjs:
-    specifier: ^6.7.0
-    version: 6.7.0
+    specifier: ^6.13.0
+    version: 6.13.0
+  babylonjs-loaders:
+    specifier: ^6.13.0
+    version: 6.13.0
   d3:
     specifier: ^7.8.5
     version: 7.8.5
@@ -555,8 +558,19 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /babylonjs@6.7.0:
-    resolution: {integrity: sha512-rrBiWZSBf9eWhLMLl5sfai74cC1GfQgRzlLaM/ulyFR3CSzqMhK7yUuFKylEZLih5MyjfJqhiUWP/09me6Fc4g==}
+  /babylonjs-gltf2interface@6.13.0:
+    resolution: {integrity: sha512-ec9YROqn59vQcIuRDB5c+sVLyQEgBBXJX5qiDeUdRgugERbLuCbBZPXJ3euKDw6iT9L0k+u2hMUVgIK4A/GDDQ==}
+    dev: false
+
+  /babylonjs-loaders@6.13.0:
+    resolution: {integrity: sha512-fRrpZKVWMjXZYVe4HyIiKVRDOP+ISo/82MSWArzOUoimtcNrc9klxqtJzo+2O1UKnMYxidLzWSCx/pTJ8cQdEg==}
+    dependencies:
+      babylonjs: 6.13.0
+      babylonjs-gltf2interface: 6.13.0
+    dev: false
+
+  /babylonjs@6.13.0:
+    resolution: {integrity: sha512-KRlGP8Ri51BRx8NzBxQUca/5SDWNeS/4zIDmMzOxAZ5G94UlIFIjRKXRNwpmWq2sBG5DQlU3om5GPWknEps6wg==}
     requiresBuild: true
     dev: false
 
