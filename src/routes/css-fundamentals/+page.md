@@ -37,7 +37,9 @@ Above you will see the individual parts of the div visualised called <span class
 
 Below I have three image elements with the centre image contained within a div. The left, right margin and padding values can be changed for the div with the sliders below.
 
-<BoxModel />
+<figure>
+	<BoxModel />
+</figure>
 
 The key thing to note is how the padding affects the size of the element itself as well as create spacing around the content whilst margin creates spacing around the element itself.
 
@@ -89,12 +91,17 @@ Static is the default position value, which means it is positioned according to 
 If you scroll the document you will notice how the 'Fixed' element remains at the same position. That's because elements with the position value fixed are positioned relative to the viewport.
 
 Elements with value sticky remain in a fixed position once it is scrolled to a given position.
-<Positioning />
+
+<figure>
+	<Positioning />
+</figure>
 
 ## Colour
 Below is div with a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) value at its centre. To change the background colour of the element we can simply set the background-color property with a value such as "orange", "purple", "green". But we can have much finer grain of control than that. Each pixel of your screen is made up of red, green and blue (RGB) subpixels, which in combination make a single colour. With CSS we can modify the value of each individual colour using the values 0-255 or using a single hexadecimal value. Try experimenting with the RGB values below and see how the colour and hexadecimal value changes. 
 
-<RGB />
+<figure>
+	<RGB />
+</figure>
 
 As a small fun fact, HTML even has its own colour picker built in that you can use by pressing the following:
 <input class="h-20 w-20 mx-auto block" type="color">
@@ -103,7 +110,9 @@ As a small fun fact, HTML even has its own colour picker built in that you can u
 ### Absolute
 There are many absolute units of measurements that allow to adjust our elements to the exact number of pixels we want displayed on the screen:
 
-<AbsoluteLength />
+<figure>
+	<AbsoluteLength />
+</figure>
 
 ### Relative
 With relative units, our value is well [relative](https://en.wiktionary.org/wiki/relative#English)... Which means our measurement is dependent on another value. Let's take a look at the following concrete example:
@@ -111,7 +120,9 @@ What we have is an img element nested in a div. The height and width of the imag
 
 Below you can *only* control the height/width of the parent element but watch as the nested image automatically adjusts to remain at 75% of the parent div.
 
-<RelativeLength />
+<figure>
+	<RelativeLength />
+</figure>
 
 Some of the other relative units include units such as 'vw', 'vh' that output values relative to to the [viewport](https://en.wikipedia.org/wiki/Viewport) width and height respectively.
 Something you might do is set a div to 100vh so it always fills 100% of the height of the browser viewport whether it is on a small mobile screen or a large monitor.
@@ -119,7 +130,9 @@ Something you might do is set a div to 100vh so it always fills 100% of the heig
 ## Style your first webpage 
 While this article covers the fundamentals of CSS, it is barely covering all the little things that can be done with CSS. I recommend taking a look at a [reference](https://www.w3schools.com/cssref/index.php) to see all the ways you can style a page for yourself. But as I mentioned in my [HTML article](/html-fundamentals), remembering everything is not a requirement and the purpose of this article is to give you enough grounding to get started styling your HTML documents. Your skill, knowledge and understanding of CSS will grow as you experiment, style and coordinate your elements to create a stylised webpage.
 
-<CSSMontage />
+<figure>
+	<CSSMontage />
+</figure>
 
 ### Resources
 [W3Schools](https://www.w3schools.com/css/),

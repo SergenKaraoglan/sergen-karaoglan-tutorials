@@ -40,7 +40,9 @@ We can even further customise our transitions by providing different animation d
 CSS gives a number of ways to transform our elements, to rotating, translating, scaling and skewing.
 All these methods are self explanatory if you play with them but one thing you might be wondering is, why use transform for say translating when you can do that with position properties? Well that's because using transform is [more performant](https://stackoverflow.com/questions/7108941/css-transform-vs-position). You can change the type of transformation below.
 
-<Transforms />
+<figure>
+	<Transforms />
+</figure>
 
 We can even add transitions to our transforms, all with just CSS.
 
@@ -52,7 +54,10 @@ Press/Hover!
 As a bonus we can even perform 3D transformations. With 3D transformations we can tweak the X and Y values for a transformation, same as before and now also a Z value.
 With the function **translate3d** we can input values for x,y,z where z controls the depth of an element. For example, an element with a Z value of 10 will be placed in front of elements with a Z value under 10. Not only can we translate across 3 dimensions, we also have an extra dimension for rotating elements. Below is a demonstration of these concepts.
 
-<ZIndex />
+<figure>
+	<ZIndex />
+</figure>
+
 <CSS3D />
 
 ## Animations

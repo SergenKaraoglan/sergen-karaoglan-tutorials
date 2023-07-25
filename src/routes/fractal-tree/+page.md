@@ -19,7 +19,7 @@ A treelike structure can be built [recursively](https://en.wikipedia.org/wiki/Re
 
 Below is a fractal tree that is intentionally left with only the first [mesh](https://en.wikipedia.org/wiki/Polygon_mesh) drawn. Increase the slider to see how the tree is recursively built.
 
-<div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
+<figure class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
   <Lazy
 	this={() => import("$lib/fractal-tree.svelte")}
 	>
@@ -27,11 +27,11 @@ Below is a fractal tree that is intentionally left with only the first [mesh](ht
 		<Component showDepth={true} curDepth={0} />
 	</svelte:fragment>
   </Lazy>
-</div>
+</figure>
 
 A convenient property of procedurally generated art is that you can tweak the parameters to customise the appearance with ease. The recursive depth here is limited at 10 but you can edit the code to go as far as your hardware can handle. Another modifiable property is the angle. Move the slider below to see how the angle changes the appearance of our fractal tree.
 
-<div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
+<figure class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
   <Lazy
 	this={() => import("$lib/fractal-tree.svelte")}
 	>
@@ -39,7 +39,7 @@ A convenient property of procedurally generated art is that you can tweak the pa
 		<Component showAngle={true} />
 	</svelte:fragment>
 </Lazy>
-</div>
+</figure>
 
 By now you probably have a good idea of what a fractal tree is, in which case we will now begin to build one.
 
@@ -48,7 +48,7 @@ By now you probably have a good idea of what a fractal tree is, in which case we
 To build a branch we can stack together mesh's with cylinder geometry. The geometry will take the parameters: height, diameter bottom and diameter top, that will change as the tree 'grows'.
 Below is an example of a single branch.
 
-<div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
+<figure class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
   <Lazy
 	this={() => import("$lib/Cylinder-Growth.svelte")}
 	>
@@ -56,7 +56,7 @@ Below is an example of a single branch.
 		<Component />
 	</svelte:fragment>
 </Lazy>
-</div>
+</figure>
 
 You can see the cylinder decrease in height and diameter as we stack more cylinders with the top diameter shorter than the bottom to more closely resemble a branch. Each cylinder needs to be rotated as well which will be covered next.
 
@@ -64,7 +64,7 @@ You can see the cylinder decrease in height and diameter as we stack more cylind
 
 We want to rotate our mesh by the end that meets the previous mesh, but by default it is likely that the centre of rotation, is well, the centre of the mesh. To change the centre of rotation, one way is to create and use an object as the parent of each cylinder to use that as the centre of transformation. If we place our mesh above the object so the endpoint of the cylinder meets the object, then by rotating the object we rotate the cylinder by its endpoint. You can see the difference in our desired centre of rotation (left) and the default centre of rotation (right). In this example I have also rendered the centre of rotation.
 
-<div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
+<figure class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
 <Lazy
 	this={() => import("$lib/RotationPoints.svelte")}
 	>
@@ -72,7 +72,7 @@ We want to rotate our mesh by the end that meets the previous mesh, but by defau
 		<Component />
 	</svelte:fragment>
 </Lazy>
-</div>
+</figure>
 
 Once we have our cylinder and pivot we have the ingredients to build our tree.
 
@@ -129,7 +129,7 @@ Finally once we have reached the end of recursion our fractal tree will be displ
 
 As a bonus lets build a 3D fractal. The mesh may be 3D but we were only rotating by the Z axis. We can add more volume to our tree by simply adding two more branches that instead rotate by the X axis. This totals to 4 generate function calls per generation which means we are now adding 4 branches for every branch until we reach the depth limit. You can orbit the tree by dragging it.
 
-<div class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
+<figure class="m-auto mb-20 h-80 w-80 sm:h-96 sm:w-96">
     <Lazy
     this={() => import("$lib/fractal-tree.svelte")}
     >
@@ -137,7 +137,7 @@ As a bonus lets build a 3D fractal. The mesh may be 3D but we were only rotating
       <Component curDepth={6} maxDepth={6} is3D={true} showDepth={true}/>
     </svelte:fragment>
   </Lazy>
-</div>
+</figure>
 
 ## Finishing up
 

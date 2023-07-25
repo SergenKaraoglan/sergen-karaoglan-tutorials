@@ -21,11 +21,16 @@ What your browser just requested and [browser engine](https://en.wikipedia.org/w
 Starting with the basics, HTML is written using what are known as elements that mostly look like the following: ```<tagname> content </tagname>```. Elements are made up of tags usually involving an opening ```<>``` and closing tag ```</>``` with content nested between. In this example I just used a placeholder name but for recognised tag names you will receive different outputs within the browser.
 
 Below is an example of a 'h1' element that includes the content HTML. The h1 element tells the browser to render text you include within it as a heading which by default renders text with a different style than if you were to insert plain text. I made this h1 element editable, every time you edit it the h1 element will be rendered with the new content.
-<HTMLele />
+
+<figure>
+	<HTMLele />
+</figure>
 
 Moving on to a slightly less trivial example that doesn't include a closing tag. This example includes attributes that come in the form of ```attribute=``` for which you can insert values to modify the behaviour of the element. Below you have an img element which displays an image with an attribute called "src" which takes a link to an image and another attribute called "width" which I have made available to modify. Give it a try.
 
-<HTMLatt />
+<figure>
+	<HTMLatt />
+</figure>
 
 Each time you change the attribute value, the image matches the specified width. The height also changes in this example to avoid stretching the image.
 
@@ -33,6 +38,7 @@ There are over 100 HTML elements which can all be found on a [reference](https:/
 
 ## Document Structure
 A typical HTML document structure looks like the following:
+
 
 ```HTML
 <!DOCTYPE html>
@@ -56,13 +62,14 @@ Below is a self-contained HTML page that renders a heading (h1), paragraph (p) a
 
 Feel free to write whatever you want and watch as the DOM tree updates and HTML renders live in your browser. If you want an example try ```<p>Member of the Sciuridae family</p>``` which is a paragraph element with the content "Member of the Sciuridae family" but any content works.
 
-<div class="w-fit m-auto py-5">
-<DOMTree />
-</div>
+<figure class="w-fit m-auto py-5">
+	<DOMTree />
+</figure>
 
 ## Rendering
 I have included a border around each element with each element included in sequential order so you can visualise in greater detail how the browser is rendering the content.
 
+<figure>
 <Lazy
 	this={() => import("$lib/HTML-Render.svelte")}
 	>
@@ -70,6 +77,7 @@ I have included a border around each element with each element included in seque
 		<Component />
 	</svelte:fragment>
 </Lazy>
+</figure>
 
 You can see how each element is rendered on a new line with a container around its content that fills the available width. Some elements are contained together within another container when they are a child of another element. There is even an element just for grouping elements and is one of the most used elements called 'div' which I used to group the heading and paragraph in the last sequence of the animation.
 
