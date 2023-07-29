@@ -9,14 +9,14 @@
 			title: 'HTML Fundamentals',
 			image: htmlimage,
 			topics: ['HTML', 'DOM', 'Markup', 'Web'],
-			description: 'Learn how to structure a webpage using HTML.',
+			description: 'Take the first steps in creating a webpage.',
 			demo: '/html-fundamentals'
 		},
 		{
 			title: 'CSS Fundamentals',
 			image: cssimage,
 			topics: ['CSS', 'DOM', 'Styling', 'Web'],
-			description: 'Learn how to style a webpage using CSS.',
+			description: 'Style a webpage using CSS.',
 			demo: '/css-fundamentals'
 		},
 		{
@@ -37,7 +37,7 @@
 			title: 'Cartesian Coordinate System',
 			image: cartesianImage,
 			topics: ['Mathematics', 'Geometry', '3D Graphics'],
-			description: 'The Cartesian coordinate system, starting from the one dimension',
+			description: 'The Cartesian coordinate system, starting from the first dimension',
 			demo: '/cartesian-coordinates',
 		}
 		
