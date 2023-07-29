@@ -3,6 +3,7 @@
 	import htmlimage from '$lib/assets/HTML5.svg';
 	import cssimage from '$lib/assets/CSS3.svg';
 	import cssadvanced from '$lib/assets/CSS3-advanced.svg';
+	import cartesianImage from '$lib/assets/Cartesian.svg';
 	const project_list = [
 		{
 			title: 'HTML Fundamentals',
@@ -33,8 +34,8 @@
 			demo: '/fractal-tree'
 		},
 		{
-			title: 'Cartesian Coordinates',
-			image: treeimage,
+			title: 'Cartesian Coordinate System',
+			image: cartesianImage,
 			topics: ['Mathematics', 'Geometry', '3D Graphics'],
 			description: 'The Cartesian coordinate system, starting from the one dimension',
 			demo: '/cartesian-coordinates',
@@ -56,12 +57,12 @@
 		<div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
 			<div class="text-center">
 				<h1 class="text-4xl font-medium tracking-tight text-white sm:text-6xl">
-					Interactive tutorials on STEM, games and procedural art
+					Explore interactive tutorials on STEM, games and procedural art
 				</h1>
 				<div class="mt-10 flex items-center justify-center gap-x-6">
 					<a
 						href="#featured-projects"
-						class="rounded-md bg-blue-500 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+						class="rounded-md bg-blue-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
 					>
 						Projects
 					</a>
@@ -73,10 +74,10 @@
 		</div>
 	</div>
 </div>
-<div id="featured-projects" class="mx-auto max-w-4xl pt-20 lg:pt-28 pb-10">
-	<ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+<div id="featured-projects" class="mx-auto max-w-6xl pt-20 lg:pt-28 pb-10">
+	<ul class="grid grid-cols-1 gap-6 md:grid-cols-2">
 		{#each project_list as data}
-			<li class="col-span-2 divide-y divide-gray-200 rounded-lg bg-white shadow hover:shadow-md transition-all duration-300">
+			<li class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow hover:shadow-md transition-all duration-300">
 				<a href={data.demo}>
 					<div class="flex w-full items-center justify-between space-x-6 p-6">
 						<div class="flex-1">
@@ -93,7 +94,7 @@
 							</p>
 						</div>
 						<div class="h-auto w-1/4 flex-shrink-0">
-							<img class="mx-auto h-20 sm:h-32" loading="lazy" src={data.image} alt={data.title} />
+							<img class="mx-auto h-20 sm:h-28 opacity-90" loading="lazy" src={data.image} alt={data.title} />
 						</div>
 					</div>
 				</a>
