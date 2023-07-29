@@ -37,7 +37,7 @@
 			title: 'Cartesian Coordinate System',
 			image: cartesianImage,
 			topics: ['Mathematics', 'Geometry', '3D Graphics'],
-			description: 'The Cartesian coordinate system, starting from the first dimension',
+			description: 'The Cartesian coordinate system, starting from the first dimension.',
 			demo: '/cartesian-coordinates',
 		}
 		
