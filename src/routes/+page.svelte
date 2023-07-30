@@ -74,8 +74,8 @@
 		</div>
 	</div>
 </div>
-<div id="featured-projects" class="mx-auto max-w-6xl pt-20 lg:pt-28 pb-10">
-	<ul class="grid grid-cols-1 gap-6 md:grid-cols-2">
+<div id="featured-projects" class="mx-auto max-w-3xl lg:max-w-6xl pt-20 lg:pt-28 pb-10">
+	<ul class="grid grid-cols-1 gap-6 lg:grid-cols-2">
 		{#each project_list as data}
 			<li class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow hover:shadow-md transition-all duration-300">
 				<a href={data.demo}>

@@ -8,7 +8,7 @@ import '$lib/styles/vscode-dark.css';
 </script>
 
 <svelte:head>
-	<title>HTML Fundamentals| Sergen Karaoglan</title>
+	<title>HTML Fundamentals | Sergen Karaoglan</title>
 	<meta name="description" content="Learn the fundamentals of HTML" />
 </svelte:head>
 
