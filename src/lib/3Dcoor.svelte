@@ -3,6 +3,8 @@
 	import 'babylonjs-loaders/';
 	import { onMount } from 'svelte';
 
+	import astronaut from '$lib/3Dassets/astronautA.glb';
+
 	// setup babylon
 	let canvas;
 	let engine;
@@ -60,9 +62,13 @@
 		localAxes.yAxis.parent = box;
 		localAxes.zAxis.parent = box;
 
-        BABYLON.SceneLoader.ImportMesh("", "src/lib/3Dassets/", "astronautA.glb", scene, function (newMeshes) {
+		// 3D asset url
+		const url = astronaut.split('/').slice(0, -1).join('/') + '/';
+		const filename = astronaut.split('/').slice(-1)[0];
+        BABYLON.SceneLoader.ImportMesh("", url, filename, scene, function (newMeshes) {
         camera.target = newMeshes[0];
         });
+		
 	});
 </script>
 
