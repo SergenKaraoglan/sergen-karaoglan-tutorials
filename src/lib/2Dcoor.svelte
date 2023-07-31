@@ -28,6 +28,11 @@
 			cursor.y = e.offsetY;
 		});
 
+    canvas.addEventListener('touchmove', (e) => {
+      cursor.x = e.touches[0].clientX;
+      cursor.y = e.touches[0].clientY;
+    });
+
 		function draw() {
 			x = cursor.x;
 			y = cursor.y;

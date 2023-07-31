@@ -63,8 +63,9 @@
 		localAxes.zAxis.parent = box;
 
 		// 3D asset url
-		const url = astronaut.split('/').slice(0, -1).join('/') + '/';
-		const filename = astronaut.split('/').slice(-1)[0];
+		const astroURL = astronaut.split('/');
+		const url = astroURL.slice(0, -1).join('/') + '/';
+		const filename = astroURL[astroURL.length - 1];
         BABYLON.SceneLoader.ImportMesh("", url, filename, scene, function (newMeshes) {
         camera.target = newMeshes[0];
         });
