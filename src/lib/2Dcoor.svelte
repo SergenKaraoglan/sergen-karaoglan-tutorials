@@ -28,10 +28,10 @@
 			cursor.y = e.offsetY;
 		});
 
-    canvas.addEventListener('touchmove', (e) => {
-      cursor.x = e.touches[0].clientX;
-      cursor.y = e.touches[0].clientY;
-    });
+		canvas.addEventListener('touchmove', (e) => {
+			cursor.x = e.touches[0].clientX;
+			cursor.y = e.touches[0].clientY;
+		});
 
 		function draw() {
 			x = cursor.x;
@@ -40,16 +40,21 @@
 			ctx.drawImage(image, cursor.x - 25, cursor.y - 30, 60, 60);
 
 			// draw x and y axis lines
+			ctx.strokeStyle = 'green';
 			ctx.moveTo(0, 0);
 			ctx.lineTo(0, height);
 			ctx.stroke();
 
+			ctx.beginPath();
+			ctx.strokeStyle = 'blue';
 			ctx.moveTo(0, height);
 			ctx.lineTo(width, height);
 			ctx.stroke();
 
-			// draw x and y axis
+			ctx.font = '15px Arial';
+			ctx.fillStyle = 'blue';
 			ctx.fillText('X', 15, height - 5);
+			ctx.fillStyle = 'green';
 			ctx.fillText('Y', 5, height - 15);
 		}
 
@@ -74,9 +79,14 @@
 	on:mouseup={() => endAnim()}
 	on:pointerleave={() => endAnim()}
 	on:touchstart={() => startAnim()}
+	on:touchstart={(event) => event.preventDefault()}
+	on:touchcancel={() => endAnim()}
 	on:touchend={() => endAnim()}
 	width="300"
 	height="300"
 	class="border-2 mx-auto my-5"
 />
-<div class="mx-auto w-fit text-lg">X:{x} Y:{Math.abs(y - 300)}</div>
+<div class="mx-auto w-fit text-lg">
+	<span class="text-blue-600">X:</span>{x}
+	<span class="text-green-700">Y:</span>{Math.abs(y - 300)}
+</div>
