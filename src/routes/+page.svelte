@@ -24,7 +24,7 @@
 			image: cssadvanced,
 			topics: ['CSS', 'DOM', 'Styling', 'Web', 'Animation'],
 			description: 'Add some more flair to your webpage.',
-			demo: '/css-advanced',
+			demo: '/css-advanced'
 		},
 		{
 			title: 'Fractal Tree',
@@ -38,15 +38,19 @@
 			image: cartesianImage,
 			topics: ['Mathematics', 'Geometry', '3D Graphics'],
 			description: 'The Cartesian coordinate system, starting from the first dimension.',
-			demo: '/cartesian-coordinate-system',
+			demo: '/cartesian-coordinate-system'
 		}
-		
 	];
 </script>
 
 <svelte:head>
 	<title>Home | Sergen Karaoglan</title>
 	<meta name="description" content="Portfolio homepage of Sergen Karaoglan" />
+	<style>
+		html {
+			scroll-behavior: smooth;
+		}
+	</style>
 </svelte:head>
 
 <div class="relative overflow-hidden min-h-screen w-full pb-16 sm:pb-24 lg:pb-32">
@@ -77,7 +81,9 @@
 <div id="featured-projects" class="mx-auto max-w-3xl lg:max-w-6xl pt-20 lg:pt-28 pb-10">
 	<ul class="grid grid-cols-1 gap-6 lg:grid-cols-2">
 		{#each project_list as data}
-			<li class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow hover:shadow-md transition-all duration-300">
+			<li
+				class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow hover:shadow-md transition-all duration-300"
+			>
 				<a href={data.demo}>
 					<div class="flex w-full items-center justify-between space-x-6 p-6">
 						<div class="flex-1">
@@ -94,7 +100,12 @@
 							</p>
 						</div>
 						<div class="h-auto w-1/4 flex-shrink-0">
-							<img class="mx-auto h-20 sm:h-28 opacity-90" loading="lazy" src={data.image} alt={data.title} />
+							<img
+								class="mx-auto h-20 sm:h-28 opacity-90"
+								loading="lazy"
+								src={data.image}
+								alt={data.title}
+							/>
 						</div>
 					</div>
 				</a>

@@ -56,7 +56,7 @@
 <main>
 	<slot />
 </main>
-<footer class="bg-white" aria-labelledby="footer-heading">
+<footer aria-labelledby="footer-heading">
 	<h2 id="footer-heading" class="sr-only">Footer</h2>
 	<div class="mx-auto max-w-7xl px-6 pb-8 pt-10 lg:px-8 lg:pt-16">
 		<div class="border-t border-gray-900/10 pt-8 lg:flex lg:items-center lg:justify-between">

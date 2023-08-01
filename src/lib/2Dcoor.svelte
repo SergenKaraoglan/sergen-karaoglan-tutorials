@@ -87,6 +87,6 @@
 	class="border-2 mx-auto my-5"
 />
 <div class="mx-auto w-fit text-lg">
-	<span class="text-blue-600">X:</span>{x}
-	<span class="text-green-700">Y:</span>{Math.abs(y - 300)}
+	<span class="text-blue-600">X:</span>{Math.round(x)}
+	<span class="text-green-700">Y:</span>{Math.abs(Math.round(y) - 300)}
 </div>

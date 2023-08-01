@@ -80,6 +80,9 @@ To create an animation we first define an animations **[Keyframes](https://en.wi
 
 The animation duration in this case is set to infinite, which means the animation will forever continue to loop. We can also choose other keyframe values such as 50% to have a state to transition to midway through the animation.
 
+## Flexbox
+
+In the [previous CSS article](css-fundamentals) I talked about the **position** property which takes different values such as relative which gives us control on the relative position of an element using the properties top, bottom, right, left. While it can 'get the job done' it can be rather tedious to position elements using four different properties with specified values. What if for example, all we wanted to do was centre an element within a div.
 
 <!-- ## Make your own animation!
 CSS provides surprisingly simple yet powerful tools that can be taken far depending on how creative you decide to be with it.  -->

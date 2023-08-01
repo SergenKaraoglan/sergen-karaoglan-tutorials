@@ -87,5 +87,5 @@
 	});
 </script>
 
-<canvas bind:this={canvas} class="mx-auto w-96 h-96" />
+<canvas bind:this={canvas} class="mx-auto w-80 h-80 sm:w-96 sm:h-96" />
 <div class="mx-auto w-fit text-lg">X:{x} Y:{y} Z:{z}</div>
