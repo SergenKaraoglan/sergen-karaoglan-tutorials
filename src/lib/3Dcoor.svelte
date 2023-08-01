@@ -9,6 +9,9 @@
 	let canvas;
 	let engine;
 	let scene;
+	let x = 0;
+	let y = 0;
+	let z = 0;
 	onMount(() => {
 		engine = new BABYLON.Engine(canvas, true);
 		scene = new BABYLON.Scene(engine);
@@ -56,21 +59,33 @@
 		// main
 		new BABYLON.AxesViewer(scene, 5);
 
-		const box = BABYLON.MeshBuilder.CreateBox('box', {});
-		const localAxes = new BABYLON.AxesViewer(scene, 1);
-		localAxes.xAxis.parent = box;
-		localAxes.yAxis.parent = box;
-		localAxes.zAxis.parent = box;
-
 		// 3D asset url
 		const astroURL = astronaut.split('/');
 		const url = astroURL.slice(0, -1).join('/') + '/';
 		const filename = astroURL[astroURL.length - 1];
-        BABYLON.SceneLoader.ImportMesh("", url, filename, scene, function (newMeshes) {
-        camera.target = newMeshes[0];
-        });
-		
+		BABYLON.SceneLoader.ImportMesh('', url, filename, scene, function (newMeshes) {
+			const astro = newMeshes[0];
+			//camera.target = astro;
+			// const localAxes = new BABYLON.AxesViewer(scene, 1);
+			// localAxes.xAxis.parent = astro;
+			// localAxes.yAxis.parent = astro;
+			// localAxes.zAxis.parent = astro;
+			astro.scaling = new BABYLON.Vector3(5, 5, 5);
+			astro.position = new BABYLON.Vector3(10, 0, 10);
+			const pointerDragBehavior = new BABYLON.PointerDragBehavior({
+				dragAxis: new BABYLON.Vector3(0, 1, 0)
+			});
+			astro.addBehavior(pointerDragBehavior);
+			pointerDragBehavior.onDragObservable.add((event) => {
+				console.log('drag');
+				console.log(event);
+				x = Math.round(event.dragPlanePoint.x);
+				y = Math.round(event.dragPlanePoint.y);
+				z = Math.round(event.dragPlanePoint.z);
+			});
+		});
 	});
 </script>
 
 <canvas bind:this={canvas} class="mx-auto w-96 h-96" />
+<div class="mx-auto w-fit text-lg">X:{x} Y:{y} Z:{z}</div>
