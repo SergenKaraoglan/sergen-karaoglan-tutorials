@@ -1,5 +1,6 @@
 <script>
 	import viewport from '$lib/scripts/useViewportAction';
+	import loadingImage from "$lib/assets/loading.svg";
 
 	let loadComponent;
 	export { loadComponent as this };
@@ -18,7 +19,7 @@
 	/>
 {:else}
 	{#await componentPromise}
-		<img src="./loading.svg" class="h-48 w-48 animate-pulse" alt="loading screen">
+		<img src={loadingImage} class="h-48 w-48 animate-pulse" alt="loading screen">
 	{:then { default: Component }}
 		<slot name="component" {Component} />
 	{/await}

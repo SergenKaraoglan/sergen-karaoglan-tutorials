@@ -88,7 +88,7 @@ Below is a flex container with three flex items. Play around with the settings t
 
 <Flexbox />
 
-You might be thinking, well what about organising multiple columns and rows of items? This can be achieved with CSS grid which I will talk about in another section.
+You might be thinking, well what about organising multiple column and row of items? This can be achieved with CSS grid which I will talk about in another section.
 <!-- ## Make your own animation!
 CSS provides surprisingly simple yet powerful tools that can be taken far depending on how creative you decide to be with it.  -->
 
