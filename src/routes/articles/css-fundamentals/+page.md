@@ -125,7 +125,7 @@ Some of the other relative units include units such as 'vw', 'vh' that output va
 Something you might do is set a div to 100vh so it always fills 100% of the height of the browser viewport whether it is on a small mobile screen or a large monitor.
 
 ## Style your first webpage 
-While this article covers the fundamentals of CSS, it is barely covering all the little things that can be done with CSS. I recommend taking a look at a [reference](https://www.w3schools.com/cssref/index.php) to see all the ways you can style a page for yourself. But as I mentioned in my [HTML article](/html-fundamentals), remembering everything is not a requirement and the purpose of this article is to give you enough grounding to get started styling your HTML documents. Your skill, knowledge and understanding of CSS will grow as you experiment, style and coordinate your elements to create a stylised webpage.
+While this article covers the fundamentals of CSS, it is barely covering all the little things that can be done with CSS. I recommend taking a look at a [reference](https://www.w3schools.com/cssref/index.php) to see all the ways you can style a page for yourself. But as I mentioned in my [HTML article](html-fundamentals), remembering everything is not a requirement and the purpose of this article is to give you enough grounding to get started styling your HTML documents. Your skill, knowledge and understanding of CSS will grow as you experiment, style and coordinate your elements to create a stylised webpage.
 
 <figure>
 	<CSSMontage />
