@@ -1,5 +1,4 @@
 <script>
-import GithubStar from "$lib/GithubStar.svelte";
 import Lazy from "$lib/Lazy.svelte";
 import '$lib/styles/vscode-dark.css';
 </script>
@@ -8,8 +7,6 @@ import '$lib/styles/vscode-dark.css';
 	<title>Fractal Trees | Sergen Karaoglan</title>
 	<meta name="description" content="Build and learnt about fractal trees with a interactive 3D fractal tree generator." />
 </svelte:head>
-
-<article class="max-md:mx-4 prose lg:prose-xl m-auto pt-16">
 
 # Fractal Tree
 
@@ -150,8 +147,3 @@ You now know what a fractal tree is and saw how to build one. Procedural generat
 [Modernescartes](https://www.moderndescartes.com/essays/plants/)
 
 ___
-
-<!-- [Source code](https://github.com/SergenKaraoglan/sergen-karaoglan-portfolio/blob/main/components/fractal-tree.jsx) -->
-<GithubStar />
-</article>
-

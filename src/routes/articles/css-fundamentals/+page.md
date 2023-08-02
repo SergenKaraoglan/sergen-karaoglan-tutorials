@@ -6,15 +6,12 @@ import AbsoluteLength from "$lib/AbsoluteLength.svelte";
 import RelativeLength from "$lib/RelativeLength.svelte";
 import CSSMontage from "$lib/CSSMontage.svelte";
 import '$lib/styles/vscode-dark.css';
-import GithubStar from "$lib/GithubStar.svelte";
 </script>
 
 <svelte:head>
 	<title>CSS Fundamentals | Sergen Karaoglan</title>
 	<meta name="description" content="Learn the fundamentals of CSS" />
 </svelte:head>
-
-<article class="max-md:mx-4 prose lg:prose-xl m-auto pt-16">
 
 # CSS Fundamentals
 
@@ -140,7 +137,3 @@ While this article covers the fundamentals of CSS, it is barely covering all the
 [Web.dev](https://web.dev/learn/css/)
 
 ___
-
-<GithubStar />
-
-</article>

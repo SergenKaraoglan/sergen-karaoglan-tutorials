@@ -1,5 +1,4 @@
 <script>
-import GithubStar from "$lib/GithubStar.svelte";
 import Lazy from "$lib/Lazy.svelte";
 import OneD from "$lib/1Dcoor.svelte";
 import TwoD from "$lib/2Dcoor.svelte";
@@ -9,8 +8,6 @@ import TwoD from "$lib/2Dcoor.svelte";
 	<title>Cartesian coordinates | Sergen Karaoglan</title>
 	<meta name="description" content="Learn about cartesian coordinates" />
 </svelte:head>
-
-<article class="max-md:mx-4 prose lg:prose-xl m-auto pt-16">
 
 *Under construction*
 # Cartesian Coordinate System
@@ -40,6 +37,5 @@ In the two dimensional case we still have real numbers that represents a point i
 
 ### Resources
 [Wikipedia](https://en.wikipedia.org/wiki/Cartesian_coordinate_system)
+
 ___
-<GithubStar />
-</article>

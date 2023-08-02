@@ -5,15 +5,12 @@
     import ZIndex from "$lib/ZIndex.svelte";
 	import Flexbox from "$lib/Flexbox.svelte";
     import '$lib/styles/vscode-dark.css';
-    import GithubStar from "$lib/GithubStar.svelte";
 </script>
 
 <svelte:head>
 	<title>Advanced CSS | Sergen Karaoglan</title>
 	<meta name="description" content="Learn to do more with CSS" />
 </svelte:head>
-
-<article class="max-md:mx-4 prose lg:prose-xl m-auto pt-16">
 
 
 # Advanced CSS
@@ -101,7 +98,3 @@ CSS provides surprisingly simple yet powerful tools that can be taken far depend
 [Web.dev](https://web.dev/learn/css/)
 
 ___
-<GithubStar />
-
-
-</article>

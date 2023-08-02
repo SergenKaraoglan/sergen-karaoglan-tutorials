@@ -10,35 +10,35 @@
 			image: htmlimage,
 			topics: ['HTML', 'DOM', 'Markup', 'Web'],
 			description: 'Take the first steps in creating a webpage.',
-			demo: '/html-fundamentals'
+			demo: 'articles/html-fundamentals'
 		},
 		{
 			title: 'CSS Fundamentals',
 			image: cssimage,
 			topics: ['CSS', 'DOM', 'Styling', 'Web'],
 			description: 'Style a webpage using CSS.',
-			demo: '/css-fundamentals'
+			demo: 'articles/css-fundamentals'
 		},
 		{
 			title: 'Advanced CSS',
 			image: cssadvanced,
 			topics: ['CSS', 'DOM', 'Styling', 'Web', 'Animation'],
 			description: 'Add some more flair to your webpage.',
-			demo: '/css-advanced'
+			demo: 'articles/css-advanced'
 		},
 		{
 			title: 'Fractal Tree',
 			image: treeimage,
 			topics: ['Procedural Art', 'Fractals', 'Trigonometry', '3D Graphics', 'Recursion'],
 			description: 'Interact with and learn to create fractal trees.',
-			demo: '/fractal-tree'
+			demo: 'articles/fractal-tree'
 		},
 		{
 			title: 'Cartesian Coordinate System',
 			image: cartesianImage,
 			topics: ['Mathematics', 'Geometry', '3D Graphics'],
 			description: 'The Cartesian coordinate system, starting from the first dimension.',
-			demo: '/cartesian-coordinate-system'
+			demo: 'articles/cartesian-coordinate-system'
 		}
 	];
 </script>
