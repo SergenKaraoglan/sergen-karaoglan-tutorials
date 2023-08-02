@@ -65,7 +65,7 @@
 				</h1>
 				<div class="mt-10 flex items-center justify-center gap-x-6">
 					<a
-						href="#featured-projects"
+						href="#projects"
 						class="rounded-md bg-blue-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
 					>
 						Projects
@@ -78,7 +78,7 @@
 		</div>
 	</div>
 </div>
-<div id="featured-projects" class="mx-auto max-w-3xl lg:max-w-6xl pt-20 lg:pt-28 pb-10">
+<div id="projects" class="mx-auto max-w-3xl lg:max-w-6xl pt-20 lg:pt-28 pb-10">
 	<ul class="grid grid-cols-1 gap-6 lg:grid-cols-2">
 		{#each project_list as data}
 			<li
