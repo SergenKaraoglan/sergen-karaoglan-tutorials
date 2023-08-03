@@ -9,25 +9,21 @@
 	let startAnim;
 	let animationFrame;
 
+	const cursor = {
+		x: 0,
+		y: 0
+	};
+
 	onMount(() => {
 		const ctx = canvas.getContext('2d');
 		const width = canvas.width;
 		const height = canvas.height;
+		cursor.x = width / 2;
+		cursor.y = height / 2;
 
 		ctx.lineWidth = 5;
-		//ctx.strokeStyle = "blue";
 		ctx.lineCap = 'round';
-
-		const cursor = {
-			x: width / 2,
-			y: height / 2
-		};
-
-		canvas.addEventListener('mousemove', (e) => {
-			cursor.x = e.offsetX;
-			cursor.y = e.offsetY;
-		});
-
+		
 		canvas.addEventListener('touchmove', (e) => {
 			cursor.x = e.touches[0].clientX;
 			cursor.y = e.touches[0].clientY;
@@ -36,10 +32,9 @@
 		function draw() {
 			x = cursor.x;
 			y = cursor.y;
-			// draw image
 			ctx.drawImage(image, cursor.x - 25, cursor.y - 30, 60, 60);
 
-			// draw x and y axis lines
+			// draw x and y axis
 			ctx.strokeStyle = 'green';
 			ctx.moveTo(0, 0);
 			ctx.lineTo(0, height);
@@ -75,6 +70,10 @@
 <img bind:this={image} src={PixelTiger} alt="Pixel Tiger" class="hidden" />
 <canvas
 	bind:this={canvas}
+	on:mousemove={(e) => {
+		cursor.x = e.offsetX;
+		cursor.y = e.offsetY;
+	}}
 	on:mousedown={() => startAnim()}
 	on:mouseup={() => endAnim()}
 	on:pointerleave={() => endAnim()}
