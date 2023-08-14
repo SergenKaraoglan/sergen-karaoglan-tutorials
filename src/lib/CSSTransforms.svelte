@@ -10,7 +10,7 @@
 </script>
 
 <div class="m-auto w-48 h-48 flex-center">
-	<div class="rounded bg-blue-500 h-12 w-12" style="transform: translate({tx}rem, {ty}rem) rotate({rotate}deg) scale({sx}, {sy}) skew({skewX}deg, {skewY}deg);" />
+	<div class="rounded bg-blue-500 h-12 w-12 -z-10" style="transform: translate({tx}rem, {ty}rem) rotate({rotate}deg) scale({sx}, {sy}) skew({skewX}deg, {skewY}deg);" />
 </div>
 
 <select bind:value={selected} class="mx-auto mb-5 mt-3 block">
