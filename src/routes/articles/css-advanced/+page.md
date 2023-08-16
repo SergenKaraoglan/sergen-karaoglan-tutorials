@@ -80,7 +80,7 @@ The animation duration in this case is set to infinite, which means the animatio
 
 ## Flexbox
 
-In the [previous CSS article](css-fundamentals) I talked about the **position** property which takes different values such as relative which gives us control on the relative position of an element using the properties top, bottom, right, left. While it can 'get the job done' it can be rather tedious to position elements using four different properties with specified values. What if for example, all we wanted to do was centre evenly spaced elements within a div? You would need to position each element individually while making sure they don't overlap whereas with flexbox this can be achieved with a few CSS properties with just the div.
+In the [CSS fundamentals article](css-fundamentals) I talked about the **position** property which takes different values such as relative which gives us control on the relative position of an element using the properties top, bottom, right, left. While it can 'get the job done' it can be rather tedious to position elements using four different properties with specified values. What if for example, all we wanted to do was centre evenly spaced elements within a div? You would need to position each element individually while making sure they don't overlap whereas with flexbox this can be achieved with a few CSS properties with just the div.
 
 The main goal of flexbox is to organise items in a single dimension such as links within a navigation bar. Flexbox can be divided into two parts, firstly the flex container using the declaration ```display: flex``` and secondly the flex items. Flex items are child elements of a flex container and do not require a declaration to be treated as such.
 
