@@ -30,7 +30,7 @@
 			title: 'Fractal Tree',
 			image: treeimage,
 			topics: ['Procedural Art', 'Fractals', 'Trigonometry', '3D Graphics', 'Recursion'],
-			description: 'Interact with and learn to create fractal trees.',
+			description: 'How recursion can be used to create a tree-like structure.',
 			demo: 'articles/fractal-tree'
 		},
 		{
