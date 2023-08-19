@@ -11,7 +11,7 @@ import TwoD from "$lib/2Dcoor.svelte";
 
 *Under construction*
 # Cartesian Coordinate System
-The cartesian coordinate system (CCS) is a system that allows us to locate a point in space using [real numbers](https://en.wikipedia.org/wiki/Cartesian_coordinate_system). This is incredibly helpful in certain fields such as game development for which you want to be able to identify every point space to place objects within a scene and identify their location.
+The cartesian coordinate system (CCS) is a system that allows us to locate a point in space using [real numbers](https://en.wikipedia.org/wiki/Cartesian_coordinate_system). This is incredibly helpful in certain fields such as game development for which you want to be able to identify every point in space to place objects within a scene.
 
 ## One Dimension
 
@@ -22,7 +22,7 @@ The one dimensional case can be seen as a number line that contains our real num
 The starting point in the example is 0 which is identified as the **origin** in the CCS.
 
 ## Two Dimensions
-In the two dimensional case we still have real numbers that represents a point in space but now with an extra axis and a pair of real numbers instead of a single number to represent a location.
+In the two dimensional case we still have real numbers that represents a point in space but now with an extra axis and a pair of real numbers instead of a single number to represent a location. Click on the canvas below to change the coordinates.
 
 <TwoD />
 
