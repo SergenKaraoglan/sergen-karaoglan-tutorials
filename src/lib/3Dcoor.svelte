@@ -93,8 +93,8 @@
 
 <canvas bind:this={canvas} class="mx-auto w-80 h-80 sm:w-96 sm:h-96" />
 <div class="mx-auto w-fit">
-	<input type="range" min="-10" max="10" step="1" bind:value={x} />
-	<input type="range" min="-10" max="10" step="1" bind:value={y} />
-	<input type="range" min="-10" max="10" step="1" bind:value={z} />
+	<input type="range" min="-10" max="10" step="0.1" bind:value={x} />
+	<input type="range" min="-10" max="10" step="0.1" bind:value={y} />
+	<input type="range" min="-10" max="10" step="0.1" bind:value={z} />
 </div>
 <div class="mx-auto w-fit text-lg">X:{x} Y:{y} Z:{z}</div>

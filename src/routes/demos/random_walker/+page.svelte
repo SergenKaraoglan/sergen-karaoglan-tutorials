@@ -16,6 +16,8 @@
             y += Math.floor(Math.random() * 3) - 1;
             x = x % width;
             y = y % height;
+            x = Math.max(x, 0);
+            y = Math.max(y, 0);
 
         }, 10)
     })
