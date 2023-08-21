@@ -3,7 +3,7 @@
 	import 'babylonjs-loaders/';
 	import { onMount } from 'svelte';
 
-	import astronaut from '$lib/3Dassets/astronautA.glb';
+	import astronaut from '$lib/3Dassets/astronautA.obj';
 
 	// setup babylon
 	let canvas;
@@ -74,7 +74,7 @@
 			// localAxes.xAxis.parent = astro;
 			// localAxes.yAxis.parent = astro;
 			// localAxes.zAxis.parent = astro;
-			astro.scaling = new BABYLON.Vector3(5, 5, 5);
+			astro.scaling = new BABYLON.Vector3(8, 8, 8);
 			astro.position = new BABYLON.Vector3(0, 0, 0);
 			// const pointerDragBehavior = new BABYLON.PointerDragBehavior({
 			// 	dragAxis: new BABYLON.Vector3(0, 1, 0)
