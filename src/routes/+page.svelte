@@ -61,7 +61,7 @@
 		<div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
 			<div class="text-center">
 				<h1 class="text-4xl font-medium tracking-tight text-white sm:text-6xl">
-					Explore interactive tutorials on STEM, games and procedural art
+					<span><i>Accelerate</i> your learning</span> with concise, interactive and visual explanations.
 				</h1>
 				<div class="mt-10 flex items-center justify-center gap-x-6">
 					<a

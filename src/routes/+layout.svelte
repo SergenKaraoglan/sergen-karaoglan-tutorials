@@ -46,7 +46,7 @@
 		<div class="flex h-16 items-center justify-between">
 			<div class="flex-shrink-0">
 				<a data-sveltekit-reload href="/">
-					<img class="block h-4 w-auto sm:hidden" src="/logo.svg" alt="Sergen Karaoglan logo" />
+					<img class="block h-3 w-auto sm:hidden" src="/logo.svg" alt="Sergen Karaoglan logo" />
 					<img class="hidden h-4 w-auto sm:block" src="/logo.svg" alt="Sergen Karaoglan logo" />
 				</a>
 			</div>
@@ -63,7 +63,7 @@
 			<div>
 				<h3 class="text-sm font-semibold leading-6 text-gray-900">Contact</h3>
 				<p class="mt-2 text-sm leading-6 text-gray-600">
-					Open to job opportunities, feedback, questions and discussion.
+					Open to feedback, questions and discussion.
 				</p>
 			</div>
 			<button

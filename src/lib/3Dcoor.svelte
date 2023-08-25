@@ -3,7 +3,7 @@
 	import 'babylonjs-loaders/';
 	import { onMount } from 'svelte';
 
-	import astronaut from '$lib/3Dassets/astronautA.obj';
+	import astronaut from '$lib/3Dassets/astronautA.glb';
 
 	// setup babylon
 	let canvas;
