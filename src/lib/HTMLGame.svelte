@@ -36,6 +36,7 @@
 				class="rounded-xl w-full bg-black text-white h-10 flex-center"
 				draggable="true"
 				on:dragstart={(event) => event.dataTransfer.setData('text', event.target.id)}
+                on:dragover={(event) => event.stopPropagation()}
 			>
 				{element.value}
 			</div>
