@@ -1,7 +1,7 @@
 <script>
 	function createHTML(s) {
 		let html =
-			`<html >
+			`<html>
         <head>
         <style>
 			img {

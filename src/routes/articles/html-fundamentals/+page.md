@@ -2,6 +2,7 @@
 import DOMTree from "$lib/DOM-Tree.svelte";
 import HTMLatt from "$lib/HTML-Attributes.svelte";
 import HTMLele from "$lib/HTML-Element.svelte";
+import HTMLGame from "$lib/HTMLGame.svelte";
 import Lazy from "$lib/Lazy.svelte";
 import '$lib/styles/vscode-dark.css';
 </script>
@@ -10,6 +11,8 @@ import '$lib/styles/vscode-dark.css';
 	<title>HTML Fundamentals | Sergen Karaoglan</title>
 	<meta name="description" content="Learn the fundamentals of HTML" />
 </svelte:head>
+
+<HTMLGame />
 
 # HTML Fundamentals
 ## Elements and Attributes
