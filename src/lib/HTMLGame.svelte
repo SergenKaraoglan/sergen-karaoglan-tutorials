@@ -2,9 +2,9 @@
 	let html = ``;
 
 	let elements = [
-		{ id: 0, value: '<h1>Chipmunk</h1>' },
-		{ id: 1, value: '<p>Pixel art</p>' },
-		{ id: 2, value: '<img src="https://i.imgur.com/3FmEZ67.jpg">' }
+		{ id: 0, value: '<h1>Chipmunk</h1>', display: '<h1>Chipmunk</h1>' },
+		{ id: 1, value: '<p>Pixel art</p>', display: '<p>Pixel art</p>' },
+		{ id: 2, value: '<img src="https://i.imgur.com/3FmEZ67.jpg">', display: '<img src=img.png>'}
 	];
 
 	function drop(event) {
@@ -22,7 +22,7 @@
 	}
 </script>
 
-<iframe class="mx-auto h-96 w-80 sm:w-96 my-5 border" srcdoc={html} title="HTML game" />
+<iframe class="mx-auto h-80 w-80 my-5 border" srcdoc={html} title="HTML game" />
 
 <div class="flex w-fit mx-auto gap-5 my-7">
 	<div
@@ -38,7 +38,7 @@
 				on:dragstart={(event) => event.dataTransfer.setData('text', event.target.id)}
                 on:dragover={(event) => event.stopPropagation()}
 			>
-				{element.value}
+				{element.display}
 			</div>
 		{/each}
 	</div>

@@ -12,15 +12,16 @@ import '$lib/styles/vscode-dark.css';
 	<meta name="description" content="Learn the fundamentals of HTML" />
 </svelte:head>
 
-<HTMLGame />
 
 # HTML Fundamentals
-## Elements and Attributes
-What your browser just requested and [browser engine](https://en.wikipedia.org/wiki/Browser_engine) has rendered is a document written in [HyperText Markup Language](https://en.wikipedia.org/wiki/HTML) (HTML) or more specifically [HTML5](https://en.wikipedia.org/wiki/HTML5), which is the current [markup language](https://en.wikipedia.org/wiki/Markup_language) for structuring and determining the behaviour of a webpage. Whether it is a link, an image or a video, this is implemented using HTML. Now there are a countless number of HTML tutorials out there but I wanted to give a more concise and interactive tutorial that covers the fundamentals to begin creating your first webpage. 
+What your browser just requested and [browser engine](https://en.wikipedia.org/wiki/Browser_engine) has rendered is a document written in [HyperText Markup Language](https://en.wikipedia.org/wiki/HTML) (HTML) or more specifically [HTML5](https://en.wikipedia.org/wiki/HTML5), which is the current [markup language](https://en.wikipedia.org/wiki/Markup_language) for structuring and determining the behaviour of a webpage. Whether it is a link, an image or a video, this is implemented using HTML. Drag the elements below to the box on the right side to start building a webpage.
 
+<HTMLGame />
+
+## Elements and Attributes
 Starting with the basics, HTML is written using what are known as elements that mostly look like the following: ```<tagname> content </tagname>```. Elements are made up of tags usually involving an opening ```<>``` and closing tag ```</>``` with content nested between. In this example I just used a placeholder name but for recognised tag names you will receive different outputs within the browser.
 
-Below is an example of a 'h1' element that includes the content HTML. The h1 element tells the browser to render text you include within it as a heading which by default renders text with a different style than if you were to insert plain text. I made this h1 element editable, every time you edit it the h1 element will be rendered with the new content.
+Below is an example of a 'h1' element that includes the content 'Heading!'. The h1 element tells the browser to render text you include within it as a heading which by default renders text with a different style than if you were to insert plain text. I made this h1 element editable, every time you edit it the h1 element will be rendered with the new content.
 
 <figure>
 	<HTMLele />

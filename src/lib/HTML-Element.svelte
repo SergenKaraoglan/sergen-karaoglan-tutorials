@@ -1,5 +1,5 @@
 <script>
-    let content = "I am a heading!"
+    let content = "Heading!"
 </script>
 
 <div class="h-36 w-52 mx-auto mt-10 mb-6 sm:mb-20">
