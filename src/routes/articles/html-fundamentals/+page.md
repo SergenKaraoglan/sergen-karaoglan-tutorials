@@ -14,7 +14,7 @@ import '$lib/styles/vscode-dark.css';
 
 
 # HTML Fundamentals
-What your browser just requested and [browser engine](https://en.wikipedia.org/wiki/Browser_engine) has rendered is a document written in [HyperText Markup Language](https://en.wikipedia.org/wiki/HTML) (HTML) or more specifically [HTML5](https://en.wikipedia.org/wiki/HTML5), which is the current [markup language](https://en.wikipedia.org/wiki/Markup_language) for structuring and determining the behaviour of a webpage. Whether it is a link, an image or a video, this is implemented using HTML. Drag the elements below to the box on the right side to start building a webpage.
+What your [browser engine](https://en.wikipedia.org/wiki/Browser_engine) has just rendered is a document written in [HyperText Markup Language](https://en.wikipedia.org/wiki/HTML) (HTML) or more specifically [HTML5](https://en.wikipedia.org/wiki/HTML5), which is the current [markup language](https://en.wikipedia.org/wiki/Markup_language) for describing the structure and display of a webpage. Whether it is a link, an image or a video, this is implemented using HTML. Drag the elements below to the container on the right to start getting an idea of how a webpage is built.
 
 <HTMLGame />
 
@@ -58,7 +58,7 @@ A typical HTML document structure looks like the following:
 Notice that beyond text we can even include elements in other elements to change their behaviour. The ```<html>``` element defines our document which directly includes the elements ```<head>``` and ```<body>```. All content rendered on the screen is placed in body whereas [metadata](https://en.wikipedia.org/wiki/Metadata) such as the title and the icon of the page is placed in head. Understanding the details of [DOCTYPE](https://html.spec.whatwg.org/multipage/syntax.html#the-doctype) is not important at this stage but it is required for our browser to render HTML5 appropriately so you will find it in almost all HTML5 pages.
 
 ## Document Object Model
-Now, in order for you browser to understand how to render the content it needs to builds a [Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model) using the specified elements first.
+Using HTML, most browsers build a [Document Object Model](https://en.wikipedia.org/wiki/Document_Object_Model) (DOM). This is especially important to know later on when you want to dynamically change the structure of your document or style. 
 Below is a self-contained HTML page that renders a heading (h1), paragraph (p) and an image (img) with its DOM represented in a tree structure containing each element as node. Each element can be nested within another element to make it a 'child' element. You can see this structure represented within the DOM tree with nodes branching from other nodes and represented in the order they are written. The content is rendered according to the tree structure.
 
 Feel free to write whatever you want and watch as the DOM tree updates and HTML renders live in your browser. If you want an example try ```<p>Member of the Sciuridae family</p>``` which is a paragraph element with the content "Member of the Sciuridae family" but any content works.
@@ -87,7 +87,7 @@ The above behaviour occurs because the chosen elements in this example are all *
 ## Build your first webpage
 If all you want to do is build a static site without styling, you already have the basics and the reference to do so. If you want to move straight to learning how to style or make a page interactive, you will need to learn [CSS](https://en.wikipedia.org/wiki/CSS) and [JavaScript](https://en.wikipedia.org/wiki/JavaScript) respectively which build on the concepts here, but you might be surprised by how much can be done with just HTML (tables, forms, lists and more). Feel free to check out the resources below if you want to find out more about HTML and try building your first static site.
 
-To get started, below is a template you can save as a HTML document and load in your browser of choice.
+To get started, below is a template you can save as a .html document and load in your browser of choice.
 
 ```HTML
 <!DOCTYPE html>
